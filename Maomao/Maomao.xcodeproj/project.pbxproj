@@ -77,6 +77,8 @@
 		FE68427A180E32DA0000E01C = {
 			isa = PBXGroup;
 			children = (
+				FE6842B7180E39110000E01C /* Class */,
+				FE6842B8180E39110000E01C /* OpenSource */,
 				FE68428C180E32DA0000E01C /* Maomao */,
 				FE6842A5180E32DA0000E01C /* MaomaoTests */,
 				FE684285180E32DA0000E01C /* Frameworks */,
@@ -142,6 +144,20 @@
 				FE6842A8180E32DA0000E01C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE6842B7180E39110000E01C /* Class */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		FE6842B8180E39110000E01C /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OpenSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,6 +458,7 @@
 				FE6842B1180E32DA0000E01C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE6842B2180E32DA0000E01C /* Build configuration list for PBXNativeTarget "MaomaoTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +467,7 @@
 				FE6842B4180E32DA0000E01C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
