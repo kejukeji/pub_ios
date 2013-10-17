@@ -68,6 +68,8 @@
 		FEBEFF09180FCDCA007C3D2C /* MSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF08180FCDCA007C3D2C /* MSettingVC.m */; };
 		FEBEFF0C180FCDF9007C3D2C /* MMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF0B180FCDF9007C3D2C /* MMessageVC.m */; };
 		FEBEFF0F180FCE7C007C3D2C /* MCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF0E180FCE7C007C3D2C /* MCollectVC.m */; };
+		FEBEFF12180FD00C007C3D2C /* MLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF11180FD00C007C3D2C /* MLoginVC.m */; };
+		FEBEFF15180FD028007C3D2C /* MRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF14180FD028007C3D2C /* MRegisterVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,10 @@
 		FEBEFF0B180FCDF9007C3D2C /* MMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMessageVC.m; sourceTree = "<group>"; };
 		FEBEFF0D180FCE7C007C3D2C /* MCollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCollectVC.h; sourceTree = "<group>"; };
 		FEBEFF0E180FCE7C007C3D2C /* MCollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCollectVC.m; sourceTree = "<group>"; };
+		FEBEFF10180FD00C007C3D2C /* MLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLoginVC.h; sourceTree = "<group>"; };
+		FEBEFF11180FD00C007C3D2C /* MLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLoginVC.m; sourceTree = "<group>"; };
+		FEBEFF13180FD028007C3D2C /* MRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRegisterVC.h; sourceTree = "<group>"; };
+		FEBEFF14180FD028007C3D2C /* MRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRegisterVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +345,10 @@
 				FEBEFF0B180FCDF9007C3D2C /* MMessageVC.m */,
 				FEBEFF07180FCDCA007C3D2C /* MSettingVC.h */,
 				FEBEFF08180FCDCA007C3D2C /* MSettingVC.m */,
+				FEBEFF10180FD00C007C3D2C /* MLoginVC.h */,
+				FEBEFF11180FD00C007C3D2C /* MLoginVC.m */,
+				FEBEFF13180FD028007C3D2C /* MRegisterVC.h */,
+				FEBEFF14180FD028007C3D2C /* MRegisterVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -608,6 +618,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBEFF12180FD00C007C3D2C /* MLoginVC.m in Sources */,
 				FE902AF6180F90AE00F60C71 /* SDWebImageDecoder.m in Sources */,
 				FE902AE0180F90AE00F60C71 /* ASIDataCompressor.m in Sources */,
 				FE902AF2180F90AE00F60C71 /* Utils.m in Sources */,
@@ -646,6 +657,7 @@
 				FEBEFEFC180FC8A2007C3D2C /* MTitleView.m in Sources */,
 				FE902AE9180F90AE00F60C71 /* NSString+SBJSON.m in Sources */,
 				FE902AE2180F90AE00F60C71 /* ASIDownloadCache.m in Sources */,
+				FEBEFF15180FD028007C3D2C /* MRegisterVC.m in Sources */,
 				FEBEFF0C180FCDF9007C3D2C /* MMessageVC.m in Sources */,
 				FEBEFF03180FC97C007C3D2C /* MBarListCell.m in Sources */,
 			);
