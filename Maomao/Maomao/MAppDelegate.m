@@ -7,6 +7,7 @@
 //
 
 #import "MAppDelegate.h"
+#import "MRootVC.h"
 
 @implementation MAppDelegate
 
@@ -15,6 +16,24 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //增加标识，用于判断是否是第一次启动应用...
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    }
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunchTag"]) {
+        MRootVC *welcomePage = [[MRootVC alloc] init];
+        self.window.rootViewController = welcomePage;
+        [self.window addSubview:welcomePage.view];
+    } else {
+//        JQTRootViewController *rootViewController = [[JQTRootViewController alloc] initWithNibName:(iPhone5?@"JQTRootViewController_i5":@"JQTRootViewController") bundle:nil];
+//        
+//        self.window.rootViewController = rootViewController;
+//        [self.window addSubview:rootViewController.view];
+    }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
