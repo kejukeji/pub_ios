@@ -70,7 +70,10 @@
 		FEBEFF0F180FCE7C007C3D2C /* MCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF0E180FCE7C007C3D2C /* MCollectVC.m */; };
 		FEBEFF12180FD00C007C3D2C /* MLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF11180FD00C007C3D2C /* MLoginVC.m */; };
 		FEBEFF15180FD028007C3D2C /* MRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF14180FD028007C3D2C /* MRegisterVC.m */; };
-		FEBEFF18180FD35E007C3D2C /* SFSlideNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF17180FD35E007C3D2C /* SFSlideNavViewController.m */; };
+		FEBEFF1C180FD7E2007C3D2C /* MBarListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF1B180FD7E2007C3D2C /* MBarListVC.m */; };
+		FEBEFF1F180FD800007C3D2C /* MBarDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF1E180FD800007C3D2C /* MBarDetailsVC.m */; };
+		FEBEFF22180FD871007C3D2C /* MBarEnvironmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF21180FD871007C3D2C /* MBarEnvironmentVC.m */; };
+		FEBEFF25180FD8D4007C3D2C /* MUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF24180FD8D4007C3D2C /* MUserVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,8 +201,14 @@
 		FEBEFF11180FD00C007C3D2C /* MLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLoginVC.m; sourceTree = "<group>"; };
 		FEBEFF13180FD028007C3D2C /* MRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRegisterVC.h; sourceTree = "<group>"; };
 		FEBEFF14180FD028007C3D2C /* MRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRegisterVC.m; sourceTree = "<group>"; };
-		FEBEFF16180FD35E007C3D2C /* SFSlideNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSlideNavViewController.h; sourceTree = "<group>"; };
-		FEBEFF17180FD35E007C3D2C /* SFSlideNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSlideNavViewController.m; sourceTree = "<group>"; };
+		FEBEFF1A180FD7E2007C3D2C /* MBarListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBarListVC.h; sourceTree = "<group>"; };
+		FEBEFF1B180FD7E2007C3D2C /* MBarListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBarListVC.m; sourceTree = "<group>"; };
+		FEBEFF1D180FD800007C3D2C /* MBarDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBarDetailsVC.h; sourceTree = "<group>"; };
+		FEBEFF1E180FD800007C3D2C /* MBarDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBarDetailsVC.m; sourceTree = "<group>"; };
+		FEBEFF20180FD871007C3D2C /* MBarEnvironmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBarEnvironmentVC.h; sourceTree = "<group>"; };
+		FEBEFF21180FD871007C3D2C /* MBarEnvironmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBarEnvironmentVC.m; sourceTree = "<group>"; };
+		FEBEFF23180FD8D4007C3D2C /* MUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUserVC.h; sourceTree = "<group>"; };
+		FEBEFF24180FD8D4007C3D2C /* MUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUserVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +346,8 @@
 		FE7C681D180E6FD600DDD995 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEBEFF26180FDE2D007C3D2C /* Message */,
+				FEBEFF19180FD7C2007C3D2C /* BarVC */,
 				FE7C681E180E6FD600DDD995 /* Nav */,
 				FE83A8BF180FB0CD0080396B /* MRootVC.h */,
 				FE83A8C0180FB0CD0080396B /* MRootVC.m */,
@@ -352,6 +363,8 @@
 				FEBEFF11180FD00C007C3D2C /* MLoginVC.m */,
 				FEBEFF13180FD028007C3D2C /* MRegisterVC.h */,
 				FEBEFF14180FD028007C3D2C /* MRegisterVC.m */,
+				FEBEFF23180FD8D4007C3D2C /* MUserVC.h */,
+				FEBEFF24180FD8D4007C3D2C /* MUserVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -359,8 +372,6 @@
 		FE7C681E180E6FD600DDD995 /* Nav */ = {
 			isa = PBXGroup;
 			children = (
-				FEBEFF16180FD35E007C3D2C /* SFSlideNavViewController.h */,
-				FEBEFF17180FD35E007C3D2C /* SFSlideNavViewController.m */,
 			);
 			path = Nav;
 			sourceTree = "<group>";
@@ -522,6 +533,26 @@
 			path = Bar;
 			sourceTree = "<group>";
 		};
+		FEBEFF19180FD7C2007C3D2C /* BarVC */ = {
+			isa = PBXGroup;
+			children = (
+				FEBEFF1A180FD7E2007C3D2C /* MBarListVC.h */,
+				FEBEFF1B180FD7E2007C3D2C /* MBarListVC.m */,
+				FEBEFF1D180FD800007C3D2C /* MBarDetailsVC.h */,
+				FEBEFF1E180FD800007C3D2C /* MBarDetailsVC.m */,
+				FEBEFF20180FD871007C3D2C /* MBarEnvironmentVC.h */,
+				FEBEFF21180FD871007C3D2C /* MBarEnvironmentVC.m */,
+			);
+			path = BarVC;
+			sourceTree = "<group>";
+		};
+		FEBEFF26180FDE2D007C3D2C /* Message */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -632,10 +663,11 @@
 				FE902AE4180F90AE00F60C71 /* ASIHTTPRequest.m in Sources */,
 				FE902ADF180F90AE00F60C71 /* ASIAuthenticationDialog.m in Sources */,
 				FE902AE3180F90AE00F60C71 /* ASIFormDataRequest.m in Sources */,
+				FEBEFF22180FD871007C3D2C /* MBarEnvironmentVC.m in Sources */,
+				FEBEFF1C180FD7E2007C3D2C /* MBarListVC.m in Sources */,
 				FE902AF5180F90AE00F60C71 /* SDWebImageCompat.m in Sources */,
 				FE902AF4180F90AE00F60C71 /* SDImageCache.m in Sources */,
 				FE902AFC180F90AE00F60C71 /* UIImageView+WebCache.m in Sources */,
-				FEBEFF18180FD35E007C3D2C /* SFSlideNavViewController.m in Sources */,
 				FEBEFF0F180FCE7C007C3D2C /* MCollectVC.m in Sources */,
 				FE902AF7180F90AE00F60C71 /* SDWebImageDownloader.m in Sources */,
 				FE684293180E32DA0000E01C /* main.m in Sources */,
@@ -653,11 +685,13 @@
 				FE902AF9180F90AE00F60C71 /* SDWebImageManager.m in Sources */,
 				FEBEFF06180FCD67007C3D2C /* MHomeVC.m in Sources */,
 				FE83A8C1180FB0CD0080396B /* MRootVC.m in Sources */,
+				FEBEFF25180FD8D4007C3D2C /* MUserVC.m in Sources */,
 				FEBEFEF9180FC878007C3D2C /* MRightBtn.m in Sources */,
 				FE902AED180F90AE00F60C71 /* SBJsonWriter.m in Sources */,
 				FE902AF3180F90AE00F60C71 /* MKAnnotationView+WebCache.m in Sources */,
 				FE902AF0180F90AE00F60C71 /* GPPrompting.m in Sources */,
 				FE902AE7180F90AE00F60C71 /* Reachability.m in Sources */,
+				FEBEFF1F180FD800007C3D2C /* MBarDetailsVC.m in Sources */,
 				FEBEFEF6180FC867007C3D2C /* MBackBtn.m in Sources */,
 				FE902AE8180F90AE00F60C71 /* NSObject+SBJSON.m in Sources */,
 				FEBEFEFC180FC8A2007C3D2C /* MTitleView.m in Sources */,
