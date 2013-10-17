@@ -70,6 +70,7 @@
 		FEBEFF0F180FCE7C007C3D2C /* MCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF0E180FCE7C007C3D2C /* MCollectVC.m */; };
 		FEBEFF12180FD00C007C3D2C /* MLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF11180FD00C007C3D2C /* MLoginVC.m */; };
 		FEBEFF15180FD028007C3D2C /* MRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF14180FD028007C3D2C /* MRegisterVC.m */; };
+		FEBEFF18180FD35E007C3D2C /* SFSlideNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBEFF17180FD35E007C3D2C /* SFSlideNavViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +198,8 @@
 		FEBEFF11180FD00C007C3D2C /* MLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLoginVC.m; sourceTree = "<group>"; };
 		FEBEFF13180FD028007C3D2C /* MRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRegisterVC.h; sourceTree = "<group>"; };
 		FEBEFF14180FD028007C3D2C /* MRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRegisterVC.m; sourceTree = "<group>"; };
+		FEBEFF16180FD35E007C3D2C /* SFSlideNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSlideNavViewController.h; sourceTree = "<group>"; };
+		FEBEFF17180FD35E007C3D2C /* SFSlideNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSlideNavViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +359,8 @@
 		FE7C681E180E6FD600DDD995 /* Nav */ = {
 			isa = PBXGroup;
 			children = (
+				FEBEFF16180FD35E007C3D2C /* SFSlideNavViewController.h */,
+				FEBEFF17180FD35E007C3D2C /* SFSlideNavViewController.m */,
 			);
 			path = Nav;
 			sourceTree = "<group>";
@@ -630,6 +635,7 @@
 				FE902AF5180F90AE00F60C71 /* SDWebImageCompat.m in Sources */,
 				FE902AF4180F90AE00F60C71 /* SDImageCache.m in Sources */,
 				FE902AFC180F90AE00F60C71 /* UIImageView+WebCache.m in Sources */,
+				FEBEFF18180FD35E007C3D2C /* SFSlideNavViewController.m in Sources */,
 				FEBEFF0F180FCE7C007C3D2C /* MCollectVC.m in Sources */,
 				FE902AF7180F90AE00F60C71 /* SDWebImageDownloader.m in Sources */,
 				FE684293180E32DA0000E01C /* main.m in Sources */,
