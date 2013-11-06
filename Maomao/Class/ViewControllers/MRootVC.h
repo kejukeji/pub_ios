@@ -10,7 +10,7 @@
 
 @interface MRootVC : UIViewController
 
-@property (nonatomic, strong) UIScrollView    *rootScroll;
-@property (nonatomic, strong) UIPageControl   *rootPage;
-
+@property (nonatomic, strong) UIScrollView               *rootScroll;
+@property (nonatomic, strong) UIPageControl              *rootPage;
+@property (nonatomic, strong) UINavigationController     *navigation;
 @end

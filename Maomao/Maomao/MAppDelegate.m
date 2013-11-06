@@ -11,6 +11,9 @@
 
 @implementation MAppDelegate
 
+@synthesize navigation;
+@synthesize mainVC;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -28,14 +31,25 @@
         self.window.rootViewController = welcomePage;
         [self.window addSubview:welcomePage.view];
     } else {
-//        JQTRootViewController *rootViewController = [[JQTRootViewController alloc] initWithNibName:(iPhone5?@"JQTRootViewController_i5":@"JQTRootViewController") bundle:nil];
-//        
-//        self.window.rootViewController = rootViewController;
-//        [self.window addSubview:rootViewController.view];
+        mainVC = [[MMainVC alloc] init];
+        navigation = [[UINavigationController alloc] initWithRootViewController:mainVC];
+        navigation.delegate = self;
+        [navigation.navigationBar setBackgroundImage:[UIImage imageNamed:@"common_barBg_top.png"] forBarMetrics:UIBarMetricsDefault];
+        self.window.rootViewController = navigation;
+        [self.window addSubview:navigation.view];
     }
     
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (viewController == mainVC) {
+        [navigationController setNavigationBarHidden:YES animated:YES];
+    } else if ([navigationController isNavigationBarHidden]) {
+        [navigationController setNavigationBarHidden:NO animated:YES];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

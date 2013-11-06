@@ -7,6 +7,7 @@
 //
 
 #import "MRootVC.h"
+#import "MLoginVC.h"
 
 @interface MRootVC () <UIScrollViewDelegate>
 
@@ -16,6 +17,7 @@
 
 @synthesize rootScroll;
 @synthesize rootPage;
+@synthesize navigation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,12 +67,12 @@
     [startBtn setImage:[UIImage imageNamed:@" "] forState:UIControlStateNormal];
     [startBtn addTarget:self action:@selector(startInto) forControlEvents:UIControlEventTouchUpInside];
     [fourthImg addSubview:startBtn];
-
 }
 
 - (void)startInto
 {
-    NSLog(@"startInto");
+    MLoginVC *loginVC = [[MLoginVC alloc] initWithNibName:(iPhone5?@"MLoginVC":@"MLoginVCi4") bundle:nil];
+    [self presentViewController:loginVC animated:YES completion:nil];
 }
 
 #pragma mark -

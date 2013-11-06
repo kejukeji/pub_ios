@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
+
 
 @interface MLoginVC : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITextField     *usernameTF;
+@property (weak, nonatomic) IBOutlet UITextField     *passwdTF;
+
+@property (nonatomic,strong) ASIFormDataRequest      *formDataRequest;
+@property (nonatomic, strong) UINavigationController *navigat;
+
+- (IBAction)loginAccount:(UIButton *)sender;
+
 
 @end

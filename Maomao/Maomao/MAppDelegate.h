@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMainVC.h"
 
-@interface MAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MAppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) UIWindow               *window;
+@property (nonatomic, strong) UINavigationController *navigation;
+@property (nonatomic, strong) MMainVC                *mainVC;
 @end
