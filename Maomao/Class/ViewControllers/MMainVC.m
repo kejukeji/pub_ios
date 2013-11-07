@@ -106,8 +106,12 @@
 
 - (void)gotoBarListVC:(NSInteger)typeId
 {
+    NSLog(@"typeid === %d",typeId);
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     [self.navigationController pushViewController:barListVC animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d",MM_URL, typeId];
+    [barListVC initWithRequestByUrl:url];
 }
 
 - (void)didReceiveMemoryWarning

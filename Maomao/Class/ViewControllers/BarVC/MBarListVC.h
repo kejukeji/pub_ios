@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
+#import "MBProgressHUD.h"
+#import "GPPrompting.h"
+#import "MBarListCell.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface MBarListVC : UIViewController
+@interface MBarListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate>
+{
+    IBOutlet MBarListCell *barListCell;
+    BOOL                   reloading;
+
+}
+
+@property (weak, nonatomic) IBOutlet UIScrollView       *recommendScrollView;
+
+@property (nonatomic, strong) ASIHTTPRequest            *sendRequest;
+@property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
+@property (nonatomic, copy)   NSString                  *lastUrlString;
+
+- (void)initWithRequestByUrl:(NSString *)urlString;
 
 @end

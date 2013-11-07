@@ -87,7 +87,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *response = [request responseString];
-    NSLog(@"response == %@",response);
+
     if (response == nil || [response JSONValue] == nil) {
         return;
     }
@@ -102,7 +102,7 @@
             MHomeModel *model = [[MHomeModel alloc] init];
             model.base_path = [dict objectForKey:@"base_path"];
             model.code = [dict objectForKey:@"code"];
-            model.homeid = [dict objectForKey:@"homeid"];
+            model.homeid = [dict objectForKey:@"id"];
             model.name = [dict objectForKey:@"name"];
             model.pic_name = [dict objectForKey:@"pic_name"];
             model.pic_path = [dict objectForKey:@"pic_path"];
@@ -152,9 +152,9 @@
         }
         
         NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];   //图片URL
-        NSLog(@"picPath == %@",picPath);
         UIButton *barBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [barBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal];
+        [barBtn setTag:[model.homeid integerValue]];
         [barBtn addTarget:self action:@selector(gotoBarListVC:) forControlEvents:UIControlEventTouchUpInside];
         
         if (row == 1) {
