@@ -45,12 +45,15 @@
     [self.view addSubview:touchView];
     
     homeView = [[MHomeView alloc] initWithFrame:CGRectMake(0, 0, 320, 460+(iPhone5?88:0))];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/home",MM_URL];
+    [homeView initWithRequestByUrl:url];
     [homeView setDelegate:self];
     [touchView setCurrentView:homeView];
 }
 
 #pragma mark - 
 #pragma mark MLetMenuViewDelegate
+
 - (void)gotoNextVC:(NSInteger)type
 {
     NSLog(@"type==%d",type);
@@ -91,6 +94,7 @@
 
 #pragma mark -
 #pragma mark MHomeViewDelegate
+
 - (void)leftSlider
 {
     if (touchView.currentState == NormalState) {
@@ -100,7 +104,7 @@
     }
 }
 
-- (void)gotoBarListVC
+- (void)gotoBarListVC:(NSInteger)typeId
 {
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     [self.navigationController pushViewController:barListVC animated:YES];

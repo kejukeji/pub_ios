@@ -9,13 +9,29 @@
 @protocol MHomeViewDelegate <NSObject>
 
 - (void)leftSlider;
-- (void)gotoBarListVC;
+- (void)gotoBarListVC:(NSInteger)typeId;
 
 @end
-#import <UIKit/UIKit.h>
 
-@interface MHomeView : UIView
+#import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
+#import "MBProgressHUD.h"
+#import "GPPrompting.h"
+#import "MHomeModel.h"
+
+@interface MHomeView : UIView <ASIHTTPRequestDelegate>
+{
+    MBProgressHUD   *hud;
+    GPPrompting     *prompting;
+    NSMutableArray  *homeSources;
+    UIScrollView    *homeScrollView;
+    BOOL             isNetWork;
+
+}
 
 @property (nonatomic, assign) id<MHomeViewDelegate> delegate;
+@property (nonatomic, strong) ASIHTTPRequest       *sendRequest;
+
+-(void)initWithRequestByUrl:(NSString *)urlString;
 
 @end
