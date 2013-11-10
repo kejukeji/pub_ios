@@ -14,6 +14,8 @@
 #import "JSON.h"
 #import "UIButton+WebCache.h"
 #import "MBarDetailsVC.h"
+#import "MRightBtn.h"
+#import "MBarSearchVC.h"
 
 @interface MBarListVC () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -53,18 +55,28 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
+    MRightBtn *rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
+    [rightBtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn setTitle:@"搜 索" forState:UIControlStateNormal];
+    [rightBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    
     barPicSources = [NSMutableArray arrayWithCapacity:0];
     barListSources = [NSMutableArray arrayWithCapacity:0];
     currentIndex = 1;
 
-    barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 126, 320, 290+(iPhone5?88:0)) style:UITableViewStylePlain];
+    barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 126+(noiOS7?0:64), 320, 290+(iPhone5?88:0)) style:UITableViewStylePlain];
     [barListTV setDelegate:self];
     [barListTV setDataSource:self];
+    [barListTV setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [barListTV setBackgroundColor:[UIColor clearColor]];
     [barListTV setBackgroundView:nil];
     [barListTV setRowHeight:108.0f];
     [self.view addSubview:barListTV];
     
+    hud = [[MBProgressHUD alloc] init];
+    [hud setLabelText:@"加载中，请稍等！"];
+    [self.view addSubview:hud];
 }
 
 - (void)back
@@ -73,8 +85,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)search
+{
+    NSLog(@"search");
+    MBarSearchVC *barSearchVC = [[MBarSearchVC alloc] init];
+    [self.navigationController pushViewController:barSearchVC animated:YES];
+}
+
 - (void)initWithRequestByUrl:(NSString *)urlString
 {
+    [hud show:YES];
+
     self.lastUrlString = urlString;
     
     if (refreshHeaderView == nil) {
@@ -91,7 +112,7 @@
     
 }
 
--(void)refaushTableViewData
+- (void)refaushTableViewData
 {
     if(lastUrlString == nil)
     {
@@ -334,6 +355,10 @@
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"MBarListCell" owner:self options:nil];
         cell = barListCell;
+    }
+    
+    if (!noiOS7) {
+        [cell setBackgroundColor:[UIColor clearColor]];
     }
     
     if ([barListSources count] > 0 && indexPath.row == [barListSources count]-1) {

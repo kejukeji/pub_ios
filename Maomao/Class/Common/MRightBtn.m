@@ -15,6 +15,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self setFrame:CGRectMake(0, 0, 46, 28)];
+                
+        [self setBackgroundImage:[UIImage imageNamed:@"common_btn_right.png"] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.titleLabel setFont:[UIFont systemFontOfSize:14]];
+
     }
     return self;
 }

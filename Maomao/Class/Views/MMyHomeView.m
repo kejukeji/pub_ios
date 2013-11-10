@@ -10,29 +10,32 @@
 
 @implementation MMyHomeView
 
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 44, 320, 460)];
-        [label setText:@"我的"];
-        [self addSubview:label];
         
-        UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:20), 320, 44)];
         [topBar setImage:[UIImage imageNamed:@"common_barBg_top.png"]];
+        [topBar setUserInteractionEnabled:YES];
         [self addSubview:topBar];
+        
+        UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [leftBtn setFrame:CGRectMake(14, 10, 30, 24)];
+        [leftBtn setImage:[UIImage imageNamed:@"common_btn_left.png"] forState:UIControlStateNormal];
+        [leftBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
+        [topBar addSubview:leftBtn];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)leftSlider
 {
-    // Drawing code
+    [delegate myHomeLeftSlider];
 }
-*/
+
 
 @end

@@ -15,9 +15,10 @@
 #import "MSettingView.h"
 #import "MLeftMenuView.h"
 
-@interface MMainVC : UIViewController <MLetMenuViewDelegate, MHomeViewDelegate>
+@interface MMainVC : UIViewController <MLetMenuViewDelegate, MHomeViewDelegate, MMyHomeViewDelegate, MCollectViewDelegate, MMessageViewDelegate, MSettingViewDelegate>
 {
     IBOutlet MLeftMenuView *leftMenuNib;
+    IBOutlet MSettingView *settingNib;
 }
 
 @property (nonatomic, strong) MTouchSuperView   *touchView;

@@ -8,7 +8,7 @@
 
 @protocol MHomeViewDelegate <NSObject>
 
-- (void)leftSlider;
+- (void)homeLeftSlider;
 - (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 
 @end
@@ -32,6 +32,6 @@
 @property (nonatomic, assign) id<MHomeViewDelegate> delegate;
 @property (nonatomic, strong) ASIHTTPRequest       *sendRequest;
 
--(void)initWithRequestByUrl:(NSString *)urlString;
+- (void)initWithRequestByUrl:(NSString *)urlString;
 
 @end

@@ -21,21 +21,37 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
 
-        UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:20), 320, 44)];
         [topBar setImage:[UIImage imageNamed:@"common_barBg_top.png"]];
         [self setBackgroundColor:[UIColor whiteColor]];
         [topBar setUserInteractionEnabled:YES];
         [self addSubview:topBar];
         
         UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [leftBtn setFrame:CGRectMake(14, 10, 30, 24)];
+        [leftBtn setFrame:CGRectMake(15, 10, 30, 24)];
         [leftBtn setImage:[UIImage imageNamed:@"common_btn_left.png"] forState:UIControlStateNormal];
         [leftBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
         [topBar addSubview:leftBtn];
         
-        homeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 416+(iPhone5?88:0))];
+        UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rightBtn setFrame:CGRectMake(260, 10, 45, 24)];
+        [rightBtn addTarget:self action:@selector(selectCity) forControlEvents:UIControlEventTouchUpInside];
+        [topBar addSubview:rightBtn];
+        
+        UILabel *cityName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 24)];
+        [cityName setText:@"上海"];
+        [cityName setTextColor:[UIColor whiteColor]];
+        [cityName setFont:[UIFont systemFontOfSize:14]];
+        [cityName setBackgroundColor:[UIColor clearColor]];
+        [rightBtn addSubview:cityName];
+        
+        UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(32, 10, 10, 6)];
+        [rightImg setImage:[UIImage imageNamed:@"common_img_down_arrow.png"]];
+        [rightBtn addSubview:rightImg];
+        
+        homeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0))];
+        [homeScrollView setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
         [self addSubview:homeScrollView];
         
         hud = [[MBProgressHUD alloc] init];
@@ -50,13 +66,18 @@
 
 - (void)leftSlider
 {
-    [delegate leftSlider];
+    [delegate homeLeftSlider];
+}
+
+- (void)selectCity
+{
+    NSLog(@"selcetCity");
 }
 
 #pragma mark -
 #pragma mark  Send Request Method
 
--(void)initWithRequestByUrl:(NSString *)urlString
+- (void)initWithRequestByUrl:(NSString *)urlString
 {
     isNetWork = [Utils checkCurrentNetWork];
     

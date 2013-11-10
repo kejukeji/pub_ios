@@ -7,6 +7,7 @@
 //
 
 #import "MTouchSuperView.h"
+#define SLIDE_SIZE 245
 
 @implementation MTouchSuperView
 
@@ -38,7 +39,7 @@
             
             break;
         case LeftState:
-            [self setTransform:CGAffineTransformMakeTranslation(point.x + 265, 0)];
+            [self setTransform:CGAffineTransformMakeTranslation(point.x + SLIDE_SIZE, 0)];
             break;
     }
     
@@ -66,7 +67,7 @@
         [self setTransform:CGAffineTransformIdentity];
         currentState = NormalState;
     } else {
-        [self setTransform:CGAffineTransformMakeTranslation(265,0)];
+        [self setTransform:CGAffineTransformMakeTranslation(SLIDE_SIZE,0)];
         currentState = LeftState;
     }
     
@@ -84,7 +85,7 @@
         [self setTransform:CGAffineTransformIdentity];
         currentState = NormalState;
     } else {
-        [self setTransform:CGAffineTransformMakeTranslation(265,0)];
+        [self setTransform:CGAffineTransformMakeTranslation(SLIDE_SIZE,0)];
         currentState = LeftState;
     }
     

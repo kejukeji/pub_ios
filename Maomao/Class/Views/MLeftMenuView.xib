@@ -19,8 +19,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="leftMenu_bg_bottome.png" id="Tuy-W1-fEy">
+                    <rect key="frame" x="0.0" y="205" width="320" height="363"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NVK-Fu-e62">
-                    <rect key="frame" x="65" y="24" width="105" height="105"/>
+                    <rect key="frame" x="70" y="24" width="105" height="105"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="common_userHeadImg.png" backgroundImage="common_userHeadBg.png">
@@ -31,26 +35,31 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="uB1-ml-Vl1">
-                    <rect key="frame" x="265" y="0.0" width="55" height="568"/>
+                    <rect key="frame" x="245" y="0.0" width="90" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.19607844948768616" green="0.40392160415649414" blue="0.46666669845581055" alpha="1" colorSpace="deviceRGB"/>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微笑" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OA1-HV-SPF">
-                    <rect key="frame" x="13" y="140" width="209" height="21"/>
+                    <rect key="frame" x="18" y="140" width="209" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微笑着安静是一种漠然" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mmT-Fb-fbm">
-                    <rect key="frame" x="13" y="165" width="209" height="21"/>
+                    <rect key="frame" x="18" y="165" width="209" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftMenu_img_line.png" id="wz5-lb-6sR">
+                    <rect key="frame" x="0.0" y="205" width="245" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
                 <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AAW-ke-v7L">
-                    <rect key="frame" x="0.0" y="205" width="265" height="46"/>
+                    <rect key="frame" x="0.0" y="205" width="245" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <connections>
@@ -61,12 +70,13 @@
                     <rect key="frame" x="8" y="213" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tWV-sc-wPs">
-                    <rect key="frame" x="0.0" y="250" width="265" height="1"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftMenu_img_line.png" id="tWV-sc-wPs">
+                    <rect key="frame" x="0.0" y="250" width="245" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kcU-1u-Mzp">
-                    <rect key="frame" x="0.0" y="250" width="265" height="46"/>
+                    <rect key="frame" x="0.0" y="250" width="245" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <connections>
@@ -77,12 +87,13 @@
                     <rect key="frame" x="8" y="258" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c8y-wF-GYX">
-                    <rect key="frame" x="0.0" y="295" width="265" height="1"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftMenu_img_line.png" id="c8y-wF-GYX">
+                    <rect key="frame" x="0.0" y="295" width="245" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nMX-Zb-tJP">
-                    <rect key="frame" x="0.0" y="295" width="265" height="46"/>
+                    <rect key="frame" x="0.0" y="295" width="245" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <connections>
@@ -93,12 +104,13 @@
                     <rect key="frame" x="8" y="303" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tf7-pB-uBQ">
-                    <rect key="frame" x="0.0" y="340" width="265" height="1"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftMenu_img_line.png" id="tf7-pB-uBQ">
+                    <rect key="frame" x="0.0" y="340" width="245" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XXS-Gm-9ob">
-                    <rect key="frame" x="0.0" y="340" width="265" height="46"/>
+                    <rect key="frame" x="0.0" y="340" width="245" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <connections>
@@ -109,9 +121,10 @@
                     <rect key="frame" x="8" y="348" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Rcm-e2-zZo">
-                    <rect key="frame" x="0.0" y="385" width="265" height="1"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftMenu_img_line.png" id="Rcm-e2-zZo">
+                    <rect key="frame" x="0.0" y="385" width="245" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首页" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ufj-B0-3V9">
                     <rect key="frame" x="53" y="205" width="95" height="46"/>
@@ -146,7 +159,6 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.21568629145622253" green="0.20784315466880798" blue="0.22745099663734436" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
@@ -155,9 +167,11 @@
         <image name="common_userHeadBg.png" width="105" height="105"/>
         <image name="common_userHeadImg.png" width="105" height="105"/>
         <image name="friends_black_big.png" width="640" height="496"/>
+        <image name="leftMenu_bg_bottome.png" width="390" height="725"/>
         <image name="leftMenu_icon_collect.png" width="58" height="58"/>
         <image name="leftMenu_icon_home.png" width="58" height="58"/>
         <image name="leftMenu_icon_message.png" width="58" height="58"/>
         <image name="leftMenu_icon_setting.png" width="58" height="58"/>
+        <image name="leftMenu_img_line.png" width="473" height="2"/>
     </resources>
 </document>
