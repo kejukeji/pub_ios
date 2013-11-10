@@ -224,14 +224,7 @@
     <resources>
         <image name="barCell_icon.png" width="151" height="151"/>
         <image name="barlist_cell_background.png" width="640" height="191"/>
-        <image name="barlist_cell_background.png" width="640" height="191"/>
         <image name="common_background.png" width="640" height="1036"/>
-        <image name="gray_right_arrow.png" width="16" height="24"/>
-        <image name="gray_right_arrow.png" width="16" height="24"/>
-        <image name="gray_right_arrow.png" width="16" height="24"/>
-        <image name="gray_right_arrow.png" width="16" height="24"/>
-        <image name="gray_right_arrow.png" width="16" height="24"/>
-        <image name="gray_right_arrow.png" width="16" height="24"/>
         <image name="gray_right_arrow.png" width="16" height="24"/>
         <image name="setting_2cells.png" width="584" height="150"/>
         <image name="setting_3cells.png" width="584" height="233"/>
