@@ -8,11 +8,12 @@
 
 #import "MBarListVC.h"
 #import "MBackBtn.h"
-#import "MBarPictureListModel.h"
+#import "MBarPicListModel.h"
 #import "MBarListModel.h"
 #import "Utils.h"
 #import "JSON.h"
 #import "UIButton+WebCache.h"
+#import "MBarDetailsVC.h"
 
 @interface MBarListVC () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -68,6 +69,7 @@
 
 - (void)back
 {
+    [self.sendRequest clearDelegatesAndCancel];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -202,6 +204,8 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    [self doneLoadingTableViewData];
+
     NSString *response = [request responseString];
     NSLog(@"response == %@",response);
     if (response == nil || [response JSONValue] == nil) {
@@ -215,7 +219,7 @@
     NSArray *pubList = [responseDict objectForKey:@"pub_list"];
     if (status == 0) {
         for (NSDictionary *dict in picList) {
-            MBarPictureListModel *model = [[MBarPictureListModel alloc] init];
+            MBarPicListModel *model = [[MBarPicListModel alloc] init];
             
             model.base_path = [dict objectForKey:@"base_path"];
             model.cover = [dict objectForKey:@"cover"];
@@ -276,6 +280,8 @@
 {
     [hud hide:YES];
     
+    [self doneLoadingTableViewData];
+
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示"
                                                        message:@"网络无法连接,请检查网络连接!"
                                                       delegate:self
@@ -286,7 +292,31 @@
 
 - (void)setPicListConten
 {
+    for (int i = 0; i < [barPicSources count]; i++) {
+        MBarPicListModel *model = [barPicSources objectAtIndex:i];
+        
+        UIButton *picBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [picBtn addTarget:self action:@selector(gotoBarDetails:) forControlEvents:UIControlEventTouchUpInside];
+        [picBtn setTag:[model.picId integerValue]];
+        [picBtn setTitle:model.name forState:UIControlStateNormal];
+        [picBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
+        [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal];
+        [picBtn setFrame:CGRectMake(i*82, 0, 72, 72)];
+        [recommendScrollView addSubview:picBtn];
+    }
     
+    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
+}
+
+- (void)gotoBarDetails:(UIButton *)button
+{
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
+    detailsVC.title = button.titleLabel.text;
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%d&user_id=%@", MM_URL, button.tag, userid];
+    [detailsVC initWithRequestByUrl:url];
+    [self.navigationController pushViewController:detailsVC animated:YES];
 }
 
 #pragma mark - 
@@ -313,6 +343,7 @@
         NSLog(@"url === %@",url);
     }
     
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     MBarListModel *model =[barListSources objectAtIndex:indexPath.row];
     [cell setCellInfoWithModel:model];
@@ -322,7 +353,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MBarListModel *model = [barListSources objectAtIndex:indexPath.row];
     
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%@&user_id=%@", MM_URL, model.barListId, userid];
+    detailsVC.title = model.name;
+    [detailsVC initWithRequestByUrl:url];
+    [self.navigationController pushViewController:detailsVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

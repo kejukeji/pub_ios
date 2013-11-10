@@ -47,6 +47,7 @@
     homeView = [[MHomeView alloc] initWithFrame:CGRectMake(0, 0, 320, 460+(iPhone5?88:0))];
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/home",MM_URL];
     [homeView initWithRequestByUrl:url];
+    NSLog(@"url == %@",url);
     [homeView setDelegate:self];
     [touchView setCurrentView:homeView];
 }
@@ -104,12 +105,13 @@
     }
 }
 
-- (void)gotoBarListVC:(NSInteger)typeId
+- (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 {
     NSLog(@"typeid === %d",typeId);
+    NSLog(@"name == %@",name);
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     [self.navigationController pushViewController:barListVC animated:YES];
-    
+    barListVC.title = name;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d",MM_URL, typeId];
     [barListVC initWithRequestByUrl:url];
 }

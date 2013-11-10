@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
 
-#import "MBarPictureListModel.h"
+#import "MBarPicListModel.h"
 
-@implementation MBarPictureListModel
+@implementation MBarPicListModel
 
 @synthesize base_path;
 @synthesize cover;

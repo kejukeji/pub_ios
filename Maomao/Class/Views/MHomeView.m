@@ -21,6 +21,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
+
         UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         [topBar setImage:[UIImage imageNamed:@"common_barBg_top.png"]];
         [self setBackgroundColor:[UIColor whiteColor]];
@@ -156,6 +158,8 @@
         [barBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal];
         [barBtn setTag:[model.homeid integerValue]];
         [barBtn addTarget:self action:@selector(gotoBarListVC:) forControlEvents:UIControlEventTouchUpInside];
+        [barBtn setTitle:model.name forState:UIControlStateNormal];
+        [barBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         
         if (row == 1) {
             [barBtn setFrame:CGRectMake(14, 14, 292, 129)];
@@ -193,7 +197,7 @@
 
 - (void)gotoBarListVC:(UIButton *)button
 {
-    [delegate gotoBarListVC:button.tag];
+    [delegate gotoBarListVC:button.tag type:button.titleLabel.text];
 }
 
 @end

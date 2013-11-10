@@ -17,7 +17,6 @@
 {
     IBOutlet MBarListCell *barListCell;
     BOOL                   reloading;
-
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView       *recommendScrollView;

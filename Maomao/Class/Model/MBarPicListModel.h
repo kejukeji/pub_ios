@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MBarPictureListModel : NSObject
+@interface MBarPicListModel : NSObject
 
 @property (nonatomic, copy)   NSString *base_path;
 @property (nonatomic, copy)   NSString *cover;

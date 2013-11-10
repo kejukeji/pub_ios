@@ -16,6 +16,7 @@
 #define kRequestTime 30
 
 #define MM_URL @"http://42.121.108.142:6001"
+#define USERID @"userid"
 
 #endif
 

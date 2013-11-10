@@ -9,7 +9,7 @@
 @protocol MHomeViewDelegate <NSObject>
 
 - (void)leftSlider;
-- (void)gotoBarListVC:(NSInteger)typeId;
+- (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 
 @end
 
