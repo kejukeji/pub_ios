@@ -38,4 +38,12 @@
 }
 
 
+- (IBAction)gotoSettingUserInfo:(UIButton *)sender {
+}
+
+- (IBAction)gotoMyCollect:(UIButton *)sender {
+}
+
+- (IBAction)gotoMyMessage:(UIButton *)sender {
+}
 @end

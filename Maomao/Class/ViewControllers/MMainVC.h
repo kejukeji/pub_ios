@@ -14,11 +14,13 @@
 #import "MMessageView.h"
 #import "MSettingView.h"
 #import "MLeftMenuView.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface MMainVC : UIViewController <MLetMenuViewDelegate, MHomeViewDelegate, MMyHomeViewDelegate, MCollectViewDelegate, MMessageViewDelegate, MSettingViewDelegate>
+@interface MMainVC : UIViewController <MLetMenuViewDelegate, MHomeViewDelegate, MMyHomeViewDelegate, MCollectViewDelegate, MMessageViewDelegate, MSettingViewDelegate, CLLocationManagerDelegate>
 {
     IBOutlet MLeftMenuView *leftMenuNib;
-    IBOutlet MSettingView *settingNib;
+    CLLocationManager      *locationManager;
 }
 
 @property (nonatomic, strong) MTouchSuperView   *touchView;

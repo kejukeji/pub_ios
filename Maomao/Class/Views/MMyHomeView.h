@@ -17,5 +17,14 @@
 @interface MMyHomeView : UIView
 
 @property (nonatomic, assign) id<MMyHomeViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *areaLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImg;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+- (IBAction)gotoSettingUserInfo:(UIButton *)sender;
+- (IBAction)gotoMyCollect:(UIButton *)sender;
+- (IBAction)gotoMyMessage:(UIButton *)sender;
+
 
 @end

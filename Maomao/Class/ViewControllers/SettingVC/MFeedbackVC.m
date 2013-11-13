@@ -46,6 +46,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     [feedBackInfo becomeFirstResponder];
+    
+    if (!noiOS7) {
+        for (UIView *view in self.view.subviews) {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+        }
+    }
 }
 
 - (void)back

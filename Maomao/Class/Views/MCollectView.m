@@ -47,13 +47,13 @@
         barListSources = [NSMutableArray arrayWithCapacity:0];
         currentIndex = 1;
         
-        barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 126+(noiOS7?0:64), 320, 290+(iPhone5?88:0)) style:UITableViewStylePlain];
+        barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0)) style:UITableViewStylePlain];
         [barListTV setDelegate:self];
         [barListTV setDataSource:self];
         [barListTV setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [barListTV setBackgroundColor:[UIColor clearColor]];
         [barListTV setBackgroundView:nil];
-        [barListTV setRowHeight:108.0f];
+        [barListTV setRowHeight:113.0f];
         [self addSubview:barListTV];
 
     }
@@ -209,29 +209,29 @@
     NSDictionary *responseDict = [response JSONValue];
     
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-    NSArray *picList = [responseDict objectForKey:@"picture_list"];
-    NSArray *pubList = [responseDict objectForKey:@"pub_list"];
+    NSArray *pubList = [responseDict objectForKey:@"list"];
     if (status == 0) {
         for (NSDictionary *dict in pubList) {
-            MBarListModel *model = [[MBarListModel alloc] init];
+            MBarCollectModel *model = [[MBarCollectModel alloc] init];
             
+            model.city_county = [dict objectForKey:@"city_county"];
             model.city_id = [dict objectForKey:@"city_id"];
             model.county_id = [dict objectForKey:@"county_id"];
+            model.difference = [dict objectForKey:@"difference"];
             model.email = [dict objectForKey:@"email"];
             model.fax = [dict objectForKey:@"fax"];
-            model.barListId = [dict objectForKey:@"id"];
+            model.collectid = [dict objectForKey:@"id"];
             model.intro = [dict objectForKey:@"intro"];
             model.latitude = [dict objectForKey:@"latitude"];
             model.longitude = [dict objectForKey:@"longitude"];
+            
             model.mobile_list = [dict objectForKey:@"mobile_list"];
             model.name = [dict objectForKey:@"name"];
-            
             model.pic_path = [dict objectForKey:@"pic_path"];
             model.province_id = [dict objectForKey:@"province_id"];
-            model.recommend = [[dict objectForKey:@"recommend"] boolValue];
+            model.recommend = [dict objectForKey:@"recommend"];
             model.street = [dict objectForKey:@"street"];
             model.tel_list = [dict objectForKey:@"tel_list"];
-            model.type_name = [dict objectForKey:@"type_name"];
             model.view_number = [dict objectForKey:@"view_number"];
             model.web_url = [dict objectForKey:@"web_url"];
             
@@ -287,7 +287,7 @@
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-    MBarListModel *model =[barListSources objectAtIndex:indexPath.row];
+    MBarCollectModel *model =[barListSources objectAtIndex:indexPath.row];
     [cell setCellInfoWithModel:model];
     
     return cell;
@@ -295,9 +295,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MBarListModel *model = [barListSources objectAtIndex:indexPath.row];
+    MBarCollectModel *model = [barListSources objectAtIndex:indexPath.row];
     
-    [delegate gotoBarDetail:model];
+    [delegate gotoCollectBarDetail:model];
 }
 
 @end

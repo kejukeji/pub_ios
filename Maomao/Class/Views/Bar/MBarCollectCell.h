@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBarListModel.h"
+#import "MBarCollectModel.h"
 
 @interface MBarCollectCell : UITableViewCell
 
-- (void)setCellInfoWithModel:(MBarListModel *)model;
+@property (weak, nonatomic) IBOutlet UIImageView *barIconImg;
+@property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *collectTimeLabel;
+
+
+- (void)setCellInfoWithModel:(MBarCollectModel *)model;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  MPrivateMessageVC.h
+//  MSystemMessageVC.h
 //  Maomao
 //
 //  Created by  zhao on 13-11-11.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPrivateMessageVC : UIViewController
+@interface MSystemMessageVC : UIViewController
 
 @end

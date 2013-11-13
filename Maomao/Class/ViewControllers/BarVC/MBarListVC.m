@@ -23,7 +23,6 @@
     GPPrompting     *prompting;
     NSMutableArray  *barPicSources;
     NSMutableArray  *barListSources;
-    UITableView     *barListTV;
     BOOL             isNetWork;
     int              currentIndex;
 }
@@ -36,6 +35,8 @@
 @synthesize recommendScrollView;
 @synthesize refreshHeaderView;
 @synthesize lastUrlString;
+@synthesize barListTV;
+@synthesize isNoBarList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,6 +52,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
+    
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
@@ -65,18 +67,35 @@
     barListSources = [NSMutableArray arrayWithCapacity:0];
     currentIndex = 1;
 
-    barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 126+(noiOS7?0:64), 320, 290+(iPhone5?88:0)) style:UITableViewStylePlain];
+    if (isNoBarList == NO) {  //标准酒吧列表页
+        barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 126, 320, 290+(iPhone5?88:0)) style:UITableViewStylePlain];
+        [self.view addSubview:barListTV];
+    } else {      //搜索结果列表
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 416+(iPhone5?88:0))];
+        [bgView setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
+        [self.view addSubview:bgView];
+
+        barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 416+(iPhone5?88:0)) style:UITableViewStylePlain];
+        [bgView addSubview:barListTV];
+        
+        [self.navigationItem setRightBarButtonItem:nil];  //隐藏右上角搜索按钮
+    }
     [barListTV setDelegate:self];
     [barListTV setDataSource:self];
     [barListTV setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [barListTV setBackgroundColor:[UIColor clearColor]];
     [barListTV setBackgroundView:nil];
     [barListTV setRowHeight:108.0f];
-    [self.view addSubview:barListTV];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
     [self.view addSubview:hud];
+    
+    if (!noiOS7) {
+        for (UIView *view in self.view.subviews) {
+          [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+        }
+    }
 }
 
 - (void)back
@@ -109,7 +128,19 @@
     [barListTV setContentOffset:CGPointMake(0, -65) animated:NO];
     [refreshHeaderView egoRefreshScrollViewDidScroll:barListTV];
     [refreshHeaderView egoRefreshScrollViewDidEndDragging:barListTV];
-    
+}
+
+- (IBAction)gotoNearBar:(UIButton *)sender  //附近酒吧
+{
+    double locationLongitude = [[[NSUserDefaults standardUserDefaults] stringForKey:LONGITUDE] doubleValue];
+    double locationLatitude = [[[NSUserDefaults standardUserDefaults] stringForKey:LATITUDE] doubleValue];
+
+    MBarListVC *barListVC = [[MBarListVC alloc] init];
+    barListVC.isNoBarList = YES;
+    [self.navigationController pushViewController:barListVC animated:YES];
+    barListVC.title = @"附近酒吧";
+    NSString *url = [NSString stringWithFormat:@"%@/restful/near/pub?longitude=%f&latitude=%f",MM_URL, locationLongitude, locationLatitude];
+    [barListVC initWithRequestByUrl:url];
 }
 
 - (void)refaushTableViewData
@@ -228,7 +259,6 @@
     [self doneLoadingTableViewData];
 
     NSString *response = [request responseString];
-    NSLog(@"response == %@",response);
     if (response == nil || [response JSONValue] == nil) {
         return;
     }
@@ -285,7 +315,6 @@
             model.web_url = [dict objectForKey:@"web_url"];
             
             [barListSources addObject:model];
-            NSLog(@"barListSources count == %d",[barListSources count]);
         }
         
         currentIndex++;
@@ -323,7 +352,7 @@
         [picBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
         [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal];
-        [picBtn setFrame:CGRectMake(i*82, 0, 72, 72)];
+        [picBtn setFrame:CGRectMake(i * 82, 0, 72, 72)];
         [recommendScrollView addSubview:picBtn];
     }
     
@@ -365,7 +394,6 @@
         
         NSString *url = [NSString stringWithFormat:@"%@&page=%d",lastUrlString, currentIndex];
         [self sendRequestByUrlString:url];
-        NSLog(@"url === %@",url);
     }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];

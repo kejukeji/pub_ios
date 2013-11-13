@@ -14,6 +14,7 @@
 #import "JSON.h"
 #import "UIButton+WebCache.h"
 #import "MBarEnvironmentVC.h"
+#import <MapKit/MapKit.h>
 
 @interface MBarDetailsVC () <UIScrollViewDelegate>
 {
@@ -61,6 +62,12 @@
     [hud setLabelText:@"加载中，请稍等！"];
     [hud show:YES];
     [self.view addSubview:hud];
+    
+    if (!noiOS7) {
+        for (UIView *view in self.view.subviews) {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+        }
+    }
 }
 
 - (void)back
@@ -226,10 +233,21 @@
     
     [barNameLabel setText:[NSString stringWithFormat:@"%@",model.name]];
     [signaNumberLabel setText:[NSString stringWithFormat:@"%@",model.view_number]];
-    [distanceLabel setText:[NSString stringWithFormat:@"%@",model.latitude]];
     [addressLabel setText:[NSString stringWithFormat:@"%@",model.street]];
     [barTypeLabel setText:[NSString stringWithFormat:@"%@",model.type_name]];
     [barIntroTextView setText:[NSString stringWithFormat:@"%@",model.intro]];
+    
+    //计算距离
+    double locationLongitude = [[[NSUserDefaults standardUserDefaults] stringForKey:LONGITUDE] doubleValue];
+    double locationLatitude = [[[NSUserDefaults standardUserDefaults] stringForKey:LATITUDE] doubleValue];
+    
+    double longitude = [model.longitude doubleValue];
+    double latitude = [model.latitude doubleValue];
+    
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:locationLatitude longitude:locationLongitude];
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",[newLocation distanceFromLocation :currentLocation]/1000];
 }
 
 - (IBAction)slideSignerShowView:(UIButton *)sender
@@ -258,6 +276,9 @@
 - (void)gotoBarEnvironment:(UIButton *)button
 {
     MBarEnvironmentVC *barEnvironmentVC = [[MBarEnvironmentVC alloc] init];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/picture?pub_id=%d",MM_URL, button.tag];
+    [barEnvironmentVC initWithRequestByUrl:url];
+    
     [self.navigationController pushViewController:barEnvironmentVC animated:YES];
 }
 

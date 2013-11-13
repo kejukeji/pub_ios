@@ -36,6 +36,9 @@
                     <state key="normal" title="附近酒吧" backgroundImage="barlist_nearbybar.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="gotoNearBar:" destination="-1" eventType="touchUpInside" id="Zl5-5O-5XA"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

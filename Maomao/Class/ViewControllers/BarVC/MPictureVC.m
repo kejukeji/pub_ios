@@ -1,19 +1,23 @@
 //
-//  MPrivateMessageVC.m
+//  MPictureVC.m
 //  Maomao
 //
-//  Created by  zhao on 13-11-11.
+//  Created by  zhao on 13-11-12.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
 
-#import "MPrivateMessageVC.h"
+#import "MPictureVC.h"
+#import "UIImageView+WebCache.h"
 #import "MBackBtn.h"
 
-@interface MPrivateMessageVC ()
+@interface MPictureVC ()
 
 @end
 
-@implementation MPrivateMessageVC
+@implementation MPictureVC
+
+@synthesize picPath;
+@synthesize picImg;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,13 +32,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"私信消息";
     
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
-    
+
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
+    picImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 60, 200, 200)];
+    [picImg setImageWithURL:[NSURL URLWithString:picPath]];
+    [self.view addSubview:picImg];
+    
+    if (!noiOS7) {
+        for (UIView *view in self.view.subviews) {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+        }
+    }
 }
 
 - (void)back

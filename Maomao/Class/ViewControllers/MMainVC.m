@@ -10,10 +10,13 @@
 #import "MBarListVC.h"
 #import "MBarDetailsVC.h"
 #import "MBarListModel.h"
+#import "MBarCollectModel.h"
 #import "MMessageAwakeVC.h"
 #import "MSoundAndShockVC.h"
 #import "MFeedbackVC.h"
 #import "MAboutVC.h"
+#import "MSystemMessageVC.h"
+#import "MPrivateMessageVC.h"
 
 @interface MMainVC ()
 {
@@ -21,6 +24,8 @@
     MSoundAndShockVC   *soundAndShockVC;
     MFeedbackVC        *feedbackVC;
     MAboutVC           *aboutVC;
+    MSystemMessageVC   *systemMessageVC;
+    MPrivateMessageVC  *privateMessageVC;
 }
 
 @end
@@ -48,6 +53,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:USERID];  //需删除
+    [[NSUserDefaults standardUserDefaults] synchronize];                   //需删除
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 1000.0f;
+    [locationManager startUpdatingLocation];
 
     [[NSBundle mainBundle] loadNibNamed:@"MLeftMenuView" owner:self options:nil];
     leftMenuView = leftMenuNib;
@@ -65,12 +78,39 @@
     [touchView setCurrentView:homeView];
 }
 
+#pragma mark -
+#pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+		   fromLocation:(CLLocation *)oldLocation
+{
+    [locationManager stopUpdatingLocation];
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
+        if (array.count > 0) {
+//            CLPlacemark *placemark = [array objectAtIndex:0];
+//            NSString *country = placemark.ISOcountryCode;
+//            NSString *city = placemark.administrativeArea;
+            
+            [[NSUserDefaults standardUserDefaults] setFloat:newLocation.coordinate.longitude forKey:LONGITUDE];
+            [[NSUserDefaults standardUserDefaults] setFloat:newLocation.coordinate.latitude forKey:LATITUDE];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	NSLog(@"%@",error);
+}
+
 #pragma mark - 
 #pragma mark MLetMenuViewDelegate
 
 - (void)gotoNextVC:(NSInteger)type
 {
-    NSLog(@"type==%d",type);
     [touchView setHidden:YES];
     switch (type) {
         case 10:
@@ -128,6 +168,7 @@
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     [self.navigationController pushViewController:barListVC animated:YES];
     barListVC.title = name;
+    barListVC.isNoBarList = NO;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d",MM_URL, typeId];
     [barListVC initWithRequestByUrl:url];
 }
@@ -148,11 +189,11 @@
     [self leftSlider];
 }
 
-- (void)gotoBarDetail:(MBarListModel *)model
+- (void)gotoCollectBarDetail:(MBarCollectModel *)model;
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
-    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%@&user_id=%@", MM_URL, model.barListId, userid];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%@&user_id=%@", MM_URL, model.collectid, userid];
     detailsVC.title = model.name;
     [detailsVC initWithRequestByUrl:url];
     [self.navigationController pushViewController:detailsVC animated:YES];
@@ -169,6 +210,21 @@
 - (void)gotoMessageDetails:(NSInteger)number
 {
     NSLog(@"number == %d",number);
+    systemMessageVC = [[MSystemMessageVC alloc] init];
+    privateMessageVC = [[MPrivateMessageVC alloc] init];
+    
+    switch (number) {
+        case 111:
+            [self.navigationController pushViewController:systemMessageVC animated:YES];
+            break;
+        case 222:
+            NSLog(@"number == %d",number);
+
+            [self.navigationController pushViewController:privateMessageVC animated:YES];
+            break;
+        default:
+            break;
+    }
     
 }
 
@@ -211,7 +267,6 @@
     }
 }
 
-
 - (void)leftSlider
 {
     if (touchView.currentState == NormalState) {
@@ -220,6 +275,7 @@
         [touchView setHidden:YES];
     }
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

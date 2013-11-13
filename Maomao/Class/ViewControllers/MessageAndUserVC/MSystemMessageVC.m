@@ -1,19 +1,19 @@
 //
-//  MPrivateMessageVC.m
+//  MSystemMessageVC.m
 //  Maomao
 //
 //  Created by  zhao on 13-11-11.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
 
-#import "MPrivateMessageVC.h"
+#import "MSystemMessageVC.h"
 #import "MBackBtn.h"
 
-@interface MPrivateMessageVC ()
+@interface MSystemMessageVC ()
 
 @end
 
-@implementation MPrivateMessageVC
+@implementation MSystemMessageVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,10 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"私信消息";
+    self.title = @"系统消息";
     
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
-    
+
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];

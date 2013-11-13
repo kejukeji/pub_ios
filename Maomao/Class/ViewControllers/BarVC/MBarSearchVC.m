@@ -10,6 +10,10 @@
 #import "MBackBtn.h"
 #import "Utils.h"
 #import "JSON.h"
+#import "MBarListModel.h"
+#import "UIButton+WebCache.h"
+#import "MBarDetailsVC.h"
+#import "MBarListVC.h"
 
 @interface MBarSearchVC ()
 {
@@ -40,9 +44,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
+    self.title = @"酒吧搜索";
+    
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
+    searchArray = [NSMutableArray arrayWithCapacity:0];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
@@ -50,6 +58,7 @@
     [self.view addSubview:hud];
     
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/search/view",MM_URL];
+    NSLog(@"url == %@",url);
     [self initWithRequestByUrl:url];
 }
 
@@ -62,8 +71,12 @@
 
 - (IBAction)searchHotBar:(UIButton *)sender
 {
-    
-    [self back];
+    MBarListVC *barListVC = [[MBarListVC alloc] init];
+    barListVC.isNoBarList = YES;
+    [self.navigationController pushViewController:barListVC animated:YES];
+    barListVC.title = @"搜索酒吧列表";
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/search?content=%@",MM_URL, searchContentTF.text];
+    [barListVC initWithRequestByUrl:url];
 }
 
 #pragma mark -
@@ -141,10 +154,37 @@
     
     if (request == sendRequest) {
         NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-        
+        NSArray *pubList = [responseDict objectForKey:@"pub_list"];
+
         if (status == 0) {
-            
+            for (NSDictionary *dict in pubList) {
+                MBarListModel *model = [[MBarListModel alloc] init];
+                
+                model.city_id = [dict objectForKey:@"city_id"];
+                model.county_id = [dict objectForKey:@"county_id"];
+                model.email = [dict objectForKey:@"email"];
+                model.fax = [dict objectForKey:@"fax"];
+                model.barListId = [dict objectForKey:@"id"];
+                model.intro = [dict objectForKey:@"intro"];
+                model.latitude = [dict objectForKey:@"latitude"];
+                model.longitude = [dict objectForKey:@"longitude"];
+                model.mobile_list = [dict objectForKey:@"mobile_list"];
+                model.name = [dict objectForKey:@"name"];
+                
+                model.pic_path = [dict objectForKey:@"pic_path"];
+                model.province_id = [dict objectForKey:@"province_id"];
+                model.recommend = [[dict objectForKey:@"recommend"] boolValue];
+                model.street = [dict objectForKey:@"street"];
+                model.tel_list = [dict objectForKey:@"tel_list"];
+                model.type_name = [dict objectForKey:@"type_name"];
+                model.view_number = [dict objectForKey:@"view_number"];
+                model.web_url = [dict objectForKey:@"web_url"];
+                
+                [searchArray addObject:model];
+            }
         }
+        
+        [self setKeywords];
         
         [hud hide:YES];
     }
@@ -171,6 +211,61 @@
                                              cancelButtonTitle:@"知道了"
                                              otherButtonTitles:nil];
     [alertView show];
+}
+
+- (void)setKeywords
+{
+    NSInteger count = [searchArray count];
+    NSInteger row = 0;
+    float xPoint;
+    
+    for (int i = 0; i < count; i++) {
+        MBarListModel *model = [searchArray objectAtIndex:i];
+        switch (i % 4) {
+            case 0:
+                xPoint = 10.0f;
+                (i == 0) ? (row = 0):(row++);
+                break;
+            case 1:
+                xPoint = 10.0f + 77.0f;
+                break;
+            case 2:
+                xPoint = 10.0f + 2 * 77.0f;
+                break;
+            case 3:
+                xPoint = 10.0f + 3 * 77.0f;
+                break;
+            default:
+                break;
+        }
+        
+        UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [imgBtn setTitle:model.name forState:UIControlStateNormal];
+        [imgBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [imgBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [imgBtn setTag:[model.barListId integerValue]];
+        [imgBtn addTarget:self action:@selector(gotoBarDetails:) forControlEvents:UIControlEventTouchUpInside];
+        [imgBtn setFrame:CGRectMake(xPoint, 131 + (row * 30), 70, 21)];
+        
+        [self.view addSubview:imgBtn];
+    }
+    
+    if (!noiOS7) {
+        for (UIView *view in self.view.subviews) {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+        }
+    }
+
+}
+
+- (void)gotoBarDetails:(UIButton *)button
+{
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
+    detailsVC.title = button.titleLabel.text;
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%d&user_id=%@", MM_URL, button.tag, userid];
+    [detailsVC initWithRequestByUrl:url];
+    [self.navigationController pushViewController:detailsVC animated:YES];
 }
 
 #pragma mark -

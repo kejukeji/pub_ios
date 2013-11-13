@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
+#import "MBProgressHUD.h"
+#import "GPPrompting.h"
 
-@interface MBarEnvironmentVC : UIViewController
+@interface MBarEnvironmentVC : UIViewController <ASIHTTPRequestDelegate>
+{
+    MBProgressHUD      *hud;
+    GPPrompting        *prompting;
+    NSMutableArray     *environmentSources;
+    BOOL                isNetWork;
+}
+
+@property (nonatomic, strong) ASIHTTPRequest        *sendRequest;
+
+- (void)initWithRequestByUrl:(NSString *)urlString;
 
 @end

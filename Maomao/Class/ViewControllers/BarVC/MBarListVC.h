@@ -24,7 +24,10 @@
 @property (nonatomic, strong) ASIHTTPRequest            *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
 @property (nonatomic, copy)   NSString                  *lastUrlString;
+@property (nonatomic, strong) UITableView               *barListTV;
+@property (nonatomic, assign) BOOL                       isNoBarList;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
+- (IBAction)gotoNearBar:(UIButton *)sender;
 
 @end

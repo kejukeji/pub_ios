@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "GPPrompting.h"
 
-@interface MBarDetailsVC : UIViewController
+@interface MBarDetailsVC : UIViewController <ASIHTTPRequestDelegate>
 {
     MBProgressHUD      *hud;
     GPPrompting        *prompting;

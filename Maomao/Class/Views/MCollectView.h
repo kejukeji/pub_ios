@@ -5,12 +5,12 @@
 //  Created by  zhao on 13-11-6.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
-#import "MBarListModel.h"
+#import "MBarCollectModel.h"
 
 @protocol MCollectViewDelegate <NSObject>
 
 - (void)collectLeftSlider;
-- (void)gotoBarDetail:(MBarListModel *)model;
+- (void)gotoCollectBarDetail:(MBarCollectModel *)model;
 
 @end
 

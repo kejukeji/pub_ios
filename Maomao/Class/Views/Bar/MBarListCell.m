@@ -38,9 +38,21 @@
 {
     barNameLabel.text = [NSString stringWithFormat:@"%@",model.name];
     [barIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path]]];
-    distanceLabel.text = [NSString stringWithFormat:@"%@",model.latitude];
     addressLabel.text = [NSString stringWithFormat:@"%@",model.street];
     introLabel.text = [NSString stringWithFormat:@"%@",model.intro];
+    
+    //计算距离
+    double locationLongitude = [[[NSUserDefaults standardUserDefaults] stringForKey:LONGITUDE] doubleValue];
+    double locationLatitude = [[[NSUserDefaults standardUserDefaults] stringForKey:LATITUDE] doubleValue];
+    
+    double longitude = [model.longitude doubleValue];
+    double latitude = [model.latitude doubleValue];
+    
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:locationLatitude longitude:locationLongitude];
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",[newLocation distanceFromLocation :currentLocation]/1000];
+
 }
 
 @end

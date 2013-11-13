@@ -40,8 +40,8 @@
         
         UIButton *systemMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [systemMessageBtn setFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 42)];
-        [systemMessageBtn addTarget:self action:@selector(gotoSystemMess:) forControlEvents:UIControlEventTouchUpInside];
-        [systemMessageBtn setTag:11];
+        [systemMessageBtn addTarget:self action:@selector(gotoMessage:) forControlEvents:UIControlEventTouchUpInside];
+        [systemMessageBtn setTag:111];
         [self addSubview:systemMessageBtn];
         
         UILabel *systemLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 120, 42)];
@@ -60,9 +60,9 @@
         [systemMessageBtn addSubview:firstLine];
         
         UIButton *privateMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [privateMessageBtn setFrame:CGRectMake(0, 44+(noiOS7?0:20) + 42, 320, 42)];
-        [privateMessageBtn addTarget:self action:@selector(gotoSystemMess:) forControlEvents:UIControlEventTouchUpInside];
-        [privateMessageBtn setTag:12];
+        [privateMessageBtn setFrame:CGRectMake(0, 44 + (noiOS7?0:20) + 42, 320, 42)];
+        [privateMessageBtn addTarget:self action:@selector(gotoMessage:) forControlEvents:UIControlEventTouchUpInside];
+        [privateMessageBtn setTag:222];
         [self addSubview:privateMessageBtn];
         
         UILabel *privateLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 120, 42)];
@@ -88,7 +88,7 @@
     [delegate messageLeftSlider];
 }
 
-- (void)gotoSystemMess:(UIButton *)button
+- (void)gotoMessage:(UIButton *)button
 {
     [delegate gotoMessageDetails:button.tag];
 }

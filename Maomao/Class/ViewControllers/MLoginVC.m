@@ -50,8 +50,6 @@
 - (IBAction)loginAccount:(UIButton *)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunchTag"]; //标记已登陆
-
-//    [self dismissViewControllerAnimated:YES completion:nil];
     
     mainVC = [[MMainVC alloc] init];
     navigat = [[UINavigationController alloc] initWithRootViewController:mainVC];

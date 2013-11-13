@@ -11,7 +11,10 @@
 #import "MBProgressHUD.h"
 #import "GPPrompting.h"
 
-@interface MBarSearchVC : UIViewController <UITextFieldDelegate>
+@interface MBarSearchVC : UIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate>
+{
+    NSMutableArray *searchArray;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField        *searchContentTF;
 
