@@ -9,15 +9,24 @@
 #import "MPictureVC.h"
 #import "UIImageView+WebCache.h"
 #import "MBackBtn.h"
+#import "MTitleView.h"
 
-@interface MPictureVC ()
+
+@interface MPictureVC () <UIScrollViewDelegate>
+{
+    UIScrollView     *pictureScrollView;
+    NSInteger         totalCountOfSet;
+    NSInteger         numberOfSet;
+    MTitleView       *titleView;
+}
 
 @end
 
 @implementation MPictureVC
 
-@synthesize picPath;
-@synthesize picImg;
+//@synthesize picPath;
+//@synthesize picImg;
+@synthesize models;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,9 +48,9 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
-    picImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 60, 200, 200)];
-    [picImg setImageWithURL:[NSURL URLWithString:picPath]];
-    [self.view addSubview:picImg];
+//    picImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 60, 200, 200)];
+//    [picImg setImageWithURL:[NSURL URLWithString:picPath]];
+//    [self.view addSubview:picImg];
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -53,6 +62,44 @@
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)currentPic:(NSInteger)number numbers:(NSInteger)count
+{
+    numberOfSet = number;
+    totalCountOfSet = count;
+    
+    NSLog(@"number == %d",numberOfSet);
+    titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = [NSString stringWithFormat:@"酒吧图片(%d/%d)",numberOfSet+1 ,totalCountOfSet];
+    self.navigationItem.titleView = titleView;
+    
+    pictureScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 416+(iPhone5?88:0))];
+    
+    [pictureScrollView setContentSize:CGSizeMake(320 * totalCountOfSet, 416+(iPhone5?88:0))];
+    NSInteger offSet = numberOfSet;
+    [pictureScrollView setContentOffset:CGPointMake(320 * offSet, 0)];
+    [pictureScrollView setPagingEnabled:YES];
+    [pictureScrollView setDelegate:self];
+    
+    for (int i = 1; i <= totalCountOfSet; i++) {
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(320*(i-1), 0, 320, 416+(iPhone5?88:0))];
+        
+        MBarEnvironmentModel *model = [models objectAtIndex:i-1];
+        NSString *imgUrl = [NSString stringWithFormat:@"%@%@",MM_URL ,model.pic_path];
+        [image setImageWithURL:[NSURL URLWithString:imgUrl]];
+        [image setContentMode:UIViewContentModeScaleAspectFit];
+        [pictureScrollView addSubview:image];
+        
+    }
+    [self.view addSubview:pictureScrollView];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *) scrollView
+{
+    int x = pictureScrollView.contentOffset.x;
+    numberOfSet = x / 320 + 1;
+    titleView.titleName.text = [NSString stringWithFormat:@"酒吧图片(%d/%d)",numberOfSet ,totalCountOfSet];
 }
 
 - (void)didReceiveMemoryWarning

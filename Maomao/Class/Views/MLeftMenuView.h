@@ -18,6 +18,11 @@
 
 @property (nonatomic, assign) id<MLetMenuViewDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImg;
+@property (weak, nonatomic) IBOutlet UIImageView *headBgImg;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *signLabel;
+
 - (IBAction)gotoNextVC:(UIButton *)sender;
 
 @end

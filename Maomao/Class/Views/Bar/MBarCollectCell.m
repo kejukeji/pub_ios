@@ -36,7 +36,7 @@
 - (void)setCellInfoWithModel:(MBarCollectModel *)model
 {
     
-    [barIconImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path]] placeholderImage:[UIImage imageNamed:@" "]];
+    [barIconImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path]] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
     [barNameLabel setText:model.name];
     
     //计算距离

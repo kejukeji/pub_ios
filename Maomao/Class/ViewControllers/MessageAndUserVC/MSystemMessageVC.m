@@ -8,6 +8,7 @@
 
 #import "MSystemMessageVC.h"
 #import "MBackBtn.h"
+#import "MTitleView.h"
 
 @interface MSystemMessageVC ()
 
@@ -28,8 +29,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"系统消息";
-    
+
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"系统消息";
+    self.navigationItem.titleView = titleView;
+
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
 
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];

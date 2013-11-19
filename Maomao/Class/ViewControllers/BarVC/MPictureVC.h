@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBarEnvironmentModel.h"
 
 @interface MPictureVC : UIViewController
 
-@property (nonatomic, copy)   NSString    *picPath;
-@property (nonatomic, strong) UIImageView *picImg;
+@property (nonatomic, strong) NSArray               *models;
+
+- (void)currentPic:(NSInteger)number numbers:(NSInteger)count;
 
 @end

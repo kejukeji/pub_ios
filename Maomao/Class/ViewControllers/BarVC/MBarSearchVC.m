@@ -14,6 +14,7 @@
 #import "UIButton+WebCache.h"
 #import "MBarDetailsVC.h"
 #import "MBarListVC.h"
+#import "MTitleView.h"
 
 @interface MBarSearchVC ()
 {
@@ -43,8 +44,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"酒吧搜索";
+    self.navigationItem.titleView = titleView;
+    
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
-    self.title = @"酒吧搜索";
     
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -74,7 +79,9 @@
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     barListVC.isNoBarList = YES;
     [self.navigationController pushViewController:barListVC animated:YES];
-    barListVC.title = @"搜索酒吧列表";
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"搜索酒吧列表";
+    barListVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/search?content=%@",MM_URL, searchContentTF.text];
     [barListVC initWithRequestByUrl:url];
 }
@@ -219,7 +226,7 @@
     NSInteger row = 0;
     float xPoint;
     
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < 3; i++) {
         MBarListModel *model = [searchArray objectAtIndex:i];
         switch (i % 4) {
             case 0:
@@ -243,6 +250,8 @@
         [imgBtn setTitle:model.name forState:UIControlStateNormal];
         [imgBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [imgBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [imgBtn.titleLabel setAdjustsFontSizeToFitWidth:YES];
+        [imgBtn.titleLabel setMinimumFontSize:8];
         [imgBtn setTag:[model.barListId integerValue]];
         [imgBtn addTarget:self action:@selector(gotoBarDetails:) forControlEvents:UIControlEventTouchUpInside];
         [imgBtn setFrame:CGRectMake(xPoint, 131 + (row * 30), 70, 21)];
@@ -262,7 +271,9 @@
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
-    detailsVC.title = button.titleLabel.text;
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = button.titleLabel.text;
+    detailsVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%d&user_id=%@", MM_URL, button.tag, userid];
     [detailsVC initWithRequestByUrl:url];
     [self.navigationController pushViewController:detailsVC animated:YES];

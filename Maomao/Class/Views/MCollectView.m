@@ -17,6 +17,7 @@
 @synthesize sendRequest;
 @synthesize refreshHeaderView;
 @synthesize lastUrlString;
+@synthesize barListTV;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,8 +39,8 @@
         
         UILabel *titleName = [[UILabel alloc] initWithFrame:CGRectMake(70, 0, 180, 44)];
         [titleName setTextColor:[UIColor whiteColor]];
-        [titleName setText:@"我的收藏"];
-        [titleName setFont:[UIFont boldSystemFontOfSize:21]];
+        [titleName setText:@"酒吧收藏"];
+        [titleName setFont:[UIFont boldSystemFontOfSize:20]];
         [titleName setBackgroundColor:[UIColor clearColor]];
         [titleName setTextAlignment:NSTextAlignmentCenter];
         [topBar addSubview:titleName];
@@ -55,7 +56,6 @@
         [barListTV setBackgroundView:nil];
         [barListTV setRowHeight:113.0f];
         [self addSubview:barListTV];
-
     }
     return self;
 }

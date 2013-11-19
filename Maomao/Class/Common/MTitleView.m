@@ -10,11 +10,19 @@
 
 @implementation MTitleView
 
+@synthesize titleName;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        titleName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+        [titleName setTextColor:[UIColor whiteColor]];
+        [titleName setFont:[UIFont boldSystemFontOfSize:20]];
+        [titleName setBackgroundColor:[UIColor clearColor]];
+        [titleName setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:titleName];
     }
     return self;
 }

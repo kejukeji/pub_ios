@@ -13,9 +13,12 @@
 
 @synthesize navigation;
 @synthesize mainVC;
+@synthesize loginVC;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -27,16 +30,23 @@
     }
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunchTag"]) {
-        MRootVC *welcomePage = [[MRootVC alloc] init];
-        self.window.rootViewController = welcomePage;
-        [self.window addSubview:welcomePage.view];
+        MRootVC *rootVC = [[MRootVC alloc] init];
+        self.window.rootViewController = rootVC;
+        [self.window addSubview:rootVC.view];
     } else {
-        mainVC = [[MMainVC alloc] init];
-        navigation = [[UINavigationController alloc] initWithRootViewController:mainVC];
-        navigation.delegate = self;
-        [navigation.navigationBar setBackgroundImage:[UIImage imageNamed:@"common_barBg_top.png"] forBarMetrics:UIBarMetricsDefault];
-        self.window.rootViewController = navigation;
-        [self.window addSubview:navigation.view];
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:USERID] length] > 0) {
+            mainVC = [[MMainVC alloc] init];
+            navigation = [[UINavigationController alloc] initWithRootViewController:mainVC];
+            navigation.delegate = self;
+            [navigation.navigationBar setBackgroundImage:[UIImage imageNamed:@"common_barBg_top.png"] forBarMetrics:UIBarMetricsDefault];
+            self.window.rootViewController = navigation;
+            [self.window addSubview:navigation.view];
+        } else {
+            loginVC = [[MLoginVC alloc] initWithNibName:(iPhone5?@"MLoginVC":@"MLoginVCi4") bundle:nil];
+            self.window.rootViewController = loginVC;
+            [self.window addSubview:loginVC.view];
+        }
+        
     }
     
     [self.window makeKeyAndVisible];

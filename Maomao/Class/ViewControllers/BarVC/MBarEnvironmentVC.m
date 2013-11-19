@@ -13,6 +13,7 @@
 #import "UIButton+WebCache.h"
 #import "MBarEnvironmentModel.h"
 #import "MPictureVC.h"
+#import "MTitleView.h"
 
 @interface MBarEnvironmentVC ()
 
@@ -33,9 +34,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"酒吧环境";
+    self.navigationItem.titleView = titleView;
     
-    self.title = @"酒吧环境";
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
     
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -51,6 +54,8 @@
 
 - (void) back
 {
+    [self.sendRequest clearDelegatesAndCancel];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -196,11 +201,11 @@
 
 - (void)gotoPictVC:(UIButton *)button
 {
-    MBarEnvironmentModel *model = [environmentSources objectAtIndex:button.tag];
-    NSString *imgUrl = [NSString stringWithFormat:@"%@%@",MM_URL ,model.pic_path];
+    NSInteger count = [environmentSources count];
     MPictureVC *pictureVC = [[MPictureVC alloc] init];
-    pictureVC.title = @"酒吧图片";
-    pictureVC.picPath = imgUrl;
+    pictureVC.models = environmentSources;
+    NSLog(@"button.tag== %d",button.tag);
+    [pictureVC currentPic:button.tag numbers:count];
     [self.navigationController pushViewController:pictureVC animated:YES];
 }
 

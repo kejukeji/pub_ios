@@ -1,13 +1,13 @@
 //
-//  MPersonalInfo.h
+//  MCommonVC.h
 //  Maomao
 //
-//  Created by maochengfang on 13-10-26.
+//  Created by zhao on 13-11-14.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MPersonalInfo : UIViewController
+@interface MCommonVC : UIViewController
 
 @end

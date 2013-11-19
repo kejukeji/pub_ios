@@ -2,13 +2,14 @@
 //  MMyHomeView.h
 //  Maomao
 //
-//  Created by  zhao on 13-11-6.
+//  Created by zhao on 13-11-18.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
 
 @protocol MMyHomeViewDelegate <NSObject>
 
 - (void)myHomeLeftSlider;
+- (void)myHomeGotoNext:(NSInteger)number;
 
 @end
 
@@ -16,15 +17,15 @@
 
 @interface MMyHomeView : UIView
 
-@property (nonatomic, assign) id<MMyHomeViewDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *areaLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImg;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic, assign) id <MMyHomeViewDelegate>   delegate;
+@property (strong, nonatomic)  UILabel                  *ageLabel;
+@property (strong, nonatomic)  UILabel                  *areaLabel;
+@property (strong, nonatomic)  UIImageView              *iconImg;
+@property (strong, nonatomic)  UILabel                  *nameLabel;
+@property (strong, nonatomic)  UILabel                  *signLabel;
 
-- (IBAction)gotoSettingUserInfo:(UIButton *)sender;
-- (IBAction)gotoMyCollect:(UIButton *)sender;
-- (IBAction)gotoMyMessage:(UIButton *)sender;
-
+- (void)gotoSettingUserInfo:(UIButton *)sender;
+- (void)gotoMyCollect:(UIButton *)sender;
+- (void)gotoMyMessage:(UIButton *)sender;
 
 @end

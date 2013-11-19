@@ -10,4 +10,6 @@
 
 @interface MTitleView : UIView
 
+@property (nonatomic, strong) UILabel *titleName;
+
 @end

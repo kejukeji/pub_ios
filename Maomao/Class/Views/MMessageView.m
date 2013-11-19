@@ -33,7 +33,7 @@
         UILabel *titleName = [[UILabel alloc] initWithFrame:CGRectMake(70, 0, 180, 44)];
         [titleName setTextColor:[UIColor whiteColor]];
         [titleName setText:@"消 息"];
-        [titleName setFont:[UIFont boldSystemFontOfSize:21]];
+        [titleName setFont:[UIFont boldSystemFontOfSize:20]];
         [titleName setBackgroundColor:[UIColor clearColor]];
         [titleName setTextAlignment:NSTextAlignmentCenter];
         [topBar addSubview:titleName];

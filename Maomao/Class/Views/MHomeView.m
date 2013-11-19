@@ -101,7 +101,7 @@
     self.sendRequest = [ASIHTTPRequest requestWithURL:url];
     [self.sendRequest setTimeOutSeconds:kRequestTime];
     [self.sendRequest setDelegate:self];
-    [self.sendRequest startAsynchronous];
+    [self.sendRequest startSynchronous];
 }
 
 #pragma mark -

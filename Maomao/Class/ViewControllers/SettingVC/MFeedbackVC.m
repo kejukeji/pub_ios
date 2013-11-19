@@ -10,6 +10,7 @@
 #import "MBackBtn.h"
 #import "MRightBtn.h"
 #import "JSON.h"
+#import "MTitleView.h"
 
 @interface MFeedbackVC ()
 
@@ -33,7 +34,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"意见反馈";
+    
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"意见反馈";
+    self.navigationItem.titleView = titleView;
+
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
 
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
@@ -44,7 +49,6 @@
     [rightBtn setTitle:@"发送" forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(sendFeedbackInfo) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    
     [feedBackInfo becomeFirstResponder];
     
     if (!noiOS7) {
@@ -62,8 +66,6 @@
 
 - (void)sendFeedbackInfo
 {
-    [self back];  //需删除
-
     [feedBackInfo resignFirstResponder];
 
     hud = [[MBProgressHUD alloc] init];
@@ -79,7 +81,7 @@
 }
 
 #pragma mark -  Custom Private Method
-- (void) sendRequestByUrlString:(NSString *)urlString
+- (void)sendRequestByUrlString:(NSString *)urlString
 {
     if (self.sendRequest != nil) {
         [self.sendRequest clearDelegatesAndCancel];
@@ -94,7 +96,7 @@
 
 #pragma mark - ASIRequestDelegate 
 
-- (void) requestFinished:(ASIHTTPRequest *)request
+- (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString  = [request responseString];
     
@@ -103,17 +105,19 @@
     }
     
     NSDictionary *responseDict = [responseString JSONValue];
-    NSInteger    status = [[responseDict objectForKey:@"status"] intValue];
+    NSLog(@"responseString == %@",responseString);
+    
+    NSInteger status = [[responseDict objectForKey:@"status"] intValue];
     
     if (status == 0) {
-//        [hud setLabelText:@"提交成功，我们已经收到您宝贵的意见"];
+        [hud setLabelText:@"提交成功!"];
         [self back];
     } else {
-//        [hud setLabelText:@"提交失败，请您稍后提交您的意见"];
+        [hud setLabelText:@"提交失败!"];
     }
 }
 
-- (void) requestFailed:(ASIHTTPRequest *)request
+- (void)requestFailed:(ASIHTTPRequest *)request
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示"
                                                         message:@"网络无法连接" delegate:self cancelButtonTitle:@"知道了 " otherButtonTitles: nil];

@@ -7,7 +7,7 @@
 //
 
 #import "MTouchSuperView.h"
-#define SLIDE_SIZE 245
+#define SLIDE_SIZE 226
 
 @implementation MTouchSuperView
 

@@ -36,6 +36,8 @@
 @property (nonatomic, strong) ASIHTTPRequest             *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView  *refreshHeaderView;
 @property (nonatomic, copy)   NSString                   *lastUrlString;
+@property (nonatomic, strong) UITableView                *barListTV;
+
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 

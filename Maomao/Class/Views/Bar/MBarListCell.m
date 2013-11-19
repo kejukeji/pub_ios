@@ -37,8 +37,15 @@
 - (void)setCellInfoWithModel:(MBarListModel *)model
 {
     barNameLabel.text = [NSString stringWithFormat:@"%@",model.name];
-    [barIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path]]];
-    addressLabel.text = [NSString stringWithFormat:@"%@",model.street];
+    
+    [barIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path]] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
+    
+    if ([model.street isEqual:[NSNull null]]) {
+        addressLabel.text = @"";
+    } else {
+        addressLabel.text = [NSString stringWithFormat:@"%@",model.street];
+    }
+    
     introLabel.text = [NSString stringWithFormat:@"%@",model.intro];
     
     //计算距离

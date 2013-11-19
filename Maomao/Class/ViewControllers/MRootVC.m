@@ -33,7 +33,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     rootScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480+(iPhone5?88:0))];
-    [rootScroll setContentSize:CGSizeMake(320*4, 480+(iPhone5?88:0))];
+    [rootScroll setContentSize:CGSizeMake(320*3, 480+(iPhone5?88:0))];
     [rootScroll setDelegate:self];
     [rootScroll setShowsHorizontalScrollIndicator:NO];
     [rootScroll setShowsVerticalScrollIndicator:NO];
@@ -41,32 +41,26 @@
     [self.view addSubview:rootScroll];
     
     rootPage = [[UIPageControl alloc] initWithFrame:CGRectMake(106, 415+(iPhone5?88:0), 108, 36)];
-    [rootPage setNumberOfPages:4];
+    [rootPage setNumberOfPages:3];
     [self.view addSubview:rootPage];
     
     UIImageView *firstImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480+(iPhone5?88:0))];
-    [firstImg setImage:[UIImage imageNamed:@"1.png"]];
+    [firstImg setImage:[UIImage imageNamed:@"guide_1.jpg"]];
     [rootScroll addSubview:firstImg];
     
     UIImageView *secondImg = [[UIImageView alloc] initWithFrame:CGRectMake(320, 0, 320, 480+(iPhone5?88:0))];
-    [secondImg setImage:[UIImage imageNamed:@"2.png"]];
+    [secondImg setImage:[UIImage imageNamed:@"guide_2.jpg"]];
     [rootScroll addSubview:secondImg];
     
     UIImageView *thirdImg = [[UIImageView alloc] initWithFrame:CGRectMake(640, 0, 320, 480+(iPhone5?88:0))];
-    [thirdImg setImage:[UIImage imageNamed:@"3.png"]];
+    [thirdImg setImage:[UIImage imageNamed:@"guide_3.jpg"]];
+    [thirdImg setUserInteractionEnabled:YES];
     [rootScroll addSubview:thirdImg];
     
-    UIImageView *fourthImg = [[UIImageView alloc] initWithFrame:CGRectMake(960, 0, 320, 480+(iPhone5?88:0))];
-    [fourthImg setImage:[UIImage imageNamed:@"4.png"]];
-    [fourthImg setUserInteractionEnabled:YES];
-    [rootScroll addSubview:fourthImg];
-    
     UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [startBtn setFrame:CGRectMake(120, 345+(iPhone5?88:0), 80, 44)];
-    [startBtn setBackgroundColor:[UIColor redColor]];
-    [startBtn setImage:[UIImage imageNamed:@" "] forState:UIControlStateNormal];
+    [startBtn setFrame:CGRectMake(120, 340+(iPhone5?68:0), 80, 44)];
     [startBtn addTarget:self action:@selector(startInto) forControlEvents:UIControlEventTouchUpInside];
-    [fourthImg addSubview:startBtn];
+    [thirdImg addSubview:startBtn];
 }
 
 - (void)startInto

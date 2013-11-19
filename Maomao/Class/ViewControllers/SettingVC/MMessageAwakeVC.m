@@ -8,6 +8,7 @@
 
 #import "MMessageAwakeVC.h"
 #import "MBackBtn.h"
+#import "MTitleView.h"
 
 @interface MMessageAwakeVC ()
 
@@ -28,7 +29,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"消息提醒";
+    
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"消息提醒";
+    self.navigationItem.titleView = titleView;
+    
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
     
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];

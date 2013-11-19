@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MBarDetailsVC">
@@ -28,7 +28,7 @@
                     <rect key="frame" x="6" y="6" width="127" height="83"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="bar_detail_1.png"/>
+                    <state key="normal" image="common_img_default.png"/>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 潮 人 88 酒 吧" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pUk-sl-zYS">
                     <rect key="frame" x="137" y="14" width="112" height="17"/>
@@ -183,9 +183,9 @@
     </objects>
     <resources>
         <image name="barList_img_distance.png" width="17" height="22"/>
-        <image name="bar_detail_1.png" width="256" height="161"/>
         <image name="bar_detail_checkshow_background.png" width="640" height="75"/>
         <image name="bar_detail_gray_right_arow.png" width="18" height="28"/>
+        <image name="common_img_default.png" width="237" height="169"/>
         <image name="personalCenter_CheckinBar.png" width="43" height="41"/>
     </resources>
 </document>

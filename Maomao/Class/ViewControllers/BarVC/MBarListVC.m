@@ -16,6 +16,7 @@
 #import "MBarDetailsVC.h"
 #import "MRightBtn.h"
 #import "MBarSearchVC.h"
+#import "MTitleView.h"
 
 @interface MBarListVC () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -59,8 +60,7 @@
     
     MRightBtn *rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitle:@"搜 索" forState:UIControlStateNormal];
-    [rightBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    [rightBtn setTitle:@"搜索" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     barPicSources = [NSMutableArray arrayWithCapacity:0];
@@ -90,6 +90,8 @@
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
     [self.view addSubview:hud];
+    
+    [self initWithRequestByUrl:lastUrlString];
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -138,7 +140,9 @@
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     barListVC.isNoBarList = YES;
     [self.navigationController pushViewController:barListVC animated:YES];
-    barListVC.title = @"附近酒吧";
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"附近酒吧";
+    barListVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/near/pub?longitude=%f&latitude=%f",MM_URL, locationLongitude, locationLatitude];
     [barListVC initWithRequestByUrl:url];
 }
@@ -321,6 +325,7 @@
         [barListTV reloadData];
     }
     
+
     [self setPicListConten];
     
     [hud hide:YES];
@@ -351,7 +356,8 @@
         [picBtn setTitle:model.name forState:UIControlStateNormal];
         [picBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
-        [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal];
+        [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
+        
         [picBtn setFrame:CGRectMake(i * 82, 0, 72, 72)];
         [recommendScrollView addSubview:picBtn];
     }
@@ -363,7 +369,9 @@
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
-    detailsVC.title = button.titleLabel.text;
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = button.titleLabel.text;
+    detailsVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%d&user_id=%@", MM_URL, button.tag, userid];
     [detailsVC initWithRequestByUrl:url];
     [self.navigationController pushViewController:detailsVC animated:YES];
@@ -410,8 +418,10 @@
     
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = model.name;
+    detailsVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%@&user_id=%@", MM_URL, model.barListId, userid];
-    detailsVC.title = model.name;
     [detailsVC initWithRequestByUrl:url];
     [self.navigationController pushViewController:detailsVC animated:YES];
 }

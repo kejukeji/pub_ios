@@ -26,11 +26,10 @@
     NSMutableArray  *homeSources;
     UIScrollView    *homeScrollView;
     BOOL             isNetWork;
-
 }
 
-@property (nonatomic, assign) id<MHomeViewDelegate> delegate;
-@property (nonatomic, strong) ASIHTTPRequest       *sendRequest;
+@property (nonatomic, assign) id <MHomeViewDelegate>    delegate;
+@property (nonatomic, strong) ASIHTTPRequest           *sendRequest;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 

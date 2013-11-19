@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView   *signerShowScrollView;
 
 @property (nonatomic, strong) ASIHTTPRequest        *sendRequest;
+@property (nonatomic, strong) ASIHTTPRequest        *sendCollectRequest;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 - (IBAction)slideSignerShowView:(UIButton *)sender;

@@ -11,18 +11,22 @@
 @implementation MLeftMenuView
 
 @synthesize delegate;
+@synthesize signLabel;
+@synthesize nameLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
     }
     return self;
 }
 
 - (IBAction)gotoNextVC:(UIButton *)sender
 {
+    NSLog(@"sender==%@",sender);
     [delegate gotoNextVC:sender.tag];
 }
 

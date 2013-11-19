@@ -8,6 +8,7 @@
 
 #import "MPrivateMessageVC.h"
 #import "MBackBtn.h"
+#import "MTitleView.h"
 
 @interface MPrivateMessageVC ()
 
@@ -28,7 +29,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"私信消息";
+
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = @"我的私信";
+    self.navigationItem.titleView = titleView;
     
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
     
