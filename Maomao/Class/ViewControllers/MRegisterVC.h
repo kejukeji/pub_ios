@@ -14,10 +14,13 @@
 @property (weak, nonatomic) IBOutlet UITextField      *nicknameTF;
 @property (weak, nonatomic) IBOutlet UITextField      *emailTF;
 @property (weak, nonatomic) IBOutlet UITextField      *passwordTF;
+@property (weak, nonatomic) IBOutlet UIImageView      *selectImg;
 
 @property (nonatomic, strong) UINavigationController  *navigat;
 @property (nonatomic,strong)  ASIFormDataRequest      *formDataRequest;
 
+- (IBAction)selectProtocol:(UIButton *)sender;
+- (IBAction)lookProtocol:(UIButton *)sender;
 - (IBAction)registerAccount:(UIButton *)sender;
 
 @end

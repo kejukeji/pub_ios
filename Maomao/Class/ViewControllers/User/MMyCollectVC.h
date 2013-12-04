@@ -23,9 +23,12 @@
     BOOL                      reloading;
 }
 
+@property (nonatomic, assign) BOOL                        isMyCollect;
+@property (nonatomic, copy)   NSString                   *titleNameString;
+@property (nonatomic, copy)   NSString                   *collectId;
+
 @property (nonatomic, strong) ASIHTTPRequest             *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView  *refreshHeaderView;
-@property (nonatomic, copy)   NSString                   *lastUrlString;
 @property (nonatomic, strong) UITableView                *barListTV;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;

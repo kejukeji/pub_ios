@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MPrivateMessageModel.h"
 
 @interface MPrivateMessageCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView  *friendIcon;
+@property (weak, nonatomic) IBOutlet UILabel      *nicknameLabel;
+@property (weak, nonatomic) IBOutlet UILabel      *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel      *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel      *contentLabel;
+
+- (void)setCellInfoWithModel:(MPrivateMessageModel *)model;
 
 @end

@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) ASIHTTPRequest        *sendRequest;
 @property (nonatomic, strong) ASIHTTPRequest        *sendCollectRequest;
-
+@property (nonatomic, strong) ASIHTTPRequest        *sendCancelCollectRequest;
 - (void)initWithRequestByUrl:(NSString *)urlString;
 - (IBAction)slideSignerShowView:(UIButton *)sender;
 

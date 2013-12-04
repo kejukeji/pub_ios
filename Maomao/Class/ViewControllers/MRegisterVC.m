@@ -10,10 +10,14 @@
 #import "MMainVC.h"
 #import "Utils.h"
 #import "JSON.h"
+#import "MRegisterProtocolVC.h"
+#import "GPPrompting.h"
 
 @interface MRegisterVC () <UINavigationControllerDelegate>
 {
-    MMainVC *mainVC;
+    MMainVC         *mainVC;
+    BOOL             isAgree;
+    GPPrompting     *prompting;
 }
 
 @end
@@ -24,6 +28,7 @@
 @synthesize emailTF;
 @synthesize passwordTF;
 @synthesize navigat;
+@synthesize selectImg;
 @synthesize formDataRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,8 +52,69 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)selectProtocol:(UIButton *)sender
+{
+    if (isAgree == YES) {
+        [self.selectImg setImage:[UIImage imageNamed:@"regester_unselect.png"]];
+        isAgree = NO;
+    } else {
+        [self.selectImg setImage:[UIImage imageNamed:@"regester_selected.png"]];
+        isAgree = YES;
+    }
+}
+
+- (IBAction)lookProtocol:(UIButton *)sender
+{
+    MRegisterProtocolVC *registerProtocolVC = [[MRegisterProtocolVC alloc] init];
+    [self presentViewController:registerProtocolVC animated:YES completion:nil];
+}
+
 - (IBAction)registerAccount:(UIButton *)sender
 {
+    if ([self.nicknameTF.text isEqualToString:@""]) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"请输入昵称" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+    
+    if ([self.emailTF.text isEqualToString:@""]) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"请输入邮箱地址" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+    
+    if ([self.passwordTF.text isEqualToString:@""]) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"密码不能为空" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+
+    if (isAgree == NO) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"阅读并同意《冒冒用户使用协议》，才能注册" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+
     NSString *urlString = [NSString stringWithFormat:@"%@/restful/user/register",MM_URL];
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     

@@ -48,7 +48,8 @@
         signLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0, 180, 44)];
         [signLabel setTextColor:[UIColor whiteColor]];
         signLabel.text = [NSString stringWithFormat:@"个性签名：%@",[[NSUserDefaults standardUserDefaults] stringForKey:kSignature]];
-        [signLabel setFont:[UIFont boldSystemFontOfSize:20]];
+//        [signLabel setFont:[UIFont boldSystemFontOfSize:20]];
+        [signLabel setAdjustsFontSizeToFitWidth:YES];
         [signLabel setBackgroundColor:[UIColor clearColor]];
         [signLabel setTextAlignment:NSTextAlignmentCenter];
         [topBar addSubview:signLabel];

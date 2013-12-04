@@ -20,8 +20,10 @@
         [self setBackgroundImage:[UIImage imageNamed:@"common_btn_right.png"] forState:UIControlStateNormal];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.titleLabel setFont:[UIFont systemFontOfSize:14]];
-
+        [self.titleLabel setMinimumFontSize:9];
+        [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
     }
+    
     return self;
 }
 

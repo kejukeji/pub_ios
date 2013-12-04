@@ -79,10 +79,7 @@
 }
 
 - (void)sendRequest:(NSString *)urlString
-{
-    [hud setLabelText:@"正在收藏，请稍等！"];
-    [hud show:YES];
-    
+{    
     isNetWork = [Utils checkCurrentNetWork];
     
     if (!isNetWork) {

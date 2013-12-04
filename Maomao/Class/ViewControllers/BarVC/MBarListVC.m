@@ -35,6 +35,7 @@
 @synthesize sendRequest;
 @synthesize recommendScrollView;
 @synthesize refreshHeaderView;
+@synthesize urlStr;
 @synthesize lastUrlString;
 @synthesize barListTV;
 @synthesize isNoBarList;
@@ -91,7 +92,8 @@
     [hud setLabelText:@"加载中，请稍等！"];
     [self.view addSubview:hud];
     
-    [self initWithRequestByUrl:lastUrlString];
+    NSString *url = [NSString stringWithFormat:@"%@&city_id=%@",urlStr, @"0"];
+    [self initWithRequestByUrl:url];
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {

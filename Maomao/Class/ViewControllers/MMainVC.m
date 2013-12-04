@@ -319,8 +319,8 @@
     titleView.titleName.text = name;
     barListVC.navigationItem.titleView = titleView;
     barListVC.isNoBarList = NO;
-    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d",MM_URL, typeId];
-    barListVC.lastUrlString = url;
+    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d&province_id=9",MM_URL, typeId];
+    barListVC.urlStr = url;
 }
 
 #pragma mark -
@@ -337,10 +337,12 @@
     MUserSettingVC *userSettingVC = [[MUserSettingVC alloc] init];
     
     MMyCollectVC *myCollectVC = [[MMyCollectVC alloc] init];
-    
+    myCollectVC.isMyCollect = YES;
 
     if (privateMessageVC == nil) {
+        NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
         privateMessageVC = [[MPrivateMessageVC alloc] init];
+        privateMessageVC.lastUrlString = [NSString stringWithFormat:@"%@/restful/user/direct/message?user_id=%@",MM_URL, userid];
     }
 
     switch (number) {
@@ -388,6 +390,8 @@
 
 - (void)gotoMessageDetails:(NSInteger)number
 {
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+
     NSLog(@"number == %d",number);
     systemMessageVC = [[MSystemMessageVC alloc] init];
     if (privateMessageVC == nil) {
@@ -399,7 +403,7 @@
             [self.navigationController pushViewController:systemMessageVC animated:YES];
             break;
         case 222:
-            NSLog(@"number == %d",number);
+            privateMessageVC.lastUrlString = [NSString stringWithFormat:@"%@/restful/user/direct/message?user_id=%@",MM_URL, userid];
             [self.navigationController pushViewController:privateMessageVC animated:YES];
             break;
         default:

@@ -1,18 +1,18 @@
 //
-//  MpersonalCenter.m
+//  MRegisterProtocolVC.m
 //  Maomao
 //
-//  Created by maochengfang on 13-10-28.
+//  Created by zhao on 13-11-28.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
 
-#import "MpersonalCenter.h"
+#import "MRegisterProtocolVC.h"
 
-@interface MpersonalCenter ()
+@interface MRegisterProtocolVC ()
 
 @end
 
-@implementation MpersonalCenter
+@implementation MRegisterProtocolVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +33,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)backRegisterView:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -31,7 +31,6 @@
     BOOL                      reloading;
 }
 
-
 @property (nonatomic, assign) id<MCollectViewDelegate>    delegate;
 @property (nonatomic, strong) ASIHTTPRequest             *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView  *refreshHeaderView;

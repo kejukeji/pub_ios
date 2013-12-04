@@ -24,8 +24,6 @@
 
 @implementation MPictureVC
 
-//@synthesize picPath;
-//@synthesize picImg;
 @synthesize models;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,16 +45,6 @@
     MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    
-//    picImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 60, 200, 200)];
-//    [picImg setImageWithURL:[NSURL URLWithString:picPath]];
-//    [self.view addSubview:picImg];
-    
-    if (!noiOS7) {
-        for (UIView *view in self.view.subviews) {
-            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
-        }
-    }
 }
 
 - (void)back
@@ -74,9 +62,9 @@
     titleView.titleName.text = [NSString stringWithFormat:@"酒吧图片(%d/%d)",numberOfSet+1 ,totalCountOfSet];
     self.navigationItem.titleView = titleView;
     
-    pictureScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 416+(iPhone5?88:0))];
+    pictureScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:64), 320, 416+(iPhone5?88:0))];
     
-    [pictureScrollView setContentSize:CGSizeMake(320 * totalCountOfSet, 416+(iPhone5?88:0))];
+    [pictureScrollView setContentSize:CGSizeMake(320 * totalCountOfSet, 416+(noiOS7?0:64)+(iPhone5?88:0))];
     NSInteger offSet = numberOfSet;
     [pictureScrollView setContentOffset:CGPointMake(320 * offSet, 0)];
     [pictureScrollView setPagingEnabled:YES];
@@ -92,7 +80,15 @@
         [pictureScrollView addSubview:image];
         
     }
+    
     [self.view addSubview:pictureScrollView];
+    
+//    if (!noiOS7) {
+//        for (UIView *view in self.view.subviews) {
+//            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+//        }
+//    }
+
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *) scrollView

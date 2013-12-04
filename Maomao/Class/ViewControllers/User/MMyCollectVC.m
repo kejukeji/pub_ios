@@ -19,9 +19,11 @@
 
 @implementation MMyCollectVC
 
+@synthesize isMyCollect;
+@synthesize titleNameString;
+@synthesize collectId;
 @synthesize sendRequest;
 @synthesize refreshHeaderView;
-@synthesize lastUrlString;
 @synthesize barListTV;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,7 +41,7 @@
 	// Do any additional setup after loading the view.
     
     MTitleView *myCollectTitleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
-    myCollectTitleView.titleName.text = @"我的收藏";
+    
     self.navigationItem.titleView = myCollectTitleView;
     
     [self.view setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
@@ -66,9 +68,16 @@
         }
     }
     
-    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-    NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
-    [self initWithRequestByUrl:url];
+    if (isMyCollect == YES) {
+        myCollectTitleView.titleName.text = @"我的收藏";
+        NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+        NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
+        [self initWithRequestByUrl:url];
+    } else {
+        myCollectTitleView.titleName.text = titleNameString;
+        NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, collectId];
+        [self initWithRequestByUrl:url];
+    }
 }
 
 - (void) back
@@ -81,7 +90,7 @@
 
 -(void)initWithRequestByUrl:(NSString *)urlString
 {
-    self.lastUrlString = urlString;
+    self.collectId = urlString;
     
     if (refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -70.0f, barListTV.frame.size.width,70.0f)];
@@ -98,12 +107,12 @@
 
 - (void)refaushTableViewData
 {
-    if(lastUrlString == nil)
+    if(collectId == nil)
     {
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"%@&page=%d",lastUrlString, currentIndex];
+    NSString *url = [NSString stringWithFormat:@"%@&page=%d",collectId, currentIndex];
     [self sendRequestByUrlString:url];
     NSLog(@"url === %@",url);
     
@@ -291,7 +300,7 @@
     
     if ([barListSources count] > 0 && indexPath.row == [barListSources count]-1) {
         
-        NSString *url = [NSString stringWithFormat:@"%@&page=%d",lastUrlString, currentIndex];
+        NSString *url = [NSString stringWithFormat:@"%@&page=%d",collectId, currentIndex];
         [self sendRequestByUrlString:url];
         NSLog(@"url === %@",url);
     }

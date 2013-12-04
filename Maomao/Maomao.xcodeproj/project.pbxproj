@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		FE02589B182B70330058DB90 /* MBarListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE02589A182B70330058DB90 /* MBarListCell.xib */; };
+		FE0F55F5184727EF008140F6 /* MRegisterProtocolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0F55F3184727EF008140F6 /* MRegisterProtocolVC.m */; };
+		FE0F55F6184727EF008140F6 /* MRegisterProtocolVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE0F55F4184727EF008140F6 /* MRegisterProtocolVC.xib */; };
+		FE0F55F918472B8B008140F6 /* regester_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = FE0F55F718472B8B008140F6 /* regester_selected.png */; };
+		FE0F55FA18472B8B008140F6 /* regester_unselect.png in Resources */ = {isa = PBXBuildFile; fileRef = FE0F55F818472B8B008140F6 /* regester_unselect.png */; };
+		FE0F55FC18472F73008140F6 /* user_btn_login.png in Resources */ = {isa = PBXBuildFile; fileRef = FE0F55FB18472F73008140F6 /* user_btn_login.png */; };
 		FE102F5418364F1100D3DF39 /* MModifyNicknameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE102F5218364F1100D3DF39 /* MModifyNicknameVC.m */; };
 		FE102F5518364F1100D3DF39 /* MModifyNicknameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE102F5318364F1100D3DF39 /* MModifyNicknameVC.xib */; };
 		FE102F591836529D00D3DF39 /* MModifyBirthdayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE102F571836529D00D3DF39 /* MModifyBirthdayVC.m */; };
@@ -18,6 +23,14 @@
 		FE102F671836546100D3DF39 /* MModifyPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE102F601836546100D3DF39 /* MModifyPasswordVC.xib */; };
 		FE102F681836546100D3DF39 /* MModifySignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE102F621836546100D3DF39 /* MModifySignatureVC.m */; };
 		FE102F691836546100D3DF39 /* MModifySignatureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE102F631836546100D3DF39 /* MModifySignatureVC.xib */; };
+		FE2A615E18483D9E00AEADF9 /* MPrivateMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2A615D18483D9E00AEADF9 /* MPrivateMessageModel.m */; };
+		FE2A6162184847EC00AEADF9 /* MPrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2A6160184847EC00AEADF9 /* MPrivateMessageCell.m */; };
+		FE2A6163184847EC00AEADF9 /* MPrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE2A6161184847EC00AEADF9 /* MPrivateMessageCell.xib */; };
+		FE462FA3184B40A200899F53 /* MChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE462FA2184B40A200899F53 /* MChatListModel.m */; };
+		FE4634231848573C004BC786 /* MChatListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4634221848573C004BC786 /* MChatListVC.m */; };
+		FE4634261848575F004BC786 /* MChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4634251848575F004BC786 /* MChatListCell.m */; };
+		FE46342818485772004BC786 /* MChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE46342718485772004BC786 /* MChatListCell.xib */; };
+		FE46342A18485B0D004BC786 /* user_icon_time.png in Resources */ = {isa = PBXBuildFile; fileRef = FE46342918485B0D004BC786 /* user_icon_time.png */; };
 		FE47DC5A1833EE070067951C /* MCommonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE47DC591833EE070067951C /* MCommonVC.m */; };
 		FE5176B71831C30E00BACF79 /* MBarEnvironmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5176B61831C30E00BACF79 /* MBarEnvironmentModel.m */; };
 		FE684287180E32DA0000E01C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684286180E32DA0000E01C /* Foundation.framework */; };
@@ -74,6 +87,23 @@
 		FE902B05180F916C00F60C71 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE902B04180F916C00F60C71 /* ImageIO.framework */; };
 		FE902B07180F917600F60C71 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE902B06180F917600F60C71 /* MapKit.framework */; };
 		FE902B09180F91D900F60C71 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE902B08180F91D900F60C71 /* libz.dylib */; };
+		FE930E90184CA2690078430F /* MChatListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE930E8F184CA2690078430F /* MChatListVC.xib */; };
+		FE930EA1184CC0A60078430F /* ic_face_001.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E91184CC0A60078430F /* ic_face_001.png */; };
+		FE930EA2184CC0A60078430F /* ic_face_002.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E92184CC0A60078430F /* ic_face_002.png */; };
+		FE930EA3184CC0A60078430F /* ic_face_003.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E93184CC0A60078430F /* ic_face_003.png */; };
+		FE930EA4184CC0A60078430F /* ic_face_004.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E94184CC0A60078430F /* ic_face_004.png */; };
+		FE930EA5184CC0A60078430F /* ic_face_005.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E95184CC0A60078430F /* ic_face_005.png */; };
+		FE930EA6184CC0A60078430F /* ic_face_006.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E96184CC0A60078430F /* ic_face_006.png */; };
+		FE930EA7184CC0A60078430F /* ic_face_007.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E97184CC0A60078430F /* ic_face_007.png */; };
+		FE930EA8184CC0A60078430F /* ic_face_008.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E98184CC0A60078430F /* ic_face_008.png */; };
+		FE930EA9184CC0A60078430F /* ic_face_009.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E99184CC0A60078430F /* ic_face_009.png */; };
+		FE930EAA184CC0A60078430F /* ic_face_010.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E9A184CC0A60078430F /* ic_face_010.png */; };
+		FE930EAB184CC0A60078430F /* ic_face_011.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E9B184CC0A60078430F /* ic_face_011.png */; };
+		FE930EAC184CC0A60078430F /* ic_face_012.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E9C184CC0A60078430F /* ic_face_012.png */; };
+		FE930EAD184CC0A60078430F /* ic_face_013.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E9D184CC0A60078430F /* ic_face_013.png */; };
+		FE930EAE184CC0A60078430F /* ic_face_014.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E9E184CC0A60078430F /* ic_face_014.png */; };
+		FE930EAF184CC0A60078430F /* ic_face_015.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930E9F184CC0A60078430F /* ic_face_015.png */; };
+		FE930EB0184CC0A60078430F /* ic_face_016.png in Resources */ = {isa = PBXBuildFile; fileRef = FE930EA0184CC0A60078430F /* ic_face_016.png */; };
 		FE995CA31832A313003BF217 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE995CA21832A313003BF217 /* CoreLocation.framework */; };
 		FE99E104182B49D500D620E5 /* MBarListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE99E103182B49D500D620E5 /* MBarListVC.xib */; };
 		FE9F21F4182A272A007C7FE7 /* MLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE9F21F3182A272A007C7FE7 /* MLoginVC.xib */; };
@@ -222,8 +252,8 @@
 		FEE27C01183A7F42008D57F0 /* user_img_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FEE27B91183A7F42008D57F0 /* user_img_arrow.png */; };
 		FEE27C02183A7F42008D57F0 /* user_img_line.png in Resources */ = {isa = PBXBuildFile; fileRef = FEE27B92183A7F42008D57F0 /* user_img_line.png */; };
 		FEE27C03183A7F42008D57F0 /* 个性签名-输入框.png in Resources */ = {isa = PBXBuildFile; fileRef = FEE27B93183A7F42008D57F0 /* 个性签名-输入框.png */; };
-		FEE2DDB6183027B9000F2C8E /* MpersonalCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2DDAA183027B9000F2C8E /* MpersonalCenter.m */; };
-		FEE2DDB7183027B9000F2C8E /* MpersonalCenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEE2DDAB183027B9000F2C8E /* MpersonalCenter.xib */; };
+		FEE2DDB6183027B9000F2C8E /* MFriendCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2DDAA183027B9000F2C8E /* MFriendCenterVC.m */; };
+		FEE2DDB7183027B9000F2C8E /* MFriendCenterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEE2DDAB183027B9000F2C8E /* MFriendCenterVC.xib */; };
 		FEE2DDC7183027E8000F2C8E /* MAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2DDBC183027E8000F2C8E /* MAboutVC.m */; };
 		FEE2DDC8183027E8000F2C8E /* MAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEE2DDBD183027E8000F2C8E /* MAboutVC.xib */; };
 		FEE2DDC9183027E8000F2C8E /* MFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2DDBF183027E8000F2C8E /* MFeedbackVC.m */; };
@@ -232,8 +262,6 @@
 		FEE2DDCC183027E8000F2C8E /* MMessageAwakeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEE2DDC3183027E8000F2C8E /* MMessageAwakeVC.xib */; };
 		FEE2DDCD183027E8000F2C8E /* MSoundAndShockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2DDC5183027E8000F2C8E /* MSoundAndShockVC.m */; };
 		FEE2DDCE183027E8000F2C8E /* MSoundAndShockVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEE2DDC6183027E8000F2C8E /* MSoundAndShockVC.xib */; };
-		FEE2DDD718302841000F2C8E /* MPrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2DDD518302841000F2C8E /* MPrivateMessageCell.m */; };
-		FEE2DDD818302841000F2C8E /* MBarPrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEE2DDD618302841000F2C8E /* MBarPrivateMessageCell.xib */; };
 		FEECF9181834E23500969ECF /* MRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEECF9161834E23500969ECF /* MRegisterVC.m */; };
 		FEECF9191834E23500969ECF /* MRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEECF9171834E23500969ECF /* MRegisterVC.xib */; };
 		FEF0F4F21835E432001DB84B /* MMyCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF0F4F11835E432001DB84B /* MMyCollectVC.m */; };
@@ -253,6 +281,12 @@
 
 /* Begin PBXFileReference section */
 		FE02589A182B70330058DB90 /* MBarListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBarListCell.xib; sourceTree = "<group>"; };
+		FE0F55F2184727EF008140F6 /* MRegisterProtocolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRegisterProtocolVC.h; sourceTree = "<group>"; };
+		FE0F55F3184727EF008140F6 /* MRegisterProtocolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRegisterProtocolVC.m; sourceTree = "<group>"; };
+		FE0F55F4184727EF008140F6 /* MRegisterProtocolVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRegisterProtocolVC.xib; sourceTree = "<group>"; };
+		FE0F55F718472B8B008140F6 /* regester_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = regester_selected.png; sourceTree = "<group>"; };
+		FE0F55F818472B8B008140F6 /* regester_unselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = regester_unselect.png; sourceTree = "<group>"; };
+		FE0F55FB18472F73008140F6 /* user_btn_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_btn_login.png; sourceTree = "<group>"; };
 		FE102F5118364F1100D3DF39 /* MModifyNicknameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MModifyNicknameVC.h; sourceTree = "<group>"; };
 		FE102F5218364F1100D3DF39 /* MModifyNicknameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MModifyNicknameVC.m; sourceTree = "<group>"; };
 		FE102F5318364F1100D3DF39 /* MModifyNicknameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MModifyNicknameVC.xib; sourceTree = "<group>"; };
@@ -268,6 +302,19 @@
 		FE102F611836546100D3DF39 /* MModifySignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MModifySignatureVC.h; sourceTree = "<group>"; };
 		FE102F621836546100D3DF39 /* MModifySignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MModifySignatureVC.m; sourceTree = "<group>"; };
 		FE102F631836546100D3DF39 /* MModifySignatureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MModifySignatureVC.xib; sourceTree = "<group>"; };
+		FE2A615C18483D9E00AEADF9 /* MPrivateMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPrivateMessageModel.h; sourceTree = "<group>"; };
+		FE2A615D18483D9E00AEADF9 /* MPrivateMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPrivateMessageModel.m; sourceTree = "<group>"; };
+		FE2A615F184847EC00AEADF9 /* MPrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPrivateMessageCell.h; sourceTree = "<group>"; };
+		FE2A6160184847EC00AEADF9 /* MPrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPrivateMessageCell.m; sourceTree = "<group>"; };
+		FE2A6161184847EC00AEADF9 /* MPrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MPrivateMessageCell.xib; sourceTree = "<group>"; };
+		FE462FA1184B40A200899F53 /* MChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChatListModel.h; sourceTree = "<group>"; };
+		FE462FA2184B40A200899F53 /* MChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChatListModel.m; sourceTree = "<group>"; };
+		FE4634211848573C004BC786 /* MChatListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChatListVC.h; sourceTree = "<group>"; };
+		FE4634221848573C004BC786 /* MChatListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChatListVC.m; sourceTree = "<group>"; };
+		FE4634241848575F004BC786 /* MChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChatListCell.h; sourceTree = "<group>"; };
+		FE4634251848575F004BC786 /* MChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChatListCell.m; sourceTree = "<group>"; };
+		FE46342718485772004BC786 /* MChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MChatListCell.xib; sourceTree = "<group>"; };
+		FE46342918485B0D004BC786 /* user_icon_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_icon_time.png; sourceTree = "<group>"; };
 		FE47DC581833EE070067951C /* MCommonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCommonVC.h; sourceTree = "<group>"; };
 		FE47DC591833EE070067951C /* MCommonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCommonVC.m; sourceTree = "<group>"; };
 		FE5176B51831C30E00BACF79 /* MBarEnvironmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBarEnvironmentModel.h; sourceTree = "<group>"; };
@@ -373,6 +420,23 @@
 		FE902B04180F916C00F60C71 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		FE902B06180F917600F60C71 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FE902B08180F91D900F60C71 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		FE930E8F184CA2690078430F /* MChatListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MChatListVC.xib; sourceTree = "<group>"; };
+		FE930E91184CC0A60078430F /* ic_face_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_001.png; sourceTree = "<group>"; };
+		FE930E92184CC0A60078430F /* ic_face_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_002.png; sourceTree = "<group>"; };
+		FE930E93184CC0A60078430F /* ic_face_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_003.png; sourceTree = "<group>"; };
+		FE930E94184CC0A60078430F /* ic_face_004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_004.png; sourceTree = "<group>"; };
+		FE930E95184CC0A60078430F /* ic_face_005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_005.png; sourceTree = "<group>"; };
+		FE930E96184CC0A60078430F /* ic_face_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_006.png; sourceTree = "<group>"; };
+		FE930E97184CC0A60078430F /* ic_face_007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_007.png; sourceTree = "<group>"; };
+		FE930E98184CC0A60078430F /* ic_face_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_008.png; sourceTree = "<group>"; };
+		FE930E99184CC0A60078430F /* ic_face_009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_009.png; sourceTree = "<group>"; };
+		FE930E9A184CC0A60078430F /* ic_face_010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_010.png; sourceTree = "<group>"; };
+		FE930E9B184CC0A60078430F /* ic_face_011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_011.png; sourceTree = "<group>"; };
+		FE930E9C184CC0A60078430F /* ic_face_012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_012.png; sourceTree = "<group>"; };
+		FE930E9D184CC0A60078430F /* ic_face_013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_013.png; sourceTree = "<group>"; };
+		FE930E9E184CC0A60078430F /* ic_face_014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_014.png; sourceTree = "<group>"; };
+		FE930E9F184CC0A60078430F /* ic_face_015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_015.png; sourceTree = "<group>"; };
+		FE930EA0184CC0A60078430F /* ic_face_016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_face_016.png; sourceTree = "<group>"; };
 		FE995CA21832A313003BF217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FE99E103182B49D500D620E5 /* MBarListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBarListVC.xib; sourceTree = "<group>"; };
 		FE9F21F3182A272A007C7FE7 /* MLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLoginVC.xib; sourceTree = "<group>"; };
@@ -547,9 +611,9 @@
 		FEE27B91183A7F42008D57F0 /* user_img_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_img_arrow.png; sourceTree = "<group>"; };
 		FEE27B92183A7F42008D57F0 /* user_img_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_img_line.png; sourceTree = "<group>"; };
 		FEE27B93183A7F42008D57F0 /* 个性签名-输入框.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个性签名-输入框.png"; sourceTree = "<group>"; };
-		FEE2DDA9183027B9000F2C8E /* MpersonalCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MpersonalCenter.h; sourceTree = "<group>"; };
-		FEE2DDAA183027B9000F2C8E /* MpersonalCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MpersonalCenter.m; sourceTree = "<group>"; };
-		FEE2DDAB183027B9000F2C8E /* MpersonalCenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MpersonalCenter.xib; sourceTree = "<group>"; };
+		FEE2DDA9183027B9000F2C8E /* MFriendCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFriendCenterVC.h; sourceTree = "<group>"; };
+		FEE2DDAA183027B9000F2C8E /* MFriendCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFriendCenterVC.m; sourceTree = "<group>"; };
+		FEE2DDAB183027B9000F2C8E /* MFriendCenterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MFriendCenterVC.xib; sourceTree = "<group>"; };
 		FEE2DDBB183027E8000F2C8E /* MAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAboutVC.h; sourceTree = "<group>"; };
 		FEE2DDBC183027E8000F2C8E /* MAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAboutVC.m; sourceTree = "<group>"; };
 		FEE2DDBD183027E8000F2C8E /* MAboutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAboutVC.xib; sourceTree = "<group>"; };
@@ -562,9 +626,6 @@
 		FEE2DDC4183027E8000F2C8E /* MSoundAndShockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSoundAndShockVC.h; sourceTree = "<group>"; };
 		FEE2DDC5183027E8000F2C8E /* MSoundAndShockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSoundAndShockVC.m; sourceTree = "<group>"; };
 		FEE2DDC6183027E8000F2C8E /* MSoundAndShockVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSoundAndShockVC.xib; sourceTree = "<group>"; };
-		FEE2DDD418302841000F2C8E /* MPrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPrivateMessageCell.h; sourceTree = "<group>"; };
-		FEE2DDD518302841000F2C8E /* MPrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPrivateMessageCell.m; sourceTree = "<group>"; };
-		FEE2DDD618302841000F2C8E /* MBarPrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBarPrivateMessageCell.xib; sourceTree = "<group>"; };
 		FEECF9151834E23500969ECF /* MRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRegisterVC.h; sourceTree = "<group>"; };
 		FEECF9161834E23500969ECF /* MRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRegisterVC.m; sourceTree = "<group>"; };
 		FEECF9171834E23500969ECF /* MRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRegisterVC.xib; sourceTree = "<group>"; };
@@ -776,6 +837,10 @@
 				FECC813C1832922C003F5373 /* MBarCollectModel.m */,
 				FEAA884E1838EEE3001928ED /* MAreaModel.h */,
 				FEAA884F1838EEE3001928ED /* MAreaModel.m */,
+				FE2A615C18483D9E00AEADF9 /* MPrivateMessageModel.h */,
+				FE2A615D18483D9E00AEADF9 /* MPrivateMessageModel.m */,
+				FE462FA1184B40A200899F53 /* MChatListModel.h */,
+				FE462FA2184B40A200899F53 /* MChatListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1071,6 +1136,26 @@
 		FEE27B7E183A7F42008D57F0 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				FE930E91184CC0A60078430F /* ic_face_001.png */,
+				FE930E92184CC0A60078430F /* ic_face_002.png */,
+				FE930E93184CC0A60078430F /* ic_face_003.png */,
+				FE930E94184CC0A60078430F /* ic_face_004.png */,
+				FE930E95184CC0A60078430F /* ic_face_005.png */,
+				FE930E96184CC0A60078430F /* ic_face_006.png */,
+				FE930E97184CC0A60078430F /* ic_face_007.png */,
+				FE930E98184CC0A60078430F /* ic_face_008.png */,
+				FE930E99184CC0A60078430F /* ic_face_009.png */,
+				FE930E9A184CC0A60078430F /* ic_face_010.png */,
+				FE930E9B184CC0A60078430F /* ic_face_011.png */,
+				FE930E9C184CC0A60078430F /* ic_face_012.png */,
+				FE930E9D184CC0A60078430F /* ic_face_013.png */,
+				FE930E9E184CC0A60078430F /* ic_face_014.png */,
+				FE930E9F184CC0A60078430F /* ic_face_015.png */,
+				FE930EA0184CC0A60078430F /* ic_face_016.png */,
+				FE0F55FB18472F73008140F6 /* user_btn_login.png */,
+				FE46342918485B0D004BC786 /* user_icon_time.png */,
+				FE0F55F718472B8B008140F6 /* regester_selected.png */,
+				FE0F55F818472B8B008140F6 /* regester_unselect.png */,
 				FEE27B7F183A7F42008D57F0 /* blueArrow.png */,
 				FEE27B80183A7F42008D57F0 /* login_button.png */,
 				FEE27B81183A7F42008D57F0 /* login_frame.png */,
@@ -1099,9 +1184,12 @@
 		FEE2DD9B1830276F000F2C8E /* MessageAndUser */ = {
 			isa = PBXGroup;
 			children = (
-				FEE2DDD418302841000F2C8E /* MPrivateMessageCell.h */,
-				FEE2DDD518302841000F2C8E /* MPrivateMessageCell.m */,
-				FEE2DDD618302841000F2C8E /* MBarPrivateMessageCell.xib */,
+				FE2A615F184847EC00AEADF9 /* MPrivateMessageCell.h */,
+				FE2A6160184847EC00AEADF9 /* MPrivateMessageCell.m */,
+				FE2A6161184847EC00AEADF9 /* MPrivateMessageCell.xib */,
+				FE4634241848575F004BC786 /* MChatListCell.h */,
+				FE4634251848575F004BC786 /* MChatListCell.m */,
+				FE46342718485772004BC786 /* MChatListCell.xib */,
 			);
 			path = MessageAndUser;
 			sourceTree = "<group>";
@@ -1113,9 +1201,12 @@
 				FEA4C61B18308D9700A9CC33 /* MSystemMessageVC.m */,
 				FEA4C61D18308EF400A9CC33 /* MPrivateMessageVC.h */,
 				FEA4C61E18308EF400A9CC33 /* MPrivateMessageVC.m */,
-				FEE2DDA9183027B9000F2C8E /* MpersonalCenter.h */,
-				FEE2DDAA183027B9000F2C8E /* MpersonalCenter.m */,
-				FEE2DDAB183027B9000F2C8E /* MpersonalCenter.xib */,
+				FE4634211848573C004BC786 /* MChatListVC.h */,
+				FE4634221848573C004BC786 /* MChatListVC.m */,
+				FE930E8F184CA2690078430F /* MChatListVC.xib */,
+				FEE2DDA9183027B9000F2C8E /* MFriendCenterVC.h */,
+				FEE2DDAA183027B9000F2C8E /* MFriendCenterVC.m */,
+				FEE2DDAB183027B9000F2C8E /* MFriendCenterVC.xib */,
 			);
 			path = MessageAndUserVC;
 			sourceTree = "<group>";
@@ -1142,6 +1233,9 @@
 		FEF0F4EF1835E432001DB84B /* User */ = {
 			isa = PBXGroup;
 			children = (
+				FE0F55F2184727EF008140F6 /* MRegisterProtocolVC.h */,
+				FE0F55F3184727EF008140F6 /* MRegisterProtocolVC.m */,
+				FE0F55F4184727EF008140F6 /* MRegisterProtocolVC.xib */,
 				FEF0F4F01835E432001DB84B /* MMyCollectVC.h */,
 				FEF0F4F11835E432001DB84B /* MMyCollectVC.m */,
 				FEF0F4F31835E47A001DB84B /* MUserSettingVC.h */,
@@ -1250,13 +1344,16 @@
 				FEE27BB4183A7F42008D57F0 /* guide_1.jpg in Resources */,
 				FEDC5A45183A0C2000BD8179 /* MMyHomeView.xib in Resources */,
 				FEE27BA4183A7F42008D57F0 /* barlist_nearbybar.png in Resources */,
+				FE930EA9184CC0A60078430F /* ic_face_009.png in Resources */,
 				FEE27B9E183A7F42008D57F0 /* bar_detail_usr_icon.png in Resources */,
 				FEE2DDCE183027E8000F2C8E /* MSoundAndShockVC.xib in Resources */,
 				FEE27BAF183A7F42008D57F0 /* common_line_1.png in Resources */,
 				FEECF9191834E23500969ECF /* MRegisterVC.xib in Resources */,
 				FEE27BAC183A7F42008D57F0 /* common_img_default.png in Resources */,
 				FEE27BD1183A7F42008D57F0 /* friends_green_square.png in Resources */,
+				FE46342A18485B0D004BC786 /* user_icon_time.png in Resources */,
 				FEE27BF8183A7F42008D57F0 /* personalCenter_Coupon.png in Resources */,
+				FE930EA1184CC0A60078430F /* ic_face_001.png in Resources */,
 				FEE27B94183A7F42008D57F0 /* 3_c.png in Resources */,
 				FE102F5A1836529D00D3DF39 /* MModifyBirthdayVC.xib in Resources */,
 				FEE27BDF183A7F42008D57F0 /* leftMenu_img_line.png in Resources */,
@@ -1274,6 +1371,8 @@
 				FE9F21F4182A272A007C7FE7 /* MLoginVC.xib in Resources */,
 				FEE27BEF183A7F42008D57F0 /* blueArrow.png in Resources */,
 				FEE27BF5183A7F42008D57F0 /* personalCenter_Activity.png in Resources */,
+				FE930EAB184CC0A60078430F /* ic_face_011.png in Resources */,
+				FE930EA4184CC0A60078430F /* ic_face_004.png in Resources */,
 				FEE27B99183A7F42008D57F0 /* bar_detail_5.png in Resources */,
 				FEB7A370182FC27A00BE197C /* MBarSearchVC.xib in Resources */,
 				FEE27BB0183A7F42008D57F0 /* common_timeline.png in Resources */,
@@ -1281,12 +1380,14 @@
 				FEE27B9B183A7F42008D57F0 /* bar_detail_checkshow_background.png in Resources */,
 				FE684291180E32DA0000E01C /* InfoPlist.strings in Resources */,
 				FE102F691836546100D3DF39 /* MModifySignatureVC.xib in Resources */,
+				FE930EA2184CC0A60078430F /* ic_face_002.png in Resources */,
 				FEE27BA5183A7F42008D57F0 /* common_background.png in Resources */,
 				FEE27BDE183A7F42008D57F0 /* leftMenu_img_headIcon.png in Resources */,
 				FEB7A37A182FD5C000BE197C /* MBarCollectCell.xib in Resources */,
 				FEE27BC0183A7F42008D57F0 /* icon120.png in Resources */,
 				FEE27C00183A7F42008D57F0 /* searchBar_frame.png in Resources */,
 				FEE27BBE183A7F42008D57F0 /* Default@2x.png in Resources */,
+				FE930EAE184CC0A60078430F /* ic_face_014.png in Resources */,
 				FEE27BA0183A7F42008D57F0 /* barlist_background.png in Resources */,
 				FEE27BBB183A7F42008D57F0 /* searchBar_line.png in Resources */,
 				FEE27BC7183A7F42008D57F0 /* 冒冒.jpg in Resources */,
@@ -1302,24 +1403,31 @@
 				FEE27BDA183A7F42008D57F0 /* leftMenu_icon_collect.png in Resources */,
 				FE9F22A7182A2A7E007C7FE7 /* MLoginVCi4.xib in Resources */,
 				FEE27BC2183A7F42008D57F0 /* icon58.png in Resources */,
+				FE930EB0184CC0A60078430F /* ic_face_016.png in Resources */,
 				FEE27BEB183A7F42008D57F0 /* sound_line.png in Resources */,
 				FEE27B9D183A7F42008D57F0 /* bar_detail_line.png in Resources */,
 				FE684299180E32DA0000E01C /* Images.xcassets in Resources */,
 				FEE27BA7183A7F42008D57F0 /* common_barBg_top@2x.png in Resources */,
+				FE930EA5184CC0A60078430F /* ic_face_005.png in Resources */,
 				FEE27BCB183A7F42008D57F0 /* feedback_sendbtn.png in Resources */,
+				FE2A6163184847EC00AEADF9 /* MPrivateMessageCell.xib in Resources */,
+				FE0F55F918472B8B008140F6 /* regester_selected.png in Resources */,
+				FE930EA3184CC0A60078430F /* ic_face_003.png in Resources */,
 				FEE27BB6183A7F42008D57F0 /* guide_3.jpg in Resources */,
 				FEE27BD0183A7F42008D57F0 /* friends_female.png in Resources */,
 				FE102F651836546100D3DF39 /* MModifyAreaVC.xib in Resources */,
 				FEE27C02183A7F42008D57F0 /* user_img_line.png in Resources */,
 				FEE27BF1183A7F42008D57F0 /* login_frame.png in Resources */,
 				FEE27BA8183A7F42008D57F0 /* common_btn_left.png in Resources */,
+				FE930E90184CA2690078430F /* MChatListVC.xib in Resources */,
 				FEE27BE9183A7F42008D57F0 /* setting_img_greenArrow.png in Resources */,
 				FEE27B9A183A7F42008D57F0 /* bar_detail_check_icon.png in Resources */,
 				FEE27BB1183A7F42008D57F0 /* common_userHeadBg.png in Resources */,
 				FEF0F4F71835E47A001DB84B /* MUserSettingVC.xib in Resources */,
-				FEE2DDB7183027B9000F2C8E /* MpersonalCenter.xib in Resources */,
+				FEE2DDB7183027B9000F2C8E /* MFriendCenterVC.xib in Resources */,
 				FEE27BED183A7F42008D57F0 /* user_cell_password.png in Resources */,
 				FEE27BD7183A7F42008D57F0 /* left_menu_green.png in Resources */,
+				FE930EAA184CC0A60078430F /* ic_face_010.png in Resources */,
 				FEE27BFE183A7F42008D57F0 /* personalCenter_NoGift.png in Resources */,
 				FEE27BE7183A7F42008D57F0 /* setting_bg_towCell.png in Resources */,
 				FEE27BF7183A7F42008D57F0 /* personalCenter_CheckinBar.png in Resources */,
@@ -1330,7 +1438,10 @@
 				FEE27BCC183A7F42008D57F0 /* friends_black_big.png in Resources */,
 				FEE27BAB183A7F42008D57F0 /* common_gray_right_arrow.png in Resources */,
 				FEE27BB5183A7F42008D57F0 /* guide_2.jpg in Resources */,
+				FE0F55F6184727EF008140F6 /* MRegisterProtocolVC.xib in Resources */,
 				FEE27BF4183A7F42008D57F0 /* login_tencent.png in Resources */,
+				FE0F55FA18472B8B008140F6 /* regester_unselect.png in Resources */,
+				FE930EAD184CC0A60078430F /* ic_face_013.png in Resources */,
 				FEE27BC9183A7F42008D57F0 /* 3_32副本.png in Resources */,
 				FEE27BEE183A7F42008D57F0 /* user_cells_more.png in Resources */,
 				FEE27BBD183A7F42008D57F0 /* Default.png in Resources */,
@@ -1338,14 +1449,16 @@
 				FEE27BE3183A7F42008D57F0 /* message_content_sent.png in Resources */,
 				FEE27BB3183A7F42008D57F0 /* common_userIcon.png in Resources */,
 				FEE27BFF183A7F42008D57F0 /* personalCenter_NoMsg.png in Resources */,
+				FE0F55FC18472F73008140F6 /* user_btn_login.png in Resources */,
 				FEE27BAD183A7F42008D57F0 /* common_img_down_arrow.png in Resources */,
 				FEE27BC1183A7F42008D57F0 /* icon29.png in Resources */,
 				FEE27BDC183A7F42008D57F0 /* leftMenu_icon_message.png in Resources */,
 				FEE27BF3183A7F42008D57F0 /* login_sina.png in Resources */,
-				FEE2DDD818302841000F2C8E /* MBarPrivateMessageCell.xib in Resources */,
 				FEE27B9C183A7F42008D57F0 /* bar_detail_gray_right_arow.png in Resources */,
 				FEE27BD9183A7F42008D57F0 /* leftMenu_bg_bottome.png in Resources */,
+				FE930EA6184CC0A60078430F /* ic_face_006.png in Resources */,
 				FEE27BA6183A7F42008D57F0 /* common_barBg_top.png in Resources */,
+				FE930EAC184CC0A60078430F /* ic_face_012.png in Resources */,
 				FEE27BD2183A7F42008D57F0 /* friends_line.png in Resources */,
 				FEE27BFD183A7F42008D57F0 /* personalCenter_myPic.png in Resources */,
 				FEE27BD6183A7F42008D57F0 /* gray_right_arrow.png in Resources */,
@@ -1361,12 +1474,16 @@
 				FEE2DDCA183027E8000F2C8E /* MFeedbackVC.xib in Resources */,
 				FEE27BA3183A7F42008D57F0 /* barList_img_recommend.png in Resources */,
 				FEE27BE2183A7F42008D57F0 /* message_content_recieve.png in Resources */,
+				FE930EAF184CC0A60078430F /* ic_face_015.png in Resources */,
 				FEE27BBA183A7F42008D57F0 /* searchBar_icon.png in Resources */,
 				FEE27BFC183A7F42008D57F0 /* personalCenter_icon.png in Resources */,
 				FEE27BCD183A7F42008D57F0 /* friends_black_frame.png in Resources */,
 				FEE27BDD183A7F42008D57F0 /* leftMenu_icon_setting.png in Resources */,
 				FEE27B97183A7F42008D57F0 /* bar_detail_3.png in Resources */,
+				FE930EA8184CC0A60078430F /* ic_face_008.png in Resources */,
+				FE930EA7184CC0A60078430F /* ic_face_007.png in Resources */,
 				FEE27BF2183A7F42008D57F0 /* login_register.png in Resources */,
+				FE46342818485772004BC786 /* MChatListCell.xib in Resources */,
 				FEE27BCF183A7F42008D57F0 /* friends_collect.png in Resources */,
 				FE102F671836546100D3DF39 /* MModifyPasswordVC.xib in Resources */,
 				FEE27BC5183A7F42008D57F0 /* 冒冒 2.jpg in Resources */,
@@ -1400,15 +1517,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE4634231848573C004BC786 /* MChatListVC.m in Sources */,
 				FEBEFF12180FD00C007C3D2C /* MLoginVC.m in Sources */,
 				FE902AF6180F90AE00F60C71 /* SDWebImageDecoder.m in Sources */,
 				FEA0A479182C710E00E6A3DA /* MBarDetailSignaModel.m in Sources */,
 				FE902AE0180F90AE00F60C71 /* ASIDataCompressor.m in Sources */,
 				FE902AF2180F90AE00F60C71 /* Utils.m in Sources */,
 				FE902AEB180F90AE00F60C71 /* SBJsonBase.m in Sources */,
-				FEE2DDB6183027B9000F2C8E /* MpersonalCenter.m in Sources */,
+				FEE2DDB6183027B9000F2C8E /* MFriendCenterVC.m in Sources */,
 				FE684297180E32DA0000E01C /* MAppDelegate.m in Sources */,
 				FE902AE4180F90AE00F60C71 /* ASIHTTPRequest.m in Sources */,
+				FE462FA3184B40A200899F53 /* MChatListModel.m in Sources */,
 				FE102F681836546100D3DF39 /* MModifySignatureVC.m in Sources */,
 				FE902ADF180F90AE00F60C71 /* ASIAuthenticationDialog.m in Sources */,
 				FE902AE3180F90AE00F60C71 /* ASIFormDataRequest.m in Sources */,
@@ -1418,6 +1537,7 @@
 				FEBEFF22180FD871007C3D2C /* MBarEnvironmentVC.m in Sources */,
 				FEBEFF1C180FD7E2007C3D2C /* MBarListVC.m in Sources */,
 				FE902AF5180F90AE00F60C71 /* SDWebImageCompat.m in Sources */,
+				FE4634261848575F004BC786 /* MChatListCell.m in Sources */,
 				FE902AF4180F90AE00F60C71 /* SDImageCache.m in Sources */,
 				FE9F22AA182A3DDE007C7FE7 /* MCollectView.m in Sources */,
 				FE102F661836546100D3DF39 /* MModifyPasswordVC.m in Sources */,
@@ -1431,10 +1551,10 @@
 				FE684293180E32DA0000E01C /* main.m in Sources */,
 				FE902AFB180F90AE00F60C71 /* UIButton+WebCache.m in Sources */,
 				FEE2DDC9183027E8000F2C8E /* MFeedbackVC.m in Sources */,
+				FE2A615E18483D9E00AEADF9 /* MPrivateMessageModel.m in Sources */,
 				FEB7A379182FD5C000BE197C /* MBarCollectCell.m in Sources */,
 				FE102F591836529D00D3DF39 /* MModifyBirthdayVC.m in Sources */,
 				FEA929C7182B5F040075F336 /* MBarPicListModel.m in Sources */,
-				FEE2DDD718302841000F2C8E /* MPrivateMessageCell.m in Sources */,
 				FE902AE5180F90AE00F60C71 /* ASIInputStream.m in Sources */,
 				FE902AEF180F90AE00F60C71 /* EGORefreshTableHeaderView.m in Sources */,
 				FEE2DDCD183027E8000F2C8E /* MSoundAndShockVC.m in Sources */,
@@ -1461,12 +1581,14 @@
 				FED7789A18320FED00886B21 /* MPictureVC.m in Sources */,
 				FEDC5A43183A052700BD8179 /* MMyHomeView.m in Sources */,
 				FE83A8C1180FB0CD0080396B /* MRootVC.m in Sources */,
+				FE2A6162184847EC00AEADF9 /* MPrivateMessageCell.m in Sources */,
 				FEBEFF25180FD8D4007C3D2C /* MUserVC.m in Sources */,
 				FEBEFEF9180FC878007C3D2C /* MRightBtn.m in Sources */,
 				FE902AED180F90AE00F60C71 /* SBJsonWriter.m in Sources */,
 				FE902AF3180F90AE00F60C71 /* MKAnnotationView+WebCache.m in Sources */,
 				FE902AF0180F90AE00F60C71 /* GPPrompting.m in Sources */,
 				FE902AE7180F90AE00F60C71 /* Reachability.m in Sources */,
+				FE0F55F5184727EF008140F6 /* MRegisterProtocolVC.m in Sources */,
 				FEA0A476182C659000E6A3DA /* MBarDetailModel.m in Sources */,
 				FEBEFF1F180FD800007C3D2C /* MBarDetailsVC.m in Sources */,
 				FEBEFEF6180FC867007C3D2C /* MBackBtn.m in Sources */,

@@ -16,6 +16,7 @@
 #import "MBarEnvironmentVC.h"
 #import <MapKit/MapKit.h>
 #import "MRightBtn.h"
+#import "MFriendCenterVC.h"
 
 @interface MBarDetailsVC () <UIScrollViewDelegate>
 {
@@ -39,6 +40,7 @@
 
 @synthesize sendRequest;
 @synthesize sendCollectRequest;
+@synthesize sendCancelCollectRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,7 +62,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
     rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
     [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
@@ -83,16 +85,23 @@
 {
     [self.sendRequest clearDelegatesAndCancel];
     [self.sendCollectRequest clearDelegatesAndCancel];
+    [self.sendCancelCollectRequest clearDelegatesAndCancel];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)collect
+- (void)collect:(UIButton *)button
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
 
-    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/collect?user_id=%@&pub_id=%d", MM_URL ,userid, barId];
-    NSLog(@"collect url == %@",url);
-    [self sendCollectRequest:url];
+    if ([button.titleLabel.text isEqualToString:@"收藏"]) {
+        NSString *url = [NSString stringWithFormat:@"%@/restful/pub/collect?user_id=%@&pub_id=%d", MM_URL ,userid, barId];
+        NSLog(@"collect url == %@",url);
+        [self sendCollectRequest:url];
+    } else if ([button.titleLabel.text isEqualToString:@"取消收藏"]) {
+        NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/pub?user_id=%@&pub_id=%d", MM_URL ,userid, barId];
+        NSLog(@"collect url == %@",url);
+        [self sendCancelCollectRequest:url];
+    }
 }
 
 #pragma mark -
@@ -156,6 +165,36 @@
     [self.sendCollectRequest startAsynchronous];
 }
 
+- (void)sendCancelCollectRequest:(NSString *)urlString
+{
+    [hud setLabelText:@"正在取消收藏..."];
+    [hud show:YES];
+    
+    isNetWork = [Utils checkCurrentNetWork];
+    
+    if (!isNetWork) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"网络链接中断" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+    
+    if (self.sendCancelCollectRequest != nil) {
+        [self.sendCancelCollectRequest clearDelegatesAndCancel];
+        self.sendCancelCollectRequest = nil;
+    }
+    
+    NSURL * url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    self.sendCancelCollectRequest = [ASIHTTPRequest requestWithURL:url];
+    [self.sendCancelCollectRequest setTimeOutSeconds:kRequestTime];
+    [self.sendCancelCollectRequest setDelegate:self];
+    [self.sendCancelCollectRequest startAsynchronous];
+}
+
 #pragma mark -
 #pragma mark - ASIHTTPRequestDelegate
 
@@ -206,7 +245,12 @@
                 signaModel.upload_name = [picDict objectForKey:@"upload_name"];
                 signaModel.user_id = [picDict objectForKey:@"user_id"];
                 
-                [signaSources addObject:signaModel];
+                NSInteger userid = [[[NSUserDefaults standardUserDefaults] stringForKey:USERID] integerValue];
+                NSInteger currentId = [signaModel.user_id integerValue];
+                
+                if (userid != currentId) {  //不显示用户自己
+                    [signaSources addObject:signaModel];
+                }
             }
             
             [self setSignaPicConten];
@@ -253,7 +297,7 @@
         [hud hide:YES];
         NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
         if (status == 0) {
-            [rightBtn setTitle:@"已收藏" forState:UIControlStateNormal];
+            [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
             if (prompting != nil) {
                 [prompting removeFromSuperview];
                 prompting = nil;
@@ -274,6 +318,32 @@
         }
         
     }
+    
+    if (request == sendCancelCollectRequest) {
+        [hud hide:YES];
+        NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
+        if (status == 0) {
+            [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+            if (prompting != nil) {
+                [prompting removeFromSuperview];
+                prompting = nil;
+            }
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"取消收藏成功" Icon:nil];
+            [self.view addSubview:prompting];
+            [prompting show];
+            return;
+        } else if (status == 1) {
+            if (prompting != nil) {
+                [prompting removeFromSuperview];
+                prompting = nil;
+            }
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"收藏" Icon:nil];
+            [self.view addSubview:prompting];
+            [prompting show];
+            return;
+        }
+    }
+
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -295,8 +365,13 @@
         
         UIButton *picBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [picBtn addTarget:self action:@selector(gotoFriend:) forControlEvents:UIControlEventTouchUpInside];
-        [picBtn setTag:[model.signaId integerValue]];
+        [picBtn setTag:[model.user_id integerValue]];
         [picBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        if (![model.signature isEqual:[NSNull null]]) {
+//            [picBtn setTitle:model.signature forState:UIControlStateNormal];
+            [picBtn.titleLabel setText:model.signature];
+        }
+        
         NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
         [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
         
@@ -363,7 +438,14 @@
 
 - (void)gotoFriend:(UIButton *)button
 {
-    
+    MFriendCenterVC *friendCenterVC = [[MFriendCenterVC alloc] init];
+    if ([button.titleLabel.text length] != 0) {
+        friendCenterVC.friendSign = button.titleLabel.text;
+    } else {
+        friendCenterVC.friendSign = @"";
+    }
+    friendCenterVC.friendId = [NSString stringWithFormat:@"%d",button.tag];
+    [self.navigationController pushViewController:friendCenterVC animated:YES];
 }
 
 - (void)gotoBarEnvironment:(UIButton *)button
