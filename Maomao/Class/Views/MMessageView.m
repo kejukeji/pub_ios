@@ -20,7 +20,7 @@
         [self setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
 
         UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:20), 320, 44)];
-        [topBar setImage:[UIImage imageNamed:@"common_barBg_top.png"]];
+        [topBar setImage:[UIImage imageNamed:@"common_topBar_blue.png"]];
         [topBar setUserInteractionEnabled:YES];
         [self addSubview:topBar];
         

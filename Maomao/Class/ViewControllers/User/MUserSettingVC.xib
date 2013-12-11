@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -22,15 +22,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="user_cell_password.png" id="zXo-GI-CNj">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="user_img_headbg.png" id="zXo-GI-CNj">
                     <rect key="frame" x="10" y="10" width="300" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="user_cells_more.png" id="ofh-JL-L5f">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="user_frame_mid.png" id="ofh-JL-L5f">
                     <rect key="frame" x="10" y="75" width="300" height="165"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="user_cell_head.png" id="FSV-1S-GPQ">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="user_frame_password.png" id="FSV-1S-GPQ">
                     <rect key="frame" x="10" y="250" width="300" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -134,7 +134,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barCell_icon.png" id="sTM-hT-6vY">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_img_icon.png" id="sTM-hT-6vY">
                     <rect key="frame" x="230" y="15" width="45" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -270,11 +270,11 @@
         </view>
     </objects>
     <resources>
-        <image name="barCell_icon.png" width="151" height="151"/>
-        <image name="user_cell_head.png" width="604" height="93"/>
-        <image name="user_cell_password.png" width="604" height="111"/>
-        <image name="user_cells_more.png" width="602" height="325"/>
+        <image name="user_frame_mid.png" width="10" height="299"/>
+        <image name="user_frame_password.png" width="13" height="66"/>
         <image name="user_img_arrow.png" width="16" height="24"/>
+        <image name="user_img_headbg.png" width="16" height="114"/>
+        <image name="user_img_icon.png" width="89" height="88"/>
         <image name="user_img_line.png" width="602" height="1"/>
     </resources>
 </document>

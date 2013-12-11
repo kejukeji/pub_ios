@@ -18,7 +18,7 @@
         [self setFrame:CGRectMake(0, 0, 30, 24)];
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(10, 4, 9, 16)];
-        [img setImage:[UIImage imageNamed:@"common_btn_leftBack.png"]];
+        [img setImage:[UIImage imageNamed:@"common_btn_back.png"]];
         [self addSubview:img];
     }
     return self;

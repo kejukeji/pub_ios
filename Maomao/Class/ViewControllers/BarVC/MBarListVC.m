@@ -34,6 +34,7 @@
 
 @synthesize sendRequest;
 @synthesize recommendScrollView;
+@synthesize recommendPage;
 @synthesize refreshHeaderView;
 @synthesize urlStr;
 @synthesize lastUrlString;
@@ -365,6 +366,35 @@
     }
     
     [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
+    
+    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
+    [recommendPage setNumberOfPages:[barPicSources count]];
+    timeLoop = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(scrollViewLoops:) userInfo:nil repeats:YES];
+
+}
+
+/*
+ 实现推荐酒吧轮播
+ */
+- (void)scrollViewLoops:(NSTimer *)time
+{
+    NSInteger offset = recommendScrollView.contentOffset.x;
+    if (offset != ([barPicSources count])*82) {
+        [UIView beginAnimations:@"loop" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.5f];
+        [recommendScrollView setContentOffset:CGPointMake(offset+82, 4)];
+        [UIView commitAnimations];
+    }
+    else
+    {
+        [UIView beginAnimations:@"loop" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.5f];
+        [recommendScrollView setContentOffset:CGPointMake(34, 4)];
+        [UIView commitAnimations];
+    }
+    
 }
 
 - (void)gotoBarDetails:(UIButton *)button
@@ -375,6 +405,7 @@
     titleView.titleName.text = button.titleLabel.text;
     detailsVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%d&user_id=%@", MM_URL, button.tag, userid];
+    NSLog(@"BarDetail Url ==%@",url);
     [detailsVC initWithRequestByUrl:url];
     [self.navigationController pushViewController:detailsVC animated:YES];
 }

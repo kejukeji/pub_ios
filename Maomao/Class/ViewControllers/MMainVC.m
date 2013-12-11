@@ -25,6 +25,7 @@
 #import "MTitleView.h"
 #import "MLoginVC.h"
 #import "UIImageView+WebCache.h"
+#import "MChatListVC.h"
 
 @interface MMainVC ()
 {
@@ -48,6 +49,8 @@
 @synthesize settingView;
 @synthesize leftMenuView;
 @synthesize formDataRequest;
+//测试二期个人中心
+@synthesize personalCenter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -98,7 +101,8 @@
     leftMenuView.signLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
     
     myHomeView.signLabel.text = [NSString stringWithFormat:@"个性签名：%@",[[NSUserDefaults standardUserDefaults] stringForKey:kSignature]];
-    
+    //测试二期个人中心页面
+    personalCenter.signalLabel.text = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] stringForKey:kSignature]];
     /****************设置年龄******************/
     
     NSDate *current = [NSDate date];  //当前时间
@@ -116,12 +120,27 @@
     NSDateComponents *dateComparisonComponents = [systeCalendar components:unitFlags fromDate:birthday toDate:current options:NSWrapCalendarComponents];
     
     myHomeView.ageLabel.text = [NSString stringWithFormat:@"%d 岁",dateComparisonComponents.year];
+    
+    //测试二期个人中心页面
+    personalCenter.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)dateComparisonComponents.year];
     /****************************************************************/
 
     myHomeView.areaLabel.text = [[[NSUserDefaults standardUserDefaults] stringForKey:kCounty] stringByReplacingOccurrencesOfString:@"$" withString:@""];
     NSLog(@"areaLabel==%@",myHomeView.areaLabel.text);
+    
+     //测试二期个人中心页面
+    personalCenter.areaLabel.text = [[[NSUserDefaults standardUserDefaults] stringForKey:kCounty]
+                                     stringByReplacingOccurrencesOfString:@"$" withString:@""];
+    
     [myHomeView.iconImg  setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
+    
+    //测试二期个人中心页面
+    [personalCenter.Icon setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"personal_Icon.png"]];
+    
     myHomeView.nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
+    
+    //测试二期个人中心页面
+    personalCenter.nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
 }
 
 - (void)userInfo
@@ -264,11 +283,18 @@
     [touchView setHidden:YES];
     switch (type) {
         case 10:
-            if (myHomeView == nil) {
-                myHomeView = [[MMyHomeView alloc] initWithFrame:CGRectMake(0, 0, 320, 460+(iPhone5?88:0)+(noiOS7?0:20))];
-                [myHomeView setDelegate:self];
+//            if (myHomeView == nil) {
+//                myHomeView = [[MMyHomeView alloc] initWithFrame:CGRectMake(0, 0, 320, 460+(iPhone5?88:0)+(noiOS7?0:20))];
+//                [myHomeView setDelegate:self];
+//            }
+            
+            //测试二期个人中心页面
+            if (personalCenter == nil) {
+                personalCenter = [[MPersonalCenterVC alloc] init];
+                [personalCenter setDelegate:self];
             }
-            [touchView setCurrentView:myHomeView];
+
+            [touchView setCurrentView:personalCenter.view];
             break;
         case 11:
             [touchView setCurrentView:homeView];
@@ -301,6 +327,74 @@
         default:
             break;
     }
+}
+
+//测试二期个人中心页面
+#pragma mark -
+#pragma mark MMpersonalCenterDelegate
+
+- (void)mPersonalCenterLeftSlider
+{
+    [self leftSlider];
+}
+
+
+//二期个人中心
+#pragma mark -
+#pragma mark MPersonalConterDelegate
+- (void)personalCenterLeftSlider
+{
+    [self leftSlider];
+}
+
+- (void)mPersonalCenterGotoNext:(NSInteger)number
+{
+    MUserSettingVC *userSettingVC = [[MUserSettingVC alloc] init];
+    MMyCollectVC *myCollectVC = [[MMyCollectVC alloc] init];
+    myCollectVC.isMyCollect = YES;
+    
+    if (privateMessageVC == nil) {
+        NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+        privateMessageVC = [[MPrivateMessageVC alloc] init];
+        privateMessageVC.lastUrlString = [NSString stringWithFormat:@"%@/restful/user/direct/message?user_id=%@",MM_URL, userid];
+    }
+
+    switch (number) {
+        case 20:
+            [self.navigationController pushViewController:userSettingVC animated:YES];
+            break;
+        case 21:
+            NSLog(@"goto Experience");
+            break;
+        case 22:
+            NSLog(@"goto invite");
+            break;
+        case 23:
+            NSLog(@"goto gift");
+            break;
+        case 24:
+            NSLog(@"goto teaser");
+            break;
+        case 25:
+            NSLog(@"goto priviteMsg");
+            [self.navigationController pushViewController:privateMessageVC animated:YES];
+            break;
+        case 26:
+            [self.navigationController pushViewController:myCollectVC animated:YES];
+            break;
+        case 27:
+            NSLog(@"goto activity");
+        default:
+            break;
+    }
+}
+
+//二期好友中心
+#pragma mark -
+#pragma mark MFriendCenterViewControlDelegate
+- (void)friendCenterLeftSlider
+{
+    [self leftSlider];
 }
 
 #pragma mark -

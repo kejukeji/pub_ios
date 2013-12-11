@@ -17,12 +17,16 @@
 #import <MapKit/MapKit.h>
 #import "MRightBtn.h"
 #import "MFriendCenterVC.h"
+#import "MFriendCenterViewController.h"
 
 @interface MBarDetailsVC () <UIScrollViewDelegate>
 {
     float           currentXpoint;
     NSInteger       barId;
     MRightBtn      *rightBtn;
+    NSString       *bar_longitude;
+    NSString       *bar_latitude;
+    UIAlertView   *phoneCall;
 }
 
 @end
@@ -31,13 +35,14 @@
 
 @synthesize barIconBtn;
 @synthesize barNameLabel;
+@synthesize telNumber;
 @synthesize signaNumberLabel;
 @synthesize distanceLabel;
-@synthesize addressLabel;
 @synthesize barTypeLabel;
 @synthesize barIntroTextView;
 @synthesize signerShowScrollView;
-
+@synthesize NumofCheck;
+@synthesize addressBtn;
 @synthesize sendRequest;
 @synthesize sendCollectRequest;
 @synthesize sendCancelCollectRequest;
@@ -68,6 +73,7 @@
     
     signaSources = [NSMutableArray arrayWithCapacity:0];
     currentXpoint = 0;
+    
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
@@ -284,8 +290,12 @@
                 detailModel.view_number = [pubDict objectForKey:@"view_number"];
                 detailModel.web_url = [pubDict objectForKey:@"web_url"];
                 
+                //获取酒吧经纬度
+                bar_latitude = detailModel.latitude;
+                bar_longitude = detailModel.longitude;
                 barId = [detailModel.barDetailId integerValue];
                 [self setDetailConten:detailModel];
+                
             }
         }
         
@@ -378,7 +388,7 @@
         [picBtn setFrame:CGRectMake(i*65, 0, 60, 60)];
         [signerShowScrollView addSubview:picBtn];
     }
-    
+    NumofCheck.text = [NSString stringWithFormat:@"%d 人",[signaSources count]];
     [signerShowScrollView setContentSize:CGSizeMake([signaSources count] * 65, 60)];
 }
 
@@ -397,9 +407,17 @@
     [signaNumberLabel setText:[NSString stringWithFormat:@"%@",model.view_number]];
     
     if ([model.street isEqual:[NSNull null]]) {
-        addressLabel.text = @"";
+//        telLabel.text = @"";
+        [telNumber setTitle:@"" forState:UIControlStateNormal];
     } else {
-        addressLabel.text = [NSString stringWithFormat:@"%@",model.street];
+        // = [NSString stringWithFormat:@"%@",model.tel_list];
+        [telNumber setTitle:[NSString stringWithFormat:@"%@",model.tel_list] forState:UIControlStateNormal];
+        
+        [addressBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+        
+        [addressBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [addressBtn setTitle:[ NSString stringWithFormat:@"地址：%@",model.street] forState:UIControlStateNormal];
+        NSLog(@"street == %@",model.street);
     }
     
     [barTypeLabel setText:[NSString stringWithFormat:@"%@",model.type_name]];
@@ -436,13 +454,54 @@
     [UIView commitAnimations];
 }
 
+- (IBAction)callPhone:(UIButton *)sender
+{
+
+    NSString *callNumber = [NSString stringWithFormat:@"%@",telNumber.titleLabel.text];
+    phoneCall = [[UIAlertView alloc] initWithTitle:nil message:callNumber delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
+    [phoneCall show];
+}
+
+- (IBAction)LocationBtn:(UIButton *)sender
+{
+    double locationLongtitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"longitude"] doubleValue];
+    double locationLatitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"latitude"]doubleValue];
+    
+    double longitude = [bar_longitude doubleValue];
+    double latitude = [bar_latitude doubleValue];
+    
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:locationLatitude longitude:locationLongtitude];
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    //终点
+    CLLocationCoordinate2D coords1 = {coords1.latitude = latitude,coords1.longitude = longitude};
+    //起点
+    CLLocationCoordinate2D coords2 = {coords2.latitude = locationLatitude, coords2.longitude = locationLongtitude};
+    MKMapItem *currentLocationItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]];
+    //目的地的位置
+    MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
+    toLocation.name = @"目的地";
+    NSArray *items = [NSArray arrayWithObjects:currentLocationItem, toLocation, nil];
+    
+    NSDictionary *options = @{
+                              MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                              MKLaunchOptionsMapTypeKey:
+                                  [NSNumber numberWithInteger:MKMapTypeStandard],
+                              MKLaunchOptionsShowsTrafficKey:@YES
+                              };
+    //打开苹果自身地图应用，并呈现特定的item
+    [MKMapItem openMapsWithItems:items launchOptions:options];
+    
+    
+}
+
 - (void)gotoFriend:(UIButton *)button
 {
-    MFriendCenterVC *friendCenterVC = [[MFriendCenterVC alloc] init];
+    MFriendCenterViewController *friendCenterVC = [[MFriendCenterViewController alloc] init];
+    [friendCenterVC setDelegate:self];
     if ([button.titleLabel.text length] != 0) {
-        friendCenterVC.friendSign = button.titleLabel.text;
+        friendCenterVC.friendSignLabel.text = button.titleLabel.text;
     } else {
-        friendCenterVC.friendSign = @"";
+        friendCenterVC.friendSignLabel.text = @"";
     }
     friendCenterVC.friendId = [NSString stringWithFormat:@"%d",button.tag];
     [self.navigationController pushViewController:friendCenterVC animated:YES];

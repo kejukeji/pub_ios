@@ -12,9 +12,12 @@
 #import "MBarDetailsVC.h"
 #import "MBackBtn.h"
 #import "MTitleView.h"
+#import "MPersonalCenterVC.h"
 
 @interface MMyCollectVC ()
-
+{
+    MPersonalCenterVC *personalCenter;
+}
 @end
 
 @implementation MMyCollectVC
@@ -25,6 +28,7 @@
 @synthesize sendRequest;
 @synthesize refreshHeaderView;
 @synthesize barListTV;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,6 +65,8 @@
     [barListTV setBackgroundView:nil];
     [barListTV setRowHeight:113.0f];
     [self.view addSubview:barListTV];
+    
+    
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -282,7 +288,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [delegate numberofCollection:[barListSources count]];
     return [barListSources count];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

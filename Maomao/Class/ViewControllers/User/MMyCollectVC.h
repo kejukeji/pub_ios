@@ -5,6 +5,11 @@
 //  Created by zhao on 13-11-15.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
+@protocol MMyCollectDelegate <NSObject>
+
+- (void)numberofCollection:(NSInteger)num;
+
+@end
 
 #import <UIKit/UIKit.h>
 #import "MBarCollectCell.h"
@@ -30,6 +35,7 @@
 @property (nonatomic, strong) ASIHTTPRequest             *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView  *refreshHeaderView;
 @property (nonatomic, strong) UITableView                *barListTV;
+@property (nonatomic, strong) id<MMyCollectDelegate> delegate;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 

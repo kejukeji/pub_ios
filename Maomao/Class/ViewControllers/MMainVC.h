@@ -17,8 +17,10 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "ASIFormDataRequest.h"
-
-@interface MMainVC : UIViewController <MLetMenuViewDelegate, MHomeViewDelegate, MMyHomeViewDelegate, MCollectViewDelegate, MMessageViewDelegate, MSettingViewDelegate, CLLocationManagerDelegate>
+//测试二期个人中心
+#import "MPersonalCenterVC.h"
+#import "MFriendCenterViewController.h"
+@interface MMainVC : UIViewController <MLetMenuViewDelegate, MHomeViewDelegate, MMyHomeViewDelegate, MCollectViewDelegate, MMessageViewDelegate, MSettingViewDelegate, MPersonalCenterDelegate,MFriendCenterViewControlDelegate, CLLocationManagerDelegate>
 {
     IBOutlet MLeftMenuView *leftMenuNib;
     IBOutlet MMyHomeView *myHomeNib;
@@ -34,5 +36,8 @@
 @property (nonatomic, strong) MSettingView        *settingView;
 @property (nonatomic, strong) MLeftMenuView       *leftMenuView;
 @property (nonatomic, strong) ASIFormDataRequest  *formDataRequest;
+
+//测试二期个人中心
+@property (nonatomic, strong) MPersonalCenterVC   *personalCenter;
 
 @end

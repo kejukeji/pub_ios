@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -81,7 +81,7 @@
     <resources>
         <image name="message_content_recieve.png" width="361" height="95"/>
         <image name="message_content_sent.png" width="235" height="78"/>
-        <image name="personalCenter_icon.png" width="70" height="62"/>
+        <image name="personalCenter_icon.png" width="151" height="151"/>
         <image name="user_icon_time.png" width="16" height="15"/>
     </resources>
 </document>

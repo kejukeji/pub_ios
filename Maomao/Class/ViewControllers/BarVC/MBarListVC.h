@@ -13,14 +13,15 @@
 #import "MBarListCell.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface MBarListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate>
+@interface MBarListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate,UIScrollViewDelegate>
 {
     IBOutlet MBarListCell *barListCell;
     BOOL                   reloading;
+    NSTimer                 *timeLoop;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView       *recommendScrollView;
-
+@property (nonatomic, strong)   UIPageControl          *recommendPage;
 @property (nonatomic, strong) ASIHTTPRequest            *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
 @property (nonatomic, copy)   NSString                  *urlStr;

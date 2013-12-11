@@ -15,6 +15,7 @@
 
 @synthesize delegate;
 @synthesize sendRequest;
+@synthesize adPic_Path;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -116,7 +117,8 @@
     }
     
     NSDictionary *responseDict = [response JSONValue];
-    
+    //获取广告图片
+    adPic_Path = [responseDict objectForKey:@"advertising_picture"];
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
     NSArray *list = [responseDict objectForKey:@"list"];
     
@@ -213,9 +215,21 @@
         hight = barBtn.frame.origin.y + barBtn.frame.size.height + 14;
     }
     
-    [homeScrollView setContentSize:CGSizeMake(320, hight)];
+    //初始化广告按钮
+    NSString *adPicPath = [NSString stringWithFormat:@"%@%@",MM_URL,adPic_Path];
+    UIButton *adBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [adBtn setImageWithURL:[NSURL URLWithString:adPicPath] forState:UIControlStateNormal];
+    [adBtn addTarget:self action:@selector(gotoAdVC) forControlEvents:UIControlEventTouchUpInside];
+    [adBtn setFrame:CGRectMake(0, hight-5, 320, 65)];
+    
+    [homeScrollView addSubview:adBtn];
+    [homeScrollView setContentSize:CGSizeMake(320, hight+adBtn.frame.size.height)];
 }
 
+- (void)gotoAdVC
+{
+    NSLog(@"goto  AD.");
+}
 - (void)gotoBarListVC:(UIButton *)button
 {
     [delegate gotoBarListVC:button.tag type:button.titleLabel.text];

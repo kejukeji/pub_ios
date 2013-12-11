@@ -16,7 +16,7 @@
 @synthesize barNameLabel;
 @synthesize distanceLabel;
 @synthesize collectTimeLabel;
-
+@synthesize streetLabel;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -52,6 +52,7 @@
     distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",[newLocation distanceFromLocation :currentLocation]/1000];
     
     [collectTimeLabel setText:model.difference];
+    [streetLabel setText:model.street];
     
 }
 

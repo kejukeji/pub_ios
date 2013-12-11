@@ -21,7 +21,7 @@
 
         //顶部条状
         UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:20), 320, 44)];
-        [topBar setImage:[UIImage imageNamed:@"common_barBg_top.png"]];
+        [topBar setImage:[UIImage imageNamed:@"common_topBar_blue.png"]];
         [topBar setUserInteractionEnabled:YES];
         [self addSubview:topBar];
         
@@ -53,7 +53,7 @@
         [towCellImg addSubview:pushAndAwake];
         
         UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 120, 37)];
-        [firstName setText:@"消息提醒"];
+        [firstName setText:@"新消息提醒"];
         [firstName setTextColor:[UIColor colorWithRed:0.20 green:0.40 blue:0.47 alpha:1.0]];
         [firstName setFont:[UIFont systemFontOfSize:13]];
         [firstName setBackgroundColor:[UIColor clearColor]];
