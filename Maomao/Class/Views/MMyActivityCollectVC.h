@@ -29,7 +29,7 @@
 @property (nonatomic, strong) EGORefreshTableHeaderView *
     refreshHeaderView;
 @property (nonatomic, strong) UITableView   *activityListTV;
-
+@property (nonatomic, copy ) NSString      *lastUrlString;
 - (void)initWithRequestByUrl:(NSString *)urlString;
 
 @end

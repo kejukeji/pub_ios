@@ -72,8 +72,6 @@
 		0C418C541858CFC100E45E98 /* MMyCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418AFB1858CFC000E45E98 /* MMyCollectVC.m */; };
 		0C418C551858CFC100E45E98 /* MFriendCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418AFE1858CFC000E45E98 /* MFriendCenterViewController.m */; };
 		0C418C561858CFC100E45E98 /* MFriendCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418AFF1858CFC000E45E98 /* MFriendCenterViewController.xib */; };
-		0C418C571858CFC100E45E98 /* MMyActivityCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B011858CFC000E45E98 /* MMyActivityCollectVC.m */; };
-		0C418C581858CFC100E45E98 /* MMyActivityCollectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B021858CFC000E45E98 /* MMyActivityCollectVC.xib */; };
 		0C418C591858CFC100E45E98 /* MMyGiftListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B041858CFC000E45E98 /* MMyGiftListVC.m */; };
 		0C418C5A1858CFC100E45E98 /* MMyGiftListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B051858CFC000E45E98 /* MMyGiftListVC.xib */; };
 		0C418C5B1858CFC100E45E98 /* MMyInviteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B071858CFC000E45E98 /* MMyInviteListVC.m */; };
@@ -92,7 +90,6 @@
 		0C418C681858CFC100E45E98 /* MBarCollectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B1C1858CFC100E45E98 /* MBarCollectCell.xib */; };
 		0C418C691858CFC100E45E98 /* MBarListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B1E1858CFC100E45E98 /* MBarListCell.m */; };
 		0C418C6A1858CFC100E45E98 /* MBarListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B1F1858CFC100E45E98 /* MBarListCell.xib */; };
-		0C418C6B1858CFC100E45E98 /* MCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B211858CFC100E45E98 /* MCollectView.m */; };
 		0C418C6C1858CFC100E45E98 /* MChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B241858CFC100E45E98 /* MChatListCell.m */; };
 		0C418C6D1858CFC100E45E98 /* MChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B251858CFC100E45E98 /* MChatListCell.xib */; };
 		0C418C6E1858CFC100E45E98 /* MPrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B271858CFC100E45E98 /* MPrivateMessageCell.m */; };
@@ -316,6 +313,9 @@
 		0C418D481858CFC100E45E98 /* user_seperate_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C418C131858CFC100E45E98 /* user_seperate_line.png */; };
 		0C418D491858CFC100E45E98 /* 个性签名-输入框.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C418C141858CFC100E45E98 /* 个性签名-输入框.png */; };
 		0C418D4A1858CFC100E45E98 /* 归档.zip in Resources */ = {isa = PBXBuildFile; fileRef = 0C418C151858CFC100E45E98 /* 归档.zip */; };
+		0C9B6D7C1859492F00CAA404 /* MCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7B1859492F00CAA404 /* MCollectView.m */; };
+		0C9B6D801859496D00CAA404 /* MMyActivityCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */; };
+		0C9B6D811859496D00CAA404 /* MMyActivityCollectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7F1859496D00CAA404 /* MMyActivityCollectVC.xib */; };
 		FE684287180E32DA0000E01C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684286180E32DA0000E01C /* Foundation.framework */; };
 		FE684289180E32DA0000E01C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684288180E32DA0000E01C /* CoreGraphics.framework */; };
 		FE68428B180E32DA0000E01C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE68428A180E32DA0000E01C /* UIKit.framework */; };
@@ -492,9 +492,6 @@
 		0C418AFD1858CFC000E45E98 /* MFriendCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFriendCenterViewController.h; sourceTree = "<group>"; };
 		0C418AFE1858CFC000E45E98 /* MFriendCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFriendCenterViewController.m; sourceTree = "<group>"; };
 		0C418AFF1858CFC000E45E98 /* MFriendCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MFriendCenterViewController.xib; sourceTree = "<group>"; };
-		0C418B001858CFC000E45E98 /* MMyActivityCollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMyActivityCollectVC.h; sourceTree = "<group>"; };
-		0C418B011858CFC000E45E98 /* MMyActivityCollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMyActivityCollectVC.m; sourceTree = "<group>"; };
-		0C418B021858CFC000E45E98 /* MMyActivityCollectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMyActivityCollectVC.xib; sourceTree = "<group>"; };
 		0C418B031858CFC000E45E98 /* MMyGiftListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMyGiftListVC.h; sourceTree = "<group>"; };
 		0C418B041858CFC000E45E98 /* MMyGiftListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMyGiftListVC.m; sourceTree = "<group>"; };
 		0C418B051858CFC000E45E98 /* MMyGiftListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMyGiftListVC.xib; sourceTree = "<group>"; };
@@ -523,7 +520,6 @@
 		0C418B1E1858CFC100E45E98 /* MBarListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBarListCell.m; sourceTree = "<group>"; };
 		0C418B1F1858CFC100E45E98 /* MBarListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBarListCell.xib; sourceTree = "<group>"; };
 		0C418B201858CFC100E45E98 /* MCollectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCollectView.h; sourceTree = "<group>"; };
-		0C418B211858CFC100E45E98 /* MCollectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCollectView.m; sourceTree = "<group>"; };
 		0C418B231858CFC100E45E98 /* MChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChatListCell.h; sourceTree = "<group>"; };
 		0C418B241858CFC100E45E98 /* MChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChatListCell.m; sourceTree = "<group>"; };
 		0C418B251858CFC100E45E98 /* MChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MChatListCell.xib; sourceTree = "<group>"; };
@@ -760,6 +756,10 @@
 		0C418C131858CFC100E45E98 /* user_seperate_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_seperate_line.png; sourceTree = "<group>"; };
 		0C418C141858CFC100E45E98 /* 个性签名-输入框.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个性签名-输入框.png"; sourceTree = "<group>"; };
 		0C418C151858CFC100E45E98 /* 归档.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "归档.zip"; sourceTree = "<group>"; };
+		0C9B6D7B1859492F00CAA404 /* MCollectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCollectView.m; sourceTree = "<group>"; };
+		0C9B6D7D1859496D00CAA404 /* MMyActivityCollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMyActivityCollectVC.h; path = ../../Views/MMyActivityCollectVC.h; sourceTree = "<group>"; };
+		0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMyActivityCollectVC.m; path = ../../Views/MMyActivityCollectVC.m; sourceTree = "<group>"; };
+		0C9B6D7F1859496D00CAA404 /* MMyActivityCollectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMyActivityCollectVC.xib; path = ../../Views/MMyActivityCollectVC.xib; sourceTree = "<group>"; };
 		FE684283180E32DA0000E01C /* Maomao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maomao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE684286180E32DA0000E01C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FE684288180E32DA0000E01C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1074,6 +1074,9 @@
 				0C418AF91858CFC000E45E98 /* MModifySignatureVC.xib */,
 				0C418AFA1858CFC000E45E98 /* MMyCollectVC.h */,
 				0C418AFB1858CFC000E45E98 /* MMyCollectVC.m */,
+				0C9B6D7D1859496D00CAA404 /* MMyActivityCollectVC.h */,
+				0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */,
+				0C9B6D7F1859496D00CAA404 /* MMyActivityCollectVC.xib */,
 				0C418AFC1858CFC000E45E98 /* MPersonalCenterVC */,
 				0C418B0F1858CFC100E45E98 /* MRegisterProtocolVC.h */,
 				0C418B101858CFC100E45E98 /* MRegisterProtocolVC.m */,
@@ -1091,9 +1094,6 @@
 				0C418AFD1858CFC000E45E98 /* MFriendCenterViewController.h */,
 				0C418AFE1858CFC000E45E98 /* MFriendCenterViewController.m */,
 				0C418AFF1858CFC000E45E98 /* MFriendCenterViewController.xib */,
-				0C418B001858CFC000E45E98 /* MMyActivityCollectVC.h */,
-				0C418B011858CFC000E45E98 /* MMyActivityCollectVC.m */,
-				0C418B021858CFC000E45E98 /* MMyActivityCollectVC.xib */,
 				0C418B031858CFC000E45E98 /* MMyGiftListVC.h */,
 				0C418B041858CFC000E45E98 /* MMyGiftListVC.m */,
 				0C418B051858CFC000E45E98 /* MMyGiftListVC.xib */,
@@ -1113,9 +1113,9 @@
 		0C418B151858CFC100E45E98 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0C418B161858CFC100E45E98 /* Bar */,
+				0C9B6D7B1859492F00CAA404 /* MCollectView.m */,
 				0C418B201858CFC100E45E98 /* MCollectView.h */,
-				0C418B211858CFC100E45E98 /* MCollectView.m */,
+				0C418B161858CFC100E45E98 /* Bar */,
 				0C418B221858CFC100E45E98 /* MessageAndUser */,
 				0C418B291858CFC100E45E98 /* MHomeView.h */,
 				0C418B2A1858CFC100E45E98 /* MHomeView.m */,
@@ -1438,8 +1438,8 @@
 		FE68427A180E32DA0000E01C = {
 			isa = PBXGroup;
 			children = (
-				0C418A861858CFC000E45E98 /* Class */,
 				0C418B481858CFC100E45E98 /* Image */,
+				0C418A861858CFC000E45E98 /* Class */,
 				FE6842B8180E39110000E01C /* OpenSource */,
 				FE68428C180E32DA0000E01C /* Maomao */,
 				FE6842A5180E32DA0000E01C /* MaomaoTests */,
@@ -1839,7 +1839,6 @@
 				0C418CA11858CFC100E45E98 /* common_btn_leftBack.png in Resources */,
 				0C418D331858CFC100E45E98 /* personal_girl_icon.png in Resources */,
 				0C418D2B1858CFC100E45E98 /* personal_blue_topframe.png in Resources */,
-				0C418C581858CFC100E45E98 /* MMyActivityCollectVC.xib in Resources */,
 				0C418CC31858CFC100E45E98 /* feedback_bg_textView.png in Resources */,
 				0C418D411858CFC100E45E98 /* user_frame_password.png in Resources */,
 				0C418CCA1858CFC100E45E98 /* friends_green_square.png in Resources */,
@@ -1920,6 +1919,7 @@
 				0C418D341858CFC100E45E98 /* personal_grey_frame.png in Resources */,
 				0C418C9D1858CFC100E45E98 /* common_barBg_top.png in Resources */,
 				0C418D0A1858CFC100E45E98 /* gift_SLR cameras.png in Resources */,
+				0C9B6D811859496D00CAA404 /* MMyActivityCollectVC.xib in Resources */,
 				0C418CEA1858CFC100E45E98 /* message_content_withe_frame.png in Resources */,
 				0C418C491858CFC100E45E98 /* MSoundAndShockVC.xib in Resources */,
 				0C418C721858CFC100E45E98 /* MLeftMenuView.xib in Resources */,
@@ -1992,6 +1992,7 @@
 				0C418C2C1858CFC100E45E98 /* MBarDetailsVC.m in Sources */,
 				0C418C241858CFC100E45E98 /* MBarPicListModel.m in Sources */,
 				FE902AF5180F90AE00F60C71 /* SDWebImageCompat.m in Sources */,
+				0C9B6D801859496D00CAA404 /* MMyActivityCollectVC.m in Sources */,
 				0C418C6E1858CFC100E45E98 /* MPrivateMessageCell.m in Sources */,
 				0C418C461858CFC100E45E98 /* MMessageAwakeVC.m in Sources */,
 				0C418C821858CFC100E45E98 /* MSettingView.m in Sources */,
@@ -2021,7 +2022,6 @@
 				FE902AF8180F90AE00F60C71 /* SDWebImageDownloaderOperation.m in Sources */,
 				0C418C481858CFC100E45E98 /* MSoundAndShockVC.m in Sources */,
 				0C418C391858CFC100E45E98 /* MSystemMessageVC.m in Sources */,
-				0C418C571858CFC100E45E98 /* MMyActivityCollectVC.m in Sources */,
 				0C418C3D1858CFC100E45E98 /* MMainVC.m in Sources */,
 				0C418C7A1858CFC100E45E98 /* MIntegrationVC.m in Sources */,
 				FE902AF1180F90AE00F60C71 /* MBProgressHUD.m in Sources */,
@@ -2039,6 +2039,7 @@
 				FE902AFA180F90AE00F60C71 /* SDWebImagePrefetcher.m in Sources */,
 				0C418C2A1858CFC100E45E98 /* MBarActivityVC.m in Sources */,
 				0C418C171858CFC100E45E98 /* MCommonVC.m in Sources */,
+				0C9B6D7C1859492F00CAA404 /* MCollectView.m in Sources */,
 				0C418C1A1858CFC100E45E98 /* MTouchSuperView.m in Sources */,
 				0C418C1F1858CFC100E45E98 /* MBarCollectModel.m in Sources */,
 				FE902AF9180F90AE00F60C71 /* SDWebImageManager.m in Sources */,
@@ -2070,7 +2071,6 @@
 				FE902AE2180F90AE00F60C71 /* ASIDownloadCache.m in Sources */,
 				0C418C521858CFC100E45E98 /* MModifySignatureVC.m in Sources */,
 				0C418C731858CFC100E45E98 /* MMessageView.m in Sources */,
-				0C418C6B1858CFC100E45E98 /* MCollectView.m in Sources */,
 				0C418C761858CFC100E45E98 /* MGiftCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
