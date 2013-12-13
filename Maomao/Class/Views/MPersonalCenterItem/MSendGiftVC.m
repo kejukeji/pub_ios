@@ -27,8 +27,22 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    MTitleView *sendGiftTitleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    sendGiftTitleView.titleName.text = @"送小礼物";
+    self.navigationItem.titleView = sendGiftTitleView;
+    
+    MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
+    
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
 }
 
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

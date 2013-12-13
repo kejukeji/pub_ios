@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTitleView.h"
+#import "MBackBtn.h"
 
 @interface MSendGiftVC : UIViewController
 

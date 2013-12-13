@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GPPrompting.h"
 @interface MHaveDrinkView : UIViewController
+{
+    GPPrompting *prompting;
+}
+- (IBAction)sendInviteBtn:(UIButton *)sender;
 
 @end

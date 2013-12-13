@@ -7,6 +7,8 @@
 //
 
 #import "MHaveDrinkView.h"
+#import "MTitleView.h"
+#import "MBackBtn.h"
 
 @interface MHaveDrinkView ()
 
@@ -27,12 +29,32 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    MTitleView *drinkTitleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    drinkTitleView.titleName.text =@"喝一杯";
+    
+    self.navigationItem.titleView = drinkTitleView;
+    
+    MBackBtn *backBtn = [MBackBtn buttonWithType:UIButtonTypeCustom];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
 }
 
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)sendInviteBtn:(UIButton *)sender
+{
+    prompting = [[GPPrompting alloc] initWithView:self.view Text:@"邀请已发送" Icon:nil];
+    [self.view addSubview:prompting];
+    [prompting show];
+}
 @end
