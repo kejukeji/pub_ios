@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MGiftCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *uerIcon;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *giftImg;
+@property (weak, nonatomic) IBOutlet UILabel *giftName;
 
 @end

@@ -26,6 +26,12 @@
 #import "MLoginVC.h"
 #import "UIImageView+WebCache.h"
 #import "MChatListVC.h"
+//二期页面
+#import "MMyGiftListVC.h"
+#import "MMyInviteListVC.h"
+#import "MMyTeaserListVC.h"
+#import "MIntegrationVC.h"
+#import "MMyActivityCollectVC.h"
 
 @interface MMainVC ()
 {
@@ -352,6 +358,12 @@
     MUserSettingVC *userSettingVC = [[MUserSettingVC alloc] init];
     MMyCollectVC *myCollectVC = [[MMyCollectVC alloc] init];
     myCollectVC.isMyCollect = YES;
+    //二期页面
+    MMyGiftListVC    *myGiftListVC = [[MMyGiftListVC alloc] init];
+    MMyInviteListVC  *myInvteListVC = [[MMyInviteListVC alloc] init];
+    MMyTeaserListVC  *myTeaserListVC = [[MMyTeaserListVC alloc] init];
+    MIntegrationVC   *integrationVC = [[MIntegrationVC alloc] init];
+    MMyActivityCollectVC  *myActivityCollectVC = [[MMyActivityCollectVC alloc] init];
     
     if (privateMessageVC == nil) {
         NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
@@ -365,15 +377,19 @@
             break;
         case 21:
             NSLog(@"goto Experience");
+            [self.navigationController pushViewController:integrationVC animated:YES];
             break;
         case 22:
             NSLog(@"goto invite");
+            [self.navigationController pushViewController:myInvteListVC animated:YES];
             break;
         case 23:
             NSLog(@"goto gift");
+            [self.navigationController pushViewController:myGiftListVC animated:YES];
             break;
         case 24:
             NSLog(@"goto teaser");
+            [self.navigationController pushViewController:myTeaserListVC animated:YES];
             break;
         case 25:
             NSLog(@"goto priviteMsg");
@@ -384,6 +400,7 @@
             break;
         case 27:
             NSLog(@"goto activity");
+            [self.navigationController pushViewController:myActivityCollectVC animated:YES];
         default:
             break;
     }

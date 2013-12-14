@@ -15,6 +15,7 @@
 @interface MMyGiftListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet MGiftCell  *giftCell;
+    
     GPPrompting         *prompting;
     UITableView         *giftListTV;
     NSMutableArray      *giftListSource;

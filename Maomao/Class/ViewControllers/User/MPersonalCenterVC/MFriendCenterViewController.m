@@ -12,10 +12,15 @@
 #import "JSON.h"
 #import "MMyCollectVC.h"
 #import "MChatListVC.h"
+#import "GPPrompting.h"
+//二期页面
+#import "MHaveDrinkView.h"
+#import "MSendGiftVC.h"
 
 @interface MFriendCenterViewController ()
 {
     MBProgressHUD *hud;
+    GPPrompting   *prompting;
 }
 @property (nonatomic, copy) NSString *friendName;
 @end
@@ -220,18 +225,27 @@
 {
     //待实现
     NSLog(@"goto Clink.");
+    MHaveDrinkView  *haveDrinkView = [[MHaveDrinkView alloc] init];
+    [self.navigationController pushViewController:haveDrinkView animated:YES];
+    
 }
 
 - (IBAction)haveTeaser:(UIButton *)sender
 {
     //待实现
     NSLog(@" have Teaser.");
+    prompting = [[GPPrompting alloc] initWithView:self.view Text:@"您已经向对方抛了个媚眼" Icon:nil];
+    [self.view addSubview:prompting];
+    [prompting show];
+    
 }
 
 - (IBAction)sendGift:(UIButton *)sender
 {
     //待实现
     NSLog(@"send gift");
+    MSendGiftVC *sendGiftVC = [[MSendGiftVC  alloc] init];
+    [self.navigationController pushViewController:sendGiftVC animated:YES];
     
     
 }
