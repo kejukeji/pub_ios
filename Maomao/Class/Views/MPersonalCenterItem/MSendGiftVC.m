@@ -13,6 +13,7 @@
 @end
 
 @implementation MSendGiftVC
+@synthesize mainScrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,14 +37,16 @@
     
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [self.mainScrollView setFrame:CGRectMake(0, 0, 320,411+(noiOS7?0:20)+(iPhone5?88:0))];
     
-    if(!noiOS7)
-    {
-       for(UIView *view in self.view.subviews)
-       {
-           [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y +64, view.frame.size.width , view.frame.size.height)];
-       }
+    if (noiOS7) {
+        [self.mainScrollView setContentSize:CGSizeMake(320, 562)];
     }
+    else
+    {
+        [self.mainScrollView setContentSize:CGSizeMake(320, 562-50)];
+    }
+     
     
 }
 

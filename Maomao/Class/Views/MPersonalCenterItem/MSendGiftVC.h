@@ -12,4 +12,6 @@
 
 @interface MSendGiftVC : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
+
 @end
