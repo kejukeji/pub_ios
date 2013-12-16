@@ -313,6 +313,9 @@
 		0C418D481858CFC100E45E98 /* user_seperate_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C418C131858CFC100E45E98 /* user_seperate_line.png */; };
 		0C418D491858CFC100E45E98 /* 个性签名-输入框.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C418C141858CFC100E45E98 /* 个性签名-输入框.png */; };
 		0C418D4A1858CFC100E45E98 /* 归档.zip in Resources */ = {isa = PBXBuildFile; fileRef = 0C418C151858CFC100E45E98 /* 归档.zip */; };
+		0C4A76DB185EA12400FDDE18 /*   friendCenter_right_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C4A76DA185EA12400FDDE18 /*   friendCenter_right_btn.png */; };
+		0C4A76DF185EA8B600FDDE18 /* dropdown_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C4A76DC185EA8B600FDDE18 /* dropdown_bg.png */; };
+		0C4A76E0185EA8B600FDDE18 /* DropDownControllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4A76DE185EA8B600FDDE18 /* DropDownControllView.m */; };
 		0C9B6D7C1859492F00CAA404 /* MCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7B1859492F00CAA404 /* MCollectView.m */; };
 		0C9B6D801859496D00CAA404 /* MMyActivityCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */; };
 		0C9B6D811859496D00CAA404 /* MMyActivityCollectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7F1859496D00CAA404 /* MMyActivityCollectVC.xib */; };
@@ -756,6 +759,10 @@
 		0C418C131858CFC100E45E98 /* user_seperate_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_seperate_line.png; sourceTree = "<group>"; };
 		0C418C141858CFC100E45E98 /* 个性签名-输入框.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个性签名-输入框.png"; sourceTree = "<group>"; };
 		0C418C151858CFC100E45E98 /* 归档.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "归档.zip"; sourceTree = "<group>"; };
+		0C4A76DA185EA12400FDDE18 /*   friendCenter_right_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "  friendCenter_right_btn.png"; sourceTree = "<group>"; };
+		0C4A76DC185EA8B600FDDE18 /* dropdown_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdown_bg.png; sourceTree = "<group>"; };
+		0C4A76DD185EA8B600FDDE18 /* DropDownControllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownControllView.h; sourceTree = "<group>"; };
+		0C4A76DE185EA8B600FDDE18 /* DropDownControllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownControllView.m; sourceTree = "<group>"; };
 		0C9B6D7B1859492F00CAA404 /* MCollectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCollectView.m; sourceTree = "<group>"; };
 		0C9B6D7D1859496D00CAA404 /* MMyActivityCollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMyActivityCollectVC.h; path = ../../Views/MMyActivityCollectVC.h; sourceTree = "<group>"; };
 		0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMyActivityCollectVC.m; path = ../../Views/MMyActivityCollectVC.m; sourceTree = "<group>"; };
@@ -956,6 +963,9 @@
 		0C418AAE1858CFC000E45E98 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				0C4A76DC185EA8B600FDDE18 /* dropdown_bg.png */,
+				0C4A76DD185EA8B600FDDE18 /* DropDownControllView.h */,
+				0C4A76DE185EA8B600FDDE18 /* DropDownControllView.m */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1337,6 +1347,7 @@
 		0C418BBD1858CFC100E45E98 /* PersonalCenterItems */ = {
 			isa = PBXGroup;
 			children = (
+				0C4A76DA185EA12400FDDE18 /*   friendCenter_right_btn.png */,
 				0C418BBE1858CFC100E45E98 /* drink_clink_img.png */,
 				0C418BBF1858CFC100E45E98 /* drink_send_btn_bg.png */,
 				0C418BC01858CFC100E45E98 /* experience_blue.png */,
@@ -1798,6 +1809,7 @@
 				FE684291180E32DA0000E01C /* InfoPlist.strings in Resources */,
 				0C418D061858CFC100E45E98 /* gift_Remy.png in Resources */,
 				0C418CD91858CFC100E45E98 /* leftMenu_icon_collect.png in Resources */,
+				0C4A76DF185EA8B600FDDE18 /* dropdown_bg.png in Resources */,
 				0C418CED1858CFC100E45E98 /* setting_btn_exit.png in Resources */,
 				0C418CCF1858CFC100E45E98 /* gray_right_arrow.png in Resources */,
 				FE684299180E32DA0000E01C /* Images.xcassets in Resources */,
@@ -1845,6 +1857,7 @@
 				0C418D2A1858CFC100E45E98 /* personal_actvity_icon.png in Resources */,
 				0C418CB21858CFC100E45E98 /* maomao.jpg in Resources */,
 				0C418D401858CFC100E45E98 /* user_frame_mid.png in Resources */,
+				0C4A76DB185EA12400FDDE18 /*   friendCenter_right_btn.png in Resources */,
 				0C418C7B1858CFC100E45E98 /* MIntegrationVC.xib in Resources */,
 				0C418D4A1858CFC100E45E98 /* 归档.zip in Resources */,
 				0C418D041858CFC100E45E98 /* gift_Nostalgia bag.png in Resources */,
@@ -1977,6 +1990,7 @@
 				0C418C6C1858CFC100E45E98 /* MChatListCell.m in Sources */,
 				0C418C5B1858CFC100E45E98 /* MMyInviteListVC.m in Sources */,
 				0C418C4C1858CFC100E45E98 /* MModifyBirthdayVC.m in Sources */,
+				0C4A76E0185EA8B600FDDE18 /* DropDownControllView.m in Sources */,
 				0C418C421858CFC100E45E98 /* MAboutVC.m in Sources */,
 				FE902AE0180F90AE00F60C71 /* ASIDataCompressor.m in Sources */,
 				0C418C551858CFC100E45E98 /* MFriendCenterViewController.m in Sources */,

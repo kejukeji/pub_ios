@@ -15,8 +15,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIFormDataRequest.h"
+#import "DropDownControllView.h"
 
-@interface MFriendCenterViewController : UIViewController
+@interface MFriendCenterViewController : UIViewController<DropDownControlViewDelegate>
 @property (nonatomic, assign) id<MFriendCenterViewControlDelegate>delegate;
 @property (nonatomic, copy) NSString *friendId;
 @property (nonatomic, strong) ASIFormDataRequest *formDataReuqest;

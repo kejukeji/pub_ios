@@ -21,6 +21,8 @@
 {
     MBProgressHUD *hud;
     GPPrompting   *prompting;
+    DropDownControllView *mDropDownView;
+    int count;//点击更多按钮 计数
 }
 @property (nonatomic, copy) NSString *friendName;
 @end
@@ -62,7 +64,7 @@
 //    [topBar setUserInteractionEnabled:YES];
 //    [self.view addSubview:topBar];
 
-    
+    count = 0; //计数为零
     UIButton   *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn setFrame:CGRectMake(14, 10, 30, 24)];
     [leftBtn setImage:[UIImage imageNamed:@"personal_choice_btn.png"] forState:UIControlStateNormal];
@@ -70,12 +72,33 @@
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     
+    
     UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [moreBtn setFrame:CGRectMake(287, 0, 20, 30)];
-    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-    [moreBtn setTintColor:[UIColor whiteColor]];
+    
+    [moreBtn setImage:[UIImage imageNamed:@"  friendCenter_right_btn.png"] forState:UIControlStateNormal];
     [moreBtn addTarget:self action:@selector(moreList) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
+    
+//    //下拉菜单
+//    mDropDownView = [[DropDownControllView alloc] initWithFrame:CGRectMake(200, moreBtn.frame.size.height, 100, 30)];
+//   [mDropDownView setBackgroundColor:[UIColor yellowColor]];
+//    mDropDownView.delegate = self;
+//    //下拉选项
+//    NSMutableArray      *titles = [NSMutableArray arrayWithCapacity:0];
+//    NSMutableArray      *options = [NSMutableArray arrayWithCapacity:0];
+//    
+//    for (int i =0; i <3 ; i++) {
+//        [options addObject:[NSNumber numberWithInt: i]];
+//    }
+//    
+//    mDropDownView.title = @"Selected:";
+//    [titles addObject:@"举报该好友"];
+//    [titles addObject:@"举报检举"];
+//    [titles addObject:@"取消"];
+//    [mDropDownView setSelectionOptions:options withTitles:titles];
+//    [self.view addSubview:mDropDownView];
+    
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -90,6 +113,8 @@
     [hud setLabelText:@"加载中请稍后!"];
     [hud show:YES];
     [self.view addSubview:hud];
+    
+    
 
 }
 
@@ -216,10 +241,47 @@
 
 - (void)moreList
 {
-    //待实现
+   
+    //下拉菜单
+    mDropDownView = [[DropDownControllView alloc] initWithFrame:CGRectMake(240, 60, 100, 30)];
+    [mDropDownView setBackgroundColor:[UIColor clearColor]];
+    mDropDownView.delegate = self;
+    //下拉选项
+    NSMutableArray      *titles = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray      *options = [NSMutableArray arrayWithCapacity:0];
+    
+    for (int i =0; i <3 ; i++) {
+        [options addObject:[NSNumber numberWithInt: i]];
+    }
+    mDropDownView.title = @"";
+    [titles addObject:@"屏蔽该好友"];
+    [titles addObject:@"举报检举"];
+    [titles addObject:@"取消"];
+    [mDropDownView setSelectionOptions:options withTitles:titles];
+    count ++;
+    [self.view addSubview:mDropDownView];
+
+    
+    
+    
     NSLog(@"屏蔽该好友，举报检举，取消");
 }
-
+#pragma mark - Drop Drown Selector Delegate
+- (void)dropDownControlView:(DropDownControllView *)view didFinishWithSelection:(id)selection
+{
+    NSString *selectId = [NSString stringWithFormat:@"%@",selection];
+    if ([selectId isEqualToString:@"0"]) {
+        NSLog(@"屏蔽该好友");
+    }
+    else if([selectId isEqualToString:@"1"])
+    {
+        NSLog(@"举报检举");
+    }
+    else
+    {
+        NSLog(@"取消");
+    }
+}
 
 - (IBAction)gotoClink:(UIButton *)sender
 {
@@ -263,6 +325,7 @@
 {
     //判断有没有礼物，如果有礼物， 将礼物图片显示在礼物按钮下方每一行五张图片，并且那么酒吧收藏按钮往下平移到离最后一行图片底部14像素
 }
+
 - (IBAction)barCollection:(UIButton *)sender
 {
     MMyCollectVC *friendCollectVC = [[MMyCollectVC alloc] init];
