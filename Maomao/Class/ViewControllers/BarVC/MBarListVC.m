@@ -361,13 +361,17 @@
         NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
         [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
         
-        [picBtn setFrame:CGRectMake(i * 82, 0, 72, 72)];
+        //[picBtn setFrame:CGRectMake(i * 82, 0, 72, 72)];//一期加载图片
+        
+        //二期加载图片
+        [picBtn setFrame:CGRectMake(i * 250, 0, 360, 140)];
+
         [recommendScrollView addSubview:picBtn];
     }
     
-    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
+    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 320, 140)];
     
-    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
+    //[recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
     [recommendPage setNumberOfPages:[barPicSources count]];
     timeLoop = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(scrollViewLoops:) userInfo:nil repeats:YES];
 
@@ -379,19 +383,19 @@
 - (void)scrollViewLoops:(NSTimer *)time
 {
     NSInteger offset = recommendScrollView.contentOffset.x;
-    if (offset != ([barPicSources count])*82) {
+    if (offset != ([barPicSources count])*360) {//offset != ([barPicSources count])*82
         [UIView beginAnimations:@"loop" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.5f];
-        [recommendScrollView setContentOffset:CGPointMake(offset+82, 4)];
+        [UIView setAnimationDuration:1.0f];
+        [recommendScrollView setContentOffset:CGPointMake(offset+250, 4)];//offset+82, 4
         [UIView commitAnimations];
     }
     else
     {
         [UIView beginAnimations:@"loop" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:0.5f];
-        [recommendScrollView setContentOffset:CGPointMake(34, 4)];
+        [UIView setAnimationDuration:1.0f];
+        [recommendScrollView setContentOffset:CGPointMake(250, 4)];//34, 4
         [UIView commitAnimations];
     }
     
