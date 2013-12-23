@@ -7,25 +7,26 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MPersonalCenterVC">
             <connections>
-                <outlet property="ExperienceLabel" destination="xp3-4e-t7s" id="apu-Uc-Aq7"/>
-                <outlet property="ExperienceTagLabel" destination="Ddo-Kw-qVX" id="dT5-jj-Hjq"/>
                 <outlet property="Icon" destination="kUU-JQ-5Hd" id="slz-5f-RHa"/>
-                <outlet property="IntegrationLabel" destination="ZD1-mR-Gnp" id="t1f-c1-nBF"/>
-                <outlet property="activityNumLabel" destination="8Pg-gn-Sh1" id="T7S-vn-oih"/>
                 <outlet property="ageLabel" destination="nRQ-zz-FHD" id="xLx-Of-Dt3"/>
                 <outlet property="areaLabel" destination="mgX-sX-qKk" id="6ab-oj-93M"/>
-                <outlet property="collectionNumLabel" destination="N0K-2l-Bve" id="0Hr-Sd-bml"/>
+                <outlet property="collect_activity_countLable" destination="8Pg-gn-Sh1" id="mg3-wY-Oih"/>
+                <outlet property="collect_pub_countLabel" destination="N0K-2l-Bve" id="d8m-ge-JGF"/>
+                <outlet property="creditLabel" destination="ZD1-mR-Gnp" id="bmQ-kT-8Am"/>
                 <outlet property="genderIcon" destination="GDl-hZ-NzH" id="RhZ-jX-o0x"/>
+                <outlet property="giftLable" destination="JjF-Ud-F0a" id="omG-S0-45L"/>
                 <outlet property="giftNotice" destination="i0K-mB-8Vb" id="VLd-5t-KlY"/>
-                <outlet property="giftNumLabel" destination="JjF-Ud-F0a" id="QMb-TI-hyC"/>
+                <outlet property="greeting_countLabel" destination="BnC-IZ-rzj" id="h8J-xC-aMs"/>
+                <outlet property="invitationLabel" destination="fQt-pK-cYA" id="6mU-ev-u9D"/>
                 <outlet property="inviteNotice" destination="gOR-es-2nf" id="anQ-js-S3C"/>
-                <outlet property="inviteNumLabel" destination="fQt-pK-cYA" id="MzO-Yi-3Ye"/>
+                <outlet property="levelLabel" destination="Ddo-Kw-qVX" id="Af7-Bg-FTf"/>
+                <outlet property="level_descriptionLabel" destination="o6P-l4-74V" id="7ae-WK-VvS"/>
                 <outlet property="nameLabel" destination="mS7-UW-Aqh" id="2xv-Wt-6zr"/>
                 <outlet property="privateMsgNotice" destination="lyg-fP-ORp" id="1du-bY-tYj"/>
-                <outlet property="privateMsgNumLabel" destination="6c9-bl-R1R" id="eff-za-RgH"/>
+                <outlet property="private_letter_countLable" destination="6c9-bl-R1R" id="bol-NZ-xNp"/>
+                <outlet property="reputationLable" destination="xp3-4e-t7s" id="tpD-QH-vDc"/>
                 <outlet property="signalLabel" destination="GZW-JO-d4J" id="pdh-dZ-iDp"/>
                 <outlet property="teaserNotice" destination="ORs-Xk-hdv" id="p5j-Me-BUr"/>
-                <outlet property="teaserNumLabel" destination="BnC-IZ-rzj" id="xHT-X9-tzJ"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>

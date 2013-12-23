@@ -15,9 +15,9 @@
 
 #define kRequestTime 30
 
-//#define MM_URL @"http://42.121.108.142:6001"
+#define MM_URL @"http://42.121.108.142:6001"
 
-#define MM_URL             @"http://61.188.37.228:8081"
+//#define MM_URL             @"http://61.188.37.228:8081"
 
 #define LONGITUDE          @"longitude"
 #define LATITUDE           @"latitude"
@@ -50,6 +50,19 @@
 #define kSignature         @"signature"
 #define kPic_name          @"pic_name"
 #define kModifyType        @"modifyType"
+
+/*********************二期增加的宏*********************/
+#define kCollect_activity_count         @"collect_activity_count"
+#define kCollect_pub_count              @"collect_pub_count"
+#define kCredit                         @"credit"
+#define kGreeting_count                 @"greeting_count"
+#define kInvitation                     @"invitation"
+#define kLevel                          @"level"
+#define kLevel_description              @"level_description"
+#define kPrivate_letter_count           @"private_letter_count"
+#define kReputation                     @"reputation"
+#define kGift                           @"gift"
+/****************************************************/
 
 #endif
 

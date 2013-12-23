@@ -17,24 +17,29 @@
 @synthesize Icon;
 @synthesize nameLabel;
 @synthesize signalLabel;
-@synthesize ExperienceLabel;
-@synthesize ExperienceTagLabel;
-@synthesize IntegrationLabel;
+
 @synthesize genderIcon;
 @synthesize ageLabel;
+/*********积分、经验值、等级、等级表述******/
 
+@synthesize creditLabel;
+@synthesize level_descriptionLabel;
+@synthesize levelLabel;
+@synthesize reputationLable;
 
 /***********邀约，礼物，传情，私信,我的收藏，我的活动**********************/
-@synthesize inviteNumLabel;
+@synthesize invitationLabel;
+@synthesize giftLable;
+@synthesize greeting_countLabel;
+@synthesize private_letter_countLable;
+@synthesize collect_activity_countLable;
+@synthesize collect_pub_countLabel;
+
 @synthesize inviteNotice;
-@synthesize giftNumLabel;
 @synthesize giftNotice;
-@synthesize teaserNumLabel;
 @synthesize teaserNotice;
-@synthesize privateMsgNumLabel;
 @synthesize privateMsgNotice;
-@synthesize collectionNumLabel;
-@synthesize activityNumLabel;
+
 /****************************************************/
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -100,6 +105,57 @@
     [Icon setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
     
     nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
+    
+    /*********积分、经验值、等级、等级表述****NSInteger -> NSString**/
+    NSInteger credit = 0;
+    NSInteger reputation =0;
+    NSInteger level = 0;
+    NSString  *level_description = @"";
+    NSString  *dd = @"";
+    NSInteger aa = 1;
+    credit = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kCredit"] integerValue];
+    creditLabel.text = [NSString stringWithFormat:@"%d",credit];
+    
+    reputation = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kReputation"] integerValue];
+    reputationLable.text = [NSString stringWithFormat:@"%d",reputation];
+    
+    level =  [[[NSUserDefaults standardUserDefaults] stringForKey:@"kLevel"] integerValue];
+    levelLabel.text = [NSString stringWithFormat:@"%d",level];
+    
+    level_description = [[NSUserDefaults standardUserDefaults] stringForKey:@"kLevel_description"];
+    
+    NSLog(@" level_description %@", level_description);
+    
+    aa =[level_description isEqualToString: dd];
+    if (aa == 0) {
+        level_descriptionLabel.text = @"还没等级";
+        NSLog(@"level_description %@",level_descriptionLabel.text);
+    }
+    
+    
+    /********************邀约，礼物，传情，私信,我的收藏，我的活动count**************/
+    NSInteger invitation = 0;
+    NSInteger gift = 0;
+    NSInteger greeting_count = 0;
+    NSInteger collect_pub_count = 0;
+    NSInteger collect_activity_count = 0;
+    
+    invitation = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kInvitation"] integerValue];
+    invitationLabel.text = [NSString stringWithFormat:@"%d",invitation];
+    
+    gift = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kGift"] integerValue];
+    giftLable.text = [NSString stringWithFormat:@"%d",gift];
+
+    greeting_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kGreeting_count"] integerValue];
+    greeting_countLabel.text = [NSString stringWithFormat:@"%d",greeting_count];
+    
+    collect_pub_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kCollect_pub_count"] integerValue];
+    collect_pub_countLabel.text = [NSString stringWithFormat:@"%d", collect_pub_count];
+ 
+    collect_activity_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kCollect_activity_count"] integerValue];
+    
+    collect_activity_countLable.text = [NSString stringWithFormat:@"%d",collect_activity_count];
+    
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
             if (![view isEqual: topBar]) {
