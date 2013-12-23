@@ -139,15 +139,29 @@
     NSInteger greeting_count = 0;
     NSInteger collect_pub_count = 0;
     NSInteger collect_activity_count = 0;
+    NSInteger private_count = 0;
+    
     
     invitation = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kInvitation"] integerValue];
+    
     invitationLabel.text = [NSString stringWithFormat:@"%d",invitation];
+    //personal_msg_notice.png
+    if (invitation > 0) {
+        [inviteNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
+    }
+   
     
     gift = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kGift"] integerValue];
     giftLable.text = [NSString stringWithFormat:@"%d",gift];
-
+    if (gift > 0) {
+        [giftNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
+    }
+    
     greeting_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kGreeting_count"] integerValue];
     greeting_countLabel.text = [NSString stringWithFormat:@"%d",greeting_count];
+    if (greeting_count > 0) {
+        [teaserNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
+    }
     
     collect_pub_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kCollect_pub_count"] integerValue];
     collect_pub_countLabel.text = [NSString stringWithFormat:@"%d", collect_pub_count];
@@ -155,6 +169,12 @@
     collect_activity_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kCollect_activity_count"] integerValue];
     
     collect_activity_countLable.text = [NSString stringWithFormat:@"%d",collect_activity_count];
+    
+    private_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"kPrivate_letter_count"] integerValue];
+    private_letter_countLable.text = [NSString stringWithFormat:@"%d",private_count];
+    if (private_count > 0) {
+        [privateMsgNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
+    }
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -181,14 +201,29 @@
     [delegate mPersonalCenterGotoNext:sender.tag];
 }
 
+
+//该函数得满足：用户点击按钮的tag值来判断按钮上方的提示图标消失
+
 - (IBAction)gotoNextVC:(UIButton *)sender
 {
+    if (sender.tag == 22) {
+        [inviteNotice setImage:[UIImage imageNamed:@""]];
+    }
+    
+    if (sender.tag == 23) {
+        [giftNotice setImage:[UIImage imageNamed:@""]];
+    }
+    
+    if (sender.tag == 24) {
+        [teaserNotice setImage:[UIImage imageNamed:@""]];
+    }
+    
+    if (sender.tag == 25) {
+        [privateMsgNotice setImage:[UIImage imageNamed:@""]];
+    }
+    
     [delegate mPersonalCenterGotoNext:sender.tag];
 }
 
-#pragma mark - MMyCollectionDelegate
-- (void)numberofCollection:(NSInteger)num
-{
-    NSLog(@"num == %d",num);
-}
+
 @end

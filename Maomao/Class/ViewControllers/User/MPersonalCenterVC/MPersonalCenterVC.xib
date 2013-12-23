@@ -219,7 +219,7 @@
                     <rect key="frame" x="63" y="280" width="10" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_msg_notice.png" id="i0K-mB-8Vb">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="i0K-mB-8Vb">
                     <rect key="frame" x="140" y="280" width="10" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -331,7 +331,6 @@
         <image name="personal_girl_icon.png" width="17" height="28"/>
         <image name="personal_infor_bg.png" width="49" height="94"/>
         <image name="personal_invite_and_gift_bg.png" width="49" height="77"/>
-        <image name="personal_msg_notice.png" width="10" height="10"/>
         <image name="personal_pudong_bottom.png" width="98" height="36"/>
     </resources>
 </document>
