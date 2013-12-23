@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGiftModel.h"
 
 @interface MGiftCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *uerIcon;
@@ -15,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *giftImg;
 @property (weak, nonatomic) IBOutlet UILabel *giftName;
 
+- (void)setCellInfo:(MGiftModel *)model;
 @end

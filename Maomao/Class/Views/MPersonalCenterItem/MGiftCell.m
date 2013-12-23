@@ -8,7 +8,15 @@
 
 #import "MGiftCell.h"
 
+#import "UIImageView+WebCache.h"
+
 @implementation MGiftCell
+
+@synthesize uerIcon;
+@synthesize userName;
+@synthesize timeLabel;
+@synthesize giftImg;
+@synthesize giftName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,4 +34,13 @@
     // Configure the view for the selected state
 }
 
+- (void)setCellInfo:(MGiftModel *)model
+{
+    [giftImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@""]];
+    
+    userName.text = model.nick_name;
+    timeLabel.text = model.time;
+    giftName.text = model.words;
+    
+}
 @end

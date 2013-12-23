@@ -12,6 +12,9 @@
 #import "MBackBtn.h"
 #import "MTitleView.h"
 
+#import "MInviteCell.h"
+#import "MInvitationModel.h"
+
 @interface MMyInviteListVC ()
 
 @end
@@ -63,10 +66,11 @@
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
         }
     }
+    
     //等待接口
-//    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-//    NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
-//    [self initWithRequestByUrl:url];
+  NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/invitation/receiver?user_id=%@",MM_URL, userid];
+    [self initWithRequestByUrl:url];
     
 }
 
@@ -103,9 +107,9 @@
     }
     
     // 等待接口
-//    NSString *url = [NSString stringWithFormat:@"%@&page=%d",collectId, currentIndex];
-//    [self sendRequestByUrlString:url];
-//    NSLog(@"url === %@",url);
+    NSString *url = [NSString stringWithFormat:@"%@&page=%d",inviteId, currentIndex];
+    [self sendRequestByUrlString:url];
+    NSLog(@"url === %@",url);
     NSLog(@"网络流量过去5秒的平均流量字节/秒 ==%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
 }
 
@@ -218,20 +222,31 @@
     
     NSDictionary   *responseDict = [response JSONValue];
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-    NSArray *inviteList = [responseDict objectForKey:@"list"];
+    NSString   *msg = [responseDict objectForKey:@"message"];
+    NSLog(@"message == %@",msg);
+    
+    NSArray *inviteList = [responseDict objectForKey:@"invitation"];
+    
     if (status == 0) {
         for(NSDictionary *dict in inviteList)
         {
-//            MBarCollectModel *model = [[MBarCollectModel alloc] init];
-//            
-//            model.city_county = [dict objectForKey:@"city_county"];
-           // [barListSources addObject:model];
+            MInvitationModel *model = [[MInvitationModel alloc] init];
+            model.invitation_id = [[dict objectForKey:@"id"] integerValue];
+            model.pic_path = [dict objectForKey:@"pic_path"];
+            
+            model.receiver_id = [[dict objectForKey:@"receiver_id"] integerValue];
+            model.sender_id = [[dict objectForKey:@"sender_id"] integerValue];
+            model.time = [dict objectForKey:@"time"];
+            
+            [inviteListSource addObject:model];
 
         }
         currentIndex++;
         [inviteListTV reloadData];
-
     }
+    
+    
+    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -270,15 +285,16 @@
          
     if ([inviteListSource count] > 0 && indexPath.row == [inviteListSource count] -1) {
         //等待接口
-//        NSString *url = [NSString stringWithFormat:@"%@&page=%d",collectId, currentIndex];
-//        [self sendRequestByUrlString:url];
-//        NSLog(@"url === %@",url);
+        NSString *url = [NSString stringWithFormat:@"%@&page=%d",inviteId, currentIndex];
+        [self sendRequestByUrlString:url];
+        NSLog(@"url === %@",url);
     }
     
-//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-//    
-//    MBarCollectModel *model =[barListSources objectAtIndex:indexPath.row];
-//    [cell setCellInfoWithModel:model];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    MInvitationModel *model = [inviteListSource objectAtIndex:indexPath.row];
+    
+    [cell setCellInfoWithModel:model];
     
     return cell;
 

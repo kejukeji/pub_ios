@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGreetingModel.h"
 
 @interface MTeaserCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *senderIcon;
+@property (weak, nonatomic) IBOutlet UILabel *senderNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sendtimeLabel;
 
+- (void)setCellInfo:(MGreetingModel *)model;
 @end

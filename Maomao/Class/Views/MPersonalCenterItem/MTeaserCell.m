@@ -7,8 +7,12 @@
 //
 
 #import "MTeaserCell.h"
+#import "UIImageView+WebCache.h"
 
 @implementation MTeaserCell
+@synthesize senderIcon;
+@synthesize senderNameLabel;
+@synthesize sendtimeLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,4 +30,11 @@
     // Configure the view for the selected state
 }
 
+- (void)setCellInfo:(MGreetingModel *)model
+{
+    sendtimeLabel.text = model.time;
+    senderNameLabel.text = model.nick_name;
+    
+    [senderIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@"invite_img.png"]];
+}
 @end

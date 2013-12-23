@@ -7,8 +7,12 @@
 //
 
 #import "MInviteCell.h"
+#import "UIImageView+WebCache.h"
 
 @implementation MInviteCell
+@synthesize senderIcon;
+@synthesize senderNameLabel;
+@synthesize senderTimeLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -24,6 +28,16 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setCellInfoWithModel:(MInvitationModel *)model
+{
+    senderNameLabel.text = model.time;
+    senderNameLabel.text = model.nick_name;
+    [senderIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@"invite_img.png"]];
+    
+
+    
 }
 
 @end
