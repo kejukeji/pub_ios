@@ -1,7 +1,7 @@
 //
 //  MGiftModel.m
 //  Maomao
-//
+//  个人中心礼物列表模型
 //  Created by maochengfang on 13-12-23.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //

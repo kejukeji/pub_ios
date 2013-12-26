@@ -10,19 +10,20 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 #import "JSON.h"
+#import "Utils.h"
 #import "MMyCollectVC.h"
 #import "MChatListVC.h"
 #import "GPPrompting.h"
 //二期页面
 #import "MHaveDrinkView.h"
-#import "MSendGiftVC.h"
+#import "MSendGiftViewController.h"
 
 @interface MFriendCenterViewController ()
 {
     MBProgressHUD *hud;
-    GPPrompting   *prompting;
     DropDownControllView *mDropDownView;
     int count;//点击更多按钮 计数
+    NSInteger      receiver_id;
 }
 @property (nonatomic, copy) NSString *friendName;
 @end
@@ -32,19 +33,20 @@
 @synthesize delegate;
 @synthesize friendAgeLabel;
 @synthesize friendLocationLabel;
-@synthesize friendExpTagLabel;
+@synthesize creditLabel; //积分
 @synthesize friendAreaLabel;
 @synthesize genderLabel;
 @synthesize numofGift;
 @synthesize friendScrollView;
-@synthesize friendIntegrationLabel;
+@synthesize reputationLabel;//经验值
 @synthesize friendNameLabel;
 @synthesize friendSignLabel;
 @synthesize friendId;
 @synthesize formDataReuqest;
 @synthesize friendIcon;
-
+@synthesize sendGreetingRequest;
 @synthesize friendName;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -80,24 +82,6 @@
     [moreBtn addTarget:self action:@selector(moreList) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
     
-//    //下拉菜单
-//    mDropDownView = [[DropDownControllView alloc] initWithFrame:CGRectMake(200, moreBtn.frame.size.height, 100, 30)];
-//   [mDropDownView setBackgroundColor:[UIColor yellowColor]];
-//    mDropDownView.delegate = self;
-//    //下拉选项
-//    NSMutableArray      *titles = [NSMutableArray arrayWithCapacity:0];
-//    NSMutableArray      *options = [NSMutableArray arrayWithCapacity:0];
-//    
-//    for (int i =0; i <3 ; i++) {
-//        [options addObject:[NSNumber numberWithInt: i]];
-//    }
-//    
-//    mDropDownView.title = @"Selected:";
-//    [titles addObject:@"举报该好友"];
-//    [titles addObject:@"举报检举"];
-//    [titles addObject:@"取消"];
-//    [mDropDownView setSelectionOptions:options withTitles:titles];
-//    [self.view addSubview:mDropDownView];
     
     
     if (!noiOS7) {
@@ -157,6 +141,7 @@
 
 - (void)requestDidSuccess:(ASIFormDataRequest *)request
 {
+    
     [hud hide:YES];
     
     NSLog(@"code:%d",[request responseStatusCode]);
@@ -169,7 +154,10 @@
     NSLog(@"status ==%d",status);
     if (status ==0) {
         NSDictionary *userDict = [responseDict objectForKey:@"user"];
-        NSString *userid = [userDict objectForKey:@"id"];
+        
+        receiver_id = [[userDict objectForKey:@"id"] integerValue];
+        NSLog(@"receiver_id == %d",receiver_id);
+        
         NSString *nickName = [userDict objectForKey:@"nick_name"];
         NSString *loginName = [userDict objectForKey:LOGINNAME];
         NSString *loginType = [userDict objectForKey:LOGIN_TYPE];
@@ -197,7 +185,13 @@
         NSString *intro = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"intro"]];
         NSString *signature = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"signature"]];
         NSString *pic_name = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"pic_name"]];
+        /*****************二期增加的内容*********************************/
+        NSInteger credit = [[userInfo objectForKey:@"credit"] integerValue];
+        NSInteger reputation =[[userInfo objectForKey:@"reputation"] integerValue];
+        /**************************************************************/
         
+        creditLabel.text = [NSString stringWithFormat:@"%d",credit];
+        reputationLabel.text = [NSString stringWithFormat:@"%d",reputation];
         /****************设置年龄******************/
         
         NSDate *current = [NSDate date];  //当前时间
@@ -218,6 +212,11 @@
         friendName = nickName;
         friendNameLabel.text = friendName;
         NSLog(@"friendNameLabel.text==%@",friendNameLabel.text);
+        friendSignLabel.text = signature;
+        
+        //计算距离
+        
+        
         
     }
     else if (status == 1) {
@@ -260,12 +259,9 @@
     [mDropDownView setSelectionOptions:options withTitles:titles];
     count ++;
     [self.view addSubview:mDropDownView];
-
-    
-    
-    
     NSLog(@"屏蔽该好友，举报检举，取消");
 }
+
 #pragma mark - Drop Drown Selector Delegate
 - (void)dropDownControlView:(DropDownControllView *)view didFinishWithSelection:(id)selection
 {
@@ -283,22 +279,57 @@
     }
 }
 
-- (IBAction)gotoClink:(UIButton *)sender
+- (IBAction)gotoClink:(UIButton *)sender//喝一杯
 {
-    //待实现
     NSLog(@"goto Clink.");
     MHaveDrinkView  *haveDrinkView = [[MHaveDrinkView alloc] init];
+    
+    //传递接口中receiver_id;
+    haveDrinkView.receiver_id = receiver_id;
+    
     [self.navigationController pushViewController:haveDrinkView animated:YES];
     
 }
 
-- (IBAction)haveTeaser:(UIButton *)sender
+- (IBAction)haveTeaser:(UIButton *)sender //眉眼传情
 {
-    //待实现
+    
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    //http://42.121.108.142:6001/restful/sender/gift?sender_id=1&receiver_id=3
+    NSString *url = [NSString stringWithFormat:@"%@/restful/sender/invite?sender_id=%@&receiver_id=%d",MM_URL,userid,receiver_id];
+    [self sendGreetingRequest:url];
+    
     NSLog(@" have Teaser.");
-    prompting = [[GPPrompting alloc] initWithView:self.view Text:@"您已经向对方抛了个媚眼" Icon:nil];
-    [self.view addSubview:prompting];
-    [prompting show];
+    
+    
+}
+
+-  (void)sendGreetingRequest:(NSString *)urlString
+{
+    NSLog(@"urlString  ****** == %@",urlString);
+    isNetWork  = [Utils checkCurrentNetWork];
+    if (!isNetWork) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+       
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"网络链接中断" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+    
+    if (self.sendGreetingRequest != nil) {
+        [self.sendGreetingRequest clearDelegatesAndCancel];
+        self.sendGreetingRequest = nil;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    sendGreetingRequest = [ASIHTTPRequest requestWithURL:url];
+    [sendGreetingRequest setTimeOutSeconds:kRequestTime];
+    [sendGreetingRequest setDelegate:self];
+    [sendGreetingRequest startAsynchronous];
     
 }
 
@@ -306,10 +337,43 @@
 {
     //待实现
     NSLog(@"send gift");
-    MSendGiftVC *sendGiftVC = [[MSendGiftVC  alloc] init];
+    MSendGiftViewController *sendGiftVC = [[MSendGiftViewController  alloc] init];
+    
+    sendGiftVC.receiverID = [NSString stringWithFormat:@"%d",receiver_id];
+    
+    NSString *url = @"http://42.121.108.142:6001/restful/sender/gift/view";
+    
+    [sendGiftVC initWithRequestByUrl:url];
+    
     [self.navigationController pushViewController:sendGiftVC animated:YES];
     
     
+}
+
+#pragma mak - 
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *response = [request responseString];
+    
+    if (response == nil  || [response JSONValue] == nil) {
+        return;
+    }
+    NSDictionary *responseDict = [response JSONValue];
+    NSString *msg = [responseDict objectForKey:@"message"];
+    NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
+    if (status == 0) {
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"您已经向对方抛了个媚眼" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+    }
+    else
+    {
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:msg Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+    }
 }
 
 - (IBAction)sendMsg:(UIButton *)sender

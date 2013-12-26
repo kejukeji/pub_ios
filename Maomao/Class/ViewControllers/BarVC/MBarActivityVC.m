@@ -16,7 +16,7 @@
 
 @interface MBarActivityVC ()
 {
-    NSInteger   activityId;//酒吧活动id
+    NSString    *activityId;//酒吧活动id
     MRightBtn   *rightBtn;
 }
 @end
@@ -29,7 +29,7 @@
 @synthesize jionNumLabel;
 @synthesize activityDetailLable;
 //缺少活动时间 等待接口
-
+@synthesize activityTimeLabel;
 @synthesize sendRequest;
 @synthesize sendCollectRequest;
 @synthesize sendCancelCollectRequest;
@@ -55,10 +55,14 @@
     
     rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
+    //[rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+    rightBtn.titleLabel.text = @"收藏";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中,请稍后!"];
     [hud show:YES];
+
     [self.view addSubview:hud];
     
     if (!noiOS7) {
@@ -82,17 +86,18 @@
 {
     NSString *user_id = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     if ([button.titleLabel.text isEqualToString:@"收藏"]) {
+       // http://42.121.108.142:6001/restful/cancel/collect/activity?user_id=1&activity_id=6
         //url 得看接口
-        NSString *url = @"";//[NSString stringWithFormat:@"%@/restful/activity/info?activity_id=%d&user_id=%@",MM_URL,activityId,user_id];
+        NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
         NSLog(@"activity collect url == %@",url);
         [self sendCollectRequest:url];
         
     }else if ([button.titleLabel.text isEqualToString:@"取消收藏"])
     {
+        
         //url 得看接口
-        NSString *url = @""; //[NSString stringWithFormat:@"%@/restful/activity/info?activity_id=%d&user_id=%@",MM_URL,activityId,user_id];
+        NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
         NSLog(@"activity cancelcollect url == %@",url);
-
         [self sendCollectRequest:url];
     }
     
@@ -207,31 +212,31 @@
     
     if (request == sendRequest) {
         NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-        NSArray *activity = [responseDict objectForKey:@"activity"];
+        NSDictionary *activity = [responseDict objectForKey:@"activity"];
         
         if (status ==0) {
-            for(NSDictionary *activityDict  in activity)
-            {
+            
                 MActivityDetailModel *activityModel = [[MActivityDetailModel alloc] init];
                 //酒吧活动信息
-                activityModel.activity_info = [activityDict objectForKey:@"activity_info"];
-                activityModel.base_path = [activityDict objectForKey:@"base_path"];
-                activityModel.address = [activityDict objectForKey:@"address"];
-                activityModel.end_date = [activityDict objectForKey:@"end_date"];
-                activityModel.hot = [[activityDict objectForKey:@"hot"] boolValue];
-                activityModel.activity_id = [[activityDict objectForKey:@"id"] integerValue];
-                activityModel.is_collect = [[activityDict objectForKey:@"is_collect"] boolValue];
-                activityModel.pic_name = [activityDict objectForKey:@"pic_name"];
-                activityModel.pic_path = [activityDict objectForKey:@"pic_path"];
-                activityModel.rel_path = [activityDict objectForKey:@"rel_path"];
-                activityModel.start_date = [activityDict objectForKey:@"start_date"];
-                activityModel.title = [activityDict objectForKey:@"title"];
-                activityModel.join_people_number = [[activityDict objectForKey:@"join_people_number"] integerValue];
+                activityModel.activity_info = [activity objectForKey:@"activity_info"];
+                activityModel.base_path = [activity objectForKey:@"base_path"];
+                activityModel.address = [activity objectForKey:@"address"];
+                activityModel.end_date = [activity objectForKey:@"end_date"];
+                activityModel.hot = [[activity objectForKey:@"hot"] boolValue];
+               // activityModel.activity_id = [[activityDict objectForKey:@"id"] integerValue];
+                activityModel.activity_id = [activity objectForKey:@"id"];
+                activityModel.is_collect = [[activity objectForKey:@"is_collect"] boolValue];
+                activityModel.pic_name = [activity objectForKey:@"pic_name"];
+                activityModel.pic_path = [activity objectForKey:@"pic_path"];
+                activityModel.rel_path = [activity objectForKey:@"rel_path"];
+                activityModel.start_date = [activity objectForKey:@"start_date"];
+                activityModel.title = [activity objectForKey:@"title"];
+                activityModel.join_people_number = [[activity objectForKey:@"join_people_number"] integerValue];
                 
                 //获取活动id
                 activityId = activityModel.activity_id;
                 [self setDetailConten:activityModel];
-            }
+            
         }
         [hud hide:YES];
     }
@@ -307,12 +312,14 @@
         [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
     }
 
-    NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path];
-    [activityImg setImageWithURL:[NSURL URLWithString:picPath]];
+    NSString *picPath = [NSString stringWithFormat:@"%@%@/%@",MM_URL,model.rel_path,model.pic_name];
+    [activityImg setImageWithURL:[NSURL URLWithString:picPath] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
+    
     [activityTitleLable setText:model.title];
     [addressLable setText:model.address];
     [jionNumLabel setText:[NSString stringWithFormat:@"已有%d人参加",model.join_people_number]];
     [activityDetailLable setText:model.activity_info];
+    activityTimeLabel.text = [NSString stringWithFormat:@"时间:%@-%@",model.start_date,model.end_date];
     
 }
 - (void)didReceiveMemoryWarning

@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "GPPrompting.h"
-@interface MHaveDrinkView : UIViewController
+#import "ASIHTTPRequest.h"
+
+@interface MHaveDrinkView : UIViewController <ASIHTTPRequestDelegate>
 {
     GPPrompting *prompting;
+    BOOL        isNetWork;
+    
 }
-- (IBAction)sendInviteBtn:(UIButton *)sender;
 
+@property (nonatomic, assign)   NSInteger   receiver_id;
+@property (nonatomic, copy)     ASIHTTPRequest  *sendRequest;
+
+- (IBAction)sendInviteBtn:(UIButton *)sender;
+- (void)initWithRequestByUrl:(NSString *)urlString;
 @end

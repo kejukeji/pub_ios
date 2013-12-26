@@ -1,7 +1,7 @@
 //
 //  MTeaserCell.m
 //  Maomao
-//
+//  传情cell
 //  Created by maochengfang on 13-12-11.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
@@ -30,7 +30,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setCellInfo:(MGreetingModel *)model
+- (void)setCellInfoWithModel:(MGreetingModel *)model
 {
     sendtimeLabel.text = model.time;
     senderNameLabel.text = model.nick_name;

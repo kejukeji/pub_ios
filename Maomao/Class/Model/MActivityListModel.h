@@ -16,7 +16,8 @@
 @property (nonatomic, copy) NSString    *county;
 @property (nonatomic, copy) NSString    *end_date;
 @property (nonatomic, assign) NSInteger hot;
-@property (nonatomic, assign) NSInteger activity_list_id;
+@property (nonatomic, copy) NSString  *activity_id;
+@property (nonatomic, assign) BOOL      is_collect;
 @property (nonatomic, assign) NSInteger join_people_number;
 @property (nonatomic, copy) NSString    *pic_name;
 @property (nonatomic, copy) NSString    *pic_path;

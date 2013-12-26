@@ -11,6 +11,8 @@
 #import "JSON.h"
 #import "MBackBtn.h"
 #import "MTitleView.h"
+#import "MGreetingModel.h"
+#import "MTeaserCell.h"
 
 @interface MMyTeaserListVC ()
 
@@ -65,9 +67,9 @@
         }
     }
     //等待接口url
-//    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-//    NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
-//    [self initWithRequestByUrl:url];
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/greeting/receiver?user_id=%@",MM_URL, userid];
+    [self initWithRequestByUrl:url];
     
 }
 
@@ -102,9 +104,9 @@
         return;
     }
     
-//    NSString *url = [NSString stringWithFormat:@"%@&page=%d",collectId, currentIndex];
-//    [self sendRequestByUrlString:url];
-//    NSLog(@"url === %@",url);
+    NSString *url = [NSString stringWithFormat:@"%@&page=%d",teaserId, currentIndex];
+    [self sendRequestByUrlString:url];
+    NSLog(@"url === %@",url);
     
     NSLog(@"网络流量过去5秒的平均流量字节/秒 ==%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
 }
@@ -221,15 +223,22 @@
     NSDictionary *responseDict = [response JSONValue];
     
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-    NSArray *teaserList = [responseDict objectForKey:@"list"];
+    NSArray *greetingList = [responseDict objectForKey:@"greeting"];
+    
+    NSString *msg = [responseDict objectForKey:@"message"];
+    NSLog(@"message == %@",msg);
     if (status == 0) {
-        for(NSDictionary *dict in teaserList)
+        for(NSDictionary *dict in greetingList)
         {
-            //model = .......
-            //model.value=....
+            MGreetingModel *model = [[MGreetingModel alloc] init];
+            model.greeting_id = [[dict objectForKey:@"id"] integerValue];
+            model.nick_name = [dict objectForKey:@"nick_name"];
+            model.pic_path  = [dict objectForKey:@"pic_path"];
+            model.receiver_id = [[dict objectForKey:@"receiver_id"] integerValue];
+            model.sender_id = [[dict objectForKey:@"sender_id"] integerValue];
+            model.time = [dict objectForKey:@"time"];
             
-            
-            //[teaserListSource addObject:model];
+            [teaserListSource addObject:model];
         }
         currentIndex++;
         [teaserListTV reloadData];
@@ -270,16 +279,17 @@
     
     if ([teaserListSource count] > 0 && indexPath.row == [teaserListSource count]-1) {
         //等待接口
-//        NSString *url = [NSString stringWithFormat:@"%@&page=%d",teaserId, currentIndex];
-//        [self sendRequestByUrlString:url];
-//        NSLog(@"url === %@",url);
+        NSString *url = [NSString stringWithFormat:@"%@&page=%d",teaserId, currentIndex];
+        [self sendRequestByUrlString:url];
+        NSLog(@"url === %@",url);
 
     }
     //等待接口
-//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-//    
-//    MBarCollectModel *model =[barListSources objectAtIndex:indexPath.row];
-//    [cell setCellInfoWithModel:model];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    MGreetingModel  *model = [teaserListSource objectAtIndex:indexPath.row];
+    
+    [cell setCellInfoWithModel:model];
     return  cell;
 }
 - (void)didReceiveMemoryWarning

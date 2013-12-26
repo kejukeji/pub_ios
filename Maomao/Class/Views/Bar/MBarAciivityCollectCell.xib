@@ -53,16 +53,25 @@
                         <rect key="frame" x="0.0" y="77" width="320" height="6"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activityCollect_chose_frame.png" id="H5B-2h-L9c">
-                        <rect key="frame" x="290" y="32" width="15" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_collect_cell_btn.png" id="Kf3-Kx-edg">
+                        <rect key="frame" x="287" y="29" width="21" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mCt-yp-AUC">
+                        <rect key="frame" x="290" y="32" width="15" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" backgroundImage="activity_collect_btn_hook.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="activityCollect_chose_frame.png" width="23" height="23"/>
+        <image name="activity_collect_btn_hook.png" width="17" height="14"/>
+        <image name="activity_collect_cell_btn.png" width="23" height="23"/>
         <image name="teaser_seperate_line.png" width="1" height="5"/>
     </resources>
 </document>

@@ -23,8 +23,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLable;
 @property (weak, nonatomic) IBOutlet UILabel *jionNumLabel;
 @property (weak, nonatomic) IBOutlet UITextView *activityDetailLable;
+@property (weak, nonatomic) IBOutlet UILabel *activityTimeLabel;
+
+@property (nonatomic, copy) NSString    *activityId;
 @property (nonatomic, strong) ASIHTTPRequest    *sendRequest;
 @property (nonatomic, strong) ASIHTTPRequest    *sendCollectRequest;
 @property (nonatomic, strong) ASIHTTPRequest    *sendCancelCollectRequest;
+
+-  (void)initWithRequestByUrl:(NSString *)url;
 
 @end

@@ -11,6 +11,7 @@
 #import "JSON.h"
 #import "MBackBtn.h"
 #import "MTitleView.h"
+#import "MGiftModel.h"
 
 @interface MMyGiftListVC ()
 
@@ -68,8 +69,8 @@
     myGiftTitleView.titleName.text = @"礼物";
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     //等待接口
-//    NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
-//    [self initWithRequestByUrl:url];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/gift/receiver?user_id=%@",MM_URL, userid];
+    [self initWithRequestByUrl:url];
     
 }
 
@@ -100,7 +101,7 @@
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"%@&page=%d",giftId,currentIndex];
+    NSString *url = [NSString stringWithFormat:@"%@&page=%d&gift_type=personal",giftId,currentIndex];
     [self sendRequestByUrlString:url];
     NSLog(@"url == %@",url);
     
@@ -212,18 +213,26 @@
     NSDictionary *responseDict = [response JSONValue];
     
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-    NSArray     *giftList = [responseDict objectForKey:@"list"];
-    
+    NSArray     *giftList = [responseDict objectForKey:@"gift"];
+    NSString    *msg = [responseDict objectForKey:@"message"];
+    NSLog(@"message == %@",msg);
     if (status == 0) {
         for(NSDictionary *dict in giftList)
         {
-            // ...........
-            // MBarCollectModel *model = [[MBarCollectModel alloc] init];
-            //model.city_county = [dict objectForKey:@"city_county"];
+            
+            MGiftModel *model = [[MGiftModel alloc] init];
+            model.gift_id = [[dict objectForKey:@"gift_id"] integerValue];
+            model.gift_id_id = [[dict objectForKey:@"id"] integerValue];
+            model.nick_name = [dict objectForKey:@"nick_name"];
+            model.pic_path  = [dict objectForKey:@"pic_path"];
+            model.receiver_id = [[dict objectForKey:@"receiver_id"] integerValue];
+            model.sender_id = [[dict objectForKey:@"sender_id"] integerValue];
+            model.time = [dict objectForKey:@"time"];
+            model.words = [dict objectForKey:@"words"];
             /*
              ..........
              */
-            //[giftListSource addObject:model];
+            [giftListSource addObject:model];
         }
         currentIndex++;
         [giftListTV reloadData];
@@ -262,15 +271,15 @@
     
     if ([giftListSource count] > 0 && indexPath.row == [giftListSource count] -1) {
         //等待接口
-//        NSString *url = [NSString stringWithFormat:@"%@&page=%d",giftId,currentIndex];
-//        [self sendRequestByUrlString:url];
-//        NSLog(@"url == %@",url);
+        NSString *url = [NSString stringWithFormat:@"%@&page=%d&gift_type=personal",giftId,currentIndex];
+        [self sendRequestByUrlString:url];
+        NSLog(@"url == %@",url);
     }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    //等待接口
-//    MBarCollectModel *model =[barListSources objectAtIndex:indexPath.row];
-//    [cell setCellInfoWithModel:model];
+    
+    MGiftModel *model = [giftListSource objectAtIndex:indexPath.row];
+    [cell setCellInfoWithModel:model];
     return cell;
 }
 - (void)didReceiveMemoryWarning

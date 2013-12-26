@@ -9,14 +9,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MBarDetailsVC">
             <connections>
                 <outlet property="NumofCheck" destination="are-IA-Ndf" id="SBx-rK-Vbu"/>
+                <outlet property="activityImg" destination="4Dp-ED-EC3" id="smQ-OE-dOi"/>
+                <outlet property="activityInfoLabel" destination="ga0-A8-KHE" id="gbz-5Y-i4z"/>
+                <outlet property="activityTitleLabel" destination="LPM-hD-631" id="0fx-L4-bPd"/>
                 <outlet property="addressBtn" destination="dES-z9-0wG" id="NtX-2P-OzR"/>
                 <outlet property="barIconBtn" destination="TzF-cK-gmA" id="RpB-h3-CcP"/>
                 <outlet property="barIntroTextView" destination="boU-wS-YQX" id="vsq-XI-GqT"/>
+                <outlet property="barIntroTitel" destination="k58-90-4zH" id="lCP-KO-Rxn"/>
                 <outlet property="barNameLabel" destination="pUk-sl-zYS" id="Wes-7y-YtM"/>
                 <outlet property="barTypeLabel" destination="sBf-Qe-Ouh" id="wsP-4h-pPf"/>
                 <outlet property="distanceLabel" destination="Vze-PH-rVo" id="6Dx-wa-e8h"/>
                 <outlet property="signerShowScrollView" destination="evn-uf-ez5" id="edU-lH-Xjg"/>
                 <outlet property="telNumber" destination="Egf-FJ-32C" id="bcZ-vW-jS0"/>
+                <outlet property="timeLable" destination="CBr-Sr-SKG" id="0fx-CT-g2F"/>
                 <outlet property="view" destination="1" id="87w-Wa-G23"/>
             </connections>
         </placeholder>
@@ -145,7 +150,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="boU-wS-YQX">
-                    <rect key="frame" x="10" y="370" width="301" height="151"/>
+                    <rect key="frame" x="10" y="370" width="301" height="180"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.89019614458084106" green="0.89411771297454834" blue="0.90980398654937744" alpha="1" colorSpace="deviceRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -186,6 +191,9 @@
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="gotoActivityDetail:" destination="-1" eventType="touchUpInside" id="5GR-Px-CcK"/>
+                    </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新活动" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LPM-hD-631">
                     <rect key="frame" x="15" y="241" width="78" height="21"/>
@@ -207,7 +215,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12月25日22:00-26日01:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CBr-Sr-SKG">
                     <rect key="frame" x="15" y="289" width="199" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

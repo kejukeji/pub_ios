@@ -15,7 +15,8 @@
 @synthesize county;
 @synthesize end_date;
 @synthesize hot;
-@synthesize activity_list_id;
+@synthesize activity_id;
+@synthesize is_collect;
 @synthesize join_people_number;
 @synthesize pic_name;
 @synthesize pic_path;

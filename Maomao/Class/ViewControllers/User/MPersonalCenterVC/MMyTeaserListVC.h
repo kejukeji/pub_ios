@@ -1,7 +1,7 @@
 //
 //  MMyTeaserVC.h
 //  Maomao
-//
+//  传情列表 ＝＝greeting
 //  Created by maochengfang on 13-12-11.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //

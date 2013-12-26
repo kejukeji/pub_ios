@@ -9,12 +9,17 @@
 #import "MHaveDrinkView.h"
 #import "MTitleView.h"
 #import "MBackBtn.h"
+#import "Utils.h"
+#import "JSON.h"
 
 @interface MHaveDrinkView ()
 
 @end
 
 @implementation MHaveDrinkView
+
+@synthesize receiver_id;
+@synthesize sendRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,8 +64,76 @@
 
 - (IBAction)sendInviteBtn:(UIButton *)sender
 {
-    prompting = [[GPPrompting alloc] initWithView:self.view Text:@"邀请已发送" Icon:nil];
-    [self.view addSubview:prompting];
-    [prompting show];
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    //http://42.121.108.142:6001/restful/sender/invite?sender_id=1&receiver_id=3
+    NSString *url = [NSString stringWithFormat:@"%@/restful/sender/invite?sender_id=%@&receiver_id=%d",MM_URL,userid,receiver_id];
+        [self sendInviteRequest:url];
+    
+
+}
+
+- (void)sendInviteRequest:(NSString *)urlString
+{
+    NSLog(@"urlString == %@",urlString);
+    isNetWork = [Utils checkCurrentNetWork];
+    
+    if (!isNetWork) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"网络链接中断" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+        return;
+    }
+    
+    if (self.sendRequest != nil) {
+        [self.sendRequest clearDelegatesAndCancel];
+        self.sendRequest = nil;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    sendRequest = [ASIHTTPRequest requestWithURL:url];
+    [sendRequest setTimeOutSeconds:kRequestTime];
+    [sendRequest setDelegate:self];
+    [sendRequest startAsynchronous];
+    
+}
+
+#pragma mark -
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *response = [request responseString];
+    
+    if (response == nil || [response JSONValue] == nil) {
+        return;
+    }
+    
+    NSDictionary *responseDict = [response JSONValue];
+    
+    NSInteger   status = [[responseDict objectForKey:@"status"] integerValue];
+    NSString *msg = [responseDict objectForKey:@"message"];
+    if (status ==0) {
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"邀请已发送" Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+    }
+    else
+    {
+        prompting = [[GPPrompting alloc] initWithView:self.view Text:msg Icon:nil];
+        [self.view addSubview:prompting];
+        [prompting show];
+    }
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+initWithTitle:@"温馨提示" message:@"网络无法连接，请检查网络连接" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+    [alertView show];
+
 }
 @end

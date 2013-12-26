@@ -10,9 +10,13 @@
 #import "MBackBtn.h"
 #import "MBarDetailModel.h"
 #import "MBarDetailSignaModel.h"
+#import "MActivityListModel.h"
+#import "MBarActivityVC.h"
+
 #import "Utils.h"
 #import "JSON.h"
 #import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "MBarEnvironmentVC.h"
 #import <MapKit/MapKit.h>
 #import "MRightBtn.h"
@@ -23,6 +27,7 @@
 {
     float           currentXpoint;
     NSInteger       barId;
+    NSString        *activityId1;
     MRightBtn      *rightBtn;
     NSString       *bar_longitude;
     NSString       *bar_latitude;
@@ -39,6 +44,7 @@
 @synthesize signaNumberLabel;
 @synthesize distanceLabel;
 @synthesize barTypeLabel;
+
 @synthesize barIntroTextView;
 @synthesize signerShowScrollView;
 @synthesize NumofCheck;
@@ -46,6 +52,13 @@
 @synthesize sendRequest;
 @synthesize sendCollectRequest;
 @synthesize sendCancelCollectRequest;
+@synthesize barIntroTitel;
+/**********/
+
+@synthesize activityImg;
+@synthesize activityInfoLabel;
+@synthesize activityTitleLabel ;
+@synthesize timeLable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -115,7 +128,7 @@
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 {
-    NSLog(@"urlString == %@",urlString);
+    NSLog(@"urlString  ***** == %@",urlString);
     isNetWork = [Utils checkCurrentNetWork];
     
     if (!isNetWork) {
@@ -208,19 +221,33 @@
 {
     NSString *response = [request responseString];
     
-    NSLog(@"response == %@",request);
+    NSLog(@"response == %@",response);
     if (response == nil || [response JSONValue] == nil) {
         return;
     }
     
     NSDictionary *responseDict = [response JSONValue];
     
+//    NSLog(@"responseDict ==%@",responseDict);
+    
     if (request == sendRequest) {
+        
         NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
+        
         NSArray *picList = [responseDict objectForKey:@"picture_list"];
         NSArray *pubList = [responseDict objectForKey:@"pub_list"];
+        //酒吧活动列表
+        NSDictionary *activity = [responseDict objectForKey:@"activity"];
+//        NSLog(@"activity_info = %@",[activity objectForKey:@"activity_info"]);
+        if ([activity isEqual:[NSNull null]]) {
+            isHaveActivity = FALSE;
+            [self moveFrame];
+        }
+        
+        NSLog(@"activityList===%@",activity);
         
         if (status == 0) {
+            
             for (NSDictionary *picDict in picList) {
                 MBarDetailSignaModel *signaModel = [[MBarDetailSignaModel alloc] init];
                 
@@ -296,6 +323,28 @@
                 barId = [detailModel.barDetailId integerValue];
                 [self setDetailConten:detailModel];
                 
+            }
+            
+            if (![activity isEqual:[NSNull null]]) {
+                MActivityListModel  *activityModel = [[MActivityListModel alloc] init];
+                
+                //
+                activityModel.activity_id = [activity objectForKey:@"id"];
+                NSLog(@"activity_id==%@",[activity objectForKey:@"id"]);
+                
+                activityModel.activity_info = [activity objectForKey:@"activity_info"];
+                NSLog(@"activity_info==%@",[activity objectForKey:@"activity_info"]);
+                
+                activityModel.base_path = [activity objectForKey:@"base_path"];
+                activityModel.end_date = [activity objectForKey:@"end_date"];
+                activityModel.is_collect = [[activity objectForKey:@"is_collect"] boolValue];
+                activityModel.join_people_number = [[activity objectForKey:@"join_people_number"] integerValue];
+                activityModel.pic_name = [activity objectForKey:@"pic_name"];
+                activityModel.pub_id = [[activity objectForKey:@"pub_id"] integerValue];
+                activityModel.rel_path = [activity objectForKey:@"rel_path"];
+                activityModel.title = [activity objectForKey:@"title"];
+                activityModel.start_date = [activity objectForKey:@"start_date"];
+                [self setActivityContent:activityModel];
             }
         }
         
@@ -388,7 +437,7 @@
         [picBtn setFrame:CGRectMake(i*65, 0, 60, 60)];
         [signerShowScrollView addSubview:picBtn];
     }
-    NumofCheck.text = [NSString stringWithFormat:@"%d 人",[signaSources count]];
+    NumofCheck.text = [NSString stringWithFormat:@"%d 人",[signaSources count] +1];
     [signerShowScrollView setContentSize:CGSizeMake([signaSources count] * 65, 60)];
 }
 
@@ -436,6 +485,22 @@
     distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",[newLocation distanceFromLocation :currentLocation]/1000];
 }
 
+//  添加酒吧活动信息
+-  (void)setActivityContent:(MActivityListModel *)model
+{
+    NSString *pic_path = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
+    [activityImg setImageWithURL:[NSURL URLWithString:pic_path ] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
+    
+    activityTitleLabel.text = model.title;
+    activityInfoLabel.text  = model.activity_info;
+    timeLable.text = [NSString stringWithFormat:@"%@-%@",model.start_date,model.end_date];
+    //获取活动id
+    activityId1 = model.activity_id;
+    NSLog(@"activityId1  ***** = %@",activityId1);
+    
+    
+    
+}
 - (IBAction)slideSignerShowView:(UIButton *)sender
 {
     float slideXpoin;
@@ -494,6 +559,20 @@
     
 }
 
+- (IBAction)gotoActivityDetail:(UIButton *)sender
+{
+   
+    MBarActivityVC *barActivityVC = [[MBarActivityVC alloc] init];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/activity/info?activity_id=%@&user_id=%@",MM_URL,activityId1,userId];
+    NSLog(@" url in activityVC ==%@",url);
+    [barActivityVC  initWithRequestByUrl:url];
+    [self.navigationController pushViewController:barActivityVC animated:YES];
+    
+    
+
+}
+
 - (void)gotoFriend:(UIButton *)button
 {
     MFriendCenterViewController *friendCenterVC = [[MFriendCenterViewController alloc] init];
@@ -516,6 +595,18 @@
     [self.navigationController pushViewController:barEnvironmentVC animated:YES];
 }
 
+//该函数判断是否有活动，如果没有活动那么将酒吧介绍 以及酒吧标题往上移动签到板块下方
+- (void)moveFrame
+{
+    if (!isHaveActivity) {
+        activityTitleLabel.text = @"";
+        activityInfoLabel.text = @"";
+        timeLable.text = @"";
+        barIntroTitel.frame = activityTitleLabel.frame;
+        
+        [barIntroTextView setFrame:CGRectMake(barIntroTextView.frame.origin.x, barIntroTitel.frame.origin.y + barIntroTitel.frame.size.height + 10, barIntroTextView.frame.size.width,barIntroTextView.frame.size.height)];
+    }
+}
 #pragma mark - 
 #pragma mark  UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

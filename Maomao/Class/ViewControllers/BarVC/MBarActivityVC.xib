@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="activityDetailLable" destination="g4P-DH-Cue" id="Ok6-Hy-UsC"/>
                 <outlet property="activityImg" destination="85e-NJ-c1F" id="WMQ-s0-aFU"/>
+                <outlet property="activityTimeLabel" destination="03P-8j-tCK" id="Ybr-jX-Eyb"/>
                 <outlet property="activityTitleLable" destination="mQN-Yh-z8B" id="Ppq-MD-Lfo"/>
                 <outlet property="addressLable" destination="JNg-Hw-emE" id="2II-C5-v5m"/>
                 <outlet property="jionNumLabel" destination="QWk-82-hmS" id="S16-CR-CbI"/>

@@ -7,17 +7,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MFriendCenterViewController">
             <connections>
+                <outlet property="creditLabel" destination="u59-yq-OJQ" id="ZmK-2u-M1n"/>
                 <outlet property="friendAgeLabel" destination="1nI-bp-IOl" id="U4Y-zL-Rm1"/>
                 <outlet property="friendAreaLabel" destination="Zj1-uA-0gV" id="JoZ-sB-YBV"/>
-                <outlet property="friendExpTagLabel" destination="o4c-M3-y5A" id="5jg-0s-jOP"/>
                 <outlet property="friendIcon" destination="xYd-2j-bmC" id="dwv-2X-p8Z"/>
-                <outlet property="friendIntegrationLabel" destination="u59-yq-OJQ" id="xIY-PT-IpC"/>
                 <outlet property="friendLocationLabel" destination="kzF-gC-H61" id="6k4-dS-b0b"/>
                 <outlet property="friendNameLabel" destination="jsV-ik-U1V" id="H0P-rC-w2E"/>
                 <outlet property="friendScrollView" destination="3Cn-ED-QUc" id="PCj-Kq-G6j"/>
                 <outlet property="friendSignLabel" destination="2jb-FG-9Au" id="PIZ-Q9-prb"/>
                 <outlet property="genderLabel" destination="eNC-Gg-zD7" id="EXx-LE-TEu"/>
                 <outlet property="numofGift" destination="thz-Fk-qpJ" id="LKU-pt-Nkj"/>
+                <outlet property="reputationLabel" destination="o4c-M3-y5A" id="aKq-Ku-Ohr"/>
                 <outlet property="view" destination="bzp-Qy-5Qq" id="XfK-Lw-YYn"/>
             </connections>
         </placeholder>

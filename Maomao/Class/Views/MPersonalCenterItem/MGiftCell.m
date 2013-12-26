@@ -34,7 +34,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setCellInfo:(MGiftModel *)model
+- (void)setCellInfoWithModel:(MGiftModel *)model
 {
     [giftImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@""]];
     

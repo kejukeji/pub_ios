@@ -459,6 +459,7 @@
     titleView.titleName.text = model.name;
     detailsVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%@&user_id=%@", MM_URL, model.barListId, userid];
+    NSLog(@"barDetail url == %@",url);
     [detailsVC initWithRequestByUrl:url];
     [self.navigationController pushViewController:detailsVC animated:YES];
 }

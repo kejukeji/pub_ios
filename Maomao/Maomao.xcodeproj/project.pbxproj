@@ -10,6 +10,10 @@
 		0C20A2B218684C3F00E17914 /* MInvitationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A2B118684C3F00E17914 /* MInvitationModel.m */; };
 		0C20A2B518684F8C00E17914 /* MGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A2B418684F8C00E17914 /* MGiftModel.m */; };
 		0C20A2B8186867A200E17914 /* MGreetingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A2B7186867A200E17914 /* MGreetingModel.m */; };
+		0C20A2BB1869C48100E17914 /* activity_collect_btn_hook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C20A2B91869C48100E17914 /* activity_collect_btn_hook.png */; };
+		0C20A2BC1869C48100E17914 /* activity_collect_cell_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C20A2BA1869C48100E17914 /* activity_collect_cell_btn.png */; };
+		0C20A36B186AEAED00E17914 /* MSendGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A36A186AEAED00E17914 /* MSendGiftModel.m */; };
+		0C20A371186BC85100E17914 /* MSendGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A370186BC85100E17914 /* MSendGiftViewController.m */; };
 		0C418C161858CFC100E45E98 /* MBackBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418A891858CFC000E45E98 /* MBackBtn.m */; };
 		0C418C171858CFC100E45E98 /* MCommonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418A8B1858CFC000E45E98 /* MCommonVC.m */; };
 		0C418C181858CFC100E45E98 /* MRightBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418A8E1858CFC000E45E98 /* MRightBtn.m */; };
@@ -111,8 +115,6 @@
 		0C418C7B1858CFC100E45E98 /* MIntegrationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B3C1858CFC100E45E98 /* MIntegrationVC.xib */; };
 		0C418C7C1858CFC100E45E98 /* MInviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B3E1858CFC100E45E98 /* MInviteCell.m */; };
 		0C418C7D1858CFC100E45E98 /* MInviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B3F1858CFC100E45E98 /* MInviteCell.xib */; };
-		0C418C7E1858CFC100E45E98 /* MSendGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B411858CFC100E45E98 /* MSendGiftVC.m */; };
-		0C418C7F1858CFC100E45E98 /* MSendGiftVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B421858CFC100E45E98 /* MSendGiftVC.xib */; };
 		0C418C801858CFC100E45E98 /* MTeaserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B441858CFC100E45E98 /* MTeaserCell.m */; };
 		0C418C811858CFC100E45E98 /* MTeaserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C418B451858CFC100E45E98 /* MTeaserCell.xib */; };
 		0C418C821858CFC100E45E98 /* MSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418B471858CFC100E45E98 /* MSettingView.m */; };
@@ -393,6 +395,12 @@
 		0C20A2B418684F8C00E17914 /* MGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGiftModel.m; sourceTree = "<group>"; };
 		0C20A2B6186867A200E17914 /* MGreetingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGreetingModel.h; sourceTree = "<group>"; };
 		0C20A2B7186867A200E17914 /* MGreetingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGreetingModel.m; sourceTree = "<group>"; };
+		0C20A2B91869C48100E17914 /* activity_collect_btn_hook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_collect_btn_hook.png; sourceTree = "<group>"; };
+		0C20A2BA1869C48100E17914 /* activity_collect_cell_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_collect_cell_btn.png; sourceTree = "<group>"; };
+		0C20A369186AEAED00E17914 /* MSendGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSendGiftModel.h; sourceTree = "<group>"; };
+		0C20A36A186AEAED00E17914 /* MSendGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSendGiftModel.m; sourceTree = "<group>"; };
+		0C20A36F186BC85100E17914 /* MSendGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSendGiftViewController.h; sourceTree = "<group>"; };
+		0C20A370186BC85100E17914 /* MSendGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSendGiftViewController.m; sourceTree = "<group>"; };
 		0C418A881858CFC000E45E98 /* MBackBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBackBtn.h; sourceTree = "<group>"; };
 		0C418A891858CFC000E45E98 /* MBackBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBackBtn.m; sourceTree = "<group>"; };
 		0C418A8A1858CFC000E45E98 /* MCommonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCommonVC.h; sourceTree = "<group>"; };
@@ -560,9 +568,6 @@
 		0C418B3D1858CFC100E45E98 /* MInviteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MInviteCell.h; sourceTree = "<group>"; };
 		0C418B3E1858CFC100E45E98 /* MInviteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MInviteCell.m; sourceTree = "<group>"; };
 		0C418B3F1858CFC100E45E98 /* MInviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MInviteCell.xib; sourceTree = "<group>"; };
-		0C418B401858CFC100E45E98 /* MSendGiftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSendGiftVC.h; sourceTree = "<group>"; };
-		0C418B411858CFC100E45E98 /* MSendGiftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSendGiftVC.m; sourceTree = "<group>"; };
-		0C418B421858CFC100E45E98 /* MSendGiftVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSendGiftVC.xib; sourceTree = "<group>"; };
 		0C418B431858CFC100E45E98 /* MTeaserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTeaserCell.h; sourceTree = "<group>"; };
 		0C418B441858CFC100E45E98 /* MTeaserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTeaserCell.m; sourceTree = "<group>"; };
 		0C418B451858CFC100E45E98 /* MTeaserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTeaserCell.xib; sourceTree = "<group>"; };
@@ -915,6 +920,8 @@
 				0C20A2B418684F8C00E17914 /* MGiftModel.m */,
 				0C20A2B6186867A200E17914 /* MGreetingModel.h */,
 				0C20A2B7186867A200E17914 /* MGreetingModel.m */,
+				0C20A369186AEAED00E17914 /* MSendGiftModel.h */,
+				0C20A36A186AEAED00E17914 /* MSendGiftModel.m */,
 			);
 			path = personalCenterModels;
 			sourceTree = "<group>";
@@ -1211,9 +1218,8 @@
 				0C418B3D1858CFC100E45E98 /* MInviteCell.h */,
 				0C418B3E1858CFC100E45E98 /* MInviteCell.m */,
 				0C418B3F1858CFC100E45E98 /* MInviteCell.xib */,
-				0C418B401858CFC100E45E98 /* MSendGiftVC.h */,
-				0C418B411858CFC100E45E98 /* MSendGiftVC.m */,
-				0C418B421858CFC100E45E98 /* MSendGiftVC.xib */,
+				0C20A36F186BC85100E17914 /* MSendGiftViewController.h */,
+				0C20A370186BC85100E17914 /* MSendGiftViewController.m */,
 				0C418B431858CFC100E45E98 /* MTeaserCell.h */,
 				0C418B441858CFC100E45E98 /* MTeaserCell.m */,
 				0C418B451858CFC100E45E98 /* MTeaserCell.xib */,
@@ -1370,6 +1376,8 @@
 		0C418BBD1858CFC100E45E98 /* PersonalCenterItems */ = {
 			isa = PBXGroup;
 			children = (
+				0C20A2B91869C48100E17914 /* activity_collect_btn_hook.png */,
+				0C20A2BA1869C48100E17914 /* activity_collect_cell_btn.png */,
 				0C4A76DA185EA12400FDDE18 /*   friendCenter_right_btn.png */,
 				0C418BBE1858CFC100E45E98 /* drink_clink_img.png */,
 				0C418BBF1858CFC100E45E98 /* drink_send_btn_bg.png */,
@@ -1782,7 +1790,6 @@
 				0C418CE11858CFC100E45E98 /* leftmenu_nav-lightgray_02.png in Resources */,
 				0C418C4F1858CFC100E45E98 /* MModifyNicknameVC.xib in Resources */,
 				0C418C5A1858CFC100E45E98 /* MMyGiftListVC.xib in Resources */,
-				0C418C7F1858CFC100E45E98 /* MSendGiftVC.xib in Resources */,
 				0C418C641858CFC100E45E98 /* MUserSettingVC.xib in Resources */,
 				0C418D0E1858CFC100E45E98 /* integration_value.png in Resources */,
 				0C418CF21858CFC100E45E98 /* user_cell_password.png in Resources */,
@@ -1820,6 +1827,7 @@
 				0C418D021858CFC100E45E98 /* gift_LV.png in Resources */,
 				0C418C891858CFC100E45E98 /* bar_detail_1.png in Resources */,
 				0C418C911858CFC100E45E98 /* bar_detail_line.png in Resources */,
+				0C20A2BB1869C48100E17914 /* activity_collect_btn_hook.png in Resources */,
 				0C418D191858CFC100E45E98 /* ic_face_005.png in Resources */,
 				0C418C9B1858CFC100E45E98 /* barlist_nearbybar.png in Resources */,
 				0C418C941858CFC100E45E98 /* barlist_background.png in Resources */,
@@ -1832,6 +1840,7 @@
 				FE684291180E32DA0000E01C /* InfoPlist.strings in Resources */,
 				0C418D061858CFC100E45E98 /* gift_Remy.png in Resources */,
 				0C418CD91858CFC100E45E98 /* leftMenu_icon_collect.png in Resources */,
+				0C20A2BC1869C48100E17914 /* activity_collect_cell_btn.png in Resources */,
 				0C4A76DF185EA8B600FDDE18 /* dropdown_bg.png in Resources */,
 				0C418CED1858CFC100E45E98 /* setting_btn_exit.png in Resources */,
 				0C418CCF1858CFC100E45E98 /* gray_right_arrow.png in Resources */,
@@ -2076,13 +2085,14 @@
 				FE902AFA180F90AE00F60C71 /* SDWebImagePrefetcher.m in Sources */,
 				0C418C2A1858CFC100E45E98 /* MBarActivityVC.m in Sources */,
 				0C418C171858CFC100E45E98 /* MCommonVC.m in Sources */,
+				0C20A36B186AEAED00E17914 /* MSendGiftModel.m in Sources */,
 				0C9B6D7C1859492F00CAA404 /* MCollectView.m in Sources */,
 				0C418C1A1858CFC100E45E98 /* MTouchSuperView.m in Sources */,
 				0C20A2B8186867A200E17914 /* MGreetingModel.m in Sources */,
 				0C418C1F1858CFC100E45E98 /* MBarCollectModel.m in Sources */,
+				0C20A371186BC85100E17914 /* MSendGiftViewController.m in Sources */,
 				FE902AF9180F90AE00F60C71 /* SDWebImageManager.m in Sources */,
 				0C418C221858CFC100E45E98 /* MBarEnvironmentModel.m in Sources */,
-				0C418C7E1858CFC100E45E98 /* MSendGiftVC.m in Sources */,
 				0C418C671858CFC100E45E98 /* MBarCollectCell.m in Sources */,
 				0C418C801858CFC100E45E98 /* MTeaserCell.m in Sources */,
 				0C418C741858CFC100E45E98 /* MMyHomeView.m in Sources */,

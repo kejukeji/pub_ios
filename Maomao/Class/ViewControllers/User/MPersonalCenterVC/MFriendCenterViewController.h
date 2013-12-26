@@ -14,17 +14,27 @@
 @end
 
 #import <UIKit/UIKit.h>
+#import "GPPrompting.h"
 #import "ASIFormDataRequest.h"
+#import "ASIHTTPRequest.h"
 #import "DropDownControllView.h"
 
-@interface MFriendCenterViewController : UIViewController<DropDownControlViewDelegate>
+@interface MFriendCenterViewController : UIViewController<DropDownControlViewDelegate,ASIHTTPRequestDelegate>
+{
+    GPPrompting *prompting;
+    BOOL    isNetWork;
+}
 @property (nonatomic, assign) id<MFriendCenterViewControlDelegate>delegate;
 @property (nonatomic, copy) NSString *friendId;
 @property (nonatomic, strong) ASIFormDataRequest *formDataReuqest;
+@property (nonatomic, strong) ASIHTTPRequest    *sendGreetingRequest;
+
 @property (weak, nonatomic) IBOutlet UILabel *friendAreaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendLocationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *friendExpTagLabel;
-@property (weak, nonatomic) IBOutlet UILabel *friendIntegrationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *creditLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *reputationLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendAgeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;

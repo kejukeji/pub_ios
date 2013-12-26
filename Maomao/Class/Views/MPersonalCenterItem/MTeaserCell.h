@@ -1,7 +1,7 @@
 //
 //  MTeaserCell.h
 //  Maomao
-//
+//  传情cell
 //  Created by maochengfang on 13-12-11.
 //  Copyright (c) 2013年 BangQu. All rights reserved.
 //
@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *senderNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendtimeLabel;
 
-- (void)setCellInfo:(MGreetingModel *)model;
+- (void)setCellInfoWithModel:(MGreetingModel *)model;
 @end

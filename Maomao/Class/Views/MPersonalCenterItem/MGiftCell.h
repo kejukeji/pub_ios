@@ -16,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *giftImg;
 @property (weak, nonatomic) IBOutlet UILabel *giftName;
 
-- (void)setCellInfo:(MGiftModel *)model;
+- (void)setCellInfoWithModel:(MGiftModel *)model;
 @end
