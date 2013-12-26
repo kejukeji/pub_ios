@@ -78,10 +78,12 @@
         myCollectTitleView.titleName.text = @"我的收藏";
         NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
         NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
+        NSLog(@"URL **** = %@",url);
         [self initWithRequestByUrl:url];
     } else {
         myCollectTitleView.titleName.text = titleNameString;
         NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, collectId];
+           NSLog(@"URL **** = %@",url);
         [self initWithRequestByUrl:url];
     }
 }
@@ -262,7 +264,7 @@
             model.web_url = [dict objectForKey:@"web_url"];
             
             [barListSources addObject:model];
-            NSLog(@"barListSources count == %d",[barListSources count]);
+           // NSLog(@"barListSources count == %d",[barListSources count]);
         }
         
         currentIndex++;

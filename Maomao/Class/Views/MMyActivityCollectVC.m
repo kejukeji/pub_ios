@@ -11,6 +11,8 @@
 #import "MBackBtn.h"
 #import "JSON.h"
 #import "MTitleView.h"
+#import "MActivityCollectModel.h"
+#import "MBarActivityVC.h"
 
 @interface MMyActivityCollectVC ()
 
@@ -57,18 +59,20 @@
     
     [self.view addSubview:activityListTV];
     
+    activityListSource = [NSMutableArray arrayWithCapacity:0];
+    currentIndex = 1;
+    
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/collect/activity/list?user_id=%@",MM_URL, userid];
+    
+    NSLog(@"URL @@@@@@ = %@",url);
+    [self initWithRequestByUrl:url];
+    
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
         }
     }
-    
-    //等待接口
-    
-//    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-//    NSString *url = [NSString stringWithFormat:@"%@/restful/user/collect?user_id=%@",MM_URL, userid];
-//    [self initWithRequestByUrl:url];
-    
 }
 
 - (void)back
@@ -99,11 +103,11 @@
     if (activityCollectId ==nil) {
         return;
     }
-    // 等待接口
-//    NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
-//    [self sendRequestByUrlString:url];
-//    NSLog(@"activity collect url ==%@",url);
-//    NSLog(@"网络流量过去5秒的平均流量字节/秒 ==%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
+    // 等待接口http://42.121.108.142:6001/restful/collect/activity/list？user_id =1&page=1
+    NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
+    [self sendRequestByUrlString:url];
+    
+    NSLog(@"网络流量过去5秒的平均流量字节/秒 ==%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
 }
 
 #pragma mark - EGORefreshTableHeaderDelegate
@@ -216,21 +220,35 @@
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
     
     //等待接口
-    /*
-    NSArray   *activityCollectList = [responseDict objectForKey:@"list"];
+    
+    NSArray   *activityCollectList = [responseDict objectForKey:@"activity_collect"];
     
     if (status ==0)
     {
         for(NSDictionary *dict in activityCollectList)
         {
             //MBarCollectModel *model = [[MBarCollectModel alloc] init];
-            //......
-            //[activityListSource addObject:model]
+            MActivityCollectModel *model = [[MActivityCollectModel alloc] init];
+            model.activity_info = [dict objectForKey:@"activity_info"];
+            model.base_path = [dict objectForKey:@"base_path"];
+            model.collect_time = [dict objectForKey:@"collect_time"];
+            model.end_date = [dict objectForKey:@"end_date"];
+            model.hot = [[dict objectForKey:@"hot"] boolValue];
+            model.activity_collect_id = [dict objectForKey:@"id"];
+            model.join_people_number  = [dict objectForKey:@"join_people_number"];
+            model.pic_path = [dict objectForKey:@"pic_path"];
+            model.pic_name = [dict objectForKey:@"pic_name"];
+            model.pub_id   = [dict objectForKey:@"pub_id"];
+            model.pub_name = [dict objectForKey:@"pub_name"];
+            model.rel_path = [dict objectForKey:@"rel_path"];
+            model.start_date = [dict objectForKey:@"start_date"];
+            model.title    = [dict objectForKey:@"title"];
+            [activityListSource addObject:model];
         }
         currentIndex++;
         [activityListTV reloadData];
     }
-    */
+    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -263,18 +281,18 @@
     }
     
     if ([activityListSource count] > 0 && indexPath.row == [activityListSource count] -1) {
-        /*
+        
         NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
         [self sendRequestByUrlString:url];
         NSLog(@"url == %@",url);
-         */
+        
     }
     
     [cell setSelectionStyle:    UITableViewCellSelectionStyleNone
      ];
-    //等待接口
-//    MBarCollectModel *model =[barListSources objectAtIndex:indexPath.row];
-//    [cell setCellInfoWithModel:model];
+    
+    MActivityCollectModel   *model = [activityListSource objectAtIndex:indexPath.row];
+    [cell setCellInfoWithModel:model];
 
     
     return  cell;
@@ -282,17 +300,18 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //等待接口
+
+    MActivityCollectModel *model = [activityListSource objectAtIndex:indexPath.row];
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    MBarActivityVC *activityVC = [[MBarActivityVC alloc] init];
     
-//    MBarCollectModel *model = [barListSources objectAtIndex:indexPath.row];
-//    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-//    MBarDetailsVC *detailsVC = [[MBarDetailsVC alloc] init];
-//    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/detail?pub_id=%@&user_id=%@", MM_URL, model.collectid, userid];
-//    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
-//    titleView.titleName.text = model.name;
-//    detailsVC.navigationItem.titleView = titleView;
-//    [detailsVC initWithRequestByUrl:url];
-//    [self.navigationController pushViewController:detailsVC animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/activity/info?activity_id=%@&user_id=%@", MM_URL, model.activity_collect_id, userid];
+    
+    MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    titleView.titleName.text = model.pub_name;
+    activityVC.navigationItem.titleView = titleView;
+    [activityVC initWithRequestByUrl:url];
+    [self.navigationController pushViewController:activityVC animated:YES];
 
 }
 - (void)didReceiveMemoryWarning

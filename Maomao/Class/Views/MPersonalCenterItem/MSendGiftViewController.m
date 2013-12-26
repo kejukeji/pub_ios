@@ -228,13 +228,13 @@
         [giftBtn setTag:model.gift_id];//获取gift_id；
         
         [giftBtn addTarget:self action:@selector(sendGift:) forControlEvents:UIControlEventTouchUpInside];
-        [giftBtn setFrame:CGRectMake(xPoint, 15 + (row * 50), 50, 50)];
+        [giftBtn setFrame:CGRectMake(xPoint, 15 + (row * 50), 60, 60)];
         
         //设置礼物名称
         UILabel     *giftName = [[UILabel alloc] init];
         [giftName setFrame:CGRectMake(giftBtn.frame.origin.x, giftBtn.frame.origin.y  + giftBtn.frame.size.height, 50, 15)];
         [giftName setText:model.name];
-        [giftName setFont:[UIFont systemFontOfSize:10]];
+        [giftName setFont:[UIFont systemFontOfSize:12]];
         [giftName setTextAlignment:NSTextAlignmentCenter];
         [giftName setTextColor:[UIColor blackColor]];
         
@@ -242,7 +242,7 @@
         UILabel     *giftCost = [[UILabel alloc] init];
         [giftCost setFrame:CGRectMake(giftName.frame.origin.x, giftName.frame.origin.y + giftName.frame.size.height, 60, 15)];
         [giftCost setText:[ NSString stringWithFormat:@"%d 积分",model.cost]];
-        [giftCost setFont:[UIFont systemFontOfSize:10]];
+        [giftCost setFont:[UIFont systemFontOfSize:12]];
         [giftCost setTextAlignment:NSTextAlignmentCenter];
         
         //放置礼物item

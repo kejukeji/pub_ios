@@ -14,6 +14,7 @@
 		0C20A2BC1869C48100E17914 /* activity_collect_cell_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C20A2BA1869C48100E17914 /* activity_collect_cell_btn.png */; };
 		0C20A36B186AEAED00E17914 /* MSendGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A36A186AEAED00E17914 /* MSendGiftModel.m */; };
 		0C20A371186BC85100E17914 /* MSendGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A370186BC85100E17914 /* MSendGiftViewController.m */; };
+		0C20A374186BD24300E17914 /* MActivityCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A373186BD24300E17914 /* MActivityCollectModel.m */; };
 		0C418C161858CFC100E45E98 /* MBackBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418A891858CFC000E45E98 /* MBackBtn.m */; };
 		0C418C171858CFC100E45E98 /* MCommonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418A8B1858CFC000E45E98 /* MCommonVC.m */; };
 		0C418C181858CFC100E45E98 /* MRightBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C418A8E1858CFC000E45E98 /* MRightBtn.m */; };
@@ -401,6 +402,8 @@
 		0C20A36A186AEAED00E17914 /* MSendGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSendGiftModel.m; sourceTree = "<group>"; };
 		0C20A36F186BC85100E17914 /* MSendGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSendGiftViewController.h; sourceTree = "<group>"; };
 		0C20A370186BC85100E17914 /* MSendGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSendGiftViewController.m; sourceTree = "<group>"; };
+		0C20A372186BD24300E17914 /* MActivityCollectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MActivityCollectModel.h; sourceTree = "<group>"; };
+		0C20A373186BD24300E17914 /* MActivityCollectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MActivityCollectModel.m; sourceTree = "<group>"; };
 		0C418A881858CFC000E45E98 /* MBackBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBackBtn.h; sourceTree = "<group>"; };
 		0C418A891858CFC000E45E98 /* MBackBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBackBtn.m; sourceTree = "<group>"; };
 		0C418A8A1858CFC000E45E98 /* MCommonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCommonVC.h; sourceTree = "<group>"; };
@@ -965,6 +968,8 @@
 				0C418A971858CFC000E45E98 /* MActivityDetailModel.m */,
 				0C418A981858CFC000E45E98 /* MActivityListModel.h */,
 				0C418A991858CFC000E45E98 /* MActivityListModel.m */,
+				0C20A372186BD24300E17914 /* MActivityCollectModel.h */,
+				0C20A373186BD24300E17914 /* MActivityCollectModel.m */,
 				0C418A9A1858CFC000E45E98 /* MAreaModel.h */,
 				0C418A9B1858CFC000E45E98 /* MAreaModel.m */,
 				0C418A9C1858CFC000E45E98 /* MBarCollectModel.h */,
@@ -2114,6 +2119,7 @@
 				0C418C7C1858CFC100E45E98 /* MInviteCell.m in Sources */,
 				0C418C441858CFC100E45E98 /* MFeedbackVC.m in Sources */,
 				0C418C261858CFC100E45E98 /* MHomeModel.m in Sources */,
+				0C20A374186BD24300E17914 /* MActivityCollectModel.m in Sources */,
 				FE902AE9180F90AE00F60C71 /* NSString+SBJSON.m in Sources */,
 				0C418C3A1858CFC100E45E98 /* MLoginVC.m in Sources */,
 				0C418C691858CFC100E45E98 /* MBarListCell.m in Sources */,

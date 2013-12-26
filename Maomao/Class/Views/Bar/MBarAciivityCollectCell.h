@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MActivityCollectModel.h"
 
 @interface MBarAciivityCollectCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *activityImg;
+@property (weak, nonatomic) IBOutlet UILabel *activityTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityStartTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityCollectTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *activityMarkBtn;
+
+- (IBAction)activityMark:(UIButton *)sender;
+
+- (void)setCellInfoWithModel:(MActivityCollectModel *)model;
 @end

@@ -238,7 +238,6 @@
         NSArray *pubList = [responseDict objectForKey:@"pub_list"];
         //酒吧活动列表
         NSDictionary *activity = [responseDict objectForKey:@"activity"];
-//        NSLog(@"activity_info = %@",[activity objectForKey:@"activity_info"]);
         if ([activity isEqual:[NSNull null]]) {
             isHaveActivity = FALSE;
             [self moveFrame];

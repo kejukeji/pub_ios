@@ -89,7 +89,7 @@
        // http://42.121.108.142:6001/restful/cancel/collect/activity?user_id=1&activity_id=6
         //url 得看接口
         NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
-        NSLog(@"activity collect url == %@",url);
+        NSLog(@"activity collect url ******* == %@",url);
         [self sendCollectRequest:url];
         
     }else if ([button.titleLabel.text isEqualToString:@"取消收藏"])
@@ -97,7 +97,7 @@
         
         //url 得看接口
         NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
-        NSLog(@"activity cancelcollect url == %@",url);
+        NSLog(@"activity cancelcollect url  *******== %@",url);
         [self sendCollectRequest:url];
     }
     
