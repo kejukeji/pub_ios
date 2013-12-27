@@ -15,10 +15,20 @@
 
 #import <UIKit/UIKit.h>
 #import "MMyCollectVC.h"
+#import "ASIHTTPRequest.h"
+#import "MBProgressHUD.h"   
+#import "GPPrompting.h"
 
-@interface MPersonalCenterVC : UIViewController<MMyCollectDelegate>
-
+@interface MPersonalCenterVC : UIViewController<MMyCollectDelegate,ASIHTTPRequestDelegate>
+{
+    MBProgressHUD       *hud;
+    GPPrompting         *prompting;
+    BOOL                isNetWork;
+}
 @property(nonatomic,assign) id <MPersonalCenterDelegate> delegate;
+
+@property (nonatomic, strong) ASIHTTPRequest    *sendRequest;
+
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *Icon;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

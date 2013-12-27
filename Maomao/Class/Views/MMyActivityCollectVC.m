@@ -279,7 +279,7 @@
     if (!noiOS7) {
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-    
+     /*
     if ([activityListSource count] > 0 && indexPath.row == [activityListSource count] -1) {
         
         NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
@@ -287,7 +287,7 @@
         NSLog(@"url == %@",url);
         
     }
-    
+    */
     [cell setSelectionStyle:    UITableViewCellSelectionStyleNone
      ];
     
