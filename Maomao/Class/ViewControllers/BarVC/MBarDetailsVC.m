@@ -79,11 +79,6 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
-    rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    
     signaSources = [NSMutableArray arrayWithCapacity:0];
     currentXpoint = 0;
     
@@ -343,6 +338,13 @@
                 activityModel.rel_path = [activity objectForKey:@"rel_path"];
                 activityModel.title = [activity objectForKey:@"title"];
                 activityModel.start_date = [activity objectForKey:@"start_date"];
+                
+                //当有酒吧活动的时候才会显现出收藏按钮
+                 rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
+                 [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
+                 [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+                 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+                
                 [self setActivityContent:activityModel];
             }
         }

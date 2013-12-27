@@ -118,6 +118,7 @@
     [self initWithRequestByUrl:url];
     
     /*********积分、经验值、等级、等级表述****NSInteger -> NSString**/
+    /*注释掉的代码是因为credit = [[[NSUserDefaults standardUserDefaults] objectForKey:@"credit"] integerValue];无法获取这些数据 ，所以在本页面中我使用JSON来解析个人中心的数据加载*/
     /*
     NSInteger credit = 0;
     NSInteger reputation =0;
