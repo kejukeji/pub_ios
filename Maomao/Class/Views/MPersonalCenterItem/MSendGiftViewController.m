@@ -74,6 +74,7 @@
             prompting = nil;
         }
         prompting = [[GPPrompting alloc] initWithView:self.view Text:@"网络链接中断" Icon:nil];
+        [self.view addSubview:prompting];
         [prompting show];
         return;
     }
@@ -102,6 +103,7 @@
             prompting = nil;
         }
         prompting = [[GPPrompting alloc] initWithView:self.view Text:@"网络链接中断" Icon:nil];
+        [self.view addSubview:prompting];
         [prompting show];
         return;
     }
@@ -136,11 +138,13 @@
         
         if (status == 0) {
             prompting = [[GPPrompting alloc] initWithView:self.view Text:@"礼物发送成功" Icon:nil];
+            [self.view addSubview:prompting];
             [prompting show];
         }
         else
         {
             prompting = [[GPPrompting alloc] initWithView:self.view Text:@"礼物发送失败" Icon:nil];
+            [self.view addSubview:prompting];
             [prompting show];
         }
     }

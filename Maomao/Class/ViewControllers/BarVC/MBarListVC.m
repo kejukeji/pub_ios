@@ -40,6 +40,7 @@
 @synthesize lastUrlString;
 @synthesize barListTV;
 @synthesize isNoBarList;
+@synthesize barCountLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -419,6 +420,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    barCountLabel.text  = [NSString stringWithFormat:@"共 %d 家",[barListSources count]];
     return [barListSources count];
 }
 

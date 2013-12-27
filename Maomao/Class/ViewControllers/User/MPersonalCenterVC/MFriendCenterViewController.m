@@ -276,6 +276,7 @@
     else
     {
         NSLog(@"取消");
+        [view removeFromSuperview];
     }
 }
 

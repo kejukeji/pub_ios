@@ -21,6 +21,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView       *recommendScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *barCountLabel;
+
 @property (nonatomic, strong)   UIPageControl          *recommendPage;
 @property (nonatomic, strong) ASIHTTPRequest            *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
