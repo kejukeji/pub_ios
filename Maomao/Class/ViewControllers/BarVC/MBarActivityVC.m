@@ -85,11 +85,11 @@
 - (void)collect:(UIButton *)button
 {
     NSString *user_id = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-    if ([button.titleLabel.text isEqualToString:@"已收藏"]) {
+    if ([button.titleLabel.text isEqualToString:@"收藏"]) {
        // http://42.121.108.142:6001/restful/cancel/collect/activity?user_id=1&activity_id=6
         //url 得看接口
         NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
-        NSLog(@"activity collect url ******* == %@",url);
+        NSLog(@"activity collect url  == %@",url);
         [self sendCollectRequest:url];
         
     }else if ([button.titleLabel.text isEqualToString:@"取消收藏"])
@@ -97,8 +97,8 @@
         
         //url 得看接口
         NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
-        NSLog(@"activity cancelcollect url  *******== %@",url);
-        [self sendCollectRequest:url];
+        NSLog(@"activity cancelcollect url  == %@",url);
+        [self sendCancelCollectRequest:url];
     }
     
 }
@@ -168,7 +168,7 @@
 
 - (void)sendCancelCollectRequest:(NSString *)urlString
 {
-    [hud setLabelText:@"正在收藏，请稍后！"];
+    [hud setLabelText:@"正在取消收藏，请稍后！"];
     [hud show:YES];
     isNetWork = [Utils checkCurrentNetWork];
     
@@ -288,7 +288,7 @@
                 [prompting removeFromSuperview];
                 prompting = nil;
             }
-            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"收藏" Icon:nil];
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"取消收藏失败" Icon:nil];
             [self.view addSubview:prompting];
             [prompting show];
             return;
@@ -307,11 +307,11 @@
 - (void)setDetailConten:(MActivityDetailModel *)model
 {
     if (model.is_collect) {
-        [rightBtn setTitle:@"已收藏" forState:UIControlStateNormal];
+        [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
     }
     else
     {
-        [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
+        [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
     }
 
     NSString *picPath = [NSString stringWithFormat:@"%@%@/%@",MM_URL,model.rel_path,model.pic_name];

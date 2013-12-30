@@ -117,7 +117,7 @@
         [self sendCollectRequest:url];
     } else if ([button.titleLabel.text isEqualToString:@"取消收藏"]) {
         NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/pub?user_id=%@&pub_id=%d", MM_URL ,userid, barId];
-        NSLog(@"collect url == %@",url);
+        NSLog(@"cancel collect url == %@",url);
         [self sendCancelCollectRequest:url];
     }
 }

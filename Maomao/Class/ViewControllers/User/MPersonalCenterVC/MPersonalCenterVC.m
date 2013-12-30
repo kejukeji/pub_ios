@@ -113,6 +113,7 @@
     [hud setLabelText:@"加载中，请稍等！"];
     [hud show:YES];
     [self.view addSubview:hud];
+    
     NSString *userId = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     NSString *url = [NSString stringWithFormat:@"%@/restful/personal/center?user_id=%@",MM_URL,userId];
     [self initWithRequestByUrl:url];
@@ -191,6 +192,7 @@
         [privateMsgNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
     }
     */
+    
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
             if (![view isEqual: topBar]) {
@@ -304,7 +306,7 @@
          collect_pub_count = [[user objectForKey:@"collect_pub_count"] integerValue];
          collect_pub_countLabel.text = [NSString stringWithFormat:@"%d", collect_pub_count];
          
-         collect_activity_count = [[user objectForKey:@"collect_activity_count"] integerValue];
+         collect_activity_count = [[user objectForKey:@"collect_activity_count"] integerValue] - 1;
          
          collect_activity_countLable.text = [NSString stringWithFormat:@"%d",collect_activity_count];
          

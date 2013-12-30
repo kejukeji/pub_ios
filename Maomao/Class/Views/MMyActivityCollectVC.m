@@ -77,6 +77,8 @@
 
 - (void)back
 {
+    [self.sendRequest clearDelegatesAndCancel];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark -
@@ -286,7 +288,7 @@
 
     if ([activityListSource count] > 0 && indexPath.row == [activityListSource count] -1) {
         
-        if (currentIndex <= [activityListSource count]) {
+        if (currentIndex < [activityListSource count]) {
             
             NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
             [self sendRequestByUrlString:url];
