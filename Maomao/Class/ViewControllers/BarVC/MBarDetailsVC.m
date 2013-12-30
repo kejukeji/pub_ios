@@ -82,6 +82,10 @@
     signaSources = [NSMutableArray arrayWithCapacity:0];
     currentXpoint = 0;
     
+    rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
+    [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
@@ -339,11 +343,7 @@
                 activityModel.title = [activity objectForKey:@"title"];
                 activityModel.start_date = [activity objectForKey:@"start_date"];
                 
-                //当有酒吧活动的时候才会显现出收藏按钮
-                 rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
-                 [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
-                 [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
-                 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+                
                 
                 [self setActivityContent:activityModel];
             }

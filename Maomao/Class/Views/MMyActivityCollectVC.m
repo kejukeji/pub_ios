@@ -60,7 +60,7 @@
     [self.view addSubview:activityListTV];
     
     activityListSource = [NSMutableArray arrayWithCapacity:0];
-    currentIndex = 1;
+    currentIndex = 0;
     
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     NSString *url = [NSString stringWithFormat:@"%@/restful/collect/activity/list?user_id=%@",MM_URL, userid];
@@ -93,6 +93,7 @@
         [activityListTV addSubview:view];
         self.refreshHeaderView = view;
     }
+    
     [activityListTV setContentOffset:CGPointMake(0, -65) animated:NO];
     [refreshHeaderView egoRefreshScrollViewDidScroll:activityListTV];
     [refreshHeaderView egoRefreshScrollViewDidEndDragging:activityListTV];
@@ -106,6 +107,7 @@
     // 等待接口http://42.121.108.142:6001/restful/collect/activity/list？user_id =1&page=1
     NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
     [self sendRequestByUrlString:url];
+    
     
     NSLog(@"网络流量过去5秒的平均流量字节/秒 ==%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
 }
@@ -219,15 +221,13 @@
     
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
     
-    //等待接口
-    
     NSArray   *activityCollectList = [responseDict objectForKey:@"activity_collect"];
     
     if (status ==0)
     {
         for(NSDictionary *dict in activityCollectList)
         {
-            //MBarCollectModel *model = [[MBarCollectModel alloc] init];
+
             MActivityCollectModel *model = [[MActivityCollectModel alloc] init];
             model.activity_info = [dict objectForKey:@"activity_info"];
             model.base_path = [dict objectForKey:@"base_path"];
@@ -243,6 +243,7 @@
             model.rel_path = [dict objectForKey:@"rel_path"];
             model.start_date = [dict objectForKey:@"start_date"];
             model.title    = [dict objectForKey:@"title"];
+            
             [activityListSource addObject:model];
         }
         currentIndex++;
@@ -279,17 +280,23 @@
     if (!noiOS7) {
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-     /*
+    NSLog(@"indexPath.row =%d",indexPath.row);
+    NSLog(@"[activityListSource count] == %d",[activityListSource count]);
+    NSLog(@"currentIndex == %d",currentIndex);
+
     if ([activityListSource count] > 0 && indexPath.row == [activityListSource count] -1) {
         
-        NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
-        [self sendRequestByUrlString:url];
-        NSLog(@"url == %@",url);
+        if (currentIndex <= [activityListSource count]) {
+            
+            NSString *url = [NSString stringWithFormat:@"%@&page=%d",activityCollectId,currentIndex];
+            [self sendRequestByUrlString:url];
+            NSLog(@"url  in ^^^^^^^^^^== %@",url);
+        }
+        
         
     }
-    */
-    [cell setSelectionStyle:    UITableViewCellSelectionStyleNone
-     ];
+    
+    [cell setSelectionStyle: UITableViewCellSelectionStyleNone];
     
     MActivityCollectModel   *model = [activityListSource objectAtIndex:indexPath.row];
     [cell setCellInfoWithModel:model];

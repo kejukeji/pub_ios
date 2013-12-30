@@ -56,7 +56,7 @@
     rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
     //[rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
-    rightBtn.titleLabel.text = @"收藏";
+   // rightBtn.titleLabel.text = @"收藏";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     hud = [[MBProgressHUD alloc] init];
@@ -85,7 +85,7 @@
 - (void)collect:(UIButton *)button
 {
     NSString *user_id = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-    if ([button.titleLabel.text isEqualToString:@"收藏"]) {
+    if ([button.titleLabel.text isEqualToString:@"已收藏"]) {
        // http://42.121.108.142:6001/restful/cancel/collect/activity?user_id=1&activity_id=6
         //url 得看接口
         NSString *url = [NSString stringWithFormat:@"%@/restful/cancel/collect/activity?user_id=%@&activity_id=%@",MM_URL,user_id,activityId];
@@ -251,17 +251,19 @@
                 [prompting removeFromSuperview];
                 prompting = nil;
             }
-            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"收藏成功" Icon:nil];
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"收藏酒吧活动成功" Icon:nil];
             [self.view addSubview:prompting];
             [prompting show];
         }
         else if (status ==1)
         {
+            [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+
             if (prompting !=nil) {
                 [prompting removeFromSuperview];
                 prompting = nil;
             }
-            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"已收藏" Icon:nil];
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"收藏失败" Icon:nil];
             [self.view addSubview:prompting];
             [prompting show];
         }

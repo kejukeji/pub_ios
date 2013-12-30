@@ -90,6 +90,7 @@
 
 - (void) back
 {
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -290,7 +291,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [delegate numberofCollection:[barListSources count]];
+    //[delegate numberofCollection:[barListSources count]];
     return [barListSources count];
     
 }
@@ -308,11 +309,15 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     
+    NSLog(@"indexPath.row =%d",indexPath.row);
+    NSLog(@"[barListSources count] == %d",[barListSources count]);
+    NSLog(@"currentIndex == %d",currentIndex);
+    
     if ([barListSources count] > 0 && indexPath.row == [barListSources count]-1) {
         
         NSString *url = [NSString stringWithFormat:@"%@&page=%d",collectId, currentIndex];
         [self sendRequestByUrlString:url];
-        NSLog(@"url === %@",url);
+        NSLog(@"url  ********** === %@",url);
     }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
