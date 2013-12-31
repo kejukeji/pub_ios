@@ -47,6 +47,7 @@
 @synthesize sendGreetingRequest;
 @synthesize friendName;
 
+@synthesize sendFriendDataRequest;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,19 +62,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.89 alpha:1.0]];
-//    UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:20), 320, 44)];
-//    [topBar setImage:[UIImage imageNamed:@"common_barBg_top.png"]];
-//    [topBar setUserInteractionEnabled:YES];
-//    [self.view addSubview:topBar];
 
-    count = 0; //计数为零
     UIButton   *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn setFrame:CGRectMake(14, 10, 30, 24)];
     [leftBtn setImage:[UIImage imageNamed:@"personal_choice_btn.png"] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    
     
     UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [moreBtn setFrame:CGRectMake(287, 0, 20, 30)];
@@ -82,14 +77,10 @@
     [moreBtn addTarget:self action:@selector(moreList) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
     
-    
-    
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
-            //if (![view isEqual: topBar]) {
-                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
-            //}
-            
+        [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+      
         }
     }
     
@@ -97,8 +88,6 @@
     [hud setLabelText:@"加载中请稍后!"];
     [hud show:YES];
     [self.view addSubview:hud];
-    
-    
 
 }
 
@@ -111,7 +100,20 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self friendInfo];
+    [self moreInfo];
     
+}
+
+
+- (void)moreInfo
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/restful/personal/center?user_id=%@",MM_URL, friendId];
+    NSLog(@"urlString in moreInfo== %@",urlString);
+    NSURL * url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    sendFriendDataRequest = [ASIHTTPRequest requestWithURL:url];
+    [sendFriendDataRequest setTimeOutSeconds:kRequestTime];
+    [sendFriendDataRequest setDelegate:self];
+    [sendFriendDataRequest startAsynchronous];
 }
 
 - (void)friendInfo
@@ -126,10 +128,11 @@
     [formDataReuqest setDidFailSelector:@selector(requestDidFailed:)];
     [formDataReuqest setDidFinishSelector:@selector(requestDidSuccess:)];
     [formDataReuqest setRequestMethod:@"POST"];
-    
     [formDataReuqest startSynchronous];
     
 }
+
+
 
 - (void)requestDidFailed:(ASIFormDataRequest *)request
 {
@@ -167,6 +170,7 @@
         NSString *city_id = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"city_id"]];
         NSString *sex = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"sex"]];
         NSString *county = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"county"]];
+        
         NSString *street = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"street"]];
         NSString *county_id = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"county_id"]];
         NSString *ethnicity_id = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"ethnicity_id"]];
@@ -185,13 +189,8 @@
         NSString *intro = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"intro"]];
         NSString *signature = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"signature"]];
         NSString *pic_name = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"pic_name"]];
-        /*****************二期增加的内容*********************************/
-        NSInteger credit = [[userInfo objectForKey:@"credit"] integerValue];
-        NSInteger reputation =[[userInfo objectForKey:@"reputation"] integerValue];
-        /**************************************************************/
         
-        creditLabel.text = [NSString stringWithFormat:@"%d",credit];
-        reputationLabel.text = [NSString stringWithFormat:@"%d",reputation];
+       
         /****************设置年龄******************/
         
         NSDate *current = [NSDate date];  //当前时间
@@ -207,16 +206,13 @@
         NSDateComponents *dateComparisonComponents = [systeCalendar components:unitFlags fromDate:birthdayDate toDate:current options:NSWrapCalendarComponents];
         friendAgeLabel.text = [NSString stringWithFormat:@"%d",dateComparisonComponents.year];
         friendAreaLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kCounty];
+        
         NSString *path = [NSString stringWithFormat:@"%@%@",MM_URL,pic_path];
         [friendIcon setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
         friendName = nickName;
         friendNameLabel.text = friendName;
         NSLog(@"friendNameLabel.text==%@",friendNameLabel.text);
         friendSignLabel.text = signature;
-        
-        //计算距离
-        
-        
         
     }
     else if (status == 1) {
@@ -356,27 +352,59 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSString *response = [request responseString];
+    if (request == sendGreetingRequest) {
+        NSString *response = [request responseString];
+        if (response == nil  || [response JSONValue] == nil) {
+            return;
+        }
+        NSDictionary *responseDict = [response JSONValue];
+        NSString *msg = [responseDict objectForKey:@"message"];
+        NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
+        if (status == 0) {
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"您已经向对方抛了个媚眼" Icon:nil];
+            [self.view addSubview:prompting];
+            [prompting show];
+        }
+        else
+        {
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:msg Icon:nil];
+            [self.view addSubview:prompting];
+            [prompting show];
+        }
+
+    }
     
-    if (response == nil  || [response JSONValue] == nil) {
-        return;
-    }
-    NSDictionary *responseDict = [response JSONValue];
-    NSString *msg = [responseDict objectForKey:@"message"];
-    NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-    if (status == 0) {
-        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"您已经向对方抛了个媚眼" Icon:nil];
-        [self.view addSubview:prompting];
-        [prompting show];
-    }
-    else
+    if (request == sendFriendDataRequest)
     {
-        prompting = [[GPPrompting alloc] initWithView:self.view Text:msg Icon:nil];
-        [self.view addSubview:prompting];
-        [prompting show];
+        NSString *response = [request responseString];
+        if (response == nil || [response JSONValue] == nil ) {
+            return;
+        }
+        
+        NSDictionary *responseDict = [response JSONValue];
+        NSInteger    status = [[responseDict objectForKey:@"status"] integerValue];
+        NSDictionary *user = [responseDict objectForKey:@"user"];
+        if (status == 0) {
+            /*****************二期增加的内容*********************************/
+            NSInteger credit = [[user objectForKey:@"credit"] integerValue];
+            NSInteger gift =  [[user objectForKey:@"gift"] integerValue];
+            
+            creditLabel.text = [NSString stringWithFormat:@"%d",credit];
+            reputationLabel.text = [user objectForKey:@"level_description"];
+            NSLog(@"gift == %d", gift);
+            numofGift.text = [NSString stringWithFormat:@"%d", gift];
+          
+        }
     }
 }
 
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [hud hide:YES];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络无法连接，请检查网络" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+    [alertView show];
+}
 - (IBAction)sendMsg:(UIButton *)sender
 {
     MChatListVC *chatListVC = [[MChatListVC alloc] init];

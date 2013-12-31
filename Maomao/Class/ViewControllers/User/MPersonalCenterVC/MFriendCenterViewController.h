@@ -28,6 +28,8 @@
 @property (nonatomic, copy) NSString *friendId;
 @property (nonatomic, strong) ASIFormDataRequest *formDataReuqest;
 @property (nonatomic, strong) ASIHTTPRequest    *sendGreetingRequest;
+@property (nonatomic, strong) ASIHTTPRequest    *
+    sendFriendDataRequest;
 
 @property (weak, nonatomic) IBOutlet UILabel *friendAreaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendLocationLabel;
