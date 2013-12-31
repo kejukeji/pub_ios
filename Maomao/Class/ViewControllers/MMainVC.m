@@ -55,6 +55,7 @@
 @synthesize settingView;
 @synthesize leftMenuView;
 @synthesize formDataRequest;
+@synthesize sendDataRequest;
 //测试二期个人中心
 @synthesize personalCenter;
 
@@ -73,6 +74,8 @@
 	// Do any additional setup after loading the view.
     
     [self userInfo];
+    
+    [self moreUserInfo];
 
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -147,15 +150,33 @@
     
     //测试二期个人中心页面
     personalCenter.nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
+    
+    NSLog(@"nameLabel = %@", [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME]);
 }
 
+// moreUserInfo：函数是获取二期个人中心的等级，邀约，礼物，收藏酒吧，收藏活动数量等信息
+- (void)moreUserInfo
+{
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    NSLog(@"userid == %@",userid);
+    NSString *urlString = [NSString stringWithFormat:@"%@/restful/personal/center?user_id=%@" ,MM_URL, userid];
+    NSLog(@"usrlString *** == %@",urlString);
+    
+     NSURL * url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+     sendDataRequest = [ASIHTTPRequest requestWithURL:url];
+     [sendDataRequest setTimeOutSeconds:kRequestTime];
+     [sendDataRequest setDelegate:self];
+     [sendDataRequest startAsynchronous];
+     
+}
 - (void)userInfo
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     NSLog(@"userid == %@",userid);
     NSString *urlString = [NSString stringWithFormat:@"%@/restful/user/user_info/%@" ,MM_URL, userid];
-    NSLog(@"usrlString == %@",urlString);
-    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    NSLog(@"usrlString ****** == %@",urlString);
+ 
+    NSURL *url = [NSURL URLWithString:urlString];
     
     formDataRequest = [ASIFormDataRequest requestWithURL:url];
     
@@ -166,6 +187,77 @@
     [formDataRequest setRequestMethod:@"POST"];
     
     [formDataRequest startSynchronous];
+    
+}
+
+#pragma mark - 
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *responseString = [request responseString];
+    if (responseString == nil || [responseString JSONValue] == nil)
+    {
+        return;
+    }
+    NSLog(@"responseString==%@",responseString);
+    NSDictionary *respponseDict = [responseString JSONValue];
+    NSInteger status = [[respponseDict objectForKey:@"status"] integerValue];
+    
+    if (status == 0) {
+        
+        NSDictionary *userDict = [respponseDict objectForKey:@"user"];
+        /**************************二期增加的宏************************************/
+        
+        NSString *collect_activity_count = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"collect_activity_count"]];
+        NSString *collect_pub_count = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"collect_pub_count"]];
+        NSString *credit = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"credit"]];
+        NSString *greeting_count = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"greeting_count"]];
+        NSString *invitation = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"invitation"]];
+        NSString *level = [NSString stringWithFormat:@"%@", [userDict objectForKey:@"level"]];
+        NSString *level_description = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"level_description"]];
+        NSString *private_letter_count = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"private_letter_count"]];
+        NSString *reputation = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"reputation"]];
+        NSString *gift = [NSString stringWithFormat:@"%@",[userDict objectForKey:@"gift"]];
+        
+        NSLog(@"credit == %@",credit);
+        /**************************************************************/
+        
+        /**************************二期增加的宏************************************/
+        
+        [[NSUserDefaults standardUserDefaults] setObject:collect_activity_count forKey:kCollect_activity_count];
+        [[NSUserDefaults standardUserDefaults]  setObject:collect_pub_count forKey:kCollect_pub_count];
+        [[NSUserDefaults standardUserDefaults] setObject:credit forKey:kCredit];
+        [[NSUserDefaults standardUserDefaults]  setObject:greeting_count forKey:kGreeting_count];
+        [[NSUserDefaults standardUserDefaults]  setObject:invitation forKey:kInvitation];
+        [[NSUserDefaults standardUserDefaults]  setObject:level forKey:kLevel];
+        [[NSUserDefaults standardUserDefaults]  setObject:level_description forKey:kLevel_description];
+        [[NSUserDefaults standardUserDefaults]  setObject:private_letter_count forKey:kPrivate_letter_count];
+        [[NSUserDefaults standardUserDefaults]   setObject:reputation forKey:kReputation];
+        [[NSUserDefaults standardUserDefaults]   setObject:gift forKey:kGift];
+        
+        /**************************二期增加的宏************************************/
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    } else if (status == 1) {
+        NSString *message = [respponseDict objectForKey:@"message"];
+        UIAlertView *OK = [[UIAlertView alloc] initWithTitle:@"重要提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [OK show];
+    }
+
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示"
+                                                       message:@"网络无法连接,请检查网络连接!"
+                                                      delegate:self
+                                             cancelButtonTitle:@"知道了"
+                                             otherButtonTitles:nil];
+    [alertView show];
+
 }
 
 - (void)requestDidFailed:(ASIFormDataRequest *)request
@@ -217,7 +309,7 @@
         NSString *intro = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"intro"]];
         NSString *signature = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"signature"]];
         NSString *pic_name = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"pic_name"]];
-        
+
         [[NSUserDefaults standardUserDefaults] setObject:userid forKey:USERID];
         [[NSUserDefaults standardUserDefaults] setObject:nickName forKey:NICKNAME];
         [[NSUserDefaults standardUserDefaults] setObject:loginName forKey:LOGINNAME];
@@ -244,6 +336,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:intro forKey:kIntro];
         [[NSUserDefaults standardUserDefaults] setObject:signature forKey:kSignature];
         [[NSUserDefaults standardUserDefaults] setObject:pic_name forKey:kPic_name];
+        
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     } else if (status == 1) {
@@ -252,6 +345,7 @@
         [OK show];
     }
 }
+
 
 #pragma mark -
 #pragma mark CLLocationManagerDelegate

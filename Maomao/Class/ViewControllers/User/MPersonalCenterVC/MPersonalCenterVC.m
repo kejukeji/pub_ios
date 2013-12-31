@@ -82,7 +82,9 @@
     NSString *headImgPath = [[NSUserDefaults standardUserDefaults] stringForKey:kPic_path];
     NSString *path = [NSString stringWithFormat:@"%@%@",MM_URL, headImgPath];
 
-    signalLabel.text = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] stringForKey:kSignature]];
+    signalLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
+    
+    NSLog(@"signature = %@",signalLabel.text);
     
     /****************设置年龄******************/
     
@@ -103,96 +105,60 @@
     ageLabel.text = [NSString stringWithFormat:@"%ld",(long)dateComparisonComponents.year];
     
     areaLabel.text = [[[NSUserDefaults standardUserDefaults] stringForKey:kCounty]
-                      stringByReplacingOccurrencesOfString:@"$" withString:@""];
+                      stringByReplacingOccurrencesOfString:@"$$" withString:@""];
     
     [Icon setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
     
     nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
    
-    hud = [[MBProgressHUD alloc] init];
-    [hud setLabelText:@"加载中，请稍等！"];
-    [hud show:YES];
-    [self.view addSubview:hud];
+    /*********积分、经验值、等级、等级表述************************/
+    creditLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kCredit];
+    reputationLable.text = [[NSUserDefaults standardUserDefaults] stringForKey:kReputation];
+    levelLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kLevel];
+    level_descriptionLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kLevel_description];
     
-    NSString *userId = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-    NSString *url = [NSString stringWithFormat:@"%@/restful/personal/center?user_id=%@",MM_URL,userId];
-    [self initWithRequestByUrl:url];
+    /*********邀约，礼物，传情，私信，收藏活动，收藏酒吧*************/
     
-    /*********积分、经验值、等级、等级表述****NSInteger -> NSString**/
-    /*注释掉的代码是因为credit = [[[NSUserDefaults standardUserDefaults] objectForKey:@"credit"] integerValue];无法获取这些数据 ，所以在本页面中我使用JSON来解析个人中心的数据加载*/
-    /*
-    NSInteger credit = 0;
-    NSInteger reputation =0;
-    NSInteger level = 0;
-    NSString  *level_description = @"";
-    NSString  *dd = @"";
-    NSInteger aa = 1;
-    credit = [[[NSUserDefaults standardUserDefaults] objectForKey:@"credit"] integerValue];
-    creditLabel.text = [NSString stringWithFormat:@"%d",credit];
-    NSLog(@"credit == %d",[[[NSUserDefaults standardUserDefaults] objectForKey:@"credit"] integerValue]);
-    
-    reputation = [[[NSUserDefaults standardUserDefaults] stringForKey:@"reputation"] integerValue];
-    reputationLable.text = [NSString stringWithFormat:@"%d",reputation];
-    
-    level =  [[[NSUserDefaults standardUserDefaults] stringForKey:@"level"] integerValue];
-    levelLabel.text = [NSString stringWithFormat:@"%d",level];
-    
-    level_description = [[NSUserDefaults standardUserDefaults] stringForKey:@"level_description"];
-    
-    NSLog(@" level_description %@", level_description);
-    
-    aa =[level_description isEqualToString: dd];
-    if (aa == 0) {
-        level_descriptionLabel.text = @"还没等级";
-        NSLog(@"level_description %@",level_descriptionLabel.text);
-    }
-    
-    
-    /********************邀约，礼物，传情，私信,我的收藏，我的活动count**************/
-    /*
-    NSInteger invitation = 0;
-    NSInteger gift = 0;
-    NSInteger greeting_count = 0;
-    NSInteger collect_pub_count = 0;
-    NSInteger collect_activity_count = 0;
-    NSInteger private_count = 0;
-    
-    
-    invitation = [[[NSUserDefaults standardUserDefaults] stringForKey:@"invitation"] integerValue];
-    
-    invitationLabel.text = [NSString stringWithFormat:@"%d",invitation];
-    //personal_msg_notice.png
-    if (invitation > 0) {
+    NSInteger inviation, gift,greeting, collect_activity,collect_pub,private_letter;
+    inviation = [[[NSUserDefaults standardUserDefaults] stringForKey:kInvitation ] integerValue];
+    if (inviation > 0) {
         [inviteNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
     }
-   
+    invitationLabel.text = [NSString stringWithFormat:@" %d",inviation];
     
-    gift = [[[NSUserDefaults standardUserDefaults] stringForKey:@"gift"] integerValue];
-    giftLable.text = [NSString stringWithFormat:@"%d",gift];
-    if (gift > 0) {
-        [giftNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-    }
-    
-    greeting_count = [[[NSUserDefaults standardUserDefaults] stringForKey: @"greeting_count"] integerValue];
-    greeting_countLabel.text = [NSString stringWithFormat:@"%d",greeting_count];
-    if (greeting_count > 0) {
+    greeting = [[[NSUserDefaults standardUserDefaults] stringForKey:kGreeting_count] integerValue];
+    if (greeting > 0) {
         [teaserNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
     }
     
-    collect_pub_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"collect_pub_count"] integerValue];
-    collect_pub_countLabel.text = [NSString stringWithFormat:@"%d", collect_pub_count];
- 
-    collect_activity_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"collect_activity_count"] integerValue];
+    greeting_countLabel.text = [NSString stringWithFormat:@"%d",greeting];
     
-    collect_activity_countLable.text = [NSString stringWithFormat:@"%d",collect_activity_count];
+    private_letter = [[[NSUserDefaults standardUserDefaults] stringForKey:kPrivate_letter_count] integerValue];
     
-    private_count = [[[NSUserDefaults standardUserDefaults] stringForKey:@"private_letter_count"] integerValue];
-    private_letter_countLable.text = [NSString stringWithFormat:@"%d",private_count];
-    if (private_count > 0) {
+    if (private_letter > 0) {
         [privateMsgNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
     }
-    */
+    private_letter_countLable.text = [NSString stringWithFormat:@"%d",private_letter];
     
+    gift = [[[NSUserDefaults standardUserDefaults] stringForKey:kGift] integerValue];
+    if (gift > 0) {
+        [giftNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
+    }
+    giftLable.text = [NSString stringWithFormat:@"%d",gift];
+    
+    collect_activity = [[[NSUserDefaults standardUserDefaults] stringForKey:kCollect_activity_count] integerValue];
+    collect_activity_countLable.text = [NSString stringWithFormat:@"%d",collect_activity];
+    
+    collect_pub = [[[NSUserDefaults standardUserDefaults] stringForKey:kCollect_pub_count] integerValue];
+    
+    collect_pub_countLabel.text = [NSString stringWithFormat:@"%d",collect_pub];
+    
+   
+    
+    hud = [[MBProgressHUD alloc] init];
+    [hud setLabelText:@"加载中，请稍等！"];
+    [hud show:YES];
+    //[self.view addSubview:hud];
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
             if (![view isEqual: topBar]) {
@@ -202,137 +168,6 @@
         }
     }
 }
-
-#pragma mark -
-#pragma mark  Send Request Method
-
-- (void)initWithRequestByUrl:(NSString *)urlString;
-{
-    NSLog(@"urlString  ***** == %@",urlString);
-    isNetWork = [Utils checkCurrentNetWork];
-    
-    if (!isNetWork) {
-        if (prompting != nil) {
-            [prompting removeFromSuperview];
-            prompting = nil;
-        }
-        prompting = [[GPPrompting alloc] initWithView:self.view Text:@"网络链接中断" Icon:nil];
-        [self.view addSubview:prompting];
-        [prompting show];
-        return;
-    }
-    
-    if (self.sendRequest != nil) {
-        [self.sendRequest clearDelegatesAndCancel];
-        self.sendRequest = nil;
-    }
-    
-    NSURL * url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    self.sendRequest = [ASIHTTPRequest requestWithURL:url];
-    [self.sendRequest setTimeOutSeconds:kRequestTime];
-    [self.sendRequest setDelegate:self];
-    [self.sendRequest startAsynchronous];
-}
-
-#pragma mark - 
-#pragma mark - ASIHTTPRequestDelegate
-
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-    NSString *response = [request responseString];
-    if (response == nil || [response JSONValue] == nil) {
-        return;
-    }
-    
-    NSDictionary    *responseDict = [response JSONValue];
-    NSDictionary *user = [responseDict objectForKey:@"user"];
-    NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-    
-    if (status == 0) {
-        /*********积分、经验值、等级、等级表述****NSInteger -> NSString**/
-        
-         NSInteger credit = 0;
-         NSInteger reputation =0;
-            NSString  *level;
-         NSString  *level_description = @"";
-        
-         credit = [[user objectForKey:@"credit"] integerValue];
-         creditLabel.text = [NSString stringWithFormat:@"%d",credit];
-         NSLog(@"credit == %d",[[[NSUserDefaults standardUserDefaults] objectForKey:@"credit"] integerValue]);
-         
-         reputation = [[user objectForKey:@"reputation"] integerValue];
-         reputationLable.text = [NSString stringWithFormat:@"%d",reputation];
-         
-        level =  [user objectForKey:@"level"];
-         levelLabel.text = level;
-         
-         level_description = [user objectForKey:@"level_description"];
-         
-         NSLog(@" level_description %@", level_description);
-         level_descriptionLabel.text = level_description;
-                  
-         
-         /********************邀约，礼物，传情，私信,我的收藏，我的活动count**************/
-        
-         NSInteger invitation = 0;
-         NSInteger gift = 0;
-         NSInteger greeting_count = 0;
-         NSInteger collect_pub_count = 0;
-         NSInteger collect_activity_count = 0;
-         NSInteger private_count = 0;
-         
-         
-         invitation = [[user objectForKey:@"invitation"] integerValue];
-         
-         invitationLabel.text = [NSString stringWithFormat:@"%d",invitation];
-         //personal_msg_notice.png
-         if (invitation > 0) {
-         [inviteNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-         }
-         
-         
-         gift = [[user objectForKey:@"gift"] integerValue];
-         giftLable.text = [NSString stringWithFormat:@"%d",gift];
-         if (gift > 0) {
-         [giftNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-         }
-         
-         greeting_count = [[user objectForKey: @"greeting_count"] integerValue];
-         greeting_countLabel.text = [NSString stringWithFormat:@"%d",greeting_count];
-         if (greeting_count > 0) {
-         [teaserNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-         }
-         
-         collect_pub_count = [[user objectForKey:@"collect_pub_count"] integerValue];
-         collect_pub_countLabel.text = [NSString stringWithFormat:@"%d", collect_pub_count];
-         
-         collect_activity_count = [[user objectForKey:@"collect_activity_count"] integerValue] - 1;
-         
-         collect_activity_countLable.text = [NSString stringWithFormat:@"%d",collect_activity_count];
-         
-         private_count = [[user objectForKey:@"private_letter_count"] integerValue];
-         private_letter_countLable.text = [NSString stringWithFormat:@"%d",private_count];
-         if (private_count > 0) {
-         [privateMsgNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-         }
-        
-
-    }
-     [hud hide:YES];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    [hud hide:YES];
-    
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示"
-                                                       message:@"网络无法连接,请检查网络连接!"
-                                                      delegate:self
-                                             cancelButtonTitle:@"知道了"
-                                             otherButtonTitles:nil];
-    [alertView show];
-}
-
 
 - (void)didReceiveMemoryWarning
 {

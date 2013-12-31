@@ -126,7 +126,7 @@
     [formDataReuqest setDidFailSelector:@selector(requestDidFailed:)];
     [formDataReuqest setDidFinishSelector:@selector(requestDidSuccess:)];
     [formDataReuqest setRequestMethod:@"POST"];
-
+    
     [formDataReuqest startSynchronous];
     
 }
