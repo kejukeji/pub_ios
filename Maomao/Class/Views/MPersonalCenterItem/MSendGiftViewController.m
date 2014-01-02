@@ -120,6 +120,8 @@
     [self.sendGiftRequest setDelegate:self];
     [self.sendGiftRequest startAsynchronous];
 }
+
+
 #pragma mark -
 #pragma mark - ASIHTTPRequestDelgate
 

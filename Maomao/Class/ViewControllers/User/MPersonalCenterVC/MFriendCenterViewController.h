@@ -46,6 +46,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *numofGift;
 @property (weak, nonatomic) IBOutlet UIScrollView *friendScrollView;
 
+/*点击礼物按钮酒吧收藏按钮要下滑*/
+@property (weak, nonatomic) IBOutlet UIButton *moveFrame1;//按钮
+@property (weak, nonatomic) IBOutlet UIImageView *moveFrame2;//箭头
+/*****************************/
+@property (weak, nonatomic) IBOutlet UIButton *xView;
+
+
 //Button Action
 - (IBAction)gotoClink:(UIButton *)sender;
 - (IBAction)haveTeaser:(UIButton *)sender;

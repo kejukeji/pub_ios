@@ -11,6 +11,8 @@
 @implementation MGiftModel
 @synthesize gift_id;
 @synthesize gift_id_id;
+@synthesize gift_pic_path;
+@synthesize gift_name;
 @synthesize nick_name;
 @synthesize pic_path;
 @synthesize receiver_id;

@@ -224,6 +224,8 @@
             model.gift_id = [[dict objectForKey:@"gift_id"] integerValue];
             model.gift_id_id = [[dict objectForKey:@"id"] integerValue];
             model.nick_name = [dict objectForKey:@"nick_name"];
+            model.gift_pic_path = [dict objectForKey:@"gift_pic_path"];
+            model.gift_name = [dict objectForKey:@"gift_name"];
             model.pic_path  = [dict objectForKey:@"pic_path"];
             model.receiver_id = [[dict objectForKey:@"receiver_id"] integerValue];
             model.sender_id = [[dict objectForKey:@"sender_id"] integerValue];

@@ -17,12 +17,14 @@
 //二期页面
 #import "MHaveDrinkView.h"
 #import "MSendGiftViewController.h"
+#import "MFriendGiftView.h"
 
 @interface MFriendCenterViewController ()
 {
     MBProgressHUD *hud;
     DropDownControllView *mDropDownView;
-    int count;//点击更多按钮 计数
+    int count;//点击礼物按钮计数，偶数收藏button视图以及剪头ImageView视图下滑
+    UIView      *giftView;//朋友中心礼物视图
     NSInteger      receiver_id;
 }
 @property (nonatomic, copy) NSString *friendName;
@@ -47,12 +49,19 @@
 @synthesize sendGreetingRequest;
 @synthesize friendName;
 
+/*******下滑控件*******/
+@synthesize moveFrame1;
+@synthesize moveFrame2;
+@synthesize xView;
+/*************/
+
 @synthesize sendFriendDataRequest;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self.view setBackgroundColor:[UIColor whiteColor]];
     }
     return self;
 }
@@ -76,6 +85,7 @@
     [moreBtn setImage:[UIImage imageNamed:@"  friendCenter_right_btn.png"] forState:UIControlStateNormal];
     [moreBtn addTarget:self action:@selector(moreList) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
+    count = 1;
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -83,6 +93,11 @@
       
         }
     }
+    
+    //酒吧按钮和剪头都随着scrollview一起滑动，这就意味着这两个控件多下滑64像素的距离，所以得减去64像素。
+    [moveFrame2 setFrame:CGRectMake(moveFrame2.frame.origin.x, moveFrame2.frame.origin.y-64, moveFrame2.frame.size.width, moveFrame2.frame.size.height)];
+    [moveFrame1 setFrame:CGRectMake(moveFrame1.frame.origin.x, moveFrame1.frame.origin.y-64, moveFrame1.frame.size.width, moveFrame1.frame.size.height)];
+     
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中请稍后!"];
@@ -253,7 +268,6 @@
     [titles addObject:@"举报检举"];
     [titles addObject:@"取消"];
     [mDropDownView setSelectionOptions:options withTitles:titles];
-    count ++;
     [self.view addSubview:mDropDownView];
     NSLog(@"屏蔽该好友，举报检举，取消");
 }
@@ -332,7 +346,7 @@
 
 - (IBAction)sendGift:(UIButton *)sender
 {
-    //待实现
+  
     NSLog(@"send gift");
     MSendGiftViewController *sendGiftVC = [[MSendGiftViewController  alloc] init];
     
@@ -417,6 +431,29 @@
 - (IBAction)showGift:(UIButton *)sender
 {
     //判断有没有礼物，如果有礼物， 将礼物图片显示在礼物按钮下方每一行五张图片，并且那么酒吧收藏按钮往下平移到离最后一行图片底部14像素
+    count ++;
+    
+
+    MFriendGiftView *friendGiftView = [[MFriendGiftView alloc] init];
+
+    if (count % 2 == 0 ) {
+        NSString    *url = [NSString stringWithFormat:@"%@/restful/gift/receiver?user_id=%@&page=1&gift_type=friend",MM_URL,friendId];
+        NSLog(@"Friend gift Url == %@",url);
+        
+        moveFrame1.frame = CGRectMake(moveFrame1.frame.origin.x, moveFrame1.frame.origin.y + moveFrame1.frame.size.height + 20, moveFrame1.frame.size.width, moveFrame1.frame.size.height);
+        moveFrame2.frame = CGRectMake(moveFrame2.frame.origin.x, moveFrame1.frame.origin.y + moveFrame2.frame.size.height + 70, moveFrame2.frame.size.width, moveFrame2.frame.size.height);
+        [friendGiftView setFrame:CGRectMake(0, 470, 320,90)];
+        [friendGiftView initWithRequestByUrl:url];
+        [self.view addSubview:friendGiftView];
+    }
+    else
+    {
+        [friendGiftView.sendGiftRequest1 clearDelegatesAndCancel];
+        
+        [friendGiftView removeFromSuperview];
+        moveFrame1.frame = CGRectMake(moveFrame1.frame.origin.x,10, moveFrame1.frame.size.width, moveFrame1.frame.size.height);
+        moveFrame2.frame = CGRectMake(moveFrame2.frame.origin.x, moveFrame1.frame.origin.y + moveFrame2.frame.size.height + 7, moveFrame2.frame.size.width, moveFrame2.frame.size.height);
+    }
 }
 
 - (IBAction)barCollection:(UIButton *)sender

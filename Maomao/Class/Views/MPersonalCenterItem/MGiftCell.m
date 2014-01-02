@@ -37,10 +37,11 @@
 - (void)setCellInfoWithModel:(MGiftModel *)model
 {
     [giftImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@""]];
-    
+    [uerIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.gift_pic_path]] placeholderImage:[UIImage imageNamed:@""]];
+     
     userName.text = model.nick_name;
     timeLabel.text = model.time;
-    giftName.text = model.words;
+    giftName.text = model.gift_name;
     
 }
 @end
