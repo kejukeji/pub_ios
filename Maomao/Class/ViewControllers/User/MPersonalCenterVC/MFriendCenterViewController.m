@@ -450,9 +450,18 @@
     {
         [friendGiftView.sendGiftRequest1 clearDelegatesAndCancel];
         
-        [friendGiftView removeFromSuperview];
+        //coverView的作用是将礼物视图给遮住，然后将收藏按钮以及箭头放在coverView的上方，最终完成遮盖。
+        UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 470, 320, 100)];
+        [coverView setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:coverView];
+        
+        friendGiftView.hidden = YES;
+        
         moveFrame1.frame = CGRectMake(moveFrame1.frame.origin.x,10, moveFrame1.frame.size.width, moveFrame1.frame.size.height);
         moveFrame2.frame = CGRectMake(moveFrame2.frame.origin.x, moveFrame1.frame.origin.y + moveFrame2.frame.size.height + 7, moveFrame2.frame.size.width, moveFrame2.frame.size.height);
+        [coverView addSubview:moveFrame1];
+        [coverView addSubview:moveFrame2];
+        
     }
 }
 
