@@ -294,7 +294,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="gotoNextVC:" destination="-1" eventType="touchUpInside" id="HvL-0p-TGJ"/>
+                        <action selector="gotoCreditVC:" destination="-1" eventType="touchUpInside" id="8bB-sq-sS9"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JZJ-hQ-PZM">
@@ -306,7 +306,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="gotoNextVC:" destination="-1" eventType="touchUpInside" id="hUE-gW-6Mm"/>
+                        <action selector="gotoCreditVC:" destination="-1" eventType="touchUpInside" id="yNA-N6-u0B"/>
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资深泡客" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o6P-l4-74V">

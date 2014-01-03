@@ -10,6 +10,7 @@
 
 - (void)personalCenterLeftSlider;
 - (void)mPersonalCenterGotoNext:(NSInteger)number;
+- (void)gotoCredictVC:(NSString *)credit getValue2:(NSString *) reputation;
 
 @end
 
@@ -68,6 +69,9 @@
 //Button Action
 
 - (IBAction)gotoNextVC:(UIButton *)sender;
+
+- (IBAction)gotoCreditVC:(UIButton *)sender;
+
 /***************************************************/
 
 @end

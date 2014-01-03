@@ -447,6 +447,14 @@
     [self leftSlider];
 }
 
+- (void)gotoCredictVC:(NSString *)credit getValue2:(NSString *)reputation
+{
+    MIntegrationVC *integrationVC = [[MIntegrationVC alloc] init];
+    
+    integrationVC.credit = credit;
+    integrationVC.reputation = reputation;
+    [self.navigationController pushViewController:integrationVC animated:YES];
+}
 - (void)mPersonalCenterGotoNext:(NSInteger)number
 {
     MUserSettingVC *userSettingVC = [[MUserSettingVC alloc] init];
@@ -456,7 +464,6 @@
     MMyGiftListVC    *myGiftListVC = [[MMyGiftListVC alloc] init];
     MMyInviteListVC  *myInvteListVC = [[MMyInviteListVC alloc] init];
     MMyTeaserListVC  *myTeaserListVC = [[MMyTeaserListVC alloc] init];
-    MIntegrationVC   *integrationVC = [[MIntegrationVC alloc] init];
     MMyActivityCollectVC  *myActivityCollectVC = [[MMyActivityCollectVC alloc] init];
     
     if (privateMessageVC == nil) {
@@ -471,7 +478,6 @@
             break;
         case 21:
             NSLog(@"goto Experience");
-            [self.navigationController pushViewController:integrationVC animated:YES];
             break;
         case 22:
             NSLog(@"goto invite");

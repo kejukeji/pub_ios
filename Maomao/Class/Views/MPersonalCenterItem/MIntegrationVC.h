@@ -11,5 +11,10 @@
 #import "MBackBtn.h"
 
 @interface MIntegrationVC : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *creditLabel;
+@property (weak, nonatomic) IBOutlet UILabel *reputationLabel;
 
+@property (nonatomic, copy) NSString   *credit;
+@property (nonatomic, copy) NSString
+    *reputation;
 @end

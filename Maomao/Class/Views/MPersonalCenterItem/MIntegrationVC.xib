@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MIntegrationVC">
             <connections>
+                <outlet property="creditLabel" destination="0z4-Ws-gA8" id="WHq-hD-p9A"/>
+                <outlet property="reputationLabel" destination="ayQ-KR-SUe" id="jUS-wJ-f8a"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>

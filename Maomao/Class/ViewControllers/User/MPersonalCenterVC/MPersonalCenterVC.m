@@ -9,6 +9,7 @@
 #import "MPersonalCenterVC.h"
 #import "UIImageView+WebCache.h"
 #import "MUserSettingVC.h"
+#import "MIntegrationVC.h"
 #import "Utils.h"
 #import "JSON.h"
 
@@ -209,6 +210,12 @@
     [delegate mPersonalCenterGotoNext:sender.tag];
     
     
+}
+
+- (IBAction)gotoCreditVC:(UIButton *)sender
+{
+
+    [delegate gotoCredictVC:creditLabel.text getValue2:reputationLable.text];
 }
 
 

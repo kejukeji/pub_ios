@@ -14,6 +14,11 @@
 
 @implementation MIntegrationVC
 
+@synthesize creditLabel;
+@synthesize reputationLabel;
+@synthesize credit;
+@synthesize reputation;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,6 +42,8 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn   ];
     
+    reputationLabel.text = [NSString stringWithFormat:@"经验值：%@",reputation];
+    creditLabel.text = credit;
     if (!noiOS7) {
         for(UIView *view in self.view.subviews)
         {
