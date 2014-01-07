@@ -18,6 +18,7 @@
 #import "MBarSearchVC.h"
 #import "MTitleView.h"
 
+
 @interface MBarListVC () <UITableViewDataSource, UITableViewDelegate>
 {
     MBProgressHUD   *hud;
@@ -26,6 +27,8 @@
     NSMutableArray  *barListSources;
     BOOL             isNetWork;
     int              currentIndex;
+    MChangeCountyVC *changeCountyVC;
+
 }
 
 @end
@@ -42,6 +45,9 @@
 @synthesize isNoBarList;
 @synthesize barCountLabel;
 
+@synthesize barID;
+@synthesize titleName;
+@synthesize changeCountyBtn;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -66,10 +72,20 @@
     [rightBtn setTitle:@"搜索" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
+    changeCountyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    changeCountyBtn.frame = CGRectMake(120, 15, 15, 10);
+    [changeCountyBtn setTitle:@"********" forState:UIControlStateNormal];
+    [changeCountyBtn setImage:[UIImage imageNamed:@"common_img_down_arrow.png"] forState:UIControlStateNormal];
+    [changeCountyBtn addTarget:self action:@selector(changeCounty) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem.titleView addSubview:changeCountyBtn];
+    
     barPicSources = [NSMutableArray arrayWithCapacity:0];
     barListSources = [NSMutableArray arrayWithCapacity:0];
     currentIndex = 1;
-
+ 
+    changeCountyVC = [[MChangeCountyVC alloc] init];
+    
     if (isNoBarList == NO) {  //标准酒吧列表页
         barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 126, 320, 290+(iPhone5?88:0)) style:UITableViewStylePlain];
         [self.view addSubview:barListTV];
@@ -110,11 +126,48 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-  (void) changeCounty
+{
+    
+    UIImageView *bgImg = [[UIImageView alloc] init];
+    bgImg.frame = CGRectMake(1, 65, 319, 50);
+    [bgImg setImage:[UIImage imageNamed:@"barListCountyChange_bg.png"]];
+    [self.view addSubview:bgImg];
+
+    
+     NSString *url = [NSString stringWithFormat: @"%@/restful/pub/list/detail?type_id=%d&province_id=9&city_id=793&page=1",MM_URL,barID];
+    
+    NSLog(@"URL *** == %@",url);
+    
+    changeCountyVC.barTypeId = barID;
+    changeCountyVC.titleName = titleName;
+    changeCountyVC.view.frame = CGRectMake(1, 70, 319, 480);
+    
+    [changeCountyVC initWithRequestByUrl:url];
+    
+    [self.view addSubview:changeCountyVC.view];
+    
+    [bgImg removeFromSuperview];
+    
+    
+}
 - (void)search
 {
     NSLog(@"search");
     MBarSearchVC *barSearchVC = [[MBarSearchVC alloc] init];
     [self.navigationController pushViewController:barSearchVC animated:YES];
+}
+
+#pragma makr -
+#pragma makr - changeCountyDelegate
+
+- (void)changeBarListVC:(NSString *)countyId tpye:(NSInteger)barTpye
+{
+    //NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d&province_id=9&city_id=%@",MM_URL,barTpye,countyId];
+    
+    NSLog(@"countyId = %@ barTpye= %d",countyId,barTpye);
+    
+    //[self initWithRequestByUrl:url];
 }
 
 - (void)initWithRequestByUrl:(NSString *)urlString

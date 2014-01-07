@@ -530,6 +530,10 @@
     titleView.titleName.text = name;
     barListVC.navigationItem.titleView = titleView;
     barListVC.isNoBarList = NO;
+    
+    barListVC.barID = typeId;
+    barListVC.titleName = name;
+    
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d&province_id=9",MM_URL, typeId];
     barListVC.urlStr = url;
 }

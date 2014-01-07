@@ -226,6 +226,7 @@
     [homeScrollView setContentSize:CGSizeMake(320, hight+adBtn.frame.size.height)];
 }
 
+//进入广告宣传页面
 - (void)gotoAdVC
 {
     NSLog(@"goto  AD.");

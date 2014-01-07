@@ -325,6 +325,13 @@
 		0C9B6D7C1859492F00CAA404 /* MCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7B1859492F00CAA404 /* MCollectView.m */; };
 		0C9B6D801859496D00CAA404 /* MMyActivityCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */; };
 		0C9B6D811859496D00CAA404 /* MMyActivityCollectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9B6D7F1859496D00CAA404 /* MMyActivityCollectVC.xib */; };
+		0CC75A0A187A50C700178388 /* MChangeCountyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC75A09187A50C700178388 /* MChangeCountyCell.m */; };
+		0CC75A0C187A50DE00178388 /* MChangeCountyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CC75A0B187A50DE00178388 /* MChangeCountyCell.xib */; };
+		0CC75A0F187A539400178388 /* MChangeCountyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC75A0E187A539400178388 /* MChangeCountyVC.m */; };
+		0CC75A12187A580900178388 /* barListCountyChange_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC75A10187A580900178388 /* barListCountyChange_bg.png */; };
+		0CC75A13187A580900178388 /* barListCountyChange_line_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC75A11187A580900178388 /* barListCountyChange_line_img.png */; };
+		0CC75A16187A815400178388 /* MCountyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC75A15187A815400178388 /* MCountyModel.m */; };
+		0CC75A18187AA36900178388 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CC75A17187AA36900178388 /* View.xib */; };
 		FE684287180E32DA0000E01C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684286180E32DA0000E01C /* Foundation.framework */; };
 		FE684289180E32DA0000E01C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684288180E32DA0000E01C /* CoreGraphics.framework */; };
 		FE68428B180E32DA0000E01C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE68428A180E32DA0000E01C /* UIKit.framework */; };
@@ -785,6 +792,16 @@
 		0C9B6D7D1859496D00CAA404 /* MMyActivityCollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMyActivityCollectVC.h; path = ../../Views/MMyActivityCollectVC.h; sourceTree = "<group>"; };
 		0C9B6D7E1859496D00CAA404 /* MMyActivityCollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMyActivityCollectVC.m; path = ../../Views/MMyActivityCollectVC.m; sourceTree = "<group>"; };
 		0C9B6D7F1859496D00CAA404 /* MMyActivityCollectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMyActivityCollectVC.xib; path = ../../Views/MMyActivityCollectVC.xib; sourceTree = "<group>"; };
+		0CC75A08187A50C700178388 /* MChangeCountyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChangeCountyCell.h; sourceTree = "<group>"; };
+		0CC75A09187A50C700178388 /* MChangeCountyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChangeCountyCell.m; sourceTree = "<group>"; };
+		0CC75A0B187A50DE00178388 /* MChangeCountyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MChangeCountyCell.xib; sourceTree = "<group>"; };
+		0CC75A0D187A539400178388 /* MChangeCountyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MChangeCountyVC.h; sourceTree = "<group>"; };
+		0CC75A0E187A539400178388 /* MChangeCountyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MChangeCountyVC.m; sourceTree = "<group>"; };
+		0CC75A10187A580900178388 /* barListCountyChange_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barListCountyChange_bg.png; sourceTree = "<group>"; };
+		0CC75A11187A580900178388 /* barListCountyChange_line_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barListCountyChange_line_img.png; sourceTree = "<group>"; };
+		0CC75A14187A815400178388 /* MCountyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCountyModel.h; sourceTree = "<group>"; };
+		0CC75A15187A815400178388 /* MCountyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCountyModel.m; sourceTree = "<group>"; };
+		0CC75A17187AA36900178388 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		FE684283180E32DA0000E01C /* Maomao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maomao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE684286180E32DA0000E01C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FE684288180E32DA0000E01C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -991,6 +1008,8 @@
 				0C418AAB1858CFC000E45E98 /* MHomeModel.m */,
 				0C418AAC1858CFC000E45E98 /* MPrivateMessageModel.h */,
 				0C418AAD1858CFC000E45E98 /* MPrivateMessageModel.m */,
+				0CC75A14187A815400178388 /* MCountyModel.h */,
+				0CC75A15187A815400178388 /* MCountyModel.m */,
 				0C20A2AF186845CA00E17914 /* personalCenterModels */,
 			);
 			path = Model;
@@ -1050,6 +1069,9 @@
 				0C418AC21858CFC000E45E98 /* MBarSearchVC.xib */,
 				0C418AC31858CFC000E45E98 /* MPictureVC.h */,
 				0C418AC41858CFC000E45E98 /* MPictureVC.m */,
+				0CC75A0D187A539400178388 /* MChangeCountyVC.h */,
+				0CC75A0E187A539400178388 /* MChangeCountyVC.m */,
+				0CC75A17187AA36900178388 /* View.xib */,
 			);
 			path = BarVC;
 			sourceTree = "<group>";
@@ -1194,6 +1216,9 @@
 				0C418B1D1858CFC100E45E98 /* MBarListCell.h */,
 				0C418B1E1858CFC100E45E98 /* MBarListCell.m */,
 				0C418B1F1858CFC100E45E98 /* MBarListCell.xib */,
+				0CC75A08187A50C700178388 /* MChangeCountyCell.h */,
+				0CC75A09187A50C700178388 /* MChangeCountyCell.m */,
+				0CC75A0B187A50DE00178388 /* MChangeCountyCell.xib */,
 			);
 			path = Bar;
 			sourceTree = "<group>";
@@ -1250,6 +1275,8 @@
 		0C418B491858CFC100E45E98 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0CC75A10187A580900178388 /* barListCountyChange_bg.png */,
+				0CC75A11187A580900178388 /* barListCountyChange_line_img.png */,
 				0C418B4A1858CFC100E45E98 /* 3_c.png */,
 				0C418B4B1858CFC100E45E98 /* activityCollect_blueHook.png */,
 				0C418B4C1858CFC100E45E98 /* activityCollect_chose_frame.png */,
@@ -1800,6 +1827,7 @@
 				0C418C641858CFC100E45E98 /* MUserSettingVC.xib in Resources */,
 				0C418D0E1858CFC100E45E98 /* integration_value.png in Resources */,
 				0C418CF21858CFC100E45E98 /* user_cell_password.png in Resources */,
+				0CC75A0C187A50DE00178388 /* MChangeCountyCell.xib in Resources */,
 				0C418D461858CFC100E45E98 /* user_img_icon.png in Resources */,
 				0C418C451858CFC100E45E98 /* MFeedbackVC.xib in Resources */,
 				0C418CB51858CFC100E45E98 /* Default-568h@2x.png in Resources */,
@@ -1808,6 +1836,7 @@
 				0C418CA61858CFC100E45E98 /* common_img_longLine.png in Resources */,
 				0C418D471858CFC100E45E98 /* user_img_line.png in Resources */,
 				0C418D1C1858CFC100E45E98 /* ic_face_008.png in Resources */,
+				0CC75A13187A580900178388 /* barListCountyChange_line_img.png in Resources */,
 				0C418CDB1858CFC100E45E98 /* leftMenu_icon_message.png in Resources */,
 				0C418D151858CFC100E45E98 /* ic_face_001.png in Resources */,
 				0C418D001858CFC100E45E98 /* gift_Land Rover.png in Resources */,
@@ -1929,6 +1958,8 @@
 				0C418D301858CFC100E45E98 /* personal_colorbg.png in Resources */,
 				0C418D3E1858CFC100E45E98 /* searchBar_frame.png in Resources */,
 				0C418CD21858CFC100E45E98 /* left_menu_male.png in Resources */,
+				0CC75A12187A580900178388 /* barListCountyChange_bg.png in Resources */,
+				0CC75A18187AA36900178388 /* View.xib in Resources */,
 				0C418CFE1858CFC100E45E98 /* gift_Golden Retriever.png in Resources */,
 				0C418D1B1858CFC100E45E98 /* ic_face_007.png in Resources */,
 				0C418CB01858CFC100E45E98 /* homeImg_Ad.png in Resources */,
@@ -2084,6 +2115,7 @@
 				0C418C5D1858CFC100E45E98 /* MMyTeaserListVC.m in Sources */,
 				0C418C191858CFC100E45E98 /* MTitleView.m in Sources */,
 				0C418C591858CFC100E45E98 /* MMyGiftListVC.m in Sources */,
+				0CC75A0F187A539400178388 /* MChangeCountyVC.m in Sources */,
 				0C418C181858CFC100E45E98 /* MRightBtn.m in Sources */,
 				0C418C1E1858CFC100E45E98 /* MAreaModel.m in Sources */,
 				FE902AE1180F90AE00F60C71 /* ASIDataDecompressor.m in Sources */,
@@ -2099,11 +2131,13 @@
 				0C4627D81875057100CCC3FA /* MFriendGiftView.m in Sources */,
 				0C20A371186BC85100E17914 /* MSendGiftViewController.m in Sources */,
 				FE902AF9180F90AE00F60C71 /* SDWebImageManager.m in Sources */,
+				0CC75A16187A815400178388 /* MCountyModel.m in Sources */,
 				0C418C221858CFC100E45E98 /* MBarEnvironmentModel.m in Sources */,
 				0C418C671858CFC100E45E98 /* MBarCollectCell.m in Sources */,
 				0C418C801858CFC100E45E98 /* MTeaserCell.m in Sources */,
 				0C418C741858CFC100E45E98 /* MMyHomeView.m in Sources */,
 				0C418C1B1858CFC100E45E98 /* MTouchView.m in Sources */,
+				0CC75A0A187A50C700178388 /* MChangeCountyCell.m in Sources */,
 				FEAA8845183859B8001928ED /* AGSimpleImageEditorView.m in Sources */,
 				0C418C651858CFC100E45E98 /* MBarAciivityCollectCell.m in Sources */,
 				0C418C611858CFC100E45E98 /* MRegisterProtocolVC.m in Sources */,

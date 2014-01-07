@@ -12,8 +12,9 @@
 #import "GPPrompting.h"
 #import "MBarListCell.h"
 #import "EGORefreshTableHeaderView.h"
+#import "MChangeCountyVC.h"
 
-@interface MBarListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate,UIScrollViewDelegate>
+@interface MBarListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate,UIScrollViewDelegate,changeCountyDelegate>
 {
     IBOutlet MBarListCell *barListCell;
     BOOL                   reloading;
@@ -30,6 +31,9 @@
 @property (nonatomic, copy)   NSString                  *lastUrlString;
 @property (nonatomic, strong) UITableView               *barListTV;
 @property (nonatomic, assign) BOOL                       isNoBarList;
+@property (nonatomic, assign) NSInteger                 barID;
+@property (nonatomic, copy)   NSString                  *titleName;
+@property (nonatomic, strong) UIButton                  *changeCountyBtn;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 - (IBAction)gotoNearBar:(UIButton *)sender;
