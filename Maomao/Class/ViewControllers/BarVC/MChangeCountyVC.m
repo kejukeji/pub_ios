@@ -293,7 +293,7 @@
     
    // NSLog(@" optional county url == %@", url);
     
-    
+    //下面注释的代码 本以为可以改变barListVC下方的TV的数值，结果还是无法实现重新请求加载。
     [delegate changeBarListVC:model.county_id tpye:barTypeId];
     
     //下面注释的代码 本以为可以改变barListVC下方的TV的数值，结果还是无法实现重新请求加载。

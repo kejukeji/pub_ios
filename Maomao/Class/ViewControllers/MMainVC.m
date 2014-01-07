@@ -32,6 +32,7 @@
 #import "MMyTeaserListVC.h"
 #import "MIntegrationVC.h"
 #import "MMyActivityCollectVC.h"
+#import "MChangeCityVC.h"
 
 @interface MMainVC ()
 {
@@ -522,6 +523,15 @@
     [self leftSlider];
 }
 
+- (void) gotoChangeCityVC
+{
+    MChangeCityVC   *changeCityVC = [[MChangeCityVC alloc] init];
+    //NSString *url = [NSString stringWithFormat:@"%@/restful/area",MM_URL];
+    //[changeCityVC initWithRequestUrl:url];
+    
+    [self.navigationController pushViewController:changeCityVC animated:YES];
+    
+}
 - (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 {
     MBarListVC *barListVC = [[MBarListVC alloc] init];

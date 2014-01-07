@@ -238,7 +238,7 @@
         
         //设置礼物名称
         UILabel     *giftName = [[UILabel alloc] init];
-        [giftName setFrame:CGRectMake(giftBtn.frame.origin.x, giftBtn.frame.origin.y  + giftBtn.frame.size.height, 50, 15)];
+        [giftName setFrame:CGRectMake(giftBtn.frame.origin.x, giftBtn.frame.origin.y  + giftBtn.frame.size.height, 60, 15)];
         [giftName setText:model.name];
         [giftName setFont:[UIFont systemFontOfSize:12]];
         [giftName setTextAlignment:NSTextAlignmentCenter];
@@ -246,7 +246,7 @@
         
         //设置礼物积分
         UILabel     *giftCost = [[UILabel alloc] init];
-        [giftCost setFrame:CGRectMake(giftName.frame.origin.x, giftName.frame.origin.y + giftName.frame.size.height, 60, 15)];
+        [giftCost setFrame:CGRectMake(giftName.frame.origin.x, giftName.frame.origin.y + giftName.frame.size.height, 70, 15)];
         [giftCost setText:[ NSString stringWithFormat:@"%d 积分",model.cost]];
         [giftCost setFont:[UIFont systemFontOfSize:12]];
         [giftCost setTextAlignment:NSTextAlignmentCenter];

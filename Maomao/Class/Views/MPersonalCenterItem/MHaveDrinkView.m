@@ -50,6 +50,8 @@
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
         }
     }
+    
+    
 }
 
 - (void) back

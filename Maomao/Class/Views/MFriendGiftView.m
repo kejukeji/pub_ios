@@ -146,7 +146,7 @@
             [giftImg setFrame:CGRectMake(xPoint, (row*35)+20, 30, 30)];
             
             UILabel *giftName = [[UILabel alloc] init];
-            [giftName setFrame:CGRectMake(giftImg.frame.origin.x, giftImg.frame.origin.y + giftImg.frame.size.height, 30, 15)];
+            [giftName setFrame:CGRectMake(giftImg.frame.origin.x, giftImg.frame.origin.y + giftImg.frame.size.height, 40, 15)];
             [giftName setText:model.gift_name];
             [giftName setFont:[UIFont systemFontOfSize:12]];
             [giftName setTextAlignment:NSTextAlignmentCenter];

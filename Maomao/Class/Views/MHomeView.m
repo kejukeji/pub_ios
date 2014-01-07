@@ -73,6 +73,7 @@
 - (void)selectCity
 {
     NSLog(@"selcetCity");
+    [delegate gotoChangeCityVC];
 }
 
 #pragma mark -

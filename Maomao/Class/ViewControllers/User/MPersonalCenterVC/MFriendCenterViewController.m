@@ -352,7 +352,7 @@
     
     sendGiftVC.receiverID = [NSString stringWithFormat:@"%d",receiver_id];
     
-    NSString *url = @"http://42.121.108.142:6001/restful/sender/gift/view";
+    NSString *url = [NSString stringWithFormat:@"%@/restful/sender/gift/view",MM_URL];
     
     [sendGiftVC initWithRequestByUrl:url];
     

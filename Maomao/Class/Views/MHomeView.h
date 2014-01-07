@@ -11,6 +11,8 @@
 - (void)homeLeftSlider;
 - (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 
+- (void)gotoChangeCityVC;
+
 @end
 
 #import <UIKit/UIKit.h>
