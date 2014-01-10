@@ -201,6 +201,8 @@
     titleView.titleName.text = @"附近酒吧";
     barListVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/near/pub?longitude=%f&latitude=%f",MM_URL, locationLongitude, locationLatitude];
+    NSLog(@" near url == %@",url);
+    
     [barListVC initWithRequestByUrl:url];
 }
 

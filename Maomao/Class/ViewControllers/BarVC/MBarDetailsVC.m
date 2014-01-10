@@ -237,6 +237,8 @@
         NSArray *pubList = [responseDict objectForKey:@"pub_list"];
         //酒吧活动列表
         NSDictionary *activity = [responseDict objectForKey:@"activity"];
+        
+        
         if ([activity isEqual:[NSNull null]]) {
             isHaveActivity = FALSE;
             [self moveFrame];
@@ -315,6 +317,7 @@
                 detailModel.view_number = [pubDict objectForKey:@"view_number"];
                 detailModel.web_url = [pubDict objectForKey:@"web_url"];
                 
+                NSLog(@"detailModel street  == %@",detailModel.street);
                 //获取酒吧经纬度
                 bar_latitude = detailModel.latitude;
                 bar_longitude = detailModel.longitude;
@@ -324,9 +327,8 @@
             }
             
             if (![activity isEqual:[NSNull null]]) {
+        
                 MActivityListModel  *activityModel = [[MActivityListModel alloc] init];
-                
-                //
                 activityModel.activity_id = [activity objectForKey:@"id"];
                 NSLog(@"activity_id==%@",[activity objectForKey:@"id"]);
                 
@@ -444,7 +446,16 @@
 
 - (void)setDetailConten:(MBarDetailModel *)model
 {
-    [rightBtn setTitle:model.is_collect forState:UIControlStateNormal];
+    
+//    if (model.is_collect) {
+//        [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
+//    }
+//    else
+//    {
+//        [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+//
+//    }
+    
 
     NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
     
@@ -460,7 +471,7 @@
 //        telLabel.text = @"";
         [telNumber setTitle:@"" forState:UIControlStateNormal];
     } else {
-        // = [NSString stringWithFormat:@"%@",model.tel_list];
+
         [telNumber setTitle:[NSString stringWithFormat:@"%@",model.tel_list] forState:UIControlStateNormal];
         
         [addressBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
