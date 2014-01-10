@@ -365,6 +365,7 @@
 //            NSString *city = placemark.administrativeArea;
             
             [[NSUserDefaults standardUserDefaults] setFloat:newLocation.coordinate.longitude forKey:LONGITUDE];
+            
             [[NSUserDefaults standardUserDefaults] setFloat:newLocation.coordinate.latitude forKey:LATITUDE];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
@@ -545,6 +546,7 @@
     barListVC.titleName = name;
     
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d&province_id=9",MM_URL, typeId];
+    
     barListVC.urlStr = url;
 }
 

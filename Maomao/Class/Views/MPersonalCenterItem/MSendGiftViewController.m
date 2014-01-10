@@ -234,7 +234,7 @@
         [giftBtn setTag:model.gift_id];//获取gift_id；
         
         [giftBtn addTarget:self action:@selector(sendGift:) forControlEvents:UIControlEventTouchUpInside];
-        [giftBtn setFrame:CGRectMake(xPoint, 15 + (row * 50), 60, 60)];
+        [giftBtn setFrame:CGRectMake(xPoint, 15 + (row * 90), 60, 60)];
         
         //设置礼物名称
         UILabel     *giftName = [[UILabel alloc] init];

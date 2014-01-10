@@ -35,6 +35,8 @@
 @property (nonatomic, copy)   NSString                  *titleName;
 @property (nonatomic, strong) UIButton                  *changeCountyBtn;
 
+@property (nonatomic, assign) NSInteger                nearTag; // 标记附近酒吧按钮tag
+
 - (void)initWithRequestByUrl:(NSString *)urlString;
 - (IBAction)gotoNearBar:(UIButton *)sender;
 

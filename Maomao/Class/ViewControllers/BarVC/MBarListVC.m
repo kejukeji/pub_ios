@@ -27,6 +27,7 @@
     NSMutableArray  *barListSources;
     BOOL             isNetWork;
     int              currentIndex;
+
     MChangeCountyVC *changeCountyVC;
 
 }
@@ -45,6 +46,7 @@
 @synthesize isNoBarList;
 @synthesize barCountLabel;
 
+@synthesize nearTag;
 @synthesize barID;
 @synthesize titleName;
 @synthesize changeCountyBtn;
@@ -71,6 +73,7 @@
     [rightBtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
     [rightBtn setTitle:@"搜索" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    
     
     changeCountyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -99,6 +102,7 @@
         
         [self.navigationItem setRightBarButtonItem:nil];  //隐藏右上角搜索按钮
     }
+    
     [barListTV setDelegate:self];
     [barListTV setDataSource:self];
     [barListTV setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -110,8 +114,24 @@
     [hud setLabelText:@"加载中，请稍等！"];
     [self.view addSubview:hud];
     
-    NSString *url = [NSString stringWithFormat:@"%@&city_id=%@",urlStr, @"0"];
-    [self initWithRequestByUrl:url];
+    // 判断是否酒吧按钮
+    if (nearTag == 11) {
+        
+        NSString *url = [NSString stringWithFormat:@"%@",urlStr];
+        
+        NSLog(@"url in viewload %%&&%%&& == %@",url);
+        
+        [self initWithRequestByUrl:url];
+    }
+    else{
+        
+        NSString *url = [NSString stringWithFormat:@"%@&city_id=%@",urlStr, @"0"];
+        
+        NSLog(@"url in viewload %%&&%%&& == %@",url);
+        
+        [self initWithRequestByUrl:url];
+    }
+
     
     if (!noiOS7) {
         for (UIView *view in self.view.subviews) {
@@ -170,11 +190,15 @@
     //[self initWithRequestByUrl:url];
 }
 
+
 - (void)initWithRequestByUrl:(NSString *)urlString
 {
     [hud show:YES];
-
+    
+    
     self.lastUrlString = urlString;
+    
+    NSLog(@"request url  ******* == %@",urlString);
     
     if (refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -70.0f, barListTV.frame.size.width,70.0f)];
@@ -196,14 +220,17 @@
 
     MBarListVC *barListVC = [[MBarListVC alloc] init];
     barListVC.isNoBarList = YES;
-    [self.navigationController pushViewController:barListVC animated:YES];
+   
     MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
     titleView.titleName.text = @"附近酒吧";
     barListVC.navigationItem.titleView = titleView;
     NSString *url = [NSString stringWithFormat:@"%@/restful/near/pub?longitude=%f&latitude=%f",MM_URL, locationLongitude, locationLatitude];
     NSLog(@" near url == %@",url);
+//    [barListVC initWithRequestByUrl:url];
     
-    [barListVC initWithRequestByUrl:url];
+    barListVC.nearTag = sender.tag;
+    barListVC.urlStr = url;
+    [self.navigationController pushViewController:barListVC animated:YES];
 }
 
 - (void)refaushTableViewData
@@ -215,7 +242,8 @@
     
     NSString *url = [NSString stringWithFormat:@"%@&page=%d",lastUrlString, currentIndex];
     [self sendRequestByUrlString:url];
-    NSLog(@"url === %@",url);
+   
+    NSLog(@"refaush url#########  === %@",url);
     
     NSLog(@"网络流量过去5秒的平均流量字节/秒 ==%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
 }
