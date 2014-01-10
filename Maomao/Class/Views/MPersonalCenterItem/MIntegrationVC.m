@@ -18,6 +18,7 @@
 @synthesize reputationLabel;
 @synthesize credit;
 @synthesize reputation;
+@synthesize levelImg;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +43,11 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn   ];
     
+    UIImageView  *img = [[UIImageView alloc] init];
+    img.frame = CGRectMake(37, 164, levelImg.frame.size.width - 180, levelImg.frame.size.height);
+    [img setImage:[UIImage imageNamed:@"integration_value_blue.png"]];
+    
+    [self.view addSubview:img];
     reputationLabel.text = [NSString stringWithFormat:@"经验值：%@",reputation];
     creditLabel.text = credit;
     if (!noiOS7) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MIntegrationVC">
             <connections>
                 <outlet property="creditLabel" destination="0z4-Ws-gA8" id="WHq-hD-p9A"/>
+                <outlet property="levelImg" destination="UdG-x1-42g" id="Kp2-IK-TM8"/>
                 <outlet property="reputationLabel" destination="ayQ-KR-SUe" id="jUS-wJ-f8a"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -61,11 +62,11 @@
                     <rect key="frame" x="37" y="247" width="254" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xUV-XI-zSX">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="xUV-XI-zSX">
                     <rect key="frame" x="39" y="249" width="249" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <mutableString key="text">积分说明：消费积分的获得有多种途径，包括酒吧签到，收礼物、收私信、收传情、收藏酒吧、收藏活动 等。消费积分达到一定的数量之后可以兑换积分商城中的商品，兑换行为的发生将减去所需的消费积分数；(1)首次注册  +20   首赠                                      (2)完善个人资料。 +20                                   首赠（修改不加）  (3)平台签到  +10（第一天）                         每天(4)酒吧签到  +10（第一天）                         每天(5)收藏酒吧  +20   每家                                (6)收藏活动  +20   每次                               (7)收到私信  +10   每人                              (8)收到礼物  +10   每次                                             (9)收到传情  +10   每人                                收到邀请      +10   每次                               在线时间（满1小) +20                            每天累计签到规则：获得的积分=10+10*N（N为累计签到天数 N>1）累计签到1天：10累计签到2天：30累计签到3天：40……累计签到9天：100累计周期为9天 如果中途中断，则连续签到天数归0 即N=0；</mutableString>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -79,11 +80,11 @@
                     <rect key="frame" x="37" y="338" width="254" height="77"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xak-NH-pK1">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="xak-NH-pK1">
                     <rect key="frame" x="39" y="340" width="249" height="73"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <string key="text">(1)送礼物（虚拟礼物）：送礼消耗的积分数按照礼物的积分数而定。 (2)发传情：用户在向陌生好友发媚眼传情，会消耗积分。 (3)发邀请：用户在向陌生好友发(4)邀请喝一杯，会消耗积分。(5)积分换礼（真实礼物）：用户自己赚的的积分积累到一定程度，可以兑换真实礼物（该模块后期开发）。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>

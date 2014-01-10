@@ -341,6 +341,7 @@
 		0CC75A12187A580900178388 /* barListCountyChange_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC75A10187A580900178388 /* barListCountyChange_bg.png */; };
 		0CC75A13187A580900178388 /* barListCountyChange_line_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC75A11187A580900178388 /* barListCountyChange_line_img.png */; };
 		0CC75A16187A815400178388 /* MCountyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC75A15187A815400178388 /* MCountyModel.m */; };
+		0CDCB420187FFB3900E4AEC9 /* integration_value_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDCB41F187FFB3900E4AEC9 /* integration_value_blue.png */; };
 		FE684287180E32DA0000E01C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684286180E32DA0000E01C /* Foundation.framework */; };
 		FE684289180E32DA0000E01C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE684288180E32DA0000E01C /* CoreGraphics.framework */; };
 		FE68428B180E32DA0000E01C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE68428A180E32DA0000E01C /* UIKit.framework */; };
@@ -823,6 +824,7 @@
 		0CC75A11187A580900178388 /* barListCountyChange_line_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barListCountyChange_line_img.png; sourceTree = "<group>"; };
 		0CC75A14187A815400178388 /* MCountyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCountyModel.h; sourceTree = "<group>"; };
 		0CC75A15187A815400178388 /* MCountyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCountyModel.m; sourceTree = "<group>"; };
+		0CDCB41F187FFB3900E4AEC9 /* integration_value_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = integration_value_blue.png; sourceTree = "<group>"; };
 		FE684283180E32DA0000E01C /* Maomao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maomao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE684286180E32DA0000E01C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FE684288180E32DA0000E01C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1444,6 +1446,7 @@
 		0C418BBD1858CFC100E45E98 /* PersonalCenterItems */ = {
 			isa = PBXGroup;
 			children = (
+				0CDCB41F187FFB3900E4AEC9 /* integration_value_blue.png */,
 				0C20A2B91869C48100E17914 /* activity_collect_btn_hook.png */,
 				0C20A2BA1869C48100E17914 /* activity_collect_cell_btn.png */,
 				0C4A76DA185EA12400FDDE18 /*   friendCenter_right_btn.png */,
@@ -2009,6 +2012,7 @@
 				0C418C8D1858CFC100E45E98 /* bar_detail_5.png in Resources */,
 				0C418D321858CFC100E45E98 /* personal_giftandcollect_frame.png in Resources */,
 				0C418D0B1858CFC100E45E98 /* gift_Valentino.png in Resources */,
+				0CDCB420187FFB3900E4AEC9 /* integration_value_blue.png in Resources */,
 				0C418C921858CFC100E45E98 /* bar_detail_usr_icon.png in Resources */,
 				0C418CAD1858CFC100E45E98 /* guide_1.jpg in Resources */,
 				0C418D2C1858CFC100E45E98 /* personal_botom.png in Resources */,

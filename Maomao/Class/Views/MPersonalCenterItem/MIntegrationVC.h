@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *creditLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reputationLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *levelImg;
+
 @property (nonatomic, copy) NSString   *credit;
 @property (nonatomic, copy) NSString
     *reputation;
