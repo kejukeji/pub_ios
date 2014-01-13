@@ -15,9 +15,9 @@
 
 #define kRequestTime 30
 
-//#define MM_URL @"http://42.121.108.142:6001"
+#define MM_URL @"http://42.121.108.142:6001"
 
-#define MM_URL             @"http://61.188.37.228:8081"
+//#define MM_URL             @"http://61.188.37.228:8081"
 
 #define LONGITUDE          @"longitude"
 #define LATITUDE           @"latitude"

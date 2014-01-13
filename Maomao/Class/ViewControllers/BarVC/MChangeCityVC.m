@@ -7,6 +7,7 @@
 //
 
 #import "MChangeCityVC.h"
+#import "MHomeView.h"
 #import "MTitleView.h"
 #import "MCityModel.h"
 #import "MBackBtn.h"
@@ -75,7 +76,7 @@
     [cityTV setBackgroundColor:[UIColor clearColor]];
     [cityTV setBackgroundView:nil];
     [cityTV setRowHeight:40.0f];
-    [self.view addSubview:cityTV];
+//    [self.view addSubview:cityTV];
     
     NSString *url = [NSString stringWithFormat:@"%@/restful/area",MM_URL];
     [self sendRequestByUrlString:url];
@@ -308,8 +309,6 @@
     {
         CLPlacemark *placeMark = [placemarks objectAtIndex:0];
         NSString *currentCityStr = [placeMark locality];
-        
-       
         NSLog(@"当前省份为：%@",placeMark.administrativeArea);
         NSLog(@"当前城市为：%@",currentCityStr);
         currentCityName.text = currentCityStr;//placeMark.administrativeArea;
@@ -334,6 +333,7 @@
     
     [alertView show];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -342,6 +342,62 @@
 
 - (IBAction)searchCityBtn:(UIButton *)sender
 {
+  
+    MCityModel *model = [[MCityModel alloc] init];
+//       model  = [citySource objectAtIndex:2];
+//    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/home",MM_URL];
+//    MHomeView *homeView = [[MHomeView alloc] init];
+//    [self.navigationController popViewControllerAnimated:YES];
+//    [homeView changeCityName:model.name];
+//    NSLog(@"城市 %@",model.name);
+//   // NSLog(@"city Name in home address == %@",homeView.changeCityName);
+//    [homeView initWithRequestByUrl:url];
+    
+    
+    
+    
+    //[self.view addSubview:homeView];
+
+    
+    //筛选出符合的城市
+    
+    for (int i =0; i < [citySource count]; i++) {
+       model  = [citySource objectAtIndex:i];
+        //if ([cityNameTF.text isEqualToString:model.name]) {
+        //if ([string rangeOfString:@"http:"].length > 0
+        if ([cityNameTF.text rangeOfString:model.name].length > 0) {
+        
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"恭喜你找到你喜欢的城市" Icon:nil];
+            [self.view addSubview:prompting];
+            break;
+//            [prompting show];
+//            MHomeView *homeView = [[MHomeView alloc] init];
+//            [homeView.cityName setText:model.name];
+//            [self.view addSubview:homeView];
+            
+            
+        }
+        else
+        {
+            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"不好意思没有找到您喜欢的城市" Icon:nil];
+            [self.view addSubview:prompting];
+            [prompting show];
+           
+            NSString *url = [NSString stringWithFormat:@"%@/restful/pub/home",MM_URL];
+            MHomeView *homeView = [[MHomeView alloc] init];
+            
+            [homeView changeCityName:model.name];
+            [homeView initWithRequestByUrl:url];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+           
+            
+           // [self.view addSubview:homeView];
+           
+        }
+    }
+    
+    [self.sendRequest clearDelegatesAndCancel];
     [cityNameTF resignFirstResponder];
 }
 @end

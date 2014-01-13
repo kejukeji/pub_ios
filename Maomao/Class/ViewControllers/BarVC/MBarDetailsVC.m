@@ -447,16 +447,15 @@
 - (void)setDetailConten:(MBarDetailModel *)model
 {
     
-//    if (model.is_collect) {
-//        [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
-//
-//    }
-    
+    if (model.is_collect) {
+        [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
 
+    }
+    
     NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
     
     [barIconBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];

@@ -16,6 +16,7 @@
 @synthesize delegate;
 @synthesize sendRequest;
 @synthesize adPic_Path;
+@synthesize changeCityName;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -47,6 +48,7 @@
         [cityName setBackgroundColor:[UIColor clearColor]];
         [rightBtn addSubview:cityName];
         
+        
         UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(32, 10, 10, 6)];
         [rightImg setImage:[UIImage imageNamed:@"common_img_down_arrow.png"]];
         [rightBtn addSubview:rightImg];
@@ -63,6 +65,21 @@
         homeSources = [NSMutableArray arrayWithCapacity:0];
     }
     return self;
+}
+
+- (void)changeCityName:(NSString *)cityName
+{
+
+    UILabel *cityName1 = [[UILabel alloc] initWithFrame:CGRectMake(260, 50, 32, 24)];
+    [cityName1 setText:cityName];
+    [cityName1 setTextColor:[UIColor redColor]];
+    [cityName1 setFont:[UIFont systemFontOfSize:14]];
+    [cityName1 setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:cityName1];
+   
+    
+    NSLog(@" 传过来的cityName == %@",cityName1.text);
+    
 }
 
 - (void)leftSlider

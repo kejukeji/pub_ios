@@ -34,6 +34,9 @@
 @property (nonatomic, assign) id <MHomeViewDelegate>    delegate;
 @property (nonatomic, strong) ASIHTTPRequest           *sendRequest;
 @property (nonatomic, strong) NSString                 *adPic_Path;
+@property (nonatomic, strong) NSString                  *changeCityName;
+
 - (void)initWithRequestByUrl:(NSString *)urlString;
+- (void) changeCityName:(NSString *)cityName;
 
 @end
