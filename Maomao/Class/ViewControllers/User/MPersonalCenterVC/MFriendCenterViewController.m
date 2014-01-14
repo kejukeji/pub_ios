@@ -306,9 +306,10 @@
 {
     
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
-    //http://42.121.108.142:6001/restful/sender/gift?sender_id=1&receiver_id=3
-    NSString *url = [NSString stringWithFormat:@"%@/restful/sender/invite?sender_id=%@&receiver_id=%d",MM_URL,userid,receiver_id];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/restful/sender/greeting?sender_id=%@&receiver_id=%d",MM_URL,userid,receiver_id];
     [self sendGreetingRequest:url];
+    NSLog(@"Teaser url == %@",url);
     
     NSLog(@" have Teaser.");
     

@@ -75,6 +75,7 @@
 
 - (void)back
 {
+    [sendRequest clearDelegatesAndCancel];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -183,6 +184,7 @@
 {
     isNetWork = [Utils checkCurrentNetWork];
     
+    NSLog(@"邀约 url == %@",urlString);
     if (!isNetWork) {
         if (prompting != nil) {
             [prompting removeFromSuperview];

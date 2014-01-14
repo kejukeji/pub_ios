@@ -20,13 +20,14 @@
     MBProgressHUD      *hud;
     GPPrompting        *prompting;
     NSMutableArray     *signaSources;
+    UIScrollView       *barDetailScrollView;
     BOOL                isNetWork;
     BOOL                isHaveActivity;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton       *barIconBtn;
 @property (weak, nonatomic) IBOutlet UILabel        *barNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel        *signaNumberLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel        *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton       *telNumber;
 
@@ -37,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UIButton       *addressBtn;
 @property (weak, nonatomic) IBOutlet UILabel        *barIntroTitel;
 
+@property (weak, nonatomic) IBOutlet UIButton *activityBtn;
+
 /************酒吧活动***********************/
 @property (weak, nonatomic) IBOutlet UILabel *activityTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityInfoLabel;
@@ -44,6 +47,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *activityImg;
 
 /***********************************/
+
 @property (nonatomic, strong) ASIHTTPRequest        *sendRequest;
 @property (nonatomic, strong) ASIHTTPRequest        *sendCollectRequest;
 @property (nonatomic, strong) ASIHTTPRequest        *sendCancelCollectRequest;

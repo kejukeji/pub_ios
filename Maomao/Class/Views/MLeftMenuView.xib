@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -29,7 +29,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AAW-ke-v7L">
+                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="AAW-ke-v7L">
                     <rect key="frame" x="0.0" y="205" width="245" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -50,7 +50,6 @@
                     <rect key="frame" x="0.0" y="250" width="245" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" backgroundImage="leftmenu_deepgray_img.png"/>
                     <connections>
                         <action selector="gotoNextVC:" destination="1" eventType="touchUpInside" id="9Wb-Z7-DOv"/>
                     </connections>
@@ -130,19 +129,19 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="leftmenu_bg_deepgray_icon.png" id="EGq-Y0-nhC">
-                    <rect key="frame" x="0.0" y="0.0" width="227" height="205"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="leftmenu_user_icon.png" id="sbH-vk-G9R">
-                    <rect key="frame" x="70" y="27" width="105" height="105"/>
+                    <rect key="frame" x="64" y="27" width="105" height="105"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="leftMenu_img_headIcon.png" id="EGq-Y0-nhC">
+                    <rect key="frame" x="0.0" y="0.0" width="225" height="205"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NVK-Fu-e62">
-                    <rect key="frame" x="69" y="26" width="106" height="106"/>
+                    <rect key="frame" x="64" y="25" width="106" height="106"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" backgroundImage="67966838-7770-46DE-990C-0F66F46B14DE">
+                    <state key="normal" backgroundImage="483A8D58-3FCF-45F4-BFCA-E1A1FAF3EC9B">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -150,7 +149,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OA1-HV-SPF">
-                    <rect key="frame" x="18" y="140" width="209" height="21"/>
+                    <rect key="frame" x="30" y="140" width="209" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,7 +161,7 @@
                     <color key="backgroundColor" red="0.19607844948768616" green="0.40392160415649414" blue="0.46666669845581055" alpha="1" colorSpace="deviceRGB"/>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mmT-Fb-fbm">
-                    <rect key="frame" x="18" y="165" width="209" height="21"/>
+                    <rect key="frame" x="30" y="165" width="209" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -172,6 +171,10 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
+                <outlet property="btn11" destination="AAW-ke-v7L" id="dCH-6a-pCA"/>
+                <outlet property="btn12" destination="kcU-1u-Mzp" id="RV2-IW-A6T"/>
+                <outlet property="btn13" destination="nMX-Zb-tJP" id="ISd-Ge-wuf"/>
+                <outlet property="btnState" destination="XXS-Gm-9ob" id="h9v-hy-VEh"/>
                 <outlet property="headBgImg" destination="EGq-Y0-nhC" id="KXs-Kp-Lpf"/>
                 <outlet property="headImg" destination="sbH-vk-G9R" id="BAh-qx-YTN"/>
                 <outlet property="nameLabel" destination="OA1-HV-SPF" id="AXc-ep-e9l"/>
@@ -180,7 +183,7 @@
         </view>
     </objects>
     <resources>
-        <image name="67966838-7770-46DE-990C-0F66F46B14DE" width="105" height="105">
+        <image name="483A8D58-3FCF-45F4-BFCA-E1A1FAF3EC9B" width="105" height="105">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -968,10 +971,9 @@ AAAAAAAAAAAAAAC2dQ
         </image>
         <image name="friends_black_big.png" width="640" height="496"/>
         <image name="leftMenu_bg_bottome.png" width="390" height="725"/>
+        <image name="leftMenu_img_headIcon.png" width="451" height="410"/>
         <image name="leftMenu_img_line.png" width="473" height="2"/>
-        <image name="leftmenu_bg_deepgray_icon.png" width="1" height="293"/>
         <image name="leftmenu_collect_btn_icon_03.png" width="30" height="27"/>
-        <image name="leftmenu_deepgray_img.png" width="1" height="65"/>
         <image name="leftmenu_home_btn_icon.png" width="32" height="25"/>
         <image name="leftmenu_msg_icon.png" width="28" height="17"/>
         <image name="leftmenu_setting_btn_icon.png" width="28" height="29"/>

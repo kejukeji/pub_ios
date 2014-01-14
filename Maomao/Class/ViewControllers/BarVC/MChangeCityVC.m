@@ -370,7 +370,7 @@
             prompting = [[GPPrompting alloc] initWithView:self.view Text:@"恭喜你找到你喜欢的城市" Icon:nil];
             [self.view addSubview:prompting];
             break;
-//            [prompting show];
+            [prompting show];
 //            MHomeView *homeView = [[MHomeView alloc] init];
 //            [homeView.cityName setText:model.name];
 //            [self.view addSubview:homeView];

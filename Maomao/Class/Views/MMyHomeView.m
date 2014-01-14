@@ -18,6 +18,8 @@
 @synthesize nameLabel;
 @synthesize signLabel;
 
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

@@ -12,7 +12,7 @@
 
 //总体信息
 @property (nonatomic, copy)   NSString    *county;
-@property (nonatomic, copy)   NSString    *is_collect;
+@property (nonatomic, assign)BOOL       is_collect;
 @property (nonatomic, copy)   NSString    *message;
 
 //酒吧详情数据

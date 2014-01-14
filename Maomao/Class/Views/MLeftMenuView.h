@@ -23,6 +23,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *signLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *btn11;
+@property (weak, nonatomic) IBOutlet UIButton *btn12;
+@property (weak, nonatomic) IBOutlet UIButton *btn13;
+@property (weak, nonatomic) IBOutlet UIButton *btnState;
+
+
+
 - (IBAction)gotoNextVC:(UIButton *)sender;
 
 @end

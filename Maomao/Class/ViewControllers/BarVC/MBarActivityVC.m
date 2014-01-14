@@ -16,8 +16,10 @@
 
 @interface MBarActivityVC ()
 {
-    NSString    *activityId;//酒吧活动id
-    MRightBtn   *rightBtn;
+    NSString        *activityId;//酒吧活动id
+    MRightBtn       *rightBtn;
+    UIScrollView    *barActivityScrollView;
+    
 }
 @end
 
@@ -28,7 +30,6 @@
 @synthesize addressLable;
 @synthesize jionNumLabel;
 @synthesize activityDetailLable;
-//缺少活动时间 等待接口
 @synthesize activityTimeLabel;
 @synthesize sendRequest;
 @synthesize sendCollectRequest;
@@ -57,21 +58,23 @@
     [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
     //[rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
    // rightBtn.titleLabel.text = @"收藏";
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    barActivityScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0))];
+    [barActivityScrollView setBackgroundColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.89 alpha:1.0]];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中,请稍后!"];
     [hud show:YES];
-
-    [self.view addSubview:hud];
+    [barActivityScrollView addSubview:hud];
     
-    if (!noiOS7) {
-        for(UIView  *view in self.view.subviews)
-        {
-            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y +64, view.frame.size.width, view.frame.size.height)];
-        }
+    for(UIView  *view in self.view.subviews)
+    {
+        [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y - 64, view.frame.size.width, view.frame.size.height)];
+           [barActivityScrollView addSubview:view];
     }
-    
+    [barActivityScrollView setContentSize:CGSizeMake(320, 550)];
+    [self.view addSubview:barActivityScrollView];
 }
 
 - (void)back

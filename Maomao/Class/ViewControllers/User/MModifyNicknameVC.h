@@ -12,6 +12,7 @@
 @interface MModifyNicknameVC : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *nicknameTF;
+
 @property (nonatomic,strong)  ASIFormDataRequest      *formDataRequest;
 
 @end

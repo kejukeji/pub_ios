@@ -76,6 +76,7 @@
 
 - (void)back
 {
+    [self.sendRequest clearDelegatesAndCancel];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

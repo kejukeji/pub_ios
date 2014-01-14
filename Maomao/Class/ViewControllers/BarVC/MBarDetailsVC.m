@@ -31,6 +31,7 @@
     MRightBtn      *rightBtn;
     NSString       *bar_longitude;
     NSString       *bar_latitude;
+    NSInteger       scrollSize; //滑动的高度；
     UIAlertView   *phoneCall;
 }
 
@@ -41,10 +42,8 @@
 @synthesize barIconBtn;
 @synthesize barNameLabel;
 @synthesize telNumber;
-@synthesize signaNumberLabel;
 @synthesize distanceLabel;
 @synthesize barTypeLabel;
-
 @synthesize barIntroTextView;
 @synthesize signerShowScrollView;
 @synthesize NumofCheck;
@@ -53,6 +52,7 @@
 @synthesize sendCollectRequest;
 @synthesize sendCancelCollectRequest;
 @synthesize barIntroTitel;
+@synthesize activityBtn;
 /**********/
 
 @synthesize activityImg;
@@ -84,19 +84,30 @@
     
     rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
+    //[rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
+    scrollSize = 0;
+    
+    barDetailScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0))];
+    
+    [barDetailScrollView setBackgroundColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.89 alpha:1.0]];
+  
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
     [hud show:YES];
-    [self.view addSubview:hud];
+    [barDetailScrollView addSubview:hud];
     
-    if (!noiOS7) {
-        for (UIView *view in self.view.subviews) {
-            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
-        }
+   
+    for (UIView *view in self.view.subviews) {
+        [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-64, view.frame.size.width, view.frame.size.height)];
+        [ barDetailScrollView addSubview:view];
     }
+    
+     [barDetailScrollView setContentSize:CGSizeMake(320, 550)];
+    [self.view addSubview:barDetailScrollView];
+
+   
 }
 
 - (void)back
@@ -220,14 +231,11 @@
 {
     NSString *response = [request responseString];
     
-    NSLog(@"response == %@",response);
     if (response == nil || [response JSONValue] == nil) {
         return;
     }
     
     NSDictionary *responseDict = [response JSONValue];
-    
-//    NSLog(@"responseDict ==%@",responseDict);
     
     if (request == sendRequest) {
         
@@ -293,7 +301,7 @@
                 
                 //总体信息
                 detailModel.county = [responseDict objectForKey:@"county"];
-                detailModel.is_collect = [responseDict objectForKey:@"is_collect"];
+                detailModel.is_collect = [[responseDict objectForKey:@"is_collect"] boolValue];
                 detailModel.message = [responseDict objectForKey:@"message"];
                 
                 //酒吧详情数据
@@ -442,6 +450,8 @@
     }
     NumofCheck.text = [NSString stringWithFormat:@"%d 人",[signaSources count] +1];
     [signerShowScrollView setContentSize:CGSizeMake([signaSources count] * 65, 60)];
+    
+    
 }
 
 - (void)setDetailConten:(MBarDetailModel *)model
@@ -464,7 +474,7 @@
     [barIconBtn setTag:[model.barDetailId integerValue]];
     
     [barNameLabel setText:[NSString stringWithFormat:@"%@",model.name]];
-    [signaNumberLabel setText:[NSString stringWithFormat:@"%@",model.view_number]];
+//    [signaNumberLabel setText:[NSString stringWithFormat:@"%@",model.view_number]];
     
     if ([model.street isEqual:[NSNull null]]) {
 //        telLabel.text = @"";
@@ -609,6 +619,9 @@
 //该函数判断是否有活动，如果没有活动那么将酒吧介绍 以及酒吧标题往上移动签到板块下方
 - (void)moveFrame
 {
+    
+    activityBtn.enabled = NO;
+    
     if (!isHaveActivity) {
         activityTitleLabel.text = @"";
         activityInfoLabel.text = @"";
@@ -617,6 +630,9 @@
         
         [barIntroTextView setFrame:CGRectMake(barIntroTextView.frame.origin.x, barIntroTitel.frame.origin.y + barIntroTitel.frame.size.height + 10, barIntroTextView.frame.size.width,barIntroTextView.frame.size.height)];
     }
+    
+    
+    
 }
 #pragma mark - 
 #pragma mark  UIScrollViewDelegate
