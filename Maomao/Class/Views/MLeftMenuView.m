@@ -12,7 +12,7 @@
 
 @synthesize delegate;
 @synthesize signLabel;
-@synthesize nameLabel;
+
 @synthesize btn11;//首页按钮
 @synthesize btn12;//收藏按钮
 @synthesize btn13;//信息按钮

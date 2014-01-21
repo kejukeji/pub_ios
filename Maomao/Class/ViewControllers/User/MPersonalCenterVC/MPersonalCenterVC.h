@@ -25,12 +25,16 @@
     MBProgressHUD       *hud;
     GPPrompting         *prompting;
     BOOL                isNetWork;
+    UIScrollView        *personalCenterScrollView;
+    
 }
 @property(nonatomic,assign) id <MPersonalCenterDelegate> delegate;
 
 @property (nonatomic, strong) ASIHTTPRequest    *sendRequest;
 
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *areaLabel1;
+
 @property (weak, nonatomic) IBOutlet UIImageView *Icon;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
@@ -46,6 +50,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reputationLable;
+@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
 
 /********************邀约，礼物，传情，私信,我的收藏，我的活动count**************/
 

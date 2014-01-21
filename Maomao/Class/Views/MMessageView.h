@@ -13,9 +13,11 @@
 @end
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
 
-@interface MMessageView : UIView
+@interface MMessageView : UIView <ASIHTTPRequestDelegate>
 
+@property (nonatomic, strong) ASIHTTPRequest    *sendRequest;
 @property (nonatomic, assign) id<MMessageViewDelegate> delegate;
 
 @end

@@ -10,8 +10,17 @@
 #import "Utils.h"
 #import "JSON.h"
 #import "MBarDetailsVC.h"
+#import "MRightBtn.h"
 
 @implementation MCollectView
+{
+    MRightBtn       *editBtn;
+    BOOL           isSelectEdit;
+    NSMutableArray  *coverViewArray;
+    UIView          *coverView;
+   
+    
+}
 
 @synthesize delegate;
 @synthesize sendRequest;
@@ -45,7 +54,18 @@
         [titleName setTextAlignment:NSTextAlignmentCenter];
         [topBar addSubview:titleName];
         
+       
+        editBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
+         [editBtn setFrame:CGRectMake(270, 10, 40, 24)];
+//        [editBtn setImage:[UIImage imageNamed:@"common_btn_right.png"] forState:UIControlStateNormal];
+        [editBtn addTarget:self action:@selector(eiditCollect) forControlEvents:UIControlEventTouchUpInside];
+        [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+        
+        [topBar addSubview:editBtn];
+       
+        
         barListSources = [NSMutableArray arrayWithCapacity:0];
+        coverViewArray  = [NSMutableArray arrayWithCapacity:0];
         currentIndex = 1;
         
         barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0)) style:UITableViewStylePlain];
@@ -257,19 +277,55 @@
     [alertView show];
 }
 
+- (void)eiditCollect
+{
+    UIView  *view = [[UIView alloc] init];
+    NSLog(@"单独删除酒吧收藏");
+    if (isSelectEdit == YES) {
+        for (int i = 0; i < [barListSources count]; i++) {
+            view = [coverViewArray objectAtIndex:i];
+           //view.hidden = NO;
+           NSLog(@"coverView in coverViewArray address %@",view);
+        }
+        [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+        isSelectEdit = NO;
+    }
+    else
+    {
+        for (int i = 0; i < [barListSources count]; i++) {
+            
+            view = [coverViewArray objectAtIndex:i];
+           //view.hidden = YES;
+            
+            NSLog(@"coverView in coverViewArray address %@",view);
+        }
+        [editBtn setTitle:@"完成" forState:UIControlStateNormal];
+        isSelectEdit = YES;
+    }
+
+    
+}
+
 #pragma mark -
 #pragma mark UITabelView Delegate DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"row of cell == %d",[barListSources count]);
     return [barListSources count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+     coverView = [[UIView alloc] init];
+    [coverView setBackgroundColor:[UIColor   redColor]];
+    [coverView setFrame:CGRectMake(277, 44, 22, 22)];
+    
     static NSString *cellIdentify = @"cell";
     MBarCollectCell *cell = (MBarCollectCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentify];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         [[NSBundle mainBundle] loadNibNamed:@"MBarCollectCell" owner:self options:nil];
         cell = barCollectCell;
     }
@@ -280,7 +336,7 @@
     
     if ([barListSources count] > 0 && indexPath.row == [barListSources count]-1) {
         
-        NSString *url = [NSString stringWithFormat:@"%@&page=%d",lastUrlString, currentIndex];
+        NSString *url = [NSString stringWithFormat:@"%@&page=%d",lastUrlString,currentIndex];
         [self sendRequestByUrlString:url];
         NSLog(@"url === %@",url);
     }
@@ -288,8 +344,14 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     MBarCollectModel *model =[barListSources objectAtIndex:indexPath.row];
+    NSLog(@"coverView in cell address %@",coverView);
+    NSLog(@"current ");
     [cell setCellInfoWithModel:model];
+    [cell addSubview:coverView];
     
+    [coverViewArray addObject:coverView];
+    
+    // NSLog(@"coverView in coverViewArray address %@",[coverViewArray objectAtIndex:indexPath.row]);
     return cell;
 }
 
@@ -299,5 +361,8 @@
     
     [delegate gotoCollectBarDetail:model];
 }
+
+
+
 
 @end

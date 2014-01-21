@@ -16,11 +16,12 @@
 @implementation MPersonalCenterVC
 
 @synthesize delegate;
-@synthesize areaLabel;
+@synthesize areaLabel;//同步获取修改的地址
+@synthesize areaLabel1;//用于显现处理过的地址
 @synthesize Icon;
 @synthesize nameLabel;
 @synthesize signalLabel;
-
+@synthesize provinceLabel;
 @synthesize genderIcon;
 @synthesize ageLabel;
 /*********积分、经验值、等级、等级表述******/
@@ -60,6 +61,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.89 alpha:1.0]];
+   
+    if (iPhone5) {
+         [self.view setFrame:CGRectMake(0,0, 320, 416+(iPhone5?88:0)+64)];
+    }
+   
+    
     UIImageView *topBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0+(noiOS7?0:20), 320, 44)];
     [topBar setImage:[UIImage imageNamed:@"common_topBar_blue.png"]];
     [topBar setUserInteractionEnabled:YES];
@@ -83,8 +90,14 @@
     NSString *headImgPath = [[NSUserDefaults standardUserDefaults] stringForKey:kPic_path];
     NSString *path = [NSString stringWithFormat:@"%@%@",MM_URL, headImgPath];
 
-    signalLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
-    
+    NSString *signl = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
+    if ([signl isEqualToString:@"<null>"]) {
+        signalLabel.text = @"";
+    }
+    else
+    {
+         signalLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
+    }
     NSLog(@"signature = %@",signalLabel.text);
     
     /****************设置年龄******************/
@@ -105,9 +118,17 @@
     
     ageLabel.text = [NSString stringWithFormat:@"%ld",(long)dateComparisonComponents.year];
     
-    areaLabel.text = [[[NSUserDefaults standardUserDefaults] stringForKey:kCounty]
-                      stringByReplacingOccurrencesOfString:@"$$" withString:@""];
-    
+    NSString *sex = [[NSUserDefaults standardUserDefaults] stringForKey:@"sex"];
+    if ([sex isEqualToString:@"1"]) {
+        [genderIcon setImage:[UIImage imageNamed:@"friends_male.png"]];
+    }
+    else
+    {
+        
+        [genderIcon setImage:[UIImage imageNamed:@"personal_girl_icon.png"]];
+
+    }
+ 
     [Icon setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
     
     nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
@@ -122,29 +143,21 @@
     
     NSInteger inviation, gift,greeting, collect_activity,collect_pub,private_letter;
     inviation = [[[NSUserDefaults standardUserDefaults] stringForKey:kInvitation ] integerValue];
-    if (inviation > 0) {
-        [inviteNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-    }
-    invitationLabel.text = [NSString stringWithFormat:@" %d",inviation];
+   
+    invitationLabel.text = [NSString stringWithFormat:@"%d",inviation];
     
     greeting = [[[NSUserDefaults standardUserDefaults] stringForKey:kGreeting_count] integerValue];
-    if (greeting > 0) {
-        [teaserNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-    }
+    
     
     greeting_countLabel.text = [NSString stringWithFormat:@"%d",greeting];
     
     private_letter = [[[NSUserDefaults standardUserDefaults] stringForKey:kPrivate_letter_count] integerValue];
     
-    if (private_letter > 0) {
-        [privateMsgNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-    }
+    
     private_letter_countLable.text = [NSString stringWithFormat:@"%d",private_letter];
     
     gift = [[[NSUserDefaults standardUserDefaults] stringForKey:kGift] integerValue];
-    if (gift > 0) {
-        [giftNotice setImage:[UIImage imageNamed:@"personal_msg_notice.png"]];
-    }
+    
     giftLable.text = [NSString stringWithFormat:@"%d",gift];
     
     collect_activity = [[[NSUserDefaults standardUserDefaults] stringForKey:kCollect_activity_count] integerValue];
@@ -154,20 +167,120 @@
     
     collect_pub_countLabel.text = [NSString stringWithFormat:@"%d",collect_pub];
     
-   
+   //设置滑动视图
+    personalCenterScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 42+(noiOS7?0:20), 320, 416+(iPhone5?88:0))];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
     [hud show:YES];
     //[self.view addSubview:hud];
-    if (!noiOS7) {
+    
+    
         for (UIView *view in self.view.subviews) {
             if (![view isEqual: topBar]) {
-                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
+              
+                [personalCenterScrollView addSubview:view];
             }
             
         }
+
+    if (iPhone5) {
+         [personalCenterScrollView setContentSize:CGSizeMake(320,0)];
     }
+    else
+    {
+         [personalCenterScrollView setContentSize:CGSizeMake(320,450)];
+    }
+   
+    [self.view addSubview:personalCenterScrollView];
+}
+- (void) viewDidAppear:(BOOL)animated
+{
+    /****************处理地址格式：省市分离*********************/
+    NSRange     city;
+    NSString *getArea = [[NSUserDefaults standardUserDefaults] stringForKey:kCounty];
+    NSString *city1;
+    NSLog(@"getArea == %@",getArea);
+    if (![getArea isEqualToString:@"$$"]) {  //判断用户是否未填写地址
+        
+        NSString    *Province = [getArea  substringWithRange:NSMakeRange(0, 2)];
+        
+        NSLog(@"Province == %@",Province);
+        
+        provinceLabel.text = [NSString stringWithFormat:@"%@",Province];
+        
+        city = [getArea rangeOfString:@"$"];//获取标记位的范围
+       
+        NSLog(@"city1 == %@",city1);
+        NSLog(@"city length == %d",city.location);
+        
+        if ([Province isEqualToString:@"上海"] || [Province isEqualToString:@"北京"] ||[Province isEqualToString:@"天津"] || [Province isEqualToString:@"重庆"]  ) {
+            
+             city1 = [getArea substringWithRange:NSMakeRange(city.location+1, getArea.length -city.location-1)]; //获取包含第二个”$“
+            NSRange second = [city1 rangeOfString:@"$"];
+            NSString    *city2 = [city1 substringWithRange:NSMakeRange(second.location+1, 3)];//获取市
+            NSLog(@"city = %@",city2);
+            areaLabel1.text = [NSString stringWithFormat:@"%@",city2];
+        }
+        else
+        {
+            NSString    *city1 = [getArea substringWithRange:NSMakeRange(city.location+1, 3)];//获取市
+            NSLog(@"city = %@",city1);
+            areaLabel1.text = [NSString stringWithFormat:@"%@",city1];
+        }
+        /*******************************************************/
+    }
+    else
+    {
+        provinceLabel.text = @"未填写";
+         areaLabel1.text = @"地址";
+    }
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(getChangedArea) userInfo:nil repeats:YES]; //不断刷新地址
+}
+
+- (void)getChangedArea //
+{
+    /****************处理地址格式：省市分离*********************/
+    NSRange     city;
+    NSString *getArea = [[NSUserDefaults standardUserDefaults] stringForKey:kCounty];
+    NSString *city1;
+    
+    NSLog(@"getArea == %@",getArea);
+    if (![getArea isEqualToString:@"$$"]) {  //判断用户是否未填写地址
+        
+        NSString    *Province = [getArea  substringWithRange:NSMakeRange(0, 2)];
+        
+        NSLog(@"Province == %@",Province);
+        
+        provinceLabel.text = [NSString stringWithFormat:@"%@",Province];
+        
+        city = [getArea rangeOfString:@"$"];//获取标记位的范围
+        
+         NSLog(@"city1 == %@",city1);
+        NSLog(@"city length == %d",city.location);
+        
+        if ([Province isEqualToString:@"上海"] || [Province isEqualToString:@"北京"] ||[Province isEqualToString:@"天津"] || [Province isEqualToString:@"重庆"]  ) {
+            
+            city1 = [getArea substringWithRange:NSMakeRange(city.location+1, getArea.length -city.location-1)]; //获取包含第二个”$“
+            NSRange second = [city1 rangeOfString:@"$"];
+            NSString    *city2 = [city1 substringWithRange:NSMakeRange(second.location+1, 3)];//获取市
+            NSLog(@"city = %@",city2);
+            areaLabel1.text = [NSString stringWithFormat:@"%@",city2];
+        }
+        else
+        {
+            NSString    *city1 = [getArea substringWithRange:NSMakeRange(city.location+1, 3)];//获取市
+            NSLog(@"city = %@",city1);
+            areaLabel1.text = [NSString stringWithFormat:@"%@",city1];
+        }
+        /*******************************************************/
+    }
+    else
+    {
+        provinceLabel.text = @"未填写";
+        areaLabel1.text = @"地址";
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

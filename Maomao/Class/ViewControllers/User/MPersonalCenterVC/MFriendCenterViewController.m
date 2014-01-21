@@ -17,15 +17,16 @@
 //二期页面
 #import "MHaveDrinkView.h"
 #import "MSendGiftViewController.h"
-#import "MFriendGiftView.h"
+#import "MMFriendGiftVC.h"
 
 @interface MFriendCenterViewController ()
 {
     MBProgressHUD *hud;
     DropDownControllView *mDropDownView;
     int count;//点击礼物按钮计数，偶数收藏button视图以及剪头ImageView视图下滑
-    UIView      *giftView;//朋友中心礼物视图
-    NSInteger      receiver_id;
+    UIView          *giftView;//朋友中心礼物视图
+    NSInteger       receiver_id;
+    UIImageView     *imgView;
 }
 @property (nonatomic, copy) NSString *friendName;
 @end
@@ -39,7 +40,7 @@
 @synthesize friendAreaLabel;
 @synthesize genderLabel;
 @synthesize numofGift;
-@synthesize friendScrollView;
+
 @synthesize reputationLabel;//经验值
 @synthesize friendNameLabel;
 @synthesize friendSignLabel;
@@ -48,6 +49,7 @@
 @synthesize friendIcon;
 @synthesize sendGreetingRequest;
 @synthesize friendName;
+@synthesize provinceLabel;
 
 /*******下滑控件*******/
 @synthesize moveFrame1;
@@ -71,6 +73,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.89 alpha:1.0]];
+    if (iPhone5)
+    {
+        [self.view setFrame:CGRectMake(0,0, 320, 416+(iPhone5?88:0)+64)];
+    }
+    imgView = [[UIImageView alloc] init];
 
     UIButton   *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn setFrame:CGRectMake(14, 10, 30, 24)];
@@ -87,22 +94,31 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
     count = 1;
     
-    if (!noiOS7) {
-        for (UIView *view in self.view.subviews) {
-        [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
-      
-        }
-    }
-    
-    //酒吧按钮和剪头都随着scrollview一起滑动，这就意味着这两个控件多下滑64像素的距离，所以得减去64像素。
-    [moveFrame2 setFrame:CGRectMake(moveFrame2.frame.origin.x, moveFrame2.frame.origin.y-64, moveFrame2.frame.size.width, moveFrame2.frame.size.height)];
-    [moveFrame1 setFrame:CGRectMake(moveFrame1.frame.origin.x, moveFrame1.frame.origin.y-64, moveFrame1.frame.size.width, moveFrame1.frame.size.height)];
-     
+    friendCenterScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0)) ];
     
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中请稍后!"];
     [hud show:YES];
-    [self.view addSubview:hud];
+    [friendCenterScrollView addSubview:hud];
+  
+    for (UIView *view in self.view.subviews)
+    {
+            
+    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-64, view.frame.size.width, view.frame.size.height)];
+        [friendCenterScrollView addSubview:view];
+      
+    }
+    
+    if (iPhone5) {
+        [friendCenterScrollView setContentSize:CGSizeMake(320, 0)];
+    }
+    else
+    {
+       [friendCenterScrollView setContentSize:CGSizeMake(320, 400)];
+    }
+    
+    [self.view addSubview:friendCenterScrollView];
+   
 
 }
 
@@ -220,14 +236,65 @@
         unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
         NSDateComponents *dateComparisonComponents = [systeCalendar components:unitFlags fromDate:birthdayDate toDate:current options:NSWrapCalendarComponents];
         friendAgeLabel.text = [NSString stringWithFormat:@"%d",dateComparisonComponents.year];
-        friendAreaLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kCounty];
+        
+        /****************处理地址格式：省市分离*********************/
+        NSRange     city;
+        NSString *getArea = [[NSUserDefaults standardUserDefaults] stringForKey:kCounty];
+        
+        NSLog(@"getArea == %@",getArea);
+        
+        NSString    *Province = [getArea  substringWithRange:NSMakeRange(0, 2)];
+        
+        NSLog(@"Province == %@",Province);
+        provinceLabel.text = [NSString stringWithFormat:@"%@",Province];
+        
+        city = [getArea rangeOfString:@"$"];//获取标记位的范围
+        
+        NSLog(@"city length == %d",city.location);
+        
+        if ([Province isEqualToString:@"上海"]) {
+            NSString    *city1 = [getArea substringWithRange:NSMakeRange(city.location+5, 3)];//获取市
+            NSLog(@"city = %@",city1);
+           friendAreaLabel.text = [NSString stringWithFormat:@"%@",city1];
+        }
+        else
+        {
+            NSString    *city1 = [getArea substringWithRange:NSMakeRange(city.location+1, 3)];//获取市
+            NSLog(@"city = %@",city1);
+            friendAreaLabel.text= [NSString stringWithFormat:@"%@",city1];
+        }
+
+        
+       // friendAreaLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kCounty];
+        
+        NSLog(@"friendAreaLabel == %@",friendAreaLabel.text);
         
         NSString *path = [NSString stringWithFormat:@"%@%@",MM_URL,pic_path];
         [friendIcon setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
         friendName = nickName;
         friendNameLabel.text = friendName;
         NSLog(@"friendNameLabel.text==%@",friendNameLabel.text);
-        friendSignLabel.text = signature;
+        
+        if ([sex isEqualToString:@"1"]) {
+            genderLabel.text = @"帅哥";
+        }
+        else if ([sex isEqualToString:@"0"])
+        {
+            genderLabel.text = @"美女";
+        }
+        else
+        {
+            genderLabel.text = @" ";
+        }
+        
+        if ([signature isEqualToString:@"<null>"]) {
+            friendSignLabel.text = @"暂无签名";
+        }
+        else{
+            
+             friendSignLabel.text = signature;
+        }
+       
         
     }
     else if (status == 1) {
@@ -375,10 +442,11 @@
         NSDictionary *responseDict = [response JSONValue];
         NSString *msg = [responseDict objectForKey:@"message"];
         NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
-        if (status == 0) {
-            prompting = [[GPPrompting alloc] initWithView:self.view Text:@"您已经向对方抛了个媚眼" Icon:nil];
-            [self.view addSubview:prompting];
-            [prompting show];
+        if (status == 0)
+        {
+
+            
+            [self showEye];
         }
         else
         {
@@ -420,6 +488,19 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络无法连接，请检查网络" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
     [alertView show];
 }
+
+- (void)showEye
+{
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(89,100, 100, 50)];
+    [img setImage:[UIImage imageNamed:@"personalCenter__img_eye.png"]];
+    [friendCenterScrollView addSubview:img];
+    imgView = img;
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(dispearEye) userInfo:nil repeats:NO];
+}
+- (void)dispearEye
+{
+    [imgView removeFromSuperview];
+}
 - (IBAction)sendMsg:(UIButton *)sender
 {
     MChatListVC *chatListVC = [[MChatListVC alloc] init];
@@ -431,39 +512,13 @@
 
 - (IBAction)showGift:(UIButton *)sender
 {
-    //判断有没有礼物，如果有礼物， 将礼物图片显示在礼物按钮下方每一行五张图片，并且那么酒吧收藏按钮往下平移到离最后一行图片底部14像素
-    count ++;
+    MMFriendGiftVC *friendGiftView = [[MMFriendGiftVC alloc] init];
+    NSString    *url = [NSString stringWithFormat:@"%@/restful/gift/receiver?user_id=%@&page=1&gift_type=friend",MM_URL,friendId];
+    NSLog(@"Friend gift Url == %@",url);
+    [friendGiftView initWithRequestByUrl:url];
     
-
-    MFriendGiftView *friendGiftView = [[MFriendGiftView alloc] init];
-
-    if (count % 2 == 0 ) {
-        NSString    *url = [NSString stringWithFormat:@"%@/restful/gift/receiver?user_id=%@&page=1&gift_type=friend",MM_URL,friendId];
-        NSLog(@"Friend gift Url == %@",url);
-        
-        moveFrame1.frame = CGRectMake(moveFrame1.frame.origin.x, moveFrame1.frame.origin.y + moveFrame1.frame.size.height + 20, moveFrame1.frame.size.width, moveFrame1.frame.size.height);
-        moveFrame2.frame = CGRectMake(moveFrame2.frame.origin.x, moveFrame1.frame.origin.y + moveFrame2.frame.size.height + 70, moveFrame2.frame.size.width, moveFrame2.frame.size.height);
-        [friendGiftView setFrame:CGRectMake(0, 470, 320,90)];
-        [friendGiftView initWithRequestByUrl:url];
-        [self.view addSubview:friendGiftView];
-    }
-    else
-    {
-        [friendGiftView.sendGiftRequest1 clearDelegatesAndCancel];
-        
-        //coverView的作用是将礼物视图给遮住，然后将收藏按钮以及箭头放在coverView的上方，最终完成遮盖。
-        UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 470, 320, 100)];
-        [coverView setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:coverView];
-        
-        friendGiftView.hidden = YES;
-        
-        moveFrame1.frame = CGRectMake(moveFrame1.frame.origin.x,10, moveFrame1.frame.size.width, moveFrame1.frame.size.height);
-        moveFrame2.frame = CGRectMake(moveFrame2.frame.origin.x, moveFrame1.frame.origin.y + moveFrame2.frame.size.height + 7, moveFrame2.frame.size.width, moveFrame2.frame.size.height);
-        [coverView addSubview:moveFrame1];
-        [coverView addSubview:moveFrame2];
-        
-    }
+   [self.navigationController pushViewController:friendGiftView animated:YES];
+  
 }
 
 - (IBAction)barCollection:(UIButton *)sender

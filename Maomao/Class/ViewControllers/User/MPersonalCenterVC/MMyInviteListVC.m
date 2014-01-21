@@ -234,7 +234,7 @@
             MInvitationModel *model = [[MInvitationModel alloc] init];
             model.invitation_id = [[dict objectForKey:@"id"] integerValue];
             model.pic_path = [dict objectForKey:@"pic_path"];
-            
+            model.nick_name = [dict objectForKey:@"nick_name"];
             model.receiver_id = [[dict objectForKey:@"receiver_id"] integerValue];
             model.sender_id = [[dict objectForKey:@"sender_id"] integerValue];
             model.time = [dict objectForKey:@"time"];
@@ -282,13 +282,6 @@
     
     if (!noiOS7) {
         [cell setBackgroundColor:[UIColor clearColor]];
-    }
-         
-    if ([inviteListSource count] > 0 && indexPath.row == [inviteListSource count] -1) {
-        //等待接口
-        NSString *url = [NSString stringWithFormat:@"%@&page=%d",inviteId, currentIndex];
-        [self sendRequestByUrlString:url];
-        NSLog(@"url === %@",url);
     }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];

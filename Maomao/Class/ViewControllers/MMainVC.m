@@ -33,6 +33,7 @@
 #import "MIntegrationVC.h"
 #import "MMyActivityCollectVC.h"
 #import "MChangeCityVC.h"
+#import "MAdvertiseVC.h" 
 
 @interface MMainVC ()
 {
@@ -105,10 +106,16 @@
     NSString *headImgPath = [[NSUserDefaults standardUserDefaults] stringForKey:kPic_path];
     NSString *path = [NSString stringWithFormat:@"%@%@",MM_URL, headImgPath];
     [leftMenuView.headImg setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"common_userHeadImg.png"]];
+    NSString *sign = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
+    if ([sign isEqualToString:@"<null>"]) {
+        
+        leftMenuView.signLabel.text = @"未设置";
+    }
+    else
+    {
+        leftMenuView.signLabel.text = [NSString stringWithFormat:@"%@",sign];
+    }
     
-    leftMenuView.nameLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:NICKNAME];
-    NSLog(@"nameLabe.text==%@",leftMenuView.nameLabel.text);
-    leftMenuView.signLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
     
     myHomeView.signLabel.text = [NSString stringWithFormat:@"个性签名：%@",[[NSUserDefaults standardUserDefaults] stringForKey:kSignature]];
     //测试二期个人中心页面
@@ -451,12 +458,13 @@
 
 - (void)gotoCredictVC:(NSString *)credit getValue2:(NSString *)reputation
 {
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
+    NSString *url = [NSString stringWithFormat:@"%@/restful/credit/rule?user_id=%@",MM_URL,userid];
     MIntegrationVC *integrationVC = [[MIntegrationVC alloc] init];
-    
-    integrationVC.credit = credit;
-    integrationVC.reputation = reputation;
+    [integrationVC initRequestWithUrl:url];
     [self.navigationController pushViewController:integrationVC animated:YES];
 }
+
 - (void)mPersonalCenterGotoNext:(NSInteger)number
 {
     MUserSettingVC *userSettingVC = [[MUserSettingVC alloc] init];
@@ -532,6 +540,21 @@
     
     [self.navigationController pushViewController:changeCityVC animated:YES];
     
+}
+
+- (void)gotoAdvertiseVC:(NSString *)url
+{
+    MAdvertiseVC *adVC = [[MAdvertiseVC alloc] init];
+    if ([url isEqualToString:@""]) {
+        url = @"http://www.maobake.com/";
+        adVC.advertiseUrl = url;
+    }
+    else
+    {
+        adVC.advertiseUrl = url;
+    }
+    
+    [self.navigationController pushViewController:adVC animated:YES];
 }
 - (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 {
@@ -655,12 +678,10 @@
     
     switch (number) {
         case 11:
-            messageAwakeVC = [[MMessageAwakeVC alloc] init];
-            [self.navigationController pushViewController:messageAwakeVC animated:YES];
-            break;
-        case 12:
             soundAndShockVC = [[MSoundAndShockVC alloc] init];
             [self.navigationController pushViewController:soundAndShockVC animated:YES];
+            break;
+        case 12:
             break;
         case 13:
             [alertView show];

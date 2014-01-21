@@ -14,11 +14,18 @@
 #import "EGORefreshTableHeaderView.h"
 #import "MChangeCountyVC.h"
 
+#define rightDirectin 1
+#define leftDirection 0
+
 @interface MBarListVC : UIViewController <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate,UIScrollViewDelegate,changeCountyDelegate>
 {
     IBOutlet MBarListCell *barListCell;
-    BOOL                   reloading;
-    NSTimer                 *timeLoop;
+    BOOL        reloading;
+    NSTimer      *timeLoop;//推荐酒吧滑动时间
+    NSTimer      *timeLoopLine;//推荐酒吧下方滑动进度时间
+
+    int         switchDirection; //方向
+    int         page;//页码
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView       *recommendScrollView;

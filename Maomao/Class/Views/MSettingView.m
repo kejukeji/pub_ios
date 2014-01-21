@@ -7,9 +7,13 @@
 //
 
 #import "MSettingView.h"
+#import "SDImageCache.h"
+#import "GPPrompting.h"
 
 @implementation MSettingView
-
+{
+    GPPrompting *prompting;
+}
 @synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,17 +44,17 @@
         [titleName setTextAlignment:NSTextAlignmentCenter];
         [topBar addSubview:titleName];
     
-        //设置两个Cell
-        UIImageView *towCellImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44+15+(noiOS7?0:20), 290, 74)];
-        [towCellImg setImage:[UIImage imageNamed:@"setting_bg_towCell.png"]];
-        [towCellImg setUserInteractionEnabled:YES];
-        [self addSubview:towCellImg];
+        //设置一个Cell 44+15+37+40
+        UIImageView *oneCellImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44+15+(noiOS7?0:20), 290, 74/2)];
+        [oneCellImg setImage:[UIImage imageNamed:@"setting_bg_oneCell.png"]];
+        [oneCellImg setUserInteractionEnabled:YES];
+        [self addSubview:oneCellImg];
         
         UIButton *pushAndAwake = [UIButton buttonWithType:UIButtonTypeCustom];
         [pushAndAwake setFrame:CGRectMake(0, 0, 290, 37)];
         [pushAndAwake setTag:11];
         [pushAndAwake addTarget:self action:@selector(gotoNextSetting:) forControlEvents:UIControlEventTouchUpInside];
-        [towCellImg addSubview:pushAndAwake];
+        [oneCellImg addSubview:pushAndAwake];
         
         UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 120, 37)];
         [firstName setText:@"新消息提醒"];
@@ -63,14 +67,22 @@
         [firstArrow setImage:[UIImage imageNamed:@"setting_img_greenArrow.png"]];
         [pushAndAwake addSubview:firstArrow];
         
+        
+        //设置四个Cell
+        UIImageView *fourCellImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44 +15+37+42+ (noiOS7?0:20), 290, 111+37)];
+        [fourCellImg setImage:[UIImage imageNamed:@"setting_bg_fourCell.png"]];
+        [fourCellImg setUserInteractionEnabled:YES];
+        [self addSubview:fourCellImg];
+        
+        
         UIButton *soundAndShock = [UIButton buttonWithType:UIButtonTypeCustom];
-        [soundAndShock setFrame:CGRectMake(0, 36, 290, 37)];
+        [soundAndShock setFrame:CGRectMake(0, 0, 290, 37)];
         [soundAndShock setTag:12];
-        [soundAndShock addTarget:self action:@selector(gotoNextSetting:) forControlEvents:UIControlEventTouchUpInside];
-        [towCellImg addSubview:soundAndShock];
+        [soundAndShock addTarget:self action:@selector(clearChache) forControlEvents:UIControlEventTouchUpInside];
+        [fourCellImg addSubview:soundAndShock];
         
         UILabel *secondName = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 120, 37)];
-        [secondName setText:@"声音及振动"];
+        [secondName setText:@"清除缓存"];
         [secondName setTextColor:[UIColor colorWithRed:0.20 green:0.40 blue:0.47 alpha:1.0]];
         [secondName setFont:[UIFont systemFontOfSize:13]];
         [secondName setBackgroundColor:[UIColor clearColor]];
@@ -79,19 +91,13 @@
         UIImageView *secondArrow = [[UIImageView alloc] initWithFrame:CGRectMake(262, 11, 10, 14)];
         [secondArrow setImage:[UIImage imageNamed:@"setting_img_greenArrow.png"]];
         [soundAndShock addSubview:secondArrow];
-        
-        
-        //设置三个Cell
-        UIImageView *threeCellImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 44 + 110 + (noiOS7?0:20), 290, 111)];
-        [threeCellImg setImage:[UIImage imageNamed:@"setting_bg_threeCell.png"]];
-        [threeCellImg setUserInteractionEnabled:YES];
-        [self addSubview:threeCellImg];
+
         
         UIButton *versionUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
-        [versionUpdate setFrame:CGRectMake(0, 0, 290, 37)];
+        [versionUpdate setFrame:CGRectMake(0, 0+37, 290, 37)];
         [versionUpdate setTag:13];
         [versionUpdate addTarget:self action:@selector(gotoNextSetting:) forControlEvents:UIControlEventTouchUpInside];
-        [threeCellImg addSubview:versionUpdate];
+        [fourCellImg addSubview:versionUpdate];
         
         UILabel *thirdName = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 120, 37)];
         [thirdName setText:@"版本更新"];
@@ -105,10 +111,10 @@
         [versionUpdate addSubview:thirdArrow];
         
         UIButton *feedback = [UIButton buttonWithType:UIButtonTypeCustom];
-        [feedback setFrame:CGRectMake(0, 37, 290, 37)];
+        [feedback setFrame:CGRectMake(0, 37+37, 290, 37)];
         [feedback setTag:14];
         [feedback addTarget:self action:@selector(gotoNextSetting:) forControlEvents:UIControlEventTouchUpInside];
-        [threeCellImg addSubview:feedback];
+        [fourCellImg addSubview:feedback];
         
         UILabel *fourthName = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 120, 37)];
         [fourthName setText:@"意见反馈"];
@@ -122,10 +128,10 @@
         [feedback addSubview:fourthArrow];
         
         UIButton *aboutMM = [UIButton buttonWithType:UIButtonTypeCustom];
-        [aboutMM setFrame:CGRectMake(0, 74, 290, 37)];
+        [aboutMM setFrame:CGRectMake(0, 74+37, 290, 37)];
         [aboutMM setTag:15];
         [aboutMM addTarget:self action:@selector(gotoNextSetting:) forControlEvents:UIControlEventTouchUpInside];
-        [threeCellImg addSubview:aboutMM];
+        [fourCellImg addSubview:aboutMM];
         
         UILabel *fifthName = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 120, 37)];
         [fifthName setText:@"关于冒冒"];
@@ -161,6 +167,18 @@
 - (void)gotoNextSetting:(UIButton *)button
 {
     [delegate gotoNextSetting:button.tag];
+}
+
+- (void)clearChache
+{
+    [[SDImageCache sharedImageCache] clearDisk];
+    float tmpSize = [[SDImageCache sharedImageCache] getSize];
+    NSString *clearCacheName = tmpSize >= 1? [NSString stringWithFormat:@"清理缓存(%.2fM)",tmpSize]:[NSString stringWithFormat:@"清理缓存(%.2fk)",tmpSize*1024];
+    
+    prompting = [[GPPrompting alloc] initWithView:self Text:clearCacheName Icon:nil];
+    [self addSubview:prompting];
+    [prompting show];
+    NSLog(@"缓存已清理");
 }
 
 @end

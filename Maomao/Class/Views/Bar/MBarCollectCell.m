@@ -16,12 +16,18 @@
 @synthesize barNameLabel;
 @synthesize distanceLabel;
 @synthesize collectTimeLabel;
-@synthesize streetLabel;
+@synthesize selectFrame;
+@synthesize deleteBtn;
+
+@synthesize isSelect;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        //setting_img_selectFrame.png setting_img_blueHook.png
+       
     }
     return self;
 }
@@ -29,9 +35,16 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+//    selectFrame.hidden = YES;
+//    deleteBtn.hidden = YES;
+        // Configure the view for the selected state
 }
+
+- (IBAction)deleteCellBtn:(UIButton *)sender
+{
+    [sender setImage:[UIImage imageNamed:@"setting_img_blueHook.png"] forState:UIControlStateNormal];
+}
+
 
 - (void)setCellInfoWithModel:(MBarCollectModel *)model
 {
@@ -51,8 +64,8 @@
     
     distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",[newLocation distanceFromLocation :currentLocation]/1000];
     
-    [collectTimeLabel setText:model.difference];
-    [streetLabel setText:model.street];
+    collectTimeLabel.text = [NSString stringWithFormat:@"收藏时间: %@",model.difference];
+    
     
 }
 

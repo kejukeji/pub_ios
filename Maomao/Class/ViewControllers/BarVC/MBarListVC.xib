@@ -23,7 +23,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="uR0-tI-44L">
-                    <rect key="frame" x="18" y="0.0" width="320" height="104"/>
+                    <rect key="frame" x="18" y="0.0" width="300" height="104"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </scrollView>
                 <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a7L-JT-O4c">
@@ -37,40 +37,8 @@
                         <action selector="gotoNearBar:" destination="-1" eventType="touchUpInside" id="Zl5-5O-5XA"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="vqr-fg-RQb">
-                    <rect key="frame" x="294" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="Xul-Dv-rtj">
-                    <rect key="frame" x="252" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="x7n-c0-oUw">
-                    <rect key="frame" x="210" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="oWQ-Wi-DmE">
-                    <rect key="frame" x="168" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="IrW-Pn-2XG">
-                    <rect key="frame" x="126" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="ZWP-NM-Mff">
-                    <rect key="frame" x="84" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_img_recommend.png" id="Hq5-QO-5cs">
                     <rect key="frame" x="0.0" y="0.0" width="26" height="102"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_grayline.png" id="awq-CZ-HWZ">
-                    <rect key="frame" x="0.0" y="104" width="40" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barList_blueline.png" id="EtO-HO-eXg">
-                    <rect key="frame" x="42" y="104" width="40" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X4L-6A-Bls">
@@ -87,8 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="barList_blueline.png" width="1" height="3"/>
-        <image name="barList_grayline.png" width="1" height="3"/>
         <image name="barList_img_recommend.png" width="49" height="208"/>
         <image name="barlist_background.png" width="640" height="162"/>
         <image name="barlist_nearbybar.png" width="135" height="45"/>

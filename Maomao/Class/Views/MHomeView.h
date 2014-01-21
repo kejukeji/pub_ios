@@ -10,6 +10,7 @@
 
 - (void)homeLeftSlider;
 - (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
+- (void)gotoAdvertiseVC:(NSString *)url;
 
 - (void)gotoChangeCityVC;
 
@@ -35,6 +36,7 @@
 @property (nonatomic, strong) ASIHTTPRequest           *sendRequest;
 @property (nonatomic, strong) NSString                 *adPic_Path;
 @property (nonatomic, strong) NSString                  *changeCityName;
+@property (nonatomic, strong) NSString                  *advertising_url;
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
 - (void) changeCityName:(NSString *)cityName;

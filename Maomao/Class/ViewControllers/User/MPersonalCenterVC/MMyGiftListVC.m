@@ -272,13 +272,6 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     
-    if ([giftListSource count] > 0 && indexPath.row == [giftListSource count] -1) {
-        //等待接口
-        NSString *url = [NSString stringWithFormat:@"%@&page=%d&gift_type=personal",giftId,currentIndex];
-        [self sendRequestByUrlString:url];
-        NSLog(@"url == %@",url);
-    }
-    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     MGiftModel *model = [giftListSource objectAtIndex:indexPath.row];

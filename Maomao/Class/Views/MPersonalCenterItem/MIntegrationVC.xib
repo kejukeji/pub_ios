@@ -10,6 +10,7 @@
                 <outlet property="creditLabel" destination="0z4-Ws-gA8" id="WHq-hD-p9A"/>
                 <outlet property="levelImg" destination="UdG-x1-42g" id="Kp2-IK-TM8"/>
                 <outlet property="reputationLabel" destination="ayQ-KR-SUe" id="jUS-wJ-f8a"/>
+                <outlet property="reputation_DiffeLabel" destination="fNB-Oi-gXT" id="nJg-Cp-LUu"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -20,7 +21,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="integration_show.png" id="jIQ-Pc-3Bl">
                     <rect key="frame" x="110" y="17" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H0q-3j-2cI">
                     <rect key="frame" x="139" y="39" width="42" height="21"/>
@@ -36,58 +37,97 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经验值: 1024" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ayQ-KR-SUe">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ayQ-KR-SUe">
                     <rect key="frame" x="37" y="135" width="254" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <attributedString key="attributedText">
+                        <fragment content="经验值">
+                            <attributes>
+                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=": 1024">
+                            <attributes>
+                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_frame_vertical_.png" id="UdG-x1-42g">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="integration_frame.png" id="UdG-x1-42g">
                     <rect key="frame" x="37" y="164" width="254" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距下一等级还差 111 经验值" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dVR-s0-3Fu">
-                    <rect key="frame" x="37" y="183" width="254" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距下一等级还差 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dVR-s0-3Fu">
+                    <rect key="frame" x="33" y="183" width="101" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如何赚取积分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="euM-3X-QHV">
-                    <rect key="frame" x="37" y="224" width="254" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gain_integrationInfo_frame.png" id="lhe-le-3Xk">
-                    <rect key="frame" x="37" y="247" width="254" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="xUV-XI-zSX">
-                    <rect key="frame" x="39" y="249" width="249" height="46"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <mutableString key="text">积分说明：消费积分的获得有多种途径，包括酒吧签到，收礼物、收私信、收传情、收藏酒吧、收藏活动 等。消费积分达到一定的数量之后可以兑换积分商城中的商品，兑换行为的发生将减去所需的消费积分数；(1)首次注册  +20   首赠                                      (2)完善个人资料。 +20                                   首赠（修改不加）  (3)平台签到  +10（第一天）                         每天(4)酒吧签到  +10（第一天）                         每天(5)收藏酒吧  +20   每家                                (6)收藏活动  +20   每次                               (7)收到私信  +10   每人                              (8)收到礼物  +10   每次                                             (9)收到传情  +10   每人                                收到邀请      +10   每次                               在线时间（满1小) +20                            每天累计签到规则：获得的积分=10+10*N（N为累计签到天数 N>1）累计签到1天：10累计签到2天：30累计签到3天：40……累计签到9天：100累计周期为9天 如果中途中断，则连续签到天数归0 即N=0；</mutableString>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="euM-3X-QHV">
+                    <rect key="frame" x="33" y="212" width="254" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <attributedString key="attributedText">
+                        <fragment content="如何赚取积分">
+                            <attributes>
+                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="14" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分可以做什么？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UYY-rg-iG4">
-                    <rect key="frame" x="37" y="315" width="173" height="21"/>
+                    <rect key="frame" x="33" y="404" width="173" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="integration_value.png" id="8Vp-mS-fEJ">
-                    <rect key="frame" x="37" y="338" width="254" height="77"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fNB-Oi-gXT">
+                    <rect key="frame" x="129" y="183" width="47" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="xak-NH-pK1">
-                    <rect key="frame" x="39" y="340" width="249" height="73"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.49411767719999999" green="0.69803923369999998" blue="0.73725491759999995" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经验值" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yax-Pr-5wC">
+                    <rect key="frame" x="176" y="184" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <string key="text">(1)送礼物（虚拟礼物）：送礼消耗的积分数按照礼物的积分数而定。 (2)发传情：用户在向陌生好友发媚眼传情，会消耗积分。 (3)发邀请：用户在向陌生好友发(4)邀请喝一杯，会消耗积分。(5)积分换礼（真实礼物）：用户自己赚的的积分积累到一定程度，可以兑换真实礼物（该模块后期开发）。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yvk-Lg-wl4">
+                    <rect key="frame" x="33" y="232" width="254" height="172"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <string key="text">积分说明：
+消费积分的获得有多种途径，包括酒吧签到，收礼物、收私信、收传情、收藏酒吧、收藏活动 等。消费积分达到一定的数量之后可以兑换积分商城中的商品，兑换行为的发生将减去所需的消费积分数；
+(
+累计签到规则：获得的积分=10+10*N（N为累计签到天数 N>1）
+累计签到1天：10
+累计签到2天：30
+累计签到3天：40
+……
+累计签到9天：100
+累计周期为9天 
+如果中途中断，则连续签到天数归0 即N=0；</string>
+                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mrI-t4-6Y2">
+                    <rect key="frame" x="33" y="421" width="254" height="136"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <string key="text">(1)送礼物（虚拟礼物）：送礼消耗的积分数按照礼物的积分数而定。 
+(2)发传情：用户在向陌生好友发媚眼传情，会消耗积分。 
+(3)发邀请：用户在向陌生好友发(4)邀请喝一杯，会消耗积分。
+(5)积分换礼（真实礼物）：用户自己赚的的积分积累到一定程度，可以兑换真实礼物（该模块后期开发）。</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -95,9 +135,7 @@
         </view>
     </objects>
     <resources>
-        <image name="gain_integrationInfo_frame.png" width="14" height="104"/>
+        <image name="integration_frame.png" width="238" height="24"/>
         <image name="integration_show.png" width="146" height="146"/>
-        <image name="integration_value.png" width="14" height="156"/>
-        <image name="personal_frame_vertical_.png" width="2" height="54"/>
     </resources>
 </document>

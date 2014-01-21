@@ -66,7 +66,7 @@
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+64, view.frame.size.width, view.frame.size.height)];
         }
     }
-    //等待接口url
+   
     NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:USERID];
     NSString *url = [NSString stringWithFormat:@"%@/restful/greeting/receiver?user_id=%@",MM_URL, userid];
     [self initWithRequestByUrl:url];
@@ -235,6 +235,7 @@
             MGreetingModel *model = [[MGreetingModel alloc] init];
             model.greeting_id = [[dict objectForKey:@"id"] integerValue];
             model.nick_name = [dict objectForKey:@"nick_name"];
+           // NSLog(@"nick_name == %@",model.nick_name);
             model.pic_path  = [dict objectForKey:@"pic_path"];
             model.receiver_id = [[dict objectForKey:@"receiver_id"] integerValue];
             model.sender_id = [[dict objectForKey:@"sender_id"] integerValue];
@@ -279,18 +280,12 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     
-    if ([teaserListSource count] > 0 && indexPath.row == [teaserListSource count]-1) {
-        //等待接口
-        NSString *url = [NSString stringWithFormat:@"%@&page=%d",teaserId, currentIndex];
-        [self sendRequestByUrlString:url];
-        NSLog(@"url === %@",url);
-
-    }
-    //等待接口
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     MGreetingModel  *model = [teaserListSource objectAtIndex:indexPath.row];
     
+    
+
     [cell setCellInfoWithModel:model];
     return  cell;
 }

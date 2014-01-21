@@ -36,8 +36,8 @@
 
 - (void)setCellInfoWithModel:(MGiftModel *)model
 {
-    [giftImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@""]];
-    [uerIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.gift_pic_path]] placeholderImage:[UIImage imageNamed:@""]];
+    [giftImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.gift_pic_path]] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
+    [uerIcon setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MM_URL,model.pic_path]] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
      
     userName.text = model.nick_name;
     timeLabel.text = model.time;

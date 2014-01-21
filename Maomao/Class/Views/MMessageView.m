@@ -7,10 +7,20 @@
 //
 
 #import "MMessageView.h"
+#import "JSON.h"
+#import "Utils.h"   
+#import "GPPrompting.h"
 
 @implementation MMessageView
-
+{
+    BOOL     isNetWork;
+    GPPrompting *prompting;
+    UIButton *systemMessageBtn;
+    UIButton *privateMessageBtn;
+    
+}
 @synthesize delegate;
+@synthesize sendRequest;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,7 +48,7 @@
         [titleName setTextAlignment:NSTextAlignmentCenter];
         [topBar addSubview:titleName];
         
-        UIButton *systemMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        systemMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [systemMessageBtn setFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 42)];
         [systemMessageBtn addTarget:self action:@selector(gotoMessage:) forControlEvents:UIControlEventTouchUpInside];
         [systemMessageBtn setTag:111];
@@ -59,7 +69,7 @@
         [firstLine setImage:[UIImage imageNamed:@"common_img_longLine.png"]];
         [systemMessageBtn addSubview:firstLine];
         
-        UIButton *privateMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+       privateMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [privateMessageBtn setFrame:CGRectMake(0, 44 + (noiOS7?0:20) + 42, 320, 42)];
         [privateMessageBtn addTarget:self action:@selector(gotoMessage:) forControlEvents:UIControlEventTouchUpInside];
         [privateMessageBtn setTag:222];
@@ -79,10 +89,92 @@
         UIImageView *secondLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 41, 320, 1)];
         [secondLine setImage:[UIImage imageNamed:@"common_img_longLine.png"]];
         [privateMessageBtn addSubview:secondLine];
+        /****************请求消息数*******************/
+        NSString *user_Id = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+        NSString *url = [NSString stringWithFormat:@"%@/restful/user/message?user_id=%@",MM_URL,user_Id];
+        NSLog(@"url == %@",url);
+        [self initWithRequesrByUrl:url];
+        /******************************************/
     }
     return self;
 }
 
+#pragma mark -
+#pragma mark  Send Request Method
+
+-  (void)initWithRequesrByUrl:(NSString *)urlString
+{
+    isNetWork = [Utils checkCurrentNetWork];
+    if (!isNetWork) {
+        if (prompting != nil) {
+            [prompting removeFromSuperview];
+            prompting = nil;
+        }
+        prompting = [[GPPrompting alloc] initWithView:self Text:@"网络连接中断" Icon:nil];
+        [prompting show];
+        return;
+    }
+    
+    if (sendRequest != nil) {
+        [sendRequest clearDelegatesAndCancel];
+        sendRequest = nil;
+    }
+    
+    NSURL   *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    sendRequest = [ASIHTTPRequest requestWithURL:url];
+    [sendRequest setTimeOutSeconds:kRequestTime];
+    [sendRequest setDelegate:self];
+    [sendRequest startAsynchronous];
+    
+}
+
+
+#pragma mark -
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *response = [request responseString];
+    
+    if (response == nil || [response JSONValue] == nil) {
+        return;
+    }
+    NSDictionary *responseDict = [response JSONValue];
+    
+    NSInteger   status = [[responseDict objectForKey:@""] integerValue];
+    NSString *message = [responseDict objectForKey:@"message"];
+    if (status == 0) {
+        UILabel *direct_count = [[UILabel alloc] initWithFrame:CGRectMake(280, 14, 20, 14)];
+        [direct_count setText:[NSString stringWithFormat:@"%@",[responseDict objectForKey:@"direct_count"]]];
+        [direct_count setTextColor:[UIColor colorWithRed:0.20 green:0.40 blue:0.47 alpha:1.0]];
+        [direct_count setTextAlignment:NSTextAlignmentRight];
+        [direct_count setFont:[UIFont systemFontOfSize:13]];
+        [privateMessageBtn addSubview:direct_count];
+        
+        UILabel *system_count = [[UILabel alloc] initWithFrame:CGRectMake(280, 14, 20, 14)];
+        [system_count setText:[NSString stringWithFormat:@"%@",[responseDict objectForKey:@"system_count"]]];
+        [system_count setTextColor:[UIColor colorWithRed:0.20 green:0.40 blue:0.47 alpha:1.0]];
+
+        [system_count setTextAlignment:NSTextAlignmentRight];
+        [system_count setFont:[UIFont systemFontOfSize:13]];
+        [systemMessageBtn addSubview:system_count];
+        
+        
+        NSLog(@"direct_count = %@ system_count = %@",direct_count.text,system_count.text);
+    }
+    else
+    {
+        prompting = [[GPPrompting alloc] initWithView:self Text:message Icon:nil];
+        [prompting show];
+    }
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"重要提示" message:@"网络连接中断" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [alertView show];
+}
 - (void)leftSlider
 {
     [delegate messageLeftSlider];

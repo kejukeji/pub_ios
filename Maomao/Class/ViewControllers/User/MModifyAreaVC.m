@@ -262,6 +262,7 @@
         
         NSDictionary *userInfo = [respponseDict objectForKey:@"user_info"];
         NSString *county = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"county"]];
+        NSLog(@"保存的county == %@",county);
         [[NSUserDefaults standardUserDefaults] setInteger:4 forKey:kModifyType];
         [[NSUserDefaults standardUserDefaults] setObject:county forKey:kCounty];
         [[NSUserDefaults standardUserDefaults] synchronize];

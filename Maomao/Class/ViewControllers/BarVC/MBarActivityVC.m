@@ -56,9 +56,6 @@
     
     rightBtn = [MRightBtn buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
-    //[rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
-   // rightBtn.titleLabel.text = @"收藏";
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     barActivityScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0))];
     [barActivityScrollView setBackgroundColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.89 alpha:1.0]];
@@ -316,7 +313,24 @@
     {
         [rightBtn setTitle:@"收藏" forState:UIControlStateNormal];
     }
-
+    NSString    *start1 = [model.start_date stringByReplacingOccurrencesOfString:@"-" withString:@"月"]; //将第一个”-“替换成月
+    NSString    *start2 = [start1 stringByReplacingOccurrencesOfString:@" " withString:@"日"];//将第二个”-“替换成日
+    
+    NSString    *year = [start2 substringWithRange:NSMakeRange(0, 4)]; //获取年份
+    NSString    *month_Date = [start2 substringWithRange:NSMakeRange(5, 11)];//获取月日
+    NSString    *Time1 = [NSString stringWithFormat:@"%@年%@",year,month_Date];//组合时间
+    
+    NSString    *Time_Y_M_D = [Time1 substringWithRange:NSMakeRange(0, 11)];//分离日期
+    NSString    *Time_T = [Time1 substringWithRange:NSMakeRange(11, 5)];  //分离时间
+    NSLog(@"Time_Y_M_D = %@",Time_Y_M_D);
+    NSLog(@"Time_T = %@", Time_T);
+    
+    
+    NSString    *end1 = [model.end_date stringByReplacingOccurrencesOfString:@"-" withString:@"月"];
+    NSString    *end2 = [end1 stringByReplacingOccurrencesOfString:@" " withString:@"日"];
+    NSString    *end3 = [end2 substringWithRange:NSMakeRange(11, 5)];
+    NSLog(@"end3 = %@",end3);
+    
     NSString *picPath = [NSString stringWithFormat:@"%@%@/%@",MM_URL,model.rel_path,model.pic_name];
     [activityImg setImageWithURL:[NSURL URLWithString:picPath] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
     
@@ -324,7 +338,7 @@
     [addressLable setText:model.address];
     [jionNumLabel setText:[NSString stringWithFormat:@"已有%d人参加",model.join_people_number]];
     [activityDetailLable setText:model.activity_info];
-    activityTimeLabel.text = [NSString stringWithFormat:@"时间:%@-%@",model.start_date,model.end_date];
+    activityTimeLabel.text = [NSString stringWithFormat:@"时间: %@ %@-%@",Time_Y_M_D,Time_T,end3];
     
 }
 - (void)didReceiveMemoryWarning

@@ -27,7 +27,9 @@
     NSMutableArray  *barListSources;
     BOOL             isNetWork;
     int              currentIndex;
-
+    NSMutableArray  *scrollLineArray;
+    UIImageView     *lastImgeView;
+    
     MChangeCountyVC *changeCountyVC;
 
 }
@@ -45,11 +47,11 @@
 @synthesize barListTV;
 @synthesize isNoBarList;
 @synthesize barCountLabel;
-
 @synthesize nearTag;
 @synthesize barID;
 @synthesize titleName;
 @synthesize changeCountyBtn;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -73,10 +75,18 @@
     [rightBtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
     [rightBtn setTitle:@"搜索" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    
+    /**********配置滑动视图**********/
+    page = 0;//设置当前页为1
+    recommendScrollView.directionalLockEnabled = YES;//锁定滑动的方向
+    recommendScrollView.pagingEnabled   = YES;//滑到subview的边界
+    recommendScrollView.showsHorizontalScrollIndicator = NO;//不显示水平滚动条
+    recommendScrollView.showsVerticalScrollIndicator = NO; //不显示垂直滚动条
+    scrollLineArray = [NSMutableArray arrayWithCapacity:0];
+    /*******************************/
     
     changeCountyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
+
     changeCountyBtn.frame = CGRectMake(120, 15, 15, 10);
     [changeCountyBtn setTitle:@"********" forState:UIControlStateNormal];
     [changeCountyBtn setImage:[UIImage imageNamed:@"common_img_down_arrow.png"] forState:UIControlStateNormal];
@@ -86,6 +96,10 @@
     barPicSources = [NSMutableArray arrayWithCapacity:0];
     barListSources = [NSMutableArray arrayWithCapacity:0];
     currentIndex = 1;
+    /******处理滑动线*****/
+  
+    lastImgeView = [[UIImageView alloc] init];
+    /*********************************/
  
     changeCountyVC = [[MChangeCountyVC alloc] init];
     
@@ -113,21 +127,18 @@
     hud = [[MBProgressHUD alloc] init];
     [hud setLabelText:@"加载中，请稍等！"];
     [self.view addSubview:hud];
+
     
     // 判断是否酒吧按钮
     if (nearTag == 11) {
         
         NSString *url = [NSString stringWithFormat:@"%@",urlStr];
         
-        NSLog(@"url in viewload %%&&%%&& == %@",url);
-        
         [self initWithRequestByUrl:url];
     }
     else{
         
         NSString *url = [NSString stringWithFormat:@"%@&city_id=%@",urlStr, @"0"];
-        
-        NSLog(@"url in viewload %%&&%%&& == %@",url);
         
         [self initWithRequestByUrl:url];
     }
@@ -195,7 +206,7 @@
 {
     [hud show:YES];
     
-    
+    NSLog(@"urlStr == %@",urlStr);
     self.lastUrlString = urlString;
     
     NSLog(@"request url  ******* == %@",urlString);
@@ -230,6 +241,7 @@
     
     barListVC.nearTag = sender.tag;
     barListVC.urlStr = url;
+    
     [self.navigationController pushViewController:barListVC animated:YES];
 }
 
@@ -434,56 +446,91 @@
 
 - (void)setPicListConten
 {
-    for (int i = 0; i < [barPicSources count]; i++) {
+        int count = [barPicSources count];
+    for (int i = 0; i <[barPicSources count]; i++) {
         MBarPicListModel *model = [barPicSources objectAtIndex:i];
-        
+        UIImageView *scrollLine = [[UIImageView alloc] init];
         UIButton *picBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [picBtn addTarget:self action:@selector(gotoBarDetails:) forControlEvents:UIControlEventTouchUpInside];
         [picBtn setTag:[model.picId integerValue]];
         [picBtn setTitle:model.name forState:UIControlStateNormal];
         [picBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        
+        [picBtn setFrame:CGRectMake(i * 300 ,0,300, 120)];
+        
         NSString *picPath = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
         [picBtn setImageWithURL:[NSURL URLWithString:picPath] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
         
-        //[picBtn setFrame:CGRectMake(i * 82, 0, 72, 72)];//一期加载图片
-        
         //二期加载图片
-        [picBtn setFrame:CGRectMake(i * 250, 0, 360, 140)];
-
         [recommendScrollView addSubview:picBtn];
+        
+        scrollLine.frame = CGRectMake(i*320.0/count,140.0+29.0, 320.0/count -2.0, 2.0);
+        [scrollLine setImage:[UIImage imageNamed:@"barList_grayline.png"]];
+       
+        [scrollLineArray  addObject:scrollLine];//将滑动线添加到一个数组中
+        
+        [self.view addSubview:scrollLine];
+        
     }
+    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 300,0)];
     
-    [recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 320, 140)];
-    
-    //[recommendScrollView setContentSize:CGSizeMake([barPicSources count] * 82, 72)];
-    [recommendPage setNumberOfPages:[barPicSources count]];
-    timeLoop = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(scrollViewLoops:) userInfo:nil repeats:YES];
+   timeLoop = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(scrollViewLoop) userInfo:nil repeats:YES];// scrollViewLoops:
+
 
 }
+
+
 
 /*
- 实现推荐酒吧轮播
+ 实现推荐酒吧轮播,如果没有达到滚动的边界那就继续滚动，反之推荐酒吧则退回到原来的位置。 第一种滚动方法代码简洁 第二种代码复杂不易于理解 本页面采用第一种算法。
  */
-- (void)scrollViewLoops:(NSTimer *)time
+
+//fun1
+
+- (void) scrollViewLoop
 {
-    NSInteger offset = recommendScrollView.contentOffset.x;
-    if (offset != ([barPicSources count])*360) {//offset != ([barPicSources count])*82
-        [UIView beginAnimations:@"loop" context:nil];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:1.0f];
-        [recommendScrollView setContentOffset:CGPointMake(offset+250, 4)];//offset+82, 4
-        [UIView commitAnimations];
+    UIImageView *blueLine = [[UIImageView alloc] init];
+    //修改页码
+    if (page == 0) {
+        
+        switchDirection = rightDirectin;
+        blueLine = [scrollLineArray objectAtIndex:page];
+        [lastImgeView setImage:[UIImage imageNamed:@"barList_grayline.png"]];
+        [blueLine setImage:[UIImage imageNamed:@"barList_blueline.png"]];
+        lastImgeView = blueLine;
     }
-    else
+    else if (page == [barPicSources count]-1)
     {
-        [UIView beginAnimations:@"loop" context:nil];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:1.0f];
-        [recommendScrollView setContentOffset:CGPointMake(250, 4)];//34, 4
-        [UIView commitAnimations];
+        switchDirection  = leftDirection;
+        blueLine = [scrollLineArray objectAtIndex:page];
+        [lastImgeView setImage:[UIImage imageNamed:@"barList_grayline.png"]];
+        [blueLine setImage:[UIImage imageNamed:@"barList_blueline.png"]];
+        lastImgeView = blueLine;
     }
     
+    if (switchDirection == rightDirectin) {
+        
+        blueLine = [scrollLineArray objectAtIndex:page];
+        [lastImgeView setImage:[UIImage imageNamed:@"barList_grayline.png"]];
+        [blueLine setImage:[UIImage imageNamed:@"barList_blueline.png"]];
+        lastImgeView = blueLine;
+        page ++;
+    }
+    else if (switchDirection == leftDirection)
+    {
+        blueLine = [scrollLineArray objectAtIndex:page];
+        [lastImgeView setImage:[UIImage imageNamed:@"barList_grayline.png"]];
+        [blueLine setImage:[UIImage imageNamed:@"barList_blueline.png"]];
+        lastImgeView = blueLine;
+        page --;
+    }
+    [recommendScrollView setContentOffset:CGPointMake(300*page, 0) animated:YES];
 }
+
+
+//[lastImgeView setImage:[UIImage imageNamed:@"barList_grayline.png"]];
+//[scrollLine1 setImage:[UIImage imageNamed:@"barList_blueline.png"]];
+//lastImgeView = scrollLine1;
 
 - (void)gotoBarDetails:(UIButton *)button
 {

@@ -125,7 +125,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:birthday forKey:kBirthday];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        UIAlertView *OK = [[UIAlertView alloc] initWithTitle:@"重要提示" message:@"个性签名成功保存！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        UIAlertView *OK = [[UIAlertView alloc] initWithTitle:@"重要提示" message:@"生日修改成功保存！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [OK show];
         
     } else if (status == 1) {

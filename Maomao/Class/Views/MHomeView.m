@@ -11,12 +11,14 @@
 #import "JSON.h"
 #import "UIButton+WebCache.h"
 
+
 @implementation MHomeView
 
 @synthesize delegate;
 @synthesize sendRequest;
 @synthesize adPic_Path;
 @synthesize changeCityName;
+@synthesize advertising_url;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -139,7 +141,7 @@
     adPic_Path = [responseDict objectForKey:@"advertising_picture"];
     NSInteger status = [[responseDict objectForKey:@"status"] integerValue];
     NSArray *list = [responseDict objectForKey:@"list"];
-    
+    advertising_url = [responseDict objectForKey:@"advertising_url"];
     if (status == 0) {
         for (NSDictionary *dict in list) {
             MHomeModel *model = [[MHomeModel alloc] init];
@@ -247,7 +249,7 @@
 //进入广告宣传页面
 - (void)gotoAdVC
 {
-    NSLog(@"goto  AD.");
+    [delegate gotoAdvertiseVC:advertising_url];
 }
 - (void)gotoBarListVC:(UIButton *)button
 {

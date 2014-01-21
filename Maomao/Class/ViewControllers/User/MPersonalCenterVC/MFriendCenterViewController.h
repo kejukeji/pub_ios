@@ -21,8 +21,10 @@
 
 @interface MFriendCenterViewController : UIViewController<DropDownControlViewDelegate,ASIHTTPRequestDelegate>
 {
-    GPPrompting *prompting;
+    GPPrompting     *prompting;
     BOOL    isNetWork;
+    UIScrollView    *friendCenterScrollView;
+    
 }
 @property (nonatomic, assign) id<MFriendCenterViewControlDelegate>delegate;
 @property (nonatomic, copy) NSString *friendId;
@@ -44,7 +46,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *friendSignLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numofGift;
-@property (weak, nonatomic) IBOutlet UIScrollView *friendScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
+
 
 /*点击礼物按钮酒吧收藏按钮要下滑*/
 @property (weak, nonatomic) IBOutlet UIButton *moveFrame1;//按钮

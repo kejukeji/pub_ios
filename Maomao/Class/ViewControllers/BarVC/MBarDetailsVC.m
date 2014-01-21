@@ -53,8 +53,8 @@
 @synthesize sendCancelCollectRequest;
 @synthesize barIntroTitel;
 @synthesize activityBtn;
-/**********/
 
+/***酒吧活动标签*******/
 @synthesize activityImg;
 @synthesize activityInfoLabel;
 @synthesize activityTitleLabel ;
@@ -458,7 +458,7 @@
 {
     
     if (model.is_collect) {
-        [rightBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
+        [rightBtn setTitle:@"已收藏" forState:UIControlStateNormal];
     }
     else
     {
@@ -474,15 +474,22 @@
     [barIconBtn setTag:[model.barDetailId integerValue]];
     
     [barNameLabel setText:[NSString stringWithFormat:@"%@",model.name]];
-//    [signaNumberLabel setText:[NSString stringWithFormat:@"%@",model.view_number]];
-    
-    if ([model.street isEqual:[NSNull null]]) {
+
+    //判断电话
+    if ([model.tel_list isEqual:[NSNull null]]) {
 //        telLabel.text = @"";
-        [telNumber setTitle:@"" forState:UIControlStateNormal];
+        NSLog(@"电话: %@",model.tel_list);
+        [telNumber setTitle:@"暂无电话" forState:UIControlStateNormal];
     } else {
 
         [telNumber setTitle:[NSString stringWithFormat:@"%@",model.tel_list] forState:UIControlStateNormal];
-        
+    }
+    //判断地址
+    if ([model.street isEqual:[NSNull null]]) {
+        [addressBtn setTitle:@"暂无地址" forState:UIControlStateNormal];
+    }
+    else
+    {
         [addressBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
         
         [addressBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -503,18 +510,29 @@
     CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:locationLatitude longitude:locationLongitude];
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     
-    distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",[newLocation distanceFromLocation :currentLocation]/1000];
+    distanceLabel.text = [NSString stringWithFormat:@"%0.1fkm",[newLocation distanceFromLocation :currentLocation]/1000];
 }
 
 //  添加酒吧活动信息
 -  (void)setActivityContent:(MActivityListModel *)model
 {
+    NSString    *start1 = [model.start_date stringByReplacingOccurrencesOfString:@"-" withString:@"月"]; //将”-“替换成月
+    NSString    *start2 = [start1 stringByReplacingOccurrencesOfString:@" " withString:@"日"];//将空格替换成日
+    NSString    *start3 = [start2 substringWithRange:NSMakeRange(5, 11)];//最终获取设计图中的时间格式
+    NSLog(@"start3 = %@",start3);
+    
+    NSString    *end1 = [model.end_date stringByReplacingOccurrencesOfString:@"-" withString:@"月"];
+    NSString    *end2 = [end1 stringByReplacingOccurrencesOfString:@" " withString:@"日"];
+    NSString    *end3 = [end2 substringWithRange:NSMakeRange(8, 8)];
+    NSLog(@"end3 = %@",end3);
+    
     NSString *pic_path = [NSString stringWithFormat:@"%@%@",MM_URL, model.pic_path];
     [activityImg setImageWithURL:[NSURL URLWithString:pic_path ] placeholderImage:[UIImage imageNamed:@"common_img_default.png"]];
     
     activityTitleLabel.text = model.title;
     activityInfoLabel.text  = model.activity_info;
-    timeLable.text = [NSString stringWithFormat:@"%@-%@",model.start_date,model.end_date];
+    NSLog(@"start_date = %@ end_date = %@",model.start_date,model.end_date);
+    timeLable.text = [NSString stringWithFormat:@"%@-%@",start3,end3];
     //获取活动id
     activityId1 = model.activity_id;
     NSLog(@"activityId1  ***** = %@",activityId1);
@@ -543,9 +561,16 @@
 - (IBAction)callPhone:(UIButton *)sender
 {
 
-    NSString *callNumber = [NSString stringWithFormat:@"%@",telNumber.titleLabel.text];
-    phoneCall = [[UIAlertView alloc] initWithTitle:nil message:callNumber delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-    [phoneCall show];
+    if ([sender.titleLabel.text isEqualToString:@"暂无电话"]) {
+        return;
+    }
+    else
+    {
+        NSString *callNumber = [NSString stringWithFormat:@"%@",telNumber.titleLabel.text];
+        phoneCall = [[UIAlertView alloc] initWithTitle:nil message:callNumber delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
+        [phoneCall show];
+    }
+   
 }
 
 - (IBAction)LocationBtn:(UIButton *)sender
@@ -621,7 +646,7 @@
 {
     
     activityBtn.enabled = NO;
-    
+    activityBtn.hidden = YES;
     if (!isHaveActivity) {
         activityTitleLabel.text = @"";
         activityInfoLabel.text = @"";

@@ -10,6 +10,7 @@
                 <outlet property="Icon" destination="kUU-JQ-5Hd" id="slz-5f-RHa"/>
                 <outlet property="ageLabel" destination="nRQ-zz-FHD" id="xLx-Of-Dt3"/>
                 <outlet property="areaLabel" destination="mgX-sX-qKk" id="6ab-oj-93M"/>
+                <outlet property="areaLabel1" destination="xhc-Qd-Kiu" id="aAI-8s-Wwd"/>
                 <outlet property="collect_activity_countLable" destination="8Pg-gn-Sh1" id="mg3-wY-Oih"/>
                 <outlet property="collect_pub_countLabel" destination="N0K-2l-Bve" id="d8m-ge-JGF"/>
                 <outlet property="creditLabel" destination="ZD1-mR-Gnp" id="bmQ-kT-8Am"/>
@@ -24,6 +25,7 @@
                 <outlet property="nameLabel" destination="mS7-UW-Aqh" id="2xv-Wt-6zr"/>
                 <outlet property="privateMsgNotice" destination="lyg-fP-ORp" id="1du-bY-tYj"/>
                 <outlet property="private_letter_countLable" destination="6c9-bl-R1R" id="bol-NZ-xNp"/>
+                <outlet property="provinceLabel" destination="G72-te-zoS" id="QbA-A0-mWE"/>
                 <outlet property="reputationLable" destination="xp3-4e-t7s" id="tpD-QH-vDc"/>
                 <outlet property="signalLabel" destination="GZW-JO-d4J" id="pdh-dZ-iDp"/>
                 <outlet property="teaserNotice" destination="ORs-Xk-hdv" id="p5j-Me-BUr"/>
@@ -39,23 +41,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="71" height="295"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_colorbg.png" id="jlz-1m-ItV">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_Icon.png" id="kUU-JQ-5Hd">
+                    <rect key="frame" x="102" y="22" width="188" height="186"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_img_headIcon.png.png" id="jlz-1m-ItV">
                     <rect key="frame" x="71" y="0.0" width="255" height="275"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_Icon.png" id="kUU-JQ-5Hd">
-                    <rect key="frame" x="100" y="20" width="186" height="186"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 上海" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G72-te-zoS">
-                    <rect key="frame" x="5" y="20" width="39" height="21"/>
+                    <rect key="frame" x="5" y="20" width="61" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.92549026012420654" green="0.51888413027108438" blue="0.24215220256024098" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浦东" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mgX-sX-qKk">
-                    <rect key="frame" x="0.0" y="43" width="66" height="21"/>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mgX-sX-qKk">
+                    <rect key="frame" x="0.0" y="73" width="66" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,7 +99,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_girl_icon.png" id="GDl-hZ-NzH">
-                    <rect key="frame" x="267" y="240" width="10" height="15"/>
+                    <rect key="frame" x="267" y="240" width="13" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nRQ-zz-FHD">
@@ -259,7 +261,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2ve-CC-Wlz">
-                    <rect key="frame" x="0.0" y="412" width="320" height="65"/>
+                    <rect key="frame" x="0.0" y="408" width="320" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" backgroundImage="personal_infor_bg.png">
@@ -270,7 +272,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_actvity_icon.png" id="F3B-4X-xIL">
-                    <rect key="frame" x="27" y="425" width="39" height="39"/>
+                    <rect key="frame" x="27" y="421" width="39" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的活动" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eAe-ZH-6fR">
@@ -316,6 +318,13 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xhc-Qd-Kiu">
+                    <rect key="frame" x="5" y="44" width="63" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -326,9 +335,9 @@
         <image name="personal_Icon.png" width="370" height="369"/>
         <image name="personal_actvity_icon.png" width="78" height="78"/>
         <image name="personal_collection_btn.png" width="78" height="78"/>
-        <image name="personal_colorbg.png" width="512" height="547"/>
         <image name="personal_frame_vertical_.png" width="2" height="54"/>
         <image name="personal_girl_icon.png" width="17" height="28"/>
+        <image name="personal_img_headIcon.png.png" width="520" height="529"/>
         <image name="personal_infor_bg.png" width="49" height="94"/>
         <image name="personal_invite_and_gift_bg.png" width="49" height="77"/>
         <image name="personal_pudong_bottom.png" width="98" height="36"/>
