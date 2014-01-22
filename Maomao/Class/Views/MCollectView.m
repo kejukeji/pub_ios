@@ -11,14 +11,47 @@
 #import "JSON.h"
 #import "MBarDetailsVC.h"
 #import "MRightBtn.h"
+#import <objc/runtime.h>
+
+
+const static char * barListTVDeleteTableViewCellIndexPathKey = "barListTVDeleteTableViewCellIndexPathKey";
+static  UITableView *barListTV;
+
+@interface UIButton (NSIndexPath)
+
+- (void)setIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPath;
+
+@end
+
+@implementation UIButton (NSIndexPath)
+
+- (void)setIndexPath:(NSIndexPath *)indexPath {
+    objc_setAssociatedObject(self,barListTVDeleteTableViewCellIndexPathKey, indexPath, OBJC_ASSOCIATION_RETAIN);
+    NSLog(@"indexPath @@@ = %d",indexPath.row);
+}
+
+- (NSIndexPath *)indexPath {
+    id obj = objc_getAssociatedObject(barListTV, barListTVDeleteTableViewCellIndexPathKey);
+    if([obj isKindOfClass:[NSIndexPath class]]) {
+        return (NSIndexPath *)obj;
+    }
+    
+    return nil;
+}
+
+@end
+
 
 @implementation MCollectView
 {
     MRightBtn       *editBtn;
     BOOL           isSelectEdit;
-    NSMutableArray  *coverViewArray;
+    NSMutableArray  *deleBtnArray;
     UIView          *coverView;
-   
+    UIButton        *_deleteButton;
+    
+    UITapGestureRecognizer * _tapGestureRecognizer;
     
 }
 
@@ -26,7 +59,7 @@
 @synthesize sendRequest;
 @synthesize refreshHeaderView;
 @synthesize lastUrlString;
-@synthesize barListTV;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -65,7 +98,7 @@
        
         
         barListSources = [NSMutableArray arrayWithCapacity:0];
-        coverViewArray  = [NSMutableArray arrayWithCapacity:0];
+        deleBtnArray  = [NSMutableArray arrayWithCapacity:0];
         currentIndex = 1;
         
         barListTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?0:20), 320, 416+(iPhone5?88:0)) style:UITableViewStylePlain];
@@ -277,33 +310,83 @@
     [alertView show];
 }
 
+
+#pragma mark - Edit Collected Bar
+//编辑收藏酒吧
 - (void)eiditCollect
 {
-    UIView  *view = [[UIView alloc] init];
+    
     NSLog(@"单独删除酒吧收藏");
     if (isSelectEdit == YES) {
-        for (int i = 0; i < [barListSources count]; i++) {
-            view = [coverViewArray objectAtIndex:i];
-           //view.hidden = NO;
-           NSLog(@"coverView in coverViewArray address %@",view);
-        }
+        
+        [self setEditing:barListTV.editing animated:YES];
+
         [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
         isSelectEdit = NO;
     }
     else
     {
-        for (int i = 0; i < [barListSources count]; i++) {
-            
-            view = [coverViewArray objectAtIndex:i];
-           //view.hidden = YES;
-            
-            NSLog(@"coverView in coverViewArray address %@",view);
-        }
+        [self setEditing:!barListTV.editing animated:YES];
+
         [editBtn setTitle:@"完成" forState:UIControlStateNormal];
         isSelectEdit = YES;
     }
 
     
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated { //重写该方法
+    
+    //轻拍手式
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    _tapGestureRecognizer.delegate = self;
+    [barListTV addGestureRecognizer:_tapGestureRecognizer];
+
+    if (editing) {
+        // Execute tasks for editing status
+        for (int i = 0; i < [barListSources count]; i++)
+        {
+            //都在这边添加一个删除按钮
+            _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            _deleteButton.frame = CGRectMake(277, 44+111*i, 22, 22);
+            [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+            [_deleteButton setBackgroundColor:[UIColor redColor]];
+            [_deleteButton addTarget:self action:@selector(deleteCell:) forControlEvents:UIControlEventTouchUpInside];
+            _deleteButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            [deleBtnArray addObject:_deleteButton];
+            [barListTV addSubview:_deleteButton];
+            
+        }
+        
+        
+    } else {
+        // Execute tasks for non-editing status.
+        for (int i = 0; i < [deleBtnArray count]; i++)
+        {
+            UIButton *hiddenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            hiddenBtn = [deleBtnArray objectAtIndex:i];
+            hiddenBtn.hidden = YES;
+            hiddenBtn.enabled = NO;
+        }
+        
+    }
+}
+//获取
+- (void)tapped:(UIGestureRecognizer *)gestureRecognizer
+{
+    NSIndexPath * indexPath = [self cellIndexPathForGestureRecognizer:gestureRecognizer];
+    NSLog(@"indexPath == %d",indexPath.row);
+   // _deleteButton.indexPath = indexPath;
+    [_deleteButton setIndexPath:indexPath];
+    
+    
+}
+
+- (void)deleteCell:(id)sender
+{
+    UIButton * deleteButton = (UIButton *)sender;
+    NSIndexPath * indexPath = [deleteButton indexPath];
+    NSLog(@"indexPath @@@@@@ == %d",indexPath.row);
 }
 
 #pragma mark -
@@ -347,9 +430,8 @@
     NSLog(@"coverView in cell address %@",coverView);
     NSLog(@"current ");
     [cell setCellInfoWithModel:model];
-    [cell addSubview:coverView];
+   // [cell addSubview:coverView];
     
-    [coverViewArray addObject:coverView];
     
     // NSLog(@"coverView in coverViewArray address %@",[coverViewArray objectAtIndex:indexPath.row]);
     return cell;
@@ -362,7 +444,16 @@
     [delegate gotoCollectBarDetail:model];
 }
 
-
-
+//获取手势的位置
+- (NSIndexPath *)cellIndexPathForGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer {
+    UIView * view = gestureRecognizer.view;
+    if(![view isKindOfClass:[UITableView class]]) {
+        return nil;
+    }
+    
+    CGPoint point = [gestureRecognizer locationInView:view];
+    NSIndexPath * indexPath = [barListTV indexPathForRowAtPoint:point];
+    return indexPath;
+}
 
 @end

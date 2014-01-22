@@ -20,7 +20,7 @@
 #import "GPPrompting.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface MCollectView : UIView <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MCollectView : UIView <ASIHTTPRequestDelegate, EGORefreshTableHeaderDelegate, UITableViewDataSource, UITableViewDelegate,UIGestureRecognizerDelegate>
 {
     IBOutlet MBarCollectCell *barCollectCell;
     GPPrompting              *prompting;
@@ -35,7 +35,7 @@
 @property (nonatomic, strong) ASIHTTPRequest             *sendRequest;
 @property (nonatomic, strong) EGORefreshTableHeaderView  *refreshHeaderView;
 @property (nonatomic, copy)   NSString                   *lastUrlString;
-@property (nonatomic, strong) UITableView                *barListTV;
+//@property (nonatomic, strong) UITableView                *barListTV;
 
 
 - (void)initWithRequestByUrl:(NSString *)urlString;
