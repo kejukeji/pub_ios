@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite_img.png" id="zYe-zv-PCk">
-                        <rect key="frame" x="10" y="15" width="56" height="58"/>
+                        <rect key="frame" x="10" y="11" width="56" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一花一世界" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ta7-9O-8Bm">
@@ -50,6 +50,10 @@
                         <rect key="frame" x="10" y="76" width="302" height="2"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tesser_eye_icon.png" id="Thc-WO-7wA">
+                        <rect key="frame" x="262" y="32" width="30" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -62,5 +66,6 @@
     <resources>
         <image name="invite_img.png" width="88" height="88"/>
         <image name="teaser_seperate_line.png" width="1" height="5"/>
+        <image name="tesser_eye_icon.png" width="33" height="20"/>
     </resources>
 </document>

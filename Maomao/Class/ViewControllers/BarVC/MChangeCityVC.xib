@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="cityNameTF" destination="ygZ-I4-rQG" id="Adg-CP-TO1"/>
                 <outlet property="currentCityName" destination="gTr-P4-n7G" id="Neh-FA-Vs1"/>
+                <outlet property="indexBar" destination="4fa-Jc-b46" id="cCp-5g-5Wd"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -70,6 +71,11 @@
                     <color key="textColor" red="0.59215688710000003" green="0.59215688710000003" blue="0.59215688710000003" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" id="4fa-Jc-b46" customClass="AIMTableViewIndexBar">
+                    <rect key="frame" x="300" y="80" width="20" height="488"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

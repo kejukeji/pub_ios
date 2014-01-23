@@ -10,6 +10,7 @@
 		0C1A5975188FD5E800C45D1B /* guide_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C1A5972188FD5E800C45D1B /* guide_1.jpg */; };
 		0C1A5976188FD5E800C45D1B /* guide_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C1A5973188FD5E800C45D1B /* guide_2.jpg */; };
 		0C1A5977188FD5E800C45D1B /* guide_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C1A5974188FD5E800C45D1B /* guide_3.jpg */; };
+		0C1A59DC1890BE4300C45D1B /* AIMTableViewIndexBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A59DB1890BE4300C45D1B /* AIMTableViewIndexBar.m */; };
 		0C20A2B218684C3F00E17914 /* MInvitationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A2B118684C3F00E17914 /* MInvitationModel.m */; };
 		0C20A2B518684F8C00E17914 /* MGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A2B418684F8C00E17914 /* MGiftModel.m */; };
 		0C20A2B8186867A200E17914 /* MGreetingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C20A2B7186867A200E17914 /* MGreetingModel.m */; };
@@ -423,6 +424,8 @@
 		0C1A5972188FD5E800C45D1B /* guide_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide_1.jpg; sourceTree = "<group>"; };
 		0C1A5973188FD5E800C45D1B /* guide_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide_2.jpg; sourceTree = "<group>"; };
 		0C1A5974188FD5E800C45D1B /* guide_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide_3.jpg; sourceTree = "<group>"; };
+		0C1A59DA1890BE4300C45D1B /* AIMTableViewIndexBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMTableViewIndexBar.h; sourceTree = "<group>"; };
+		0C1A59DB1890BE4300C45D1B /* AIMTableViewIndexBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMTableViewIndexBar.m; sourceTree = "<group>"; };
 		0C20A2B018684C3F00E17914 /* MInvitationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MInvitationModel.h; sourceTree = "<group>"; };
 		0C20A2B118684C3F00E17914 /* MInvitationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MInvitationModel.m; sourceTree = "<group>"; };
 		0C20A2B318684F8C00E17914 /* MGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGiftModel.h; sourceTree = "<group>"; };
@@ -1070,6 +1073,8 @@
 		0C418AAE1858CFC000E45E98 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				0C1A59DA1890BE4300C45D1B /* AIMTableViewIndexBar.h */,
+				0C1A59DB1890BE4300C45D1B /* AIMTableViewIndexBar.m */,
 				0C4A76DC185EA8B600FDDE18 /* dropdown_bg.png */,
 				0C4A76DD185EA8B600FDDE18 /* DropDownControllView.h */,
 				0C4A76DE185EA8B600FDDE18 /* DropDownControllView.m */,
@@ -2181,6 +2186,7 @@
 				FE902AF4180F90AE00F60C71 /* SDImageCache.m in Sources */,
 				0CCE19A3188E3DDC0085BD61 /* MAdvertiseVC.m in Sources */,
 				FE902AFC180F90AE00F60C71 /* UIImageView+WebCache.m in Sources */,
+				0C1A59DC1890BE4300C45D1B /* AIMTableViewIndexBar.m in Sources */,
 				0C418C211858CFC100E45E98 /* MBarDetailSignaModel.m in Sources */,
 				0C418C4A1858CFC100E45E98 /* MModifyAreaVC.m in Sources */,
 				0C418C3E1858CFC100E45E98 /* MRegisterVC.m in Sources */,

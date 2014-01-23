@@ -281,6 +281,17 @@
         areaLabel1.text = @"地址";
     }
     
+    
+    NSString *signl = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
+    if ([signl isEqualToString:@"<null>"]) {
+        signalLabel.text = @"";
+    }
+    else
+    {
+        signalLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:kSignature];
+    }
+
+    
 }
 
 - (void)didReceiveMemoryWarning

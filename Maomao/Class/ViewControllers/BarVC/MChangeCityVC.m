@@ -13,14 +13,19 @@
 #import "MBackBtn.h"
 #import "Utils.h"
 #import "JSON.h"
+#import "AIMTableViewIndexBar.h"
+#import "MAreaModel.h"
 
-@interface MChangeCityVC ()<UITableViewDataSource, UITableViewDelegate>
+@interface MChangeCityVC ()<UITableViewDataSource, UITableViewDelegate,AIMTableViewIndexBarDelegate>
 {
      BOOL       isNetWork;
     int         currentIndex;
+    NSArray      *sectons;
     
+    __weak IBOutlet AIMTableViewIndexBar *indexBar;
     CLLocationManager   *locationManager;
     CLGeocoder          *currentCityGeocoder;
+    
     
 }
 @end
@@ -55,7 +60,16 @@
     MBackBtn *backBtn = [MBackBtn  buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    //添加section
+    sectons = @[@"#", @"A", @"B", @"C",
+                @"D", @"E", @"F", @"G",
+                @"H", @"I", @"J", @"K",
+                @"L", @"M", @"N", @"O",
+                @"P", @"Q", @"R", @"S",
+                @"T", @"U", @"V", @"W",
+                @"X", @"Y", @"Z"];
     
+    indexBar.delegate = self; //设立代理
     
      /*******************定位城市********************/
     currentCityGeocoder = [[CLGeocoder alloc] init];
@@ -69,16 +83,18 @@
     citySource = [NSMutableArray arrayWithCapacity:0];
     currentIndex = 1;
     
-    cityTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 160, 320, 300+(iPhone5?+88:0)) style:UITableViewStylePlain];
+    cityTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 160, 300, 300+(iPhone5?+88:0)) style:UITableViewStylePlain];
     [cityTV setDelegate:self];
     [cityTV setDataSource:self];
     [cityTV setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [cityTV setBackgroundColor:[UIColor clearColor]];
     [cityTV setBackgroundView:nil];
     [cityTV setRowHeight:40.0f];
-//    [self.view addSubview:cityTV];
+    [self.view addSubview:cityTV];
     
     NSString *url = [NSString stringWithFormat:@"%@/restful/area",MM_URL];
+    
+    NSLog(@"area url == %@",url);
     [self sendRequestByUrlString:url];
     
     if (!noiOS7) {
@@ -239,16 +255,17 @@
     
     NSInteger   status = [[responseDict objectForKey:@"status"] integerValue];
     NSArray     *list = [responseDict objectForKey:@"list"];
+
     
     if (status == 0) {
         for( NSDictionary *dict in list)
         {
-            MCityModel   *model = [[MCityModel alloc] init];
-            model.name = [dict objectForKey:@"name"];
+            MAreaModel *model = [[MAreaModel alloc] init];
             model.code = [dict objectForKey:@"code"];
-            model.city_id = [dict objectForKey:@"id"];
+            model.name = [dict objectForKey:@"name"];
             model.country = [dict objectForKey:@"country"];
-            
+            model.city_list = [dict objectForKey:@"city_list"];
+            model.areaId = [dict objectForKey:@"id"];
             [citySource addObject:model];
         }
         [cityTV reloadData];
@@ -267,32 +284,58 @@
 #pragma mark - 
 #pragma mark - UITableViewDelegate
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+
+-  (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"city count == %d",[citySource count]);
-    return  [citySource count];
+  
+    return [citySource count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    MAreaModel *model = [citySource objectAtIndex:section];
+    NSArray *citys = model.city_list;
+    
+    return [citys count];
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    MAreaModel *model = [citySource objectAtIndex:section];
+    NSString *name = model.name;
+    return name;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString     *cellIndentify = @"cell";
     
-    MChangeCityCell *cell = (MChangeCityCell *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:cellIndentify];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIndentify];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"MChangeCityCell" owner:self options:nil];
-        cell = cityCell;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentify];
     }
     
-    if ([citySource count] > 0 && indexPath.row == [citySource count] - 1) {
-        
-        NSString *url = [NSString stringWithFormat:@"%@/restful/area",MM_URL];
-        [self sendRequestByUrlString:url];
+    if (!noiOS7) {
+        [cell setBackgroundColor:[UIColor clearColor]];
     }
-
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-    MCityModel *model = [citySource objectAtIndex:indexPath.row];
-    [cell setCellInfoWithModel:model];
+    MAreaModel *model = [citySource objectAtIndex:indexPath.section];
+    
+    if ([model.name isEqualToString:@"北京市"] || [model.name isEqualToString:@"天津市"]||[model.name isEqualToString:@"重庆市"]||[model.name isEqualToString:@"上海市"]) {
+        [cell.textLabel setText:model.name];
+    }
+    else
+    {
+    NSArray *citys = model.city_list;
+    NSDictionary *city = [citys objectAtIndex:indexPath.row];
+    
+    NSString *name = [city objectForKey:@"name"];
+    [cell.textLabel setText:name];
+    }
+    [cell.textLabel setFont:[UIFont systemFontOfSize:15]];
     return cell;
     
 }
@@ -344,19 +387,6 @@
 {
   
     MCityModel *model = [[MCityModel alloc] init];
-//       model  = [citySource objectAtIndex:2];
-//    NSString *url = [NSString stringWithFormat:@"%@/restful/pub/home",MM_URL];
-//    MHomeView *homeView = [[MHomeView alloc] init];
-//    [self.navigationController popViewControllerAnimated:YES];
-//    [homeView changeCityName:model.name];
-//    NSLog(@"城市 %@",model.name);
-//   // NSLog(@"city Name in home address == %@",homeView.changeCityName);
-//    [homeView initWithRequestByUrl:url];
-    
-    
-    
-    
-    //[self.view addSubview:homeView];
 
     
     //筛选出符合的城市
@@ -371,11 +401,6 @@
             [self.view addSubview:prompting];
             break;
             [prompting show];
-//            MHomeView *homeView = [[MHomeView alloc] init];
-//            [homeView.cityName setText:model.name];
-//            [self.view addSubview:homeView];
-            
-            
         }
         else
         {
@@ -400,4 +425,15 @@
     [self.sendRequest clearDelegatesAndCancel];
     [cityNameTF resignFirstResponder];
 }
+
+#pragma mark - AIMTableViewIndexBarDelegate
+
+- (void)tableViewIndexBar:(AIMTableViewIndexBar *)indexBar didSelectSectionAtIndex:(NSInteger)index{
+    if ([cityTV numberOfSections] > index && index > -1){   // for safety, should always be YES
+        [cityTV scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index]
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:YES];
+    }
+}
+
 @end
