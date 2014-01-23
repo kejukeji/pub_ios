@@ -267,6 +267,7 @@
             model.city_list = [dict objectForKey:@"city_list"];
             model.areaId = [dict objectForKey:@"id"];
             [citySource addObject:model];
+        
         }
         [cityTV reloadData];
     }
@@ -300,12 +301,12 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    MAreaModel *model = [citySource objectAtIndex:section];
-    NSString *name = model.name;
-    return name;
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    MAreaModel *model = [citySource objectAtIndex:section];
+//    NSString *name = model.name;
+//    return name;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -323,9 +324,28 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     MAreaModel *model = [citySource objectAtIndex:indexPath.section];
+    NSLog(@"省 ＝＝ %@",model.name);
+    //MAreaModel *model = [citySource objectAtIndex:indexPath.row];
     
-    if ([model.name isEqualToString:@"北京市"] || [model.name isEqualToString:@"天津市"]||[model.name isEqualToString:@"重庆市"]||[model.name isEqualToString:@"上海市"]) {
+    if ([model.name isEqualToString:@"北京市"]) {
+        
         [cell.textLabel setText:model.name];
+        NSLog(@"直辖市 ＝＝ %@",model.name);
+    }
+    else if ([model.name isEqualToString:@"天津市"])
+    {
+       [cell.textLabel setText:model.name];
+        NSLog(@"直辖市 ＝＝ %@",model.name);
+    }
+    else if([model.name isEqualToString:@"重庆市"])
+    {
+        [cell.textLabel setText:model.name];
+        NSLog(@"直辖市 ＝＝ %@",model.name);
+    }
+    else if ([model.name isEqualToString:@"上海市"])
+    {
+        [cell.textLabel setText:model.name];
+        NSLog(@"直辖市 ＝＝ %@",model.name);
     }
     else
     {
