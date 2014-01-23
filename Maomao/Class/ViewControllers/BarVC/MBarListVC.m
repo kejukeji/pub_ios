@@ -129,6 +129,7 @@
     [self.view addSubview:hud];
 
     
+    NSLog(@"urlStr == %@",urlStr);
     // 判断是否酒吧按钮
     if (nearTag == 11) {
         
@@ -140,6 +141,7 @@
         
         NSString *url = [NSString stringWithFormat:@"%@&city_id=%@",urlStr, @"0"];
         
+        NSLog(@"in barList page URL == %@",url);
         [self initWithRequestByUrl:url];
     }
 
@@ -156,6 +158,7 @@
     [self.sendRequest clearDelegatesAndCancel];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 -  (void) changeCounty
 {
@@ -463,8 +466,14 @@
         
         //二期加载图片
         [recommendScrollView addSubview:picBtn];
+        if (!noiOS7) {
+            scrollLine.frame = CGRectMake(i*320.0/count,140.0+29.0, 320.0/count -2.0, 2.0);
+        }
+        else
+        {
+            scrollLine.frame = CGRectMake(i*320.0/count,100+5, 320.0/count -2.0, 2.0);
+        }
         
-        scrollLine.frame = CGRectMake(i*320.0/count,140.0+29.0, 320.0/count -2.0, 2.0);
         [scrollLine setImage:[UIImage imageNamed:@"barList_grayline.png"]];
        
         [scrollLineArray  addObject:scrollLine];//将滑动线添加到一个数组中
@@ -482,10 +491,7 @@
 
 
 /*
- 实现推荐酒吧轮播,如果没有达到滚动的边界那就继续滚动，反之推荐酒吧则退回到原来的位置。 第一种滚动方法代码简洁 第二种代码复杂不易于理解 本页面采用第一种算法。
- */
-
-//fun1
+ 实现推荐酒吧轮播,如果没有达到滚动的边界那就继续滚动，反之推荐酒吧则退回到原来的位置。  */
 
 - (void) scrollViewLoop
 {

@@ -77,6 +77,8 @@
     {
         [self.view setFrame:CGRectMake(0,0, 320, 416+(iPhone5?88:0)+64)];
     }
+    
+    
     imgView = [[UIImageView alloc] init];
 
     UIButton   *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -101,21 +103,40 @@
     [hud show:YES];
     [friendCenterScrollView addSubview:hud];
   
-    for (UIView *view in self.view.subviews)
-    {
+    if (!noiOS7) {
+        
+        for (UIView *view in self.view.subviews)
+        {
             
-    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-64, view.frame.size.width, view.frame.size.height)];
-        [friendCenterScrollView addSubview:view];
-      
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-64, view.frame.size.width, view.frame.size.height)];
+            [friendCenterScrollView addSubview:view];
+            
+        }
+    }
+    else
+    {
+        friendCenterScrollView.frame = CGRectMake(friendCenterScrollView.frame.origin.x, friendCenterScrollView.frame.origin.y - 64, friendCenterScrollView.frame.size.width, friendCenterScrollView.frame.size.height + 20);
+        
+        for (UIView *view in self.view.subviews)
+        {
+            
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height)];
+            [friendCenterScrollView addSubview:view];
+            
+        }
+
     }
     
+    
     if (iPhone5) {
+        
         [friendCenterScrollView setContentSize:CGSizeMake(320, 0)];
     }
     else
     {
-       [friendCenterScrollView setContentSize:CGSizeMake(320, 400)];
+       [friendCenterScrollView setContentSize:CGSizeMake(320, 470)];
     }
+    
     
     [self.view addSubview:friendCenterScrollView];
    
@@ -491,7 +512,7 @@
 
 - (void)showEye
 {
-    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(89,100, 100, 50)];
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(89,100+(noiOS7?60:0), 100, 50)];
     [img setImage:[UIImage imageNamed:@"personalCenter__img_eye.png"]];
     [friendCenterScrollView addSubview:img];
     imgView = img;

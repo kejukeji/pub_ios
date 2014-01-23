@@ -559,7 +559,7 @@
 - (void)gotoBarListVC:(NSInteger)typeId type:(NSString *)name;
 {
     MBarListVC *barListVC = [[MBarListVC alloc] init];
-    [self.navigationController pushViewController:barListVC animated:YES];
+    
     MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
     titleView.titleName.text = name;
     barListVC.navigationItem.titleView = titleView;
@@ -569,8 +569,10 @@
     barListVC.titleName = name;
     
     NSString *url = [NSString stringWithFormat:@"%@/restful/pub/list/detail?type_id=%d&province_id=9",MM_URL, typeId];
+    NSLog(@"barList URL == %@",url);
     
     barListVC.urlStr = url;
+    [self.navigationController pushViewController:barListVC animated:YES];
 }
 
 #pragma mark -

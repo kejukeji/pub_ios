@@ -61,11 +61,24 @@
     integrationScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44+(noiOS7?:20), 320, 416+(iPhone5?88:0))];
     
     
+    if (!noiOS7) {
+        
         for(UIView *view in self.view.subviews)
         {
             [integrationScrollView addSubview:view];
-           
+            
         }
+    }
+    else
+    {
+        integrationScrollView.frame = CGRectMake(integrationScrollView.frame.origin.x, integrationScrollView.frame.origin.y - 44, integrationScrollView.frame.size.width, integrationScrollView.frame.size.height);
+        for(UIView *view in self.view.subviews)
+        {
+            [integrationScrollView addSubview:view];
+            
+        }
+    }
+    
     
     [integrationScrollView setContentSize:CGSizeMake(320,530)];
 

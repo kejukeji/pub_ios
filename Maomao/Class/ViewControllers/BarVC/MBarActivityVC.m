@@ -65,11 +65,26 @@
     [hud show:YES];
     [barActivityScrollView addSubview:hud];
     
-    for(UIView  *view in self.view.subviews)
-    {
-        [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y - 64, view.frame.size.width, view.frame.size.height)];
-           [barActivityScrollView addSubview:view];
+    if (!noiOS7) {
+        
+        for(UIView  *view in self.view.subviews)
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y - 64, view.frame.size.width, view.frame.size.height)];
+            [barActivityScrollView addSubview:view];
+        }
     }
+    else
+    {
+        barActivityScrollView.frame = CGRectMake(barActivityScrollView.frame.origin.x, barActivityScrollView.frame.origin.y - 44 , barActivityScrollView.frame.size.width, barActivityScrollView.frame.size.height);
+        for(UIView  *view in self.view.subviews)
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height)];
+            [barActivityScrollView addSubview:view];
+        }
+    }
+    
+    
+    
     [barActivityScrollView setContentSize:CGSizeMake(320, 550)];
     [self.view addSubview:barActivityScrollView];
 }

@@ -98,10 +98,23 @@
     [hud show:YES];
     [barDetailScrollView addSubview:hud];
     
-   
-    for (UIView *view in self.view.subviews) {
-        [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-64, view.frame.size.width, view.frame.size.height)];
-        [ barDetailScrollView addSubview:view];
+    if (!noiOS7) {
+        
+        for (UIView *view in self.view.subviews) {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-64, view.frame.size.width, view.frame.size.height)];
+            [ barDetailScrollView addSubview:view];
+        }
+
+    }
+    else
+    {
+        barDetailScrollView.frame = CGRectMake(barDetailScrollView.frame.origin.x, barDetailScrollView.frame.origin.y - 44, barDetailScrollView.frame.size.width,barDetailScrollView.frame.size.height);
+        
+        for (UIView *view in self.view.subviews) {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height)];
+            [ barDetailScrollView addSubview:view];
+        }
+
     }
     
      [barDetailScrollView setContentSize:CGSizeMake(320, 550)];

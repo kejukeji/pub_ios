@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 50+64, 320, 200)];
+    coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 50+(!noiOS7?64:0), 320, 200)];
     [coverView setBackgroundColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.91 alpha:1.0]];
     MTitleView *titleView = [[MTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
     titleView.titleName.text = @"新消息提醒";
